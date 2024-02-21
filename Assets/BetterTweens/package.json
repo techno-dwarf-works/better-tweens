@@ -1,0 +1,34 @@
+{
+  "name": "com.tdw.better.tweens",
+  "displayName": "Better Tweens",
+  "version": "0.0.1",
+  "unity": "2021.3",
+  "description": " ",
+  "dependencies": {
+    "com.uurha.bettereditortools": "1.0.69",
+    "com.uurha.betterextensions": "1.2.0",
+    "com.uurha.betterdatastructures": "0.1.2",
+    "com.uurha.betterattributes": "2.1.48"
+  },
+  "author": {
+    "name": "Better Plugins",
+    "url": "https://github.com/techno-dwarf-works"
+  },
+  "changelogUrl": "https://github.com/techno-dwarf-works/better-tweens",
+  "documentationUrl": "https://github.com/techno-dwarf-works/better-tweens/tree/main#readme",
+  "license": "MIT",
+  "licensesUrl":"https://github.com/techno-dwarf-works/better-tweens/blob/main/LICENSE",
+  "keywords": [
+    "animation",
+    "tweening",
+    "motion",
+    "sequencing"
+  ],
+  "samples": [
+    {
+      "displayName": "Default samples",
+      "description": "Contains test samples",
+      "path": "Samples~/TestSamples"
+    }
+  ]
+}

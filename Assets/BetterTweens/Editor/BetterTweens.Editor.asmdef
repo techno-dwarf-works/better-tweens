@@ -1,6 +1,6 @@
 {
-    "name": "{project_name}.Editor",
-    "rootNamespace": "Better.{short_project_name}.EditorAddons",
+    "name": "BetterTweens.Editor",
+    "rootNamespace": "Better.Tweens.EditorAddons",
     "references": [
         "GUID:443314a5a4e67c14a88ae223776b6554"
     ],
