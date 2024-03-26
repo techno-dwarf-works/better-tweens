@@ -2,17 +2,18 @@ namespace Better.Tweens.Runtime
 {
     internal static class TweenRegistry
     {
-        public static Tween TweenCore;
+        public static TweenCore TweenCore;
+
         static TweenRegistry()
         {
         }
 
-        public static void Register(Tween tweenCore)
+        public static void Register(TweenCore tweenCore)
         {
             TweenCore = tweenCore;
         }
 
-        public static void Unregister(Tween tweenCore)
+        public static void Unregister(TweenCore tweenCore)
         {
             TweenCore = null;
         }

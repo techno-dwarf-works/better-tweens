@@ -1,37 +1,52 @@
 ﻿using System;
+using Better.Tweens.Runtime.Properties;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
-    public class TestTween : Tween
+    public class TestTween : Tween<float>
     {
-        private float from;
-        private float to;
-
-        public TestTween(float from, float to, float duration) : base(duration)
-        {
-            this.from = from;
-            this.to = to;
-        }
-
+        private float objt;
         private float prevLog;
-        internal override void ApplyState_Tween()
+
+        public TestTween(float objt)
         {
-            if(Progress is > 0f and < 1f && Mathf.Abs(Progress- prevLog) < 0.1f) return;
-            prevLog = Progress;
-            
-            var currentVal = Mathf.Lerp(from, to, Progress);
-            Debug.Log($"apply: {currentVal}\n({from}-{to})");
+            this.objt = objt;
         }
 
-        protected override void OnCompleted()
+        internal override void ___Apply_Evaluate_STATE(float time)
         {
-            Debug.Log("OnCompleted invoked");
+            if (Progress is > 0f and < 1f && Mathf.Abs(time - prevLog) < 0.1f) return;
+            prevLog = time;
+
+            var currentVal = Mathf.Lerp(FromValue, ToValue, time);
+            Debug.Log($"apply: {currentVal}\n({FromValue}-{ToValue})\nRawProgress: {RawProgress}\nCompletedLoops: {CompletedLoops}");
         }
 
-        protected override void OnKilled()
+        protected override float GetCurrentValue()
         {
-            Debug.Log("OnKilled invoked");
+            return objt;
+        }
+
+        protected override float FindRelativeFrom(float to, float options)
+        {
+            return to - options;
+        }
+
+        protected override float FindTo(float from, float options, OptionsMode optionsMode)
+        {
+            return optionsMode switch
+            {
+                OptionsMode.To => options,
+                OptionsMode.Relative => from + options,
+                OptionsMode.Speed => from + Properties.Duration * options,
+                _ => throw new ArgumentOutOfRangeException(nameof(optionsMode), optionsMode, null)
+            };
+        }
+
+        protected override float GetRelativeOptions(float from, float to)
+        {
+            return to - from;
         }
     }
 }

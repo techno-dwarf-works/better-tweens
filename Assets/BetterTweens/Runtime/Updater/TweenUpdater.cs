@@ -8,7 +8,7 @@ namespace Better.Tweens.Runtime
         [RuntimeInitializeOnLoadMethod]
         private static void Initialize()
         {
-            var playerLoopType = LoopType.Update.ToPlayerLoopType();
+            var playerLoopType = UpdateMode.Update.ToPlayerLoopType();
             PlayerLoopUtility.SubscribeToLoop(playerLoopType, OnUpdate);
             // PlayerLoopUtility.LogCurrentPlayerLoopTypes("lllllllllllllllllllll");
         }

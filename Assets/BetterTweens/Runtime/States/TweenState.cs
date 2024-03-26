@@ -6,9 +6,10 @@ namespace Better.Tweens.Runtime
 {
     public abstract class TweenState : BaseState
     {
-        protected Tween Source { get; private set; }
+        protected TweenCore Source { get; private set; }
+        public abstract float ProgressMod { get; }
 
-        public TweenState(Tween source)
+        public TweenState(TweenCore source)
         {
             Source = source;
         }
@@ -16,10 +17,6 @@ namespace Better.Tweens.Runtime
         public override Task EnterAsync(CancellationToken token)
         {
             return Task.CompletedTask;
-        }
-
-        public virtual void ApplyProgress(float value)
-        {
         }
 
         public override Task ExitAsync(CancellationToken token)

@@ -7,45 +7,71 @@ namespace Better.Tweens.Runtime.BetterTweens.Runtime
     {
         [Header("TRIGGERS")]
         [SerializeField] private bool _play;
-        [SerializeField] private bool _pause;
+
         [SerializeField] private bool _rewind;
+
+        [SerializeField] private bool _pause;
+        [SerializeField] private bool _stop;
+        [SerializeField] private bool _complete;
         [SerializeField] private bool _restart;
         [SerializeField] private bool _stress;
 
         [Header("PARAMS")]
-        [SerializeField] private float _duration;
-
+        // [SerializeField] private float _duration;
         [SerializeField] private float _from;
+
         [SerializeField] private float _to;
 
-        private Tween _tween;
+        private TestTween _tween;
 
         private void OnValidate()
         {
-            _tween ??= new TestTween(_from, _to, _duration);
-            
+            if (!Application.isPlaying)
+            {
+                // TODO
+                return;
+            }
+
+            if (_tween == null)
+            {
+                _tween = new TestTween(_from);
+                _tween.SetOptions(_to);
+            }
+
             if (_play)
             {
                 _play = false;
-                Play();
+                _tween.Play();
             }
-            
+
             if (_pause)
             {
                 _pause = false;
-                Pause();
+                _tween.Pause();
             }
-            
+
+            if (_complete)
+            {
+                _complete = false;
+                _tween.Complete();
+            }
+
+            if (_stop)
+            {
+                _stop = false;
+                _tween.Stop();
+            }
+
             if (_rewind)
             {
                 _rewind = false;
-                Rewind();
+                _tween.Rewind();
             }
 
             if (_restart)
             {
                 _restart = false;
-                Restart();
+                _tween.Restart();
             }
 
             if (_stress)
@@ -55,43 +81,23 @@ namespace Better.Tweens.Runtime.BetterTweens.Runtime
             }
         }
 
-        private void Restart()
-        {
-            _tween.Restart();
-        }
-
-        private void Play()
-        {
-            _tween.Play();
-        }
-
-        private void Pause()
-        {
-            _tween.Pause();
-        }
-
-        private void Rewind()
-        {
-            _tween.Rewing();
-        }
-
         private void Stress()
         {
             _tween.Pause();
             _tween.Play();
             _tween.Pause();
             _tween.Play();
-            _tween.Kill();
+            _tween.Complete();
             _tween.Pause();
             _tween.Pause();
             _tween.Play();
             _tween.Play();
             _tween.Pause();
-            _tween.Kill();
+            _tween.Stop();
             _tween.Play();
-            _tween.Kill();
+            _tween.Complete();
             _tween.Restart();
-            _tween.Kill();
+            _tween.Stop();
         }
     }
 }

@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace Better.Tweens.Runtime
 {
-    public class PauseState : TweenState
+    public class PlayingState : ActiveState
     {
-        public override float ProgressMod => 0f;
+        public override float ProgressMod => 1f;
 
-        public PauseState(TweenCore source) : base(source)
+        public PlayingState(TweenCore source) : base(source)
         {
         }
 
@@ -16,7 +16,7 @@ namespace Better.Tweens.Runtime
             await base.EnterAsync(token);
             if (token.IsCancellationRequested) return;
 
-            Source.OnPause();
+            Source.OnPlay();
         }
     }
 }

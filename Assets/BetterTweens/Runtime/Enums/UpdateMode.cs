@@ -1,6 +1,6 @@
 ﻿namespace Better.Tweens.Runtime
 {
-    public enum LoopType
+    public enum UpdateMode
     {
         Update,
         LateUpdate,

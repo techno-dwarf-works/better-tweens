@@ -1,167 +1,134 @@
 ﻿using System;
-using Better.Extensions.Runtime;
-using Better.StateMachine.Runtime;
+using Better.Tweens.Runtime.Properties;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract class Tween
+    public abstract class Tween<TTarget, TProperties, TValue, TValueOptions> : TweenCore
+        where TProperties : TweenProperties, new()
     {
-        internal const float MaxProgress = 1f;
+        [SerializeField] private TTarget _target;
+        [SerializeField] private TProperties _properties;
+        [SerializeField] private TValueOptions _options;
 
-        [Min(default)]
-        [SerializeField] private float _duration;
+        protected internal override TweenProperties Properties => _properties;
+        protected TValue FromValue { get; private set; }
+        protected TValue ToValue { get; private set; }
 
-        private StateMachine<TweenState> _stateMachine;
-        private PlayingTweenState _playingState;
-
-        protected bool Initialized { get; private set; }
-        public float Progress { get; internal set; }
-        public float Duration => _duration;
-
-        protected Tween(float duration)
+        protected override void Initialize()
         {
-            _duration = duration;
+            base.Initialize();
+            if (!Initialized) return; // TODO
+
+            _properties = new();
+            From();
         }
 
-        #region Initialization
-
-        protected internal void Initialize()
+        protected override void OnStarted()
         {
-            if (Initialized)
-            {
-                var message = "Already initialized";
-                DebugUtility.LogException<InvalidOperationException>(message);
-                return;
-            }
+            base.OnStarted();
 
-            Initialized = true;
-            _duration = Math.Max(_duration, default);
-            _stateMachine = new();
-            _playingState = new LinearPlayTweenState(this); // TODO
-
-            _stateMachine.Run();
-            var state = new StoppedState(this); // TODO
-            _stateMachine.ChangeState(state);
+            ToValue = FindTo(FromValue, _options, _properties.OptionsMode);
         }
 
-        protected internal void TryInitialize()
+        public void From(TValue value)
         {
-            if (Initialized) return;
-
-            Initialize();
+            FromValue = value;
         }
 
-        #endregion
-
-        public void Play()
+        public void From()
         {
-            TryInitialize();
-
-            if (_stateMachine.InState<LinearPlayTweenState>())
-            {
-                return;
-            }
-
-            _stateMachine.ChangeState(_playingState);
-            TweenRegistry.Register(this);
+            var value = GetCurrentValue();
+            From(value);
         }
 
-        public void Rewing()
-        {
-            TryInitialize();
+        protected abstract TValue FindRelativeFrom(TValue to, TValueOptions options);
 
-            if (_stateMachine.InState<RewindPlayTweenState>())
+        public void SetOptions(TValueOptions options, OptionsMode mode)
+        {
+            _options = options;
+            // _properties.Mode = mode;
+        
+            // TODO maybe recalculate???
+        }
+
+        public void SetOptions(TValueOptions options)
+        {
+            TryInitialize(); // TODO
+            SetOptions(options, _properties.OptionsMode);
+        }
+
+        protected abstract TValue FindTo(TValue from, TValueOptions options, OptionsMode optionsMode);
+
+        protected abstract TValue GetCurrentValue();
+
+        protected override void OnLoopCompleted()
+        {
+            base.OnLoopCompleted();
+
+            if (!IsPlaying()) // TODO check
             {
                 return;
             }
 
-            var rewindState = new RewindPlayTweenState(this); // TODO
-            _stateMachine.ChangeState(rewindState);
+            switch (_properties.Mode)
+            {
+                case LoopMode.Restart:
+                case LoopMode.PingPong:
+                    break;
+                case LoopMode.Incremental:
+                    var relativeOptions = GetRelativeOptions(FromValue, ToValue);
+                    FromValue = ToValue;
+                    ToValue = FindTo(FromValue, relativeOptions, OptionsMode.Relative);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
-        public void Pause()
+        protected override void OnLoopRewound()
         {
-            TryInitialize();
+            base.OnLoopRewound();
 
-            if (!IsPlaying())
+            if (!IsPlaying()) // TODO check
             {
                 return;
             }
 
-            var pauseState = new PauseState(this);
-            _stateMachine.ChangeState(pauseState);
-        }
-
-        public void Restart()
-        {
-            TryInitialize();
-            Kill();
-            Play();
-        }
-
-        internal void ApplyProgress(float value)
-        {
-            _stateMachine?.CurrentState.ApplyProgress(value);
-        }
-
-        internal abstract void ApplyState_Tween();
-
-        public void Kill(bool isComplete = false)
-        {
-            TryInitialize();
-
-            if (_stateMachine.InState<StoppedState>())
+            switch (_properties.Mode)
             {
-                return;
+                case LoopMode.Restart:
+                case LoopMode.PingPong:
+                    break;
+                case LoopMode.Incremental:
+                    var relativeOptions = GetRelativeOptions(FromValue, ToValue);
+                    ToValue = FromValue;
+                    FromValue = FindRelativeFrom(ToValue, relativeOptions);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-
-            if (isComplete)
-            {
-                if (!Mathf.Approximately(Progress, MaxProgress))
-                {
-                    Progress = MaxProgress;
-                    ApplyState_Tween();
-                }
-
-                OnCompleted();
-            }
-
-            var stoppedState = new StoppedState(this);
-            _stateMachine.ChangeState(stoppedState);
-
-            TweenRegistry.Unregister(this);
-            OnKilled();
         }
 
-        protected abstract void OnCompleted();
-        protected abstract void OnKilled();
+        protected abstract TValueOptions GetRelativeOptions(TValue from, TValue to);
+    }
 
-        public bool IsPlaying()
-        {
-            TryInitialize();
-            return _stateMachine.InState<PlayingTweenState>();
-        }
+    [Serializable]
+    public abstract class Tween<TTarget, TValue, TValueOptions> : Tween<TTarget, TweenProperties, TValue, TValueOptions>
+    {
+        // TODO: Add ctors
+    }
 
-        protected bool IsMutable()
-        {
-            TryInitialize();
-            return _stateMachine.InState<StoppedState>();
-        }
+    [Serializable]
+    public abstract class Tween<TTarget, TValue> : Tween<TTarget, TValue, TValue>
+    {
+        // TODO: Add ctors
+    }
 
-        protected internal bool ValidateMutable(bool targetState, bool logException = true)
-        {
-            var isMutable = IsMutable();
-            var isValid = isMutable == targetState;
-            if (!isValid && logException)
-            {
-                var reason = targetState ? "must be mutable" : "must be immutable";
-                var message = "Not valid, " + reason;
-                DebugUtility.LogException<InvalidOperationException>(message);
-            }
-
-            return isValid;
-        }
+    [Serializable]
+    public abstract class Tween<TTarget> : Tween<TTarget, TTarget>
+    {
+        // TODO: Add ctors
     }
 }
