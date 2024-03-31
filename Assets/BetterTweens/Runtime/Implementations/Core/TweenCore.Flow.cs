@@ -29,14 +29,18 @@
         {
             _rawProgress = default;
             RemainingDelay = DerivedProperties.StartDelay;
+
+            CallbackUtility.InvokeWithSafety(Started);
         }
 
         protected internal virtual void OnActive()
         {
+            CallbackUtility.InvokeWithSafety(Activated);
         }
 
         protected internal virtual void OnPlay()
         {
+            CallbackUtility.InvokeWithSafety(Playing);
         }
 
         public TweenCore Rewind()
@@ -59,6 +63,7 @@
 
         protected internal virtual void OnRewind()
         {
+            CallbackUtility.InvokeWithSafety(Rewinding);
         }
 
         public TweenCore Pause()
@@ -79,8 +84,9 @@
             return this;
         }
 
-        protected internal virtual void OnPause()
+        protected internal virtual void OnPaused()
         {
+            CallbackUtility.InvokeWithSafety(Paused);
         }
 
         public TweenCore Stop()
@@ -96,13 +102,14 @@
             }
 
             var stoppedState = _statesCache.GetOrAdd<StoppedState>();
-            _stateMachine.ChangeState(stoppedState); 
+            _stateMachine.ChangeState(stoppedState);
 
             return this;
         }
 
         protected internal virtual void OnStopped()
         {
+            CallbackUtility.InvokeWithSafety(Stopped);
         }
 
         public TweenCore Complete()
@@ -128,11 +135,13 @@
 
         protected virtual void OnCompleted()
         {
+            CallbackUtility.InvokeWithSafety(Completed);
             Stop();
         }
 
         protected virtual void OnRewound()
         {
+            CallbackUtility.InvokeWithSafety(Rewound);
             Pause();
         }
 

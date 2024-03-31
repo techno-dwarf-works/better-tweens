@@ -1,4 +1,5 @@
-﻿using Better.Tweens.Runtime.Logs;
+﻿using System;
+using Better.Tweens.Runtime.Logs;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime

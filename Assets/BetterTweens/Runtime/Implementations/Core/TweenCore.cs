@@ -8,6 +8,17 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract partial class TweenCore
     {
+        public event Action Started;
+        public event Action Activated;
+        public event Action Playing;
+        public event Action Rewinding;
+        public event Action Paused;
+        public event Action Stopped;
+        public event Action Completed;
+        public event Action Rewound;
+        public event Action LoopCompleted;
+        public event Action LoopRewound;
+        
         private StateMachine<TweenState> _stateMachine;
         private StatesCacheModule<TweenState> _statesCache;
         private float _rawProgress;

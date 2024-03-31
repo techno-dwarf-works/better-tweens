@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
             await base.EnterAsync(token);
             if (token.IsCancellationRequested) return;
 
-            Source.OnPause();
+            Source.OnPaused();
         }
     }
 }

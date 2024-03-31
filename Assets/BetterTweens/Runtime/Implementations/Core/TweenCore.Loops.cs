@@ -5,6 +5,7 @@
         protected virtual void OnLoopCompleted()
         {
             EvaluateStateByMode(1f);
+            CallbackUtility.InvokeWithSafety(LoopCompleted);
 
             if (CompletedLoops >= DerivedProperties.LoopCount)
             {
@@ -14,11 +15,6 @@
             {
                 RemainingDelay = DerivedProperties.LoopDelay;
             }
-        }
-
-        protected virtual void OnLoopPostCompleted()
-        {
-            
         }
 
         protected void OnLoopsCompleted(int count)
@@ -32,6 +28,7 @@
         protected virtual void OnLoopRewound()
         {
             EvaluateStateByMode(0f);
+            CallbackUtility.InvokeWithSafety(LoopRewound);
 
             if (CompletedLoops <= 0)
             {
