@@ -6,10 +6,6 @@ namespace Better.Tweens.Runtime
     public class RewindState : ActiveState
     {
         public override float ProgressMod => -1f;
-
-        public RewindState(TweenCore source) : base(source)
-        {
-        }
         
         public override async Task EnterAsync(CancellationToken token)
         {

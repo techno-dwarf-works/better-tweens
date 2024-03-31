@@ -9,7 +9,7 @@ namespace Better.Tweens.Runtime
         protected TweenCore Source { get; private set; }
         public abstract float ProgressMod { get; }
 
-        public TweenState(TweenCore source)
+        public virtual void Setup(TweenCore source)
         {
             Source = source;
         }

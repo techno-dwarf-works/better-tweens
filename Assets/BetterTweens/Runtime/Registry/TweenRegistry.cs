@@ -1,21 +1,64 @@
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Logs;
+
 namespace Better.Tweens.Runtime
 {
-    internal static class TweenRegistry
+    public static class TweenRegistry
     {
-        public static TweenCore TweenCore;
+        private static List<TweenCore> _elements;
 
         static TweenRegistry()
         {
+            _elements = new();
         }
 
-        public static void Register(TweenCore tweenCore)
+        internal static void Register(TweenCore element)
         {
-            TweenCore = tweenCore;
+            if (IsRegistered(element))
+            {
+                var message = $"Element({element}) already registered";
+                LogUtility.LogException(message);
+
+                return;
+            }
+
+            _elements.Add(element);
         }
 
-        public static void Unregister(TweenCore tweenCore)
+        internal static bool IsRegistered(TweenCore element)
         {
-            TweenCore = null;
+            return _elements.Contains(element);
+        }
+
+        internal static void Unregister(TweenCore element)
+        {
+            if (!IsRegistered(element))
+            {
+                var message = $"Element({element}) not registered";
+                LogUtility.LogException(message);
+
+                return;
+            }
+
+            _elements.Remove(element);
+        }
+
+        public static void CollectElementsBy(UpdateMode updateMode, ref List<TweenCore> elements)
+        {
+            if (elements == null)
+            {
+                var message = $"{nameof(elements)} cannot be null";
+                LogUtility.LogException(message);
+                return;
+            }
+
+            foreach (var element in _elements)
+            {
+                if (element.UpdateMode == updateMode)
+                {
+                    elements.Add(element);
+                }
+            }
         }
     }
 }

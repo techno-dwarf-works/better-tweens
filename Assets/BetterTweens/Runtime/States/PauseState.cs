@@ -7,10 +7,6 @@ namespace Better.Tweens.Runtime
     {
         public override float ProgressMod => 0f;
 
-        public PauseState(TweenCore source) : base(source)
-        {
-        }
-
         public override async Task EnterAsync(CancellationToken token)
         {
             await base.EnterAsync(token);

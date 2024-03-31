@@ -5,10 +5,6 @@ namespace Better.Tweens.Runtime
 {
     public abstract class ActiveState : TweenState
     {
-        public ActiveState(TweenCore source) : base(source)
-        {
-        }
-
         public override async Task EnterAsync(CancellationToken token)
         {
             await base.EnterAsync(token);

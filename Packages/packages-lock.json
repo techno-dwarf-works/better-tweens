@@ -29,12 +29,12 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.statemachine": {
-      "version": "0.0.3",
+      "version": "0.0.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.internal.core": "0.0.2",
-        "com.uurha.betterextensions": "1.5.96"
+        "com.uurha.betterextensions": "1.5.98"
       },
       "url": "https://package.openupm.com"
     },
@@ -174,7 +174,7 @@
       "url": "https://packages.unity.com"
     },
     "com.uurha.betterextensions": {
-      "version": "1.5.97",
+      "version": "1.5.98",
       "depth": 0,
       "source": "registry",
       "dependencies": {

@@ -7,11 +7,7 @@ namespace Better.Tweens.Runtime
     {
         private bool _suppressNotify;
         public override float ProgressMod => 0f;
-
-        public StoppedState(TweenCore source) : base(source)
-        {
-        }
-
+        
         public void SuppressNextNotify()
         {
             _suppressNotify = true;
@@ -22,7 +18,6 @@ namespace Better.Tweens.Runtime
             await base.EnterAsync(token);
             if (token.IsCancellationRequested) return;
 
-            Source.RawProgress = default;
             TryNotify();
         }
 

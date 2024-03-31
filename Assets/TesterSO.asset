@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5ecdea21524629b61a0554893e4931, type: 3}
   m_Name: TesterSO
   m_EditorClassIdentifier: 
-  _play: 0
-  _rewind: 0
-  _pause: 0
-  _stop: 0
-  _complete: 0
-  _restart: 0
-  _stress: 0
-  _from: 0
-  _to: 10
+  _tester:
+    _play: 0
+    _rewind: 0
+    _pause: 0
+    _stop: 0
+    _complete: 0
+    _restart: 0
+    _stress: 0
+    _duration: 5
+    _from: 0
+    _to: 10

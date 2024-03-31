@@ -1,23 +1,48 @@
+using System.Collections.Generic;
 using Better.Extensions.Runtime;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Better.Tweens.Runtime
 {
-    public static class TweenUpdater
+    internal static class TweenUpdater
     {
+        private static List<TweenCore> _cachedReferences;
+
         [RuntimeInitializeOnLoadMethod]
         private static void Initialize()
         {
-            var playerLoopType = UpdateMode.Update.ToPlayerLoopType();
-            PlayerLoopUtility.SubscribeToLoop(playerLoopType, OnUpdate);
-            // PlayerLoopUtility.LogCurrentPlayerLoopTypes("lllllllllllllllllllll");
+            _cachedReferences = new();
+
+            PlayerLoopUtility.SubscribeToLoop(typeof(Update), OnUpdate);
+            PlayerLoopUtility.SubscribeToLoop(typeof(PreLateUpdate), OnLateUpdate);
+            PlayerLoopUtility.SubscribeToLoop(typeof(FixedUpdate), OnFixedUpdate);
         }
 
         private static void OnUpdate()
         {
-            if(TweenRegistry.TweenCore == null) return;
-            
-            TweenRegistry.TweenCore.ApplyProgress(Time.deltaTime);
+            Tick(UpdateMode.Update, Time.deltaTime);
+        }
+
+        private static void OnLateUpdate()
+        {
+            Tick(UpdateMode.LateUpdate, Time.deltaTime);
+        }
+
+        private static void OnFixedUpdate()
+        {
+            Tick(UpdateMode.FixedUpdate, Time.fixedDeltaTime);
+        }
+
+        private static void Tick(UpdateMode updateMode, float deltaTime)
+        {
+            TweenRegistry.CollectElementsBy(updateMode, ref _cachedReferences);
+            foreach (var tweenCore in _cachedReferences)
+            {
+                tweenCore.ApplyProgress(deltaTime);
+            }
+
+            _cachedReferences.Clear();
         }
     }
 }
