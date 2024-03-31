@@ -37,6 +37,8 @@ namespace Better.Tweens.Runtime
             {
                 EvaluateStateByMode();
             }
+
+            OnUpdated();
         }
 
         private bool DecreaseDelay(ref float value)
@@ -46,6 +48,11 @@ namespace Better.Tweens.Runtime
             value = Mathf.Min(value, RemainingDelay);
             RemainingDelay -= value;
             return true;
+        }
+
+        private void OnUpdated()
+        {
+            CallbackUtility.InvokeWithSafety(Updated);
         }
     }
 }

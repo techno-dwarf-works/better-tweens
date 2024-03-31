@@ -104,6 +104,16 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        public TweenCore OnUpdated(Action callback)
+        {
+            if (CallbackUtility.Validate(callback))
+            {
+                Updated += callback;
+            }
+
+            return this;
+        }
+
         public TweenCore OnPaused(Action callback)
         {
             if (CallbackUtility.Validate(callback))
