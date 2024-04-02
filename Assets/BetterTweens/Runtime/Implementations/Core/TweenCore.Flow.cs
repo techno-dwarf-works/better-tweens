@@ -28,7 +28,7 @@
         protected internal virtual void OnStarted()
         {
             _rawProgress = default;
-            RemainingDelay = DerivedProperties.StartDelay;
+            RemainingDelay = CoreProperties.StartDelay;
 
             CallbackUtility.InvokeWithSafety(Started);
         }
@@ -45,11 +45,6 @@
 
         public TweenCore Rewind()
         {
-            if (!ValidateInitialized(true))
-            {
-                return this;
-            }
-
             if (IsRewinding() || IsStopped())
             {
                 return this;
@@ -68,11 +63,6 @@
 
         public TweenCore Pause()
         {
-            if (!ValidateInitialized(true))
-            {
-                return this;
-            }
-
             if (!IsActive())
             {
                 return this;
@@ -84,6 +74,20 @@
             return this;
         }
 
+        public TweenCore TogglePause()
+        {
+            if (IsPaused())
+            {
+                Play();
+            }
+            else if (IsActive())
+            {
+                Pause();
+            }
+
+            return this;
+        }
+
         protected internal virtual void OnPaused()
         {
             CallbackUtility.InvokeWithSafety(Paused);
@@ -91,11 +95,6 @@
 
         public TweenCore Stop()
         {
-            if (!ValidateInitialized(true))
-            {
-                return this;
-            }
-
             if (IsStopped())
             {
                 return this;
@@ -114,17 +113,12 @@
 
         public TweenCore Complete()
         {
-            if (!ValidateInitialized(true))
-            {
-                return this;
-            }
-
             if (IsStopped())
             {
                 return this;
             }
 
-            for (int i = CompletedLoops + 1; i <= DerivedProperties.LoopCount; i++)
+            for (int i = CompletedLoops + 1; i <= CoreProperties.LoopCount; i++)
             {
                 _rawProgress = i;
                 OnLoopCompleted();
@@ -147,11 +141,8 @@
 
         public TweenCore Restart()
         {
-            if (ValidateInitialized(true))
-            {
-                Stop();
-                Play();
-            }
+            Stop();
+            Play();
 
             return this;
         }

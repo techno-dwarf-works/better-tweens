@@ -8,7 +8,7 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                DerivedProperties.Duration = value;
+                CoreProperties.Duration = value;
             }
 
             return this;
@@ -18,7 +18,7 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                DerivedProperties.StartDelay = value;
+                CoreProperties.StartDelay = value;
             }
 
             return this;
@@ -28,7 +28,7 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                DerivedProperties.LoopDelay = value;
+                CoreProperties.LoopDelay = value;
             }
 
             return this;
@@ -38,7 +38,7 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                DerivedProperties.LoopCount = value;
+                CoreProperties.LoopCount = value;
             }
 
             return this;
@@ -48,7 +48,7 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                DerivedProperties.LoopMode = value;
+                CoreProperties.LoopMode = value;
             }
 
             return this;

@@ -3,42 +3,51 @@ using System.Text;
 using Better.Tweens.Runtime.Properties;
 using UnityEngine;
 
+// TODO
+// Triggers? ENUMS
+// SetId = Add-Contains-RemoveTag? tag = object
+// Awaiters with crtns? Source+tween events
+// Infinity Loops? Prop.bool and stable setters
+
 namespace Better.Tweens.Runtime
 {
     [Serializable]
     public abstract class Tween<TProperties, TValue, TValueOptions> : TweenCore
-        where TProperties : TweenProperties, new()
+        where TProperties : TweenProperties<TValue>, new()
     {
         [SerializeField] private TProperties _properties;
         [SerializeField] private TValueOptions _options;
 
-        internal override TweenProperties DerivedProperties => _properties;
+        public FromMode FromMode => Properties.FromMode;
+        
+        internal override CoreProperties CoreProperties => _properties;
         protected TProperties Properties => _properties;
         protected TValue FromValue { get; private set; }
         protected TValue ToValue { get; private set; }
 
-        protected Tween()
+        public Tween()
         {
             _properties = new();
         }
 
         protected override void OnInitialized()
         {
-            From();
         }
 
         protected internal override void OnStarted()
         {
             base.OnStarted();
 
-            ToValue = FindTo(FromValue, _options, _properties.OptionsMode);
+            FromValue = GetFromBy(Properties.FromMode);
+            ToValue = CalculateTo(FromValue, _options, _properties.OptionsMode);
         }
 
         public Tween<TProperties, TValue, TValueOptions> From(TValue value)
         {
             if (ValidateMutable(true))
             {
-                FromValue = value;
+                Properties.FromMode = FromMode.Properties;
+                Properties.FromValue = value;
             }
 
             return this;
@@ -55,27 +64,61 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public Tween<TProperties, TValue, TValueOptions> SetOptions(TValueOptions options, OptionsMode mode)
+        public Tween<TProperties, TValue, TValueOptions> FromAuto()
+        {
+            if (ValidateMutable(true))
+            {
+                Properties.FromMode = FromMode.Auto;
+                Properties.FromValue = default;
+            }
+
+            return this;
+        }
+
+        private TValue GetFromBy(FromMode mode)
+        {
+            return mode switch
+            {
+                FromMode.Auto => GetCurrentValue(),
+                FromMode.Properties => Properties.FromValue,
+                _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null)
+            };
+        }
+
+        protected abstract TValue CalculateRelativeFrom(TValue to, TValueOptions options);
+
+        protected abstract TValue CalculateTo(TValue from, TValueOptions options, OptionsMode optionsMode);
+
+        public Tween<TProperties, TValue, TValueOptions> SetOptions(TValueOptions options)
         {
             if (ValidateMutable(true))
             {
                 _options = options;
+            }
+
+            return this;
+        }
+
+        public Tween<TProperties, TValue, TValueOptions> SetOptions(TValueOptions options, OptionsMode mode)
+        {
+            SetOptions(options);
+            SetOptionMode(mode);
+
+            return this;
+        }
+
+        public Tween<TProperties, TValue, TValueOptions> SetOptionMode(OptionsMode mode)
+        {
+            if (ValidateMutable(true))
+            {
                 _properties.OptionsMode = mode;
             }
 
             return this;
         }
 
-        public Tween<TProperties, TValue, TValueOptions> SetOptions(TValueOptions options)
-        {
-            SetOptions(options, _properties.OptionsMode);
-
-            return this;
-        }
-
         protected abstract TValue GetCurrentValue();
-        protected abstract TValue FindTo(TValue from, TValueOptions options, OptionsMode optionsMode);
-        protected abstract TValue FindRelativeFrom(TValue to, TValueOptions options);
+
         protected abstract TValueOptions GetRelativeOptions(TValue from, TValue to);
 
         protected override void OnLoopCompleted()
@@ -95,7 +138,7 @@ namespace Better.Tweens.Runtime
                 case LoopMode.Incremental:
                     var relativeOptions = GetRelativeOptions(FromValue, ToValue);
                     FromValue = ToValue;
-                    ToValue = FindTo(FromValue, relativeOptions, OptionsMode.Relative);
+                    ToValue = CalculateTo(FromValue, relativeOptions, OptionsMode.Relative);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -119,7 +162,7 @@ namespace Better.Tweens.Runtime
                 case LoopMode.Incremental:
                     var relativeOptions = GetRelativeOptions(FromValue, ToValue);
                     ToValue = FromValue;
-                    FromValue = FindRelativeFrom(ToValue, relativeOptions);
+                    FromValue = CalculateRelativeFrom(ToValue, relativeOptions);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -139,7 +182,7 @@ namespace Better.Tweens.Runtime
     }
 
     [Serializable]
-    public abstract class Tween<TValue, TValueOptions> : Tween<TweenProperties, TValue, TValueOptions>
+    public abstract class Tween<TValue, TValueOptions> : Tween<TweenProperties<TValue>, TValue, TValueOptions>
     {
     }
 

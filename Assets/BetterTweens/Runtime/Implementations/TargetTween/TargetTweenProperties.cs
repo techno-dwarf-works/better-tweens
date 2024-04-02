@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Better.Tweens.Runtime.Properties
 {
     [Serializable]
-    public class TargetableTweenProperties<TTarget> : TweenProperties
+    public class TargetTweenProperties<TTarget, TValue> : TweenProperties<TValue>
     {
         [SerializeField] private TTarget _target;
 
