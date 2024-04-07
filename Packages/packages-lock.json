@@ -8,22 +8,22 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.projectsettings": {
-      "version": "0.0.1",
+      "version": "0.0.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.tdw.better.singletons": "0.0.7",
-        "com.uurha.betterextensions": "1.5.3",
+        "com.tdw.better.singletons": "0.0.8",
+        "com.uurha.betterextensions": "1.5.98",
         "com.tdw.better.internal.core": "0.0.2"
       },
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.singletons": {
-      "version": "0.0.7",
+      "version": "0.0.8",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.uurha.betterextensions": "1.5.2",
+        "com.uurha.betterextensions": "1.5.98",
         "com.tdw.better.internal.core": "0.0.2"
       },
       "url": "https://package.openupm.com"
