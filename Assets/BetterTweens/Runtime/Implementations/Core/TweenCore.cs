@@ -1,13 +1,17 @@
 ﻿using System;
 using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
-using Better.Tweens.Runtime.Properties;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
     [Serializable]
     public abstract partial class TweenCore
     {
+        private const float MinDuration = 0f;
+        private const float MinDelay = 0f;
+        private const int MinLoopCount = 1;
+
         public event Action Started;
         public event Action Activated;
         public event Action Playing;
@@ -20,24 +24,41 @@ namespace Better.Tweens.Runtime
         public event Action LoopCompleted;
         public event Action LoopRewound;
 
+        [Min(MinDuration)]
+        [SerializeField] private float _duration;
+
+        [Min(MinDelay)]
+        [SerializeField] private float _startDelay;
+
+        [Min(MinDelay)]
+        [SerializeField] private float _loopDelay;
+
+        [Min(MinLoopCount)]
+        [SerializeField] private int _loopCount;
+
+        [SerializeField] private LoopMode _loopMode;
+
         private StateMachine<TweenState> _stateMachine;
         private StatesCacheModule<TweenState> _statesCache;
         private float _rawProgress;
 
-        public float Duration => CoreProperties.Duration;
-        public float StartDelay => CoreProperties.StartDelay;
-        public float LoopDelay => CoreProperties.LoopDelay;
+        public float Duration => _duration;
+        public float StartDelay => _startDelay;
+        public float LoopDelay => _loopDelay;
         public float RemainingDelay { get; private set; }
         public bool InDelay => RemainingDelay > 0f;
         public float LoopProgress => _rawProgress % 1f;
-        public float TotalProgress => _rawProgress / CoreProperties.LoopCount;
-        public int LoopCount => CoreProperties.LoopCount;
-        public LoopMode LoopMode => CoreProperties.LoopMode;
+        public float TotalProgress => _rawProgress / LoopCount;
+        public int LoopCount => _loopCount;
+        public LoopMode LoopMode => _loopMode;
         public int CompletedLoops => (int)_rawProgress;
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
 
-        internal abstract CoreProperties CoreProperties { get; }
-
         protected bool Initialized { get; private set; }
+
+        protected TweenCore()
+        {
+            _loopCount = MinLoopCount;
+        }
     }
 }

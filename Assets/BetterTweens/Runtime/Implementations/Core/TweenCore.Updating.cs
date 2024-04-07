@@ -13,10 +13,10 @@ namespace Better.Tweens.Runtime
 
             var rootCompletedLoops = CompletedLoops;
             var stateMod = _stateMachine.CurrentState.ProgressMod;
-            var progressMod = Time.timeScale * stateMod / CoreProperties.Duration; // TODO progress mod (time scale, etc)
+            var progressMod = Time.timeScale * stateMod / Duration; // TODO progress mod (time scale, etc)
 
             _rawProgress += value * progressMod;
-            _rawProgress = Mathf.Clamp(_rawProgress, default, CoreProperties.LoopCount);
+            _rawProgress = Mathf.Clamp(_rawProgress, default, LoopCount);
 
             var completedLoopChanged = CompletedLoops != rootCompletedLoops;
             var rewoundCompleted = Mathf.Approximately(_rawProgress, default) && !Mathf.Approximately(value, default);

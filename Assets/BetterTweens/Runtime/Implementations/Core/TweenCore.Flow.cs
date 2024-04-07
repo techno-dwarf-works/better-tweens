@@ -28,7 +28,7 @@
         protected internal virtual void OnStarted()
         {
             _rawProgress = default;
-            RemainingDelay = CoreProperties.StartDelay;
+            RemainingDelay = StartDelay;
 
             CallbackUtility.InvokeWithSafety(Started);
         }
@@ -118,7 +118,7 @@
                 return this;
             }
 
-            for (int i = CompletedLoops + 1; i <= CoreProperties.LoopCount; i++)
+            for (int i = CompletedLoops + 1; i <= LoopCount; i++)
             {
                 _rawProgress = i;
                 OnLoopCompleted();

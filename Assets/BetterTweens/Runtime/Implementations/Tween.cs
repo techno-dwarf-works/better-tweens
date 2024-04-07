@@ -1,34 +1,22 @@
 ﻿using System;
 using System.Text;
-using Better.Tweens.Runtime.Properties;
 using UnityEngine;
-
-// TODO
-// Triggers? ENUMS
-// SetId = Add-Contains-RemoveTag? tag = object
-// Awaiters with crtns? Source+tween events
-// Infinity Loops? Prop.bool and stable setters
 
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract class Tween<TProperties, TValue, TValueOptions> : TweenCore
-        where TProperties : TweenProperties<TValue>, new()
+    public abstract class Tween<TValue, TValueOptions> : TweenCore
     {
-        [SerializeField] private TProperties _properties;
+        [SerializeField] private FromMode _fromMode;
+        [SerializeField] private TValue _fromValue; // TODO name conflict with property
+        [SerializeField] private OptionsMode _optionsMode;
         [SerializeField] private TValueOptions _options;
 
-        public FromMode FromMode => Properties.FromMode;
-        
-        internal override CoreProperties CoreProperties => _properties;
-        protected TProperties Properties => _properties;
+        public OptionsMode OptionsMode => _optionsMode;
+        public FromMode FromMode => _fromMode;
+
         protected TValue FromValue { get; private set; }
         protected TValue ToValue { get; private set; }
-
-        public Tween()
-        {
-            _properties = new();
-        }
 
         protected override void OnInitialized()
         {
@@ -38,22 +26,22 @@ namespace Better.Tweens.Runtime
         {
             base.OnStarted();
 
-            FromValue = GetFromBy(Properties.FromMode);
-            ToValue = CalculateTo(FromValue, _options, _properties.OptionsMode);
+            FromValue = GetFromBy(FromMode);
+            ToValue = CalculateTo(FromValue, _options, OptionsMode);
         }
 
-        public Tween<TProperties, TValue, TValueOptions> From(TValue value)
+        public Tween<TValue, TValueOptions> From(TValue value)
         {
             if (ValidateMutable(true))
             {
-                Properties.FromMode = FromMode.Properties;
-                Properties.FromValue = value;
+                _fromMode = FromMode.Properties;
+                _fromValue = value;
             }
 
             return this;
         }
 
-        public Tween<TProperties, TValue, TValueOptions> From()
+        public Tween<TValue, TValueOptions> From()
         {
             if (ValidateMutable(true))
             {
@@ -64,12 +52,12 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public Tween<TProperties, TValue, TValueOptions> FromAuto()
+        public Tween<TValue, TValueOptions> FromAuto()
         {
             if (ValidateMutable(true))
             {
-                Properties.FromMode = FromMode.Auto;
-                Properties.FromValue = default;
+                _fromMode = FromMode.Auto;
+                _fromValue = default;
             }
 
             return this;
@@ -80,7 +68,7 @@ namespace Better.Tweens.Runtime
             return mode switch
             {
                 FromMode.Auto => GetCurrentValue(),
-                FromMode.Properties => Properties.FromValue,
+                FromMode.Properties => _fromValue,
                 _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null)
             };
         }
@@ -89,7 +77,7 @@ namespace Better.Tweens.Runtime
 
         protected abstract TValue CalculateTo(TValue from, TValueOptions options, OptionsMode optionsMode);
 
-        public Tween<TProperties, TValue, TValueOptions> SetOptions(TValueOptions options)
+        public Tween<TValue, TValueOptions> SetOptions(TValueOptions options)
         {
             if (ValidateMutable(true))
             {
@@ -99,7 +87,7 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public Tween<TProperties, TValue, TValueOptions> SetOptions(TValueOptions options, OptionsMode mode)
+        public Tween<TValue, TValueOptions> SetOptions(TValueOptions options, OptionsMode mode)
         {
             SetOptions(options);
             SetOptionMode(mode);
@@ -107,11 +95,11 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public Tween<TProperties, TValue, TValueOptions> SetOptionMode(OptionsMode mode)
+        public Tween<TValue, TValueOptions> SetOptionMode(OptionsMode mode)
         {
             if (ValidateMutable(true))
             {
-                _properties.OptionsMode = mode;
+                _optionsMode = mode;
             }
 
             return this;
@@ -130,7 +118,7 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            switch (_properties.LoopMode)
+            switch (LoopMode)
             {
                 case LoopMode.Restart:
                 case LoopMode.PingPong:
@@ -154,7 +142,7 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            switch (_properties.LoopMode)
+            switch (LoopMode)
             {
                 case LoopMode.Restart:
                 case LoopMode.PingPong:
@@ -177,13 +165,10 @@ namespace Better.Tweens.Runtime
             return new StringBuilder(source)
                 .AppendJoin(separator, nameof(FromValue), FromValue)
                 .AppendJoin(separator, nameof(ToValue), ToValue)
+                .AppendJoin(separator, nameof(OptionsMode), OptionsMode)
+                .AppendJoin(separator, nameof(FromMode), FromMode)
                 .ToString();
         }
-    }
-
-    [Serializable]
-    public abstract class Tween<TValue, TValueOptions> : Tween<TweenProperties<TValue>, TValue, TValueOptions>
-    {
     }
 
     [Serializable]

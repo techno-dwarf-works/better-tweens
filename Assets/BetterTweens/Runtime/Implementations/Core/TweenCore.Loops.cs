@@ -7,13 +7,13 @@
             EvaluateStateByMode(1f);
             CallbackUtility.InvokeWithSafety(LoopCompleted);
 
-            if (CompletedLoops >= CoreProperties.LoopCount)
+            if (CompletedLoops >= LoopCount)
             {
                 OnCompleted();
             }
             else
             {
-                RemainingDelay = CoreProperties.LoopDelay;
+                RemainingDelay = LoopDelay;
             }
         }
 
@@ -36,7 +36,7 @@
             }
             else
             {
-                RemainingDelay = CoreProperties.LoopDelay;
+                RemainingDelay = LoopDelay;
             }
         }
 

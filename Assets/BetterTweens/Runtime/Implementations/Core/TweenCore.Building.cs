@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Tweens.Runtime.Logs;
 
 namespace Better.Tweens.Runtime
 {
@@ -8,7 +9,14 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                CoreProperties.Duration = value;
+                if (value < MinDuration)
+                {
+                    var message = $"{nameof(Duration)} cannot be less of {nameof(MinDuration)}({MinDuration}), was clamped";
+                    LogUtility.LogWarning(message);
+                    value = MinDuration;
+                }
+
+                _duration = value;
             }
 
             return this;
@@ -18,7 +26,14 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                CoreProperties.StartDelay = value;
+                if (value < MinDelay)
+                {
+                    var message = $"{nameof(StartDelay)} cannot be less of {nameof(MinDelay)}({MinDelay}), was clamped";
+                    LogUtility.LogWarning(message);
+                    value = MinDelay;
+                }
+
+                _startDelay = value;
             }
 
             return this;
@@ -28,7 +43,14 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                CoreProperties.LoopDelay = value;
+                if (value < MinDelay)
+                {
+                    var message = $"{nameof(LoopDelay)} cannot be less of {nameof(MinDelay)}({MinDelay}), was clamped";
+                    LogUtility.LogWarning(message);
+                    value = MinDelay;
+                }
+
+                _loopDelay = value;
             }
 
             return this;
@@ -38,7 +60,14 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                CoreProperties.LoopCount = value;
+                if (value < MinLoopCount)
+                {
+                    var message = $"{nameof(LoopCount)} cannot be less of {nameof(MinLoopCount)}({MinLoopCount}), was clamped";
+                    LogUtility.LogWarning(message);
+                    value = MinLoopCount;
+                }
+
+                _loopCount = value;
             }
 
             return this;
@@ -48,7 +77,7 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                CoreProperties.LoopMode = value;
+                _loopMode = value;
             }
 
             return this;
