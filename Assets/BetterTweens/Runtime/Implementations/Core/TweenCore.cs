@@ -59,6 +59,8 @@ namespace Better.Tweens.Runtime
         protected TweenCore()
         {
             _loopCount = MinLoopCount;
+
+            TweensSettings.Instance.TimeScale += 0.1f;
         }
     }
 }
