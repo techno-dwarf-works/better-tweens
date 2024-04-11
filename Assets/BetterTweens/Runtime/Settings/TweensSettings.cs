@@ -11,24 +11,23 @@ namespace Better.Tweens.Runtime
     {
         public const string Path = PrefixConstants.BetterPrefix + "/" + nameof(Tweens);
 
-        [SerializeField] private SettingsProperty<bool> _independentTimeScale = new(true);
-        [SerializeField] private SettingsProperty<float> _timeScaleProperty = new(1f);
+        // TODO: Add attributes
+        [SerializeField] private SettingsData _persistent = new();
+        [SerializeField] private SettingsData _runtime = new();
 
-        public float TimeScale
-        {
-            get => _timeScaleProperty.Value;
-            set => _timeScaleProperty.Value = value;
-        }
+        public SettingsData Persistent => _persistent;
+        public SettingsData Runtime => _runtime;
 
         [RuntimeInitializeOnLoadMethod]
         private static void RuntimeInitializeOnLoadMethod()
         {
-            Instance.ResetValues();
+            Instance.ResetRuntimeToPersistent();
         }
 
-        private void ResetValues()
+        public void ResetRuntimeToPersistent()
         {
-            _timeScaleProperty.ResetValue();
+            _runtime ??= new();
+            _runtime.Copy(_persistent);
         }
     }
 }

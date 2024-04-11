@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
@@ -6,16 +7,15 @@ namespace Better.Tweens.Runtime
     {
         internal void ApplyProgress(float value)
         {
+            ApplyProgressMod(ref value);
+
             if (DecreaseDelay(ref value) && InDelay)
             {
                 return;
             }
 
             var rootCompletedLoops = CompletedLoops;
-            var stateMod = _stateMachine.CurrentState.ProgressMod;
-            var progressMod = Time.timeScale * stateMod / Duration; // TODO progress mod (time scale, etc)
-
-            _rawProgress += value * progressMod;
+            _rawProgress += value;
             _rawProgress = Mathf.Clamp(_rawProgress, default, LoopCount);
 
             var completedLoopChanged = CompletedLoops != rootCompletedLoops;
@@ -41,12 +41,28 @@ namespace Better.Tweens.Runtime
             OnUpdated();
         }
 
+        private void ApplyProgressMod(ref float value)
+        {
+            value *= _stateMachine.CurrentState.DirectionMod;
+            value *= LocalTimeScale;
+            value /= Duration;
+
+            if (DependGlobalTimeScale)
+            {
+                value *= Settings.GlobalTimeScale;
+            }
+        }
+
         private bool DecreaseDelay(ref float value)
         {
             if (!InDelay) return false;
 
-            value = Mathf.Min(value, RemainingDelay);
-            RemainingDelay -= value;
+            var appliedValue = Mathf.Abs(value);
+            appliedValue = Mathf.Min(appliedValue, RemainingDelay);
+            
+            RemainingDelay -= appliedValue;
+            value -= appliedValue * Mathf.Sign(value);
+            
             return true;
         }
 

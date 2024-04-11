@@ -29,7 +29,10 @@
         {
             _rawProgress = default;
             RemainingDelay = StartDelay;
-
+            
+            _dependUnityTimeScale.SetSource(Settings.DependUnityTimeScale);
+            _dependGlobalTimeScale.SetSource(Settings.DependGlobalTimeScale);
+            
             CallbackUtility.InvokeWithSafety(Started);
         }
 

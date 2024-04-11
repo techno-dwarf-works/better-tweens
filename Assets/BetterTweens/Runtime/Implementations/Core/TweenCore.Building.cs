@@ -91,6 +91,36 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        public TweenCore DependencyUnityTimeScale(bool depend)
+        {
+            if (ValidateMutable(true))
+            {
+                _dependUnityTimeScale.Override(depend);
+            }
+
+            return this;
+        }
+
+        public TweenCore DependencyGlobalTimeScale(bool value)
+        {
+            if (ValidateMutable(true))
+            {
+                _dependGlobalTimeScale.Override(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore SetLocalTimeScale(float value)
+        {
+            if (ValidateMutable(true))
+            {
+                _localTimeScale = value;
+            }
+
+            return this;
+        }
+
         #region Events
 
         public TweenCore OnStarted(Action callback)

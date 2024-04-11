@@ -19,9 +19,12 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
+            Initialized = true;
+            Settings = TweensSettings.Instance.Runtime;
+
             _statesCache = new();
             _statesCache.Cached += OnCachedState;
-            
+
             _stateMachine = new();
             _stateMachine.AddModule(_statesCache);
             _stateMachine.Run();
@@ -30,7 +33,6 @@ namespace Better.Tweens.Runtime
             state.SuppressNextNotify();
             _stateMachine.ChangeState(state);
 
-            Initialized = true;
             OnInitialized();
         }
 

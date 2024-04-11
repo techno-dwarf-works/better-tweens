@@ -6,7 +6,7 @@ namespace Better.Tweens.Runtime
     public class StoppedState : TweenState
     {
         private bool _suppressNotify;
-        public override float ProgressMod => 0f;
+        public override float DirectionMod => 0f;
         
         public void SuppressNextNotify()
         {

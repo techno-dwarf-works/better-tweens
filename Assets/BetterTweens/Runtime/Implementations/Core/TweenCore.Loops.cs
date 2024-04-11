@@ -36,7 +36,8 @@
             }
             else
             {
-                RemainingDelay = LoopDelay;
+                var delay = CompletedLoops == 1 ? StartDelay : _loopDelay;
+                RemainingDelay = delay;
             }
         }
 

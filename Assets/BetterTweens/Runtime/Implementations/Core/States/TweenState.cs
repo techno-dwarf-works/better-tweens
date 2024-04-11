@@ -7,7 +7,7 @@ namespace Better.Tweens.Runtime
     public abstract class TweenState : BaseState
     {
         protected TweenCore Source { get; private set; }
-        public abstract float ProgressMod { get; }
+        public abstract float DirectionMod { get; }
 
         public virtual void Setup(TweenCore source)
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
+using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Settings;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -37,6 +39,9 @@ namespace Better.Tweens.Runtime
         [SerializeField] private int _loopCount;
 
         [SerializeField] private LoopMode _loopMode;
+        [SerializeField] private OverridableProperty<bool> _dependUnityTimeScale;
+        [SerializeField] private OverridableProperty<bool> _dependGlobalTimeScale;
+        [SerializeField] private float _localTimeScale;
 
         private StateMachine<TweenState> _stateMachine;
         private StatesCacheModule<TweenState> _statesCache;
@@ -52,15 +57,21 @@ namespace Better.Tweens.Runtime
         public int LoopCount => _loopCount;
         public LoopMode LoopMode => _loopMode;
         public int CompletedLoops => (int)_rawProgress;
+        public bool DependUnityTimeScale => _dependUnityTimeScale.Value;
+        public bool DependGlobalTimeScale => _dependGlobalTimeScale.Value;
+        public float LocalTimeScale => _localTimeScale;
+
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
 
         protected bool Initialized { get; private set; }
+        protected SettingsData Settings { get; private set; }
 
         protected TweenCore()
         {
             _loopCount = MinLoopCount;
-
-            TweensSettings.Instance.TimeScale += 0.1f;
+            _dependUnityTimeScale = new();
+            _dependGlobalTimeScale = new();
+            _localTimeScale = 1f;
         }
     }
 }

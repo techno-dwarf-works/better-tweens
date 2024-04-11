@@ -8,7 +8,7 @@ namespace Better.Tweens.Runtime
     public abstract class Tween<TValue, TValueOptions> : TweenCore
     {
         [SerializeField] private FromMode _fromMode;
-        [SerializeField] private TValue _fromValue; // TODO name conflict with property
+        [SerializeField] private TValue _fromValue; // TODO: name (cache field) conflict with property
         [SerializeField] private OptionsMode _optionsMode;
         [SerializeField] private TValueOptions _options;
 
@@ -108,6 +108,13 @@ namespace Better.Tweens.Runtime
         protected abstract TValue GetCurrentValue();
 
         protected abstract TValueOptions GetRelativeOptions(TValue from, TValue to);
+
+        protected sealed override void EvaluateState(float time)
+        {
+            EvaluateState(FromValue, ToValue, time);
+        }
+
+        protected abstract void EvaluateState(TValue fromValue, TValue toValue, float time);
 
         protected override void OnLoopCompleted()
         {

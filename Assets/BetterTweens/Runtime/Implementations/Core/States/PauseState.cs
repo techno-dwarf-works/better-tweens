@@ -5,7 +5,7 @@ namespace Better.Tweens.Runtime
 {
     public class PauseState : TweenState
     {
-        public override float ProgressMod => 0f;
+        public override float DirectionMod => 0f;
 
         public override async Task EnterAsync(CancellationToken token)
         {

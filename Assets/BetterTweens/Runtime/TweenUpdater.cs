@@ -7,11 +7,13 @@ namespace Better.Tweens.Runtime
 {
     internal static class TweenUpdater
     {
+        private static TweensSettings _settings;
         private static List<TweenCore> _cachedReferences;
 
         [RuntimeInitializeOnLoadMethod]
         private static void Initialize()
         {
+            _settings = TweensSettings.Instance;
             _cachedReferences = new();
 
             PlayerLoopUtility.SubscribeToLoop(typeof(Update), OnUpdate);
@@ -21,25 +23,26 @@ namespace Better.Tweens.Runtime
 
         private static void OnUpdate()
         {
-            Tick(UpdateMode.Update, Time.deltaTime);
+            Tick(UpdateMode.Update, Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         private static void OnLateUpdate()
         {
-            Tick(UpdateMode.LateUpdate, Time.deltaTime);
+            Tick(UpdateMode.LateUpdate, Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         private static void OnFixedUpdate()
         {
-            Tick(UpdateMode.FixedUpdate, Time.fixedDeltaTime);
+            Tick(UpdateMode.FixedUpdate, Time.fixedDeltaTime, Time.fixedUnscaledDeltaTime);
         }
 
-        private static void Tick(UpdateMode updateMode, float deltaTime)
+        private static void Tick(UpdateMode updateMode, float scaledDeltaTime, float unscaledDeltaTime)
         {
             TweenRegistry.CollectElementsBy(updateMode, ref _cachedReferences);
             foreach (var tweenCore in _cachedReferences)
             {
-                tweenCore.ApplyProgress(deltaTime);
+                var progress = tweenCore.DependUnityTimeScale ? scaledDeltaTime : unscaledDeltaTime;
+                tweenCore.ApplyProgress(progress);
             }
 
             _cachedReferences.Clear();
