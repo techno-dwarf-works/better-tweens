@@ -20,7 +20,7 @@ namespace Better.Tweens.Runtime
             }
 
             Initialized = true;
-            Settings = TweensSettings.Instance.Runtime;
+            SettingsData = TweensSettings.Instance.Current;
 
             _statesCache = new();
             _statesCache.Cached += OnCachedState;

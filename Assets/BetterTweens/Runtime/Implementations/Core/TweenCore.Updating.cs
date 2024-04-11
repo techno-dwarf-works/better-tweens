@@ -49,7 +49,7 @@ namespace Better.Tweens.Runtime
 
             if (DependGlobalTimeScale)
             {
-                value *= Settings.GlobalTimeScale;
+                value *= SettingsData.GlobalTimeScale;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Better.Tweens.Runtime
 
         private void OnUpdated()
         {
-            CallbackUtility.InvokeWithSafety(Updated);
+            CallbackUtility.Invoke(Updated);
         }
     }
 }

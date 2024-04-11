@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Tweens.Runtime.Logs;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Settings
@@ -9,6 +10,8 @@ namespace Better.Tweens.Runtime.Settings
         [SerializeField] private float _globalTimeScale;
         [SerializeField] private bool _dependUnityTimeScale;
         [SerializeField] private bool _dependGlobalTimeScale;
+        [SerializeField] private LogLevel _logLevel;
+        [SerializeField] private bool _safeMode;
 
         public float GlobalTimeScale
         {
@@ -28,12 +31,24 @@ namespace Better.Tweens.Runtime.Settings
             set => _dependGlobalTimeScale = value;
         }
 
+        public LogLevel LogLevel
+        {
+            get => _logLevel;
+            set => _logLevel = value;
+        }
+
+        public bool SafeMode
+        {
+            get => _safeMode;
+            set => _safeMode = value;
+        }
 
         public SettingsData()
         {
             _globalTimeScale = 1f;
             _dependGlobalTimeScale = true;
             _dependUnityTimeScale = true;
+            _logLevel = LogLevel.Info;
         }
 
         public void Copy(SettingsData source)
@@ -41,6 +56,8 @@ namespace Better.Tweens.Runtime.Settings
             _globalTimeScale = source._globalTimeScale;
             _dependUnityTimeScale = source._dependUnityTimeScale;
             _dependGlobalTimeScale = source._dependGlobalTimeScale;
+            _logLevel = source._logLevel;
+            _safeMode = source._safeMode;
         }
     }
 }

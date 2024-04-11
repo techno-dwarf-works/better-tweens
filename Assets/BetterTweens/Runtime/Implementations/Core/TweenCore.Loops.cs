@@ -5,7 +5,7 @@
         protected virtual void OnLoopCompleted()
         {
             EvaluateStateByMode(1f);
-            CallbackUtility.InvokeWithSafety(LoopCompleted);
+            CallbackUtility.Invoke(LoopCompleted);
 
             if (CompletedLoops >= LoopCount)
             {
@@ -28,7 +28,7 @@
         protected virtual void OnLoopRewound()
         {
             EvaluateStateByMode(0f);
-            CallbackUtility.InvokeWithSafety(LoopRewound);
+            CallbackUtility.Invoke(LoopRewound);
 
             if (CompletedLoops <= 0)
             {

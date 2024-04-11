@@ -5,6 +5,13 @@ namespace Better.Tweens.Runtime
 {
     public static class CallbackUtility
     {
+        private static TweensSettings _settings;
+
+        static CallbackUtility()
+        {
+            _settings = TweensSettings.Instance;
+        }
+
         public static bool Validate(Action action, bool logWarning = true)
         {
             var isValid = action != null;
@@ -17,14 +24,14 @@ namespace Better.Tweens.Runtime
             return isValid;
         }
 
-        public static void InvokeWithSafety(Action callback)
+        public static void Invoke(Action callback)
         {
             if (callback == null)
             {
                 return;
             }
 
-            if (UnityEngine.Random.value > 0.5f) // TODO
+            if (!_settings.Current.SafeMode)
             {
                 callback();
                 return;

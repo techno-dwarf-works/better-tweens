@@ -29,21 +29,21 @@
         {
             _rawProgress = default;
             RemainingDelay = StartDelay;
-            
-            _dependUnityTimeScale.SetSource(Settings.DependUnityTimeScale);
-            _dependGlobalTimeScale.SetSource(Settings.DependGlobalTimeScale);
-            
-            CallbackUtility.InvokeWithSafety(Started);
+
+            _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
+            _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
+
+            CallbackUtility.Invoke(Started);
         }
 
         protected internal virtual void OnActive()
         {
-            CallbackUtility.InvokeWithSafety(Activated);
+            CallbackUtility.Invoke(Activated);
         }
 
         protected internal virtual void OnPlay()
         {
-            CallbackUtility.InvokeWithSafety(Playing);
+            CallbackUtility.Invoke(Playing);
         }
 
         public TweenCore Rewind()
@@ -61,7 +61,7 @@
 
         protected internal virtual void OnRewind()
         {
-            CallbackUtility.InvokeWithSafety(Rewinding);
+            CallbackUtility.Invoke(Rewinding);
         }
 
         public TweenCore Pause()
@@ -93,7 +93,7 @@
 
         protected internal virtual void OnPaused()
         {
-            CallbackUtility.InvokeWithSafety(Paused);
+            CallbackUtility.Invoke(Paused);
         }
 
         public TweenCore Stop()
@@ -111,7 +111,7 @@
 
         protected internal virtual void OnStopped()
         {
-            CallbackUtility.InvokeWithSafety(Stopped);
+            CallbackUtility.Invoke(Stopped);
         }
 
         public TweenCore Complete()
@@ -132,13 +132,13 @@
 
         protected virtual void OnCompleted()
         {
-            CallbackUtility.InvokeWithSafety(Completed);
+            CallbackUtility.Invoke(Completed);
             Stop();
         }
 
         protected virtual void OnRewound()
         {
-            CallbackUtility.InvokeWithSafety(Rewound);
+            CallbackUtility.Invoke(Rewound);
             Pause();
         }
 

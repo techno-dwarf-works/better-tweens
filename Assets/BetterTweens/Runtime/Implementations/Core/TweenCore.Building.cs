@@ -22,6 +22,8 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        #region Delays
+
         public TweenCore SetStartDelay(float value)
         {
             if (ValidateMutable(true))
@@ -55,6 +57,10 @@ namespace Better.Tweens.Runtime
 
             return this;
         }
+
+        #endregion
+
+        #region Loops
 
         public TweenCore SetLoopCount(int value)
         {
@@ -91,6 +97,10 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        #endregion
+
+        #region TimeScale
+
         public TweenCore DependencyUnityTimeScale(bool depend)
         {
             if (ValidateMutable(true))
@@ -120,6 +130,8 @@ namespace Better.Tweens.Runtime
 
             return this;
         }
+
+        #endregion
 
         #region Events
 

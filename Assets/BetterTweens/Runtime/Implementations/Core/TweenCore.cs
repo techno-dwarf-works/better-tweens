@@ -64,7 +64,7 @@ namespace Better.Tweens.Runtime
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
 
         protected bool Initialized { get; private set; }
-        protected SettingsData Settings { get; private set; }
+        protected SettingsData SettingsData { get; private set; }
 
         protected TweenCore()
         {

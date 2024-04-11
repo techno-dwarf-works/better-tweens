@@ -17,6 +17,7 @@ namespace Better.Tweens.Runtime
 
         public SettingsData Persistent => _persistent;
         public SettingsData Runtime => _runtime;
+        public SettingsData Current => Application.isPlaying ? Runtime : Persistent;
 
         [RuntimeInitializeOnLoadMethod]
         private static void RuntimeInitializeOnLoadMethod()

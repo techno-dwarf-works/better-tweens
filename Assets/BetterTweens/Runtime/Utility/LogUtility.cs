@@ -4,6 +4,13 @@ namespace Better.Tweens.Runtime.Logs
 {
     public static class LogUtility
     {
+        private static TweensSettings _settings;
+
+        static LogUtility()
+        {
+            _settings = TweensSettings.Instance;
+        }
+
         public static void Log(string message, LogLevel logLevel)
         {
             if (!AllowLogLevel(logLevel))
@@ -42,8 +49,7 @@ namespace Better.Tweens.Runtime.Logs
 
         public static bool AllowLogLevel(LogLevel logLevel)
         {
-            // TODO Settings
-            return logLevel >= LogLevel.Warning;
+            return logLevel >= _settings.Current.LogLevel;
         }
     }
 }
