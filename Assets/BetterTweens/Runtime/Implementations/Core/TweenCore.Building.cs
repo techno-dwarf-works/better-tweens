@@ -154,9 +154,9 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public TweenCore SetEase(EaseType type)
+        public TweenCore SetEase(EaseType type, EaseMode mode = EaseMode.InOut)
         {
-            var ease = EaseUtility.GetEaseByType(type);
+            var ease = EaseUtility.GetEaseByType(type, mode);
             return SetEase(ease);
         }
 
@@ -165,7 +165,7 @@ namespace Better.Tweens.Runtime
             var ease = new CurveEase(animationCurve);
             return SetEase(ease);
         }
-        
+
         public void SetEase(Func<float, float> func)
         {
             var ease = new FuncEase(func);

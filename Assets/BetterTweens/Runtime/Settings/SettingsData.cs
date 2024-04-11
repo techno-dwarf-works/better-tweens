@@ -68,9 +68,9 @@ namespace Better.Tweens.Runtime.Settings
             _ease = value;
         }
 
-        public void SetEase(EaseType type)
+        public void SetEase(EaseType type, EaseMode mode = EaseMode.InOut)
         {
-            var ease = EaseUtility.GetEaseByType(type);
+            var ease = EaseUtility.GetEaseByType(type, mode);
             SetEase(ease);
         }
 
