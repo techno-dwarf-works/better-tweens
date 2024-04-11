@@ -1,5 +1,7 @@
 ﻿using System;
+using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using Better.Tweens.Runtime.Logs;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
@@ -129,6 +131,45 @@ namespace Better.Tweens.Runtime
             }
 
             return this;
+        }
+
+        #endregion
+
+        #region Ease
+
+        public TweenCore SetEase(Ease value)
+        {
+            if (value == null)
+            {
+                var message = $"{nameof(value)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            if (ValidateMutable(true))
+            {
+                _ease.Override(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore SetEase(EaseType type)
+        {
+            var ease = EaseUtility.GetEaseByType(type);
+            return SetEase(ease);
+        }
+
+        public TweenCore SetEase(AnimationCurve animationCurve)
+        {
+            var ease = new CurveEase(animationCurve);
+            return SetEase(ease);
+        }
+        
+        public void SetEase(Func<float, float> func)
+        {
+            var ease = new FuncEase(func);
+            SetEase(ease);
         }
 
         #endregion

@@ -35,7 +35,8 @@ namespace Better.Tweens.Runtime
             }
             else
             {
-                EvaluateStateByMode();
+                var time = _ease.Value.Evaluate(LoopProgress);
+                EvaluateStateByMode(time);
             }
 
             OnUpdated();
@@ -59,10 +60,10 @@ namespace Better.Tweens.Runtime
 
             var appliedValue = Mathf.Abs(value);
             appliedValue = Mathf.Min(appliedValue, RemainingDelay);
-            
+
             RemainingDelay -= appliedValue;
             value -= appliedValue * Mathf.Sign(value);
-            
+
             return true;
         }
 

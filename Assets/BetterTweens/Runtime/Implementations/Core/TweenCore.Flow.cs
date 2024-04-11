@@ -30,6 +30,7 @@
             _rawProgress = default;
             RemainingDelay = StartDelay;
 
+            _ease.SetSource(SettingsData.Ease);
             _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
 

@@ -39,6 +39,7 @@ namespace Better.Tweens.Runtime
         [SerializeField] private int _loopCount;
 
         [SerializeField] private LoopMode _loopMode;
+        [SerializeField] private OverridableProperty<Ease> _ease;
         [SerializeField] private OverridableProperty<bool> _dependUnityTimeScale;
         [SerializeField] private OverridableProperty<bool> _dependGlobalTimeScale;
         [SerializeField] private float _localTimeScale;
@@ -57,6 +58,7 @@ namespace Better.Tweens.Runtime
         public int LoopCount => _loopCount;
         public LoopMode LoopMode => _loopMode;
         public int CompletedLoops => (int)_rawProgress;
+        public Ease Ease => _ease.Value;
         public bool DependUnityTimeScale => _dependUnityTimeScale.Value;
         public bool DependGlobalTimeScale => _dependGlobalTimeScale.Value;
         public float LocalTimeScale => _localTimeScale;
@@ -69,6 +71,7 @@ namespace Better.Tweens.Runtime
         protected TweenCore()
         {
             _loopCount = MinLoopCount;
+            _ease = new();
             _dependUnityTimeScale = new();
             _dependGlobalTimeScale = new();
             _localTimeScale = 1f;

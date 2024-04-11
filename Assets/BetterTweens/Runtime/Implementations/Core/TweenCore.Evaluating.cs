@@ -6,11 +6,6 @@ namespace Better.Tweens.Runtime
     {
         protected abstract void EvaluateState(float time);
 
-        private void EvaluateState()
-        {
-            EvaluateState(LoopProgress);
-        }
-
         private void EvaluateStateByMode(float time)
         {
             var evaluatedTime = LoopMode switch
@@ -21,11 +16,6 @@ namespace Better.Tweens.Runtime
             };
 
             EvaluateState(evaluatedTime);
-        }
-
-        private void EvaluateStateByMode()
-        {
-            EvaluateStateByMode(LoopProgress);
         }
     }
 }
