@@ -6,6 +6,7 @@ namespace Better.Tweens.Runtime
 {
     [Serializable]
     public abstract class TargetTween<TTarget, TValue, TValueOptions> : Tween<TValue, TValueOptions>
+        where TTarget : class
     {
         [SerializeField] private TTarget _target;
         protected TTarget Target => _target;
@@ -22,7 +23,9 @@ namespace Better.Tweens.Runtime
 
             if (ValidateMutable(true))
             {
+                RemoveTag(_target);
                 _target = value;
+                AddTag(_target);
             }
 
             return this;
@@ -38,11 +41,13 @@ namespace Better.Tweens.Runtime
 
     [Serializable]
     public abstract class TargetTween<TTarget, TValue> : TargetTween<TTarget, TValue, TValue>
+        where TTarget : class
     {
     }
 
     [Serializable]
     public abstract class TargetTween<TValue> : TargetTween<TValue, TValue>
+        where TValue : class
     {
         protected override TValue GetCurrentValue()
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Better.Extensions.Runtime;
 using Better.Tweens.Runtime.Logs;
 using UnityEngine;
 
@@ -29,6 +31,56 @@ namespace Better.Tweens.Runtime
         public bool IsStopped()
         {
             return !Initialized || _stateMachine.InState<StoppedState>();
+        }
+
+        public bool ContainsTag(object value)
+        {
+            if (_tags == null)
+            {
+                return false;
+            }
+
+            return _tags.Contains(value);
+        }
+
+        public bool ContainsAllTags(IEnumerable<object> values)
+        {
+            if (values == null)
+            {
+                var message = $"{nameof(values)} cannot be null";
+                LogUtility.LogException(message);
+                return false;
+            }
+
+            foreach (var value in values)
+            {
+                if (!ContainsTag(value))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool ContainsAnyTags(IEnumerable<object> values)
+        {
+            if (values == null)
+            {
+                var message = $"{nameof(values)} cannot be null";
+                LogUtility.LogException(message);
+                return false;
+            }
+
+            foreach (var value in values)
+            {
+                if (ContainsTag(value))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public bool IsMutable()

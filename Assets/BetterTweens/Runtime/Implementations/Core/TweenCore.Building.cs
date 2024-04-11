@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using Better.Tweens.Runtime.Logs;
 using UnityEngine;
@@ -281,6 +282,72 @@ namespace Better.Tweens.Runtime
             if (CallbackUtility.Validate(callback))
             {
                 LoopRewound += callback;
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region Tags
+
+        public TweenCore AddTag(object value)
+        {
+            if (value == null)
+            {
+                var message = $"{nameof(value)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            if (ValidateMutable(true) && !ContainsTag(value))
+            {
+                _tags ??= new();
+                _tags.Add(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore AddTags(IEnumerable<object> values)
+        {
+            if (values == null)
+            {
+                var message = $"{nameof(values)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            foreach (var value in values)
+            {
+                AddTag(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTag(object value)
+        {
+            if (ValidateMutable(true))
+            {
+                _tags?.Remove(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTags(IEnumerable<object> values)
+        {
+            if (values == null)
+            {
+                var message = $"{nameof(values)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            foreach (var value in values)
+            {
+                RemoveTag(value);
             }
 
             return this;
