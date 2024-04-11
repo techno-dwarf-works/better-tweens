@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Better.Extensions.Runtime;
 using Better.Tweens.Runtime.Logs;
+using Better.Tweens.Runtime.Triggers;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -33,14 +34,14 @@ namespace Better.Tweens.Runtime
             return !Initialized || _stateMachine.InState<StoppedState>();
         }
 
+        public bool ContainsTrigger(Trigger value)
+        {
+            return _triggers != null && _triggers.Contains(value);
+        }
+
         public bool ContainsTag(object value)
         {
-            if (_tags == null)
-            {
-                return false;
-            }
-
-            return _tags.Contains(value);
+            return _tags != null && _tags.Contains(value);
         }
 
         public bool ContainsAllTags(IEnumerable<object> values)

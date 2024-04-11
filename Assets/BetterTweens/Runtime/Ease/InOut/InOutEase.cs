@@ -38,6 +38,7 @@ namespace Better.Tweens.Runtime
 
         private float EvaluateOut(float time)
         {
+            // TODO: Fix this
             return 1f - (1f - time) * (1f - time);
         }
 

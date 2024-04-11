@@ -11,9 +11,9 @@ namespace Better.Tweens.Runtime.Settings
         [SerializeField] private float _globalTimeScale;
         [SerializeField] private bool _dependUnityTimeScale;
         [SerializeField] private bool _dependGlobalTimeScale;
-        [SerializeField] private Ease _ease;
         [SerializeField] private LogLevel _logLevel;
         [SerializeField] private bool _safeMode;
+        [SerializeReference] private Ease _ease;
 
         public float GlobalTimeScale
         {

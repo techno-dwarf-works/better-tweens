@@ -1,5 +1,6 @@
 ﻿using System;
 using Better.Tweens.Runtime.Logs;
+using Better.Tweens.Runtime.Triggers;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -23,8 +24,13 @@ namespace Better.Tweens.Runtime
 
             if (ValidateMutable(true))
             {
+                RemoveTriggers<Trigger<TTarget>>(t => t.IsSource(_target));
                 RemoveTag(_target);
+
                 _target = value;
+
+                var nullTargetTrigger = new NullReferenceTrigger(this, TriggerActionType.Stop, _target);
+                AddTrigger(nullTargetTrigger);
                 AddTag(_target);
             }
 

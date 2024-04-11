@@ -16,12 +16,16 @@ namespace Better.Tweens.Runtime
             set => _overshoot = value;
         }
 
-        public BackEase(float overshoot, EaseMode mode = EaseMode.InOut) : base(mode)
+        public BackEase(float overshoot, EaseMode mode) : base(mode)
         {
             _overshoot = overshoot;
         }
 
-        public BackEase() : this(DefaultOvershoot)
+        public BackEase(EaseMode mode) : this(DefaultOvershoot, mode)
+        {
+        }
+
+        public BackEase() : this(EaseMode.InOut)
         {
         }
 

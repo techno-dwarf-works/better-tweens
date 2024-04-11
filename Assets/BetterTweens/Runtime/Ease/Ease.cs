@@ -7,5 +7,10 @@ namespace Better.Tweens.Runtime
     {
         public abstract float Evaluate(float time);
         public abstract Ease Clone();
+
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
     }
 }

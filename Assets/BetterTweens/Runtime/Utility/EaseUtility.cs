@@ -18,12 +18,12 @@ namespace Better.Tweens.Runtime
                 EaseType.Cubic => new CubicEase(mode),
                 EaseType.Quart => new QuartEase(mode),
                 EaseType.Quint => new QuintEase(mode),
-                EaseType.Expo => new QuintEase(mode),
-                EaseType.Circ => new QuintEase(mode),
-                EaseType.Elastic => new QuintEase(mode),
-                EaseType.Back => new QuintEase(mode),
-                EaseType.Bounce => new QuintEase(mode),
-                EaseType.Flash => new QuintEase(mode),
+                EaseType.Expo => new ExpoEase(mode),
+                EaseType.Circ => new CircEase(mode),
+                EaseType.Elastic => new ElasticEase(mode),
+                EaseType.Back => new BackEase(mode),
+                EaseType.Bounce => new BounceEase(mode),
+                EaseType.Flash => new FlashEase(mode),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

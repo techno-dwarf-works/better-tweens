@@ -18,7 +18,7 @@ namespace Better.Tweens.Runtime
 
                 return;
             }
-
+            
             Initialized = true;
             SettingsData = TweensSettings.Instance.Current;
 

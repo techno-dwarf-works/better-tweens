@@ -4,6 +4,7 @@ using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Settings;
+using Better.Tweens.Runtime.Triggers;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -48,6 +49,7 @@ namespace Better.Tweens.Runtime
         private StateMachine<TweenState> _stateMachine;
         private StatesCacheModule<TweenState> _statesCache;
         private float _rawProgress;
+        private HashSet<Trigger> _triggers;
         private HashSet<object> _tags;
 
         public float Duration => _duration;

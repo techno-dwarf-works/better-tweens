@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using Better.Tweens.Runtime.Logs;
+using Better.Tweens.Runtime.Triggers;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -126,11 +127,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetLocalTimeScale(float value)
         {
-            if (ValidateMutable(true))
-            {
-                _localTimeScale = value;
-            }
-
+            _localTimeScale = value;
             return this;
         }
 
@@ -282,6 +279,101 @@ namespace Better.Tweens.Runtime
             if (CallbackUtility.Validate(callback))
             {
                 LoopRewound += callback;
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region Triggers
+
+        public TweenCore AddTrigger(Trigger value)
+        {
+            if (value == null)
+            {
+                var message = $"{nameof(value)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            if (ValidateMutable(true) && !ContainsTrigger(value))
+            {
+                _triggers ??= new();
+                _triggers.Add(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore AddTriggers(IEnumerable<Trigger> values)
+        {
+            if (values == null)
+            {
+                var message = $"{nameof(values)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            foreach (var value in values)
+            {
+                AddTrigger(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTrigger(Trigger value)
+        {
+            if (ValidateMutable(true))
+            {
+                _triggers?.Remove(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTriggers(IEnumerable<Trigger> values)
+        {
+            if (values == null)
+            {
+                var message = $"{nameof(values)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            foreach (var value in values)
+            {
+                RemoveTrigger(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTriggers<TTrigger>(Predicate<TTrigger> predicate)
+            where TTrigger : Trigger
+        {
+            if (predicate == null)
+            {
+                var message = $"{nameof(predicate)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            if (ValidateMutable(true))
+            {
+                _triggers?.RemoveWhere(t => t is TTrigger casted && predicate.Invoke(casted));
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTriggers<TTrigger>()
+            where TTrigger : Trigger
+        {
+            if (ValidateMutable(true))
+            {
+                _triggers?.RemoveWhere(t => t is TTrigger);
             }
 
             return this;
