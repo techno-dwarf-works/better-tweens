@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.tdw.better.commons": {
+      "version": "0.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.tdw.better.internal.core": "0.0.2"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.tdw.better.internal.core": {
       "version": "0.0.2",
       "depth": 0,
@@ -8,33 +17,33 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.projectsettings": {
-      "version": "0.0.2",
+      "version": "0.1.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.tdw.better.singletons": "0.0.8",
-        "com.uurha.betterextensions": "1.5.98",
-        "com.tdw.better.internal.core": "0.0.2"
+        "com.tdw.better.singletons": "0.1.0",
+        "com.tdw.better.internal.core": "0.0.2",
+        "com.tdw.better.commons": "0.0.2"
       },
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.singletons": {
-      "version": "0.0.8",
+      "version": "0.1.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.uurha.betterextensions": "1.5.98",
+        "com.tdw.better.commons": "0.0.2",
         "com.tdw.better.internal.core": "0.0.2"
       },
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.statemachine": {
-      "version": "0.0.5",
+      "version": "0.1.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.internal.core": "0.0.2",
-        "com.uurha.betterextensions": "1.5.98"
+        "com.tdw.better.commons": "0.0.2"
       },
       "url": "https://package.openupm.com"
     },
@@ -173,11 +182,12 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.uurha.betterextensions": {
-      "version": "1.5.98",
+    "com.uurha.betterattributes": {
+      "version": "3.1.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
+        "com.tdw.better.commons": "0.0.2",
         "com.tdw.better.internal.core": "0.0.2"
       },
       "url": "https://package.openupm.com"
