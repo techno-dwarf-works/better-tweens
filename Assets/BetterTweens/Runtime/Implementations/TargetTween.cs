@@ -1,7 +1,8 @@
 ﻿using System;
-using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Triggers;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Better.Tweens.Runtime
 {
@@ -9,6 +10,8 @@ namespace Better.Tweens.Runtime
     public abstract class TargetTween<TTarget, TValue, TValueOptions> : Tween<TValue, TValueOptions>
         where TTarget : class
     {
+        private const string TargetTriggerTag = nameof(TargetTriggerTag);
+
         [SerializeField] private TTarget _target;
         protected TTarget Target => _target;
 
@@ -24,13 +27,17 @@ namespace Better.Tweens.Runtime
 
             if (ValidateMutable(true))
             {
-                RemoveTriggers<Trigger<TTarget>>(t => t.IsSource(_target));
+                RemoveTriggers(TargetTriggerTag);
                 RemoveTag(_target);
 
                 _target = value;
 
-                var nullTargetTrigger = new NullReferenceTrigger(this, TriggerActionType.Stop, _target);
-                AddTrigger(nullTargetTrigger);
+                if (_target is Object unityTarget)
+                {
+                    var destroyObjectCondition = new DestroyObjectCondition(unityTarget);
+                    AddTrigger<StopTrigger>(destroyObjectCondition, TargetTriggerTag);
+                }
+
                 AddTag(_target);
             }
 

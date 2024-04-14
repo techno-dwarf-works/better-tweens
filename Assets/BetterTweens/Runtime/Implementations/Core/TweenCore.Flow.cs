@@ -1,4 +1,6 @@
-﻿namespace Better.Tweens.Runtime
+﻿using Better.Tweens.Runtime.Utility;
+
+namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
@@ -34,17 +36,17 @@
             _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
 
-            CallbackUtility.Invoke(Started);
+            ActionUtility.Invoke(Started);
         }
 
         protected internal virtual void OnActive()
         {
-            CallbackUtility.Invoke(Activated);
+            ActionUtility.Invoke(Activated);
         }
 
         protected internal virtual void OnPlay()
         {
-            CallbackUtility.Invoke(Playing);
+            ActionUtility.Invoke(Playing);
         }
 
         public TweenCore Rewind()
@@ -62,7 +64,7 @@
 
         protected internal virtual void OnRewind()
         {
-            CallbackUtility.Invoke(Rewinding);
+            ActionUtility.Invoke(Rewinding);
         }
 
         public TweenCore Pause()
@@ -94,7 +96,7 @@
 
         protected internal virtual void OnPaused()
         {
-            CallbackUtility.Invoke(Paused);
+            ActionUtility.Invoke(Paused);
         }
 
         public TweenCore Stop()
@@ -112,7 +114,7 @@
 
         protected internal virtual void OnStopped()
         {
-            CallbackUtility.Invoke(Stopped);
+            ActionUtility.Invoke(Stopped);
         }
 
         public TweenCore Complete()
@@ -133,13 +135,13 @@
 
         protected virtual void OnCompleted()
         {
-            CallbackUtility.Invoke(Completed);
+            ActionUtility.Invoke(Completed);
             Stop();
         }
 
         protected virtual void OnRewound()
         {
-            CallbackUtility.Invoke(Rewound);
+            ActionUtility.Invoke(Rewound);
             Pause();
         }
 

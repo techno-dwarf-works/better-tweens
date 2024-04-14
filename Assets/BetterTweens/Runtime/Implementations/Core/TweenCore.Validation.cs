@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Better.Tweens.Runtime.Logs;
-using Better.Tweens.Runtime.Triggers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -33,9 +32,9 @@ namespace Better.Tweens.Runtime
             return !Initialized || _stateMachine.InState<StoppedState>();
         }
 
-        public bool ContainsTrigger(Trigger value)
+        public bool ContainsTrigger(string tag)
         {
-            return _triggers != null && _triggers.Contains(value);
+            return _triggers != null && _triggers.Any(t => t.CompareTag(tag));
         }
 
         public bool ContainsTag(object value)

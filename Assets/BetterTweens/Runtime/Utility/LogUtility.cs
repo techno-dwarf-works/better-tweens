@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Better.Tweens.Runtime.Logs;
+using UnityEngine;
 
-namespace Better.Tweens.Runtime.Logs
+namespace Better.Tweens.Runtime.Utility
 {
     public static class LogUtility
     {

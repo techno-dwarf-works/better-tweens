@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
-using Better.Tweens.Runtime.Logs;
+using System.Linq;
+using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Triggers;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -176,7 +177,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnStarted(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Started += callback;
             }
@@ -186,7 +187,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnActivated(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Activated += callback;
             }
@@ -196,7 +197,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnPlaying(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Playing += callback;
             }
@@ -206,7 +207,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnRewinding(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Rewinding += callback;
             }
@@ -216,7 +217,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnUpdated(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Updated += callback;
             }
@@ -226,7 +227,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnPaused(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Paused += callback;
             }
@@ -236,7 +237,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnStopped(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Stopped += callback;
             }
@@ -246,7 +247,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnCompleted(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Completed += callback;
             }
@@ -256,7 +257,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnRewound(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 Rewound += callback;
             }
@@ -266,7 +267,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnLoopCompleted(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 LoopCompleted += callback;
             }
@@ -276,7 +277,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnLoopRewound(Action callback)
         {
-            if (CallbackUtility.Validate(callback))
+            if (ActionUtility.Validate(callback))
             {
                 LoopRewound += callback;
             }
@@ -288,84 +289,62 @@ namespace Better.Tweens.Runtime
 
         #region Triggers
 
-        public TweenCore AddTrigger(Trigger value)
+        public TweenCore AddTrigger<TTrigger>(IEnumerable<TriggerCondition> conditions, string tag = Trigger.UndefinedTag)
+            where TTrigger : Trigger, new()
         {
-            if (value == null)
+            if (conditions == null)
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
+                var message = $"{nameof(conditions)} cannot be null";
+                LogUtility.LogWarning(message);
                 return this;
             }
 
-            if (ValidateMutable(true) && !ContainsTrigger(value))
+            var conditionsSet = conditions.ToHashSet();
+            if (conditionsSet.IsEmpty())
             {
+                var message = $"{nameof(conditions)} cannot be empty";
+                LogUtility.LogWarning(message);
+                return this;
+            }
+
+            if (tag.IsNullOrEmpty())
+            {
+                var message = $"{nameof(conditions)} cannot be null or empty";
+                LogUtility.LogWarning(message);
+                return this;
+            }
+
+            if (ValidateMutable(true))
+            {
+                var trigger = new TTrigger();
+                trigger.Initialize(tag, conditionsSet);
+
                 _triggers ??= new();
-                _triggers.Add(value);
+                _triggers.Add(trigger);
             }
 
             return this;
         }
 
-        public TweenCore AddTriggers(IEnumerable<Trigger> values)
+        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition, string tag = Trigger.UndefinedTag)
+            where TTrigger : Trigger, new()
         {
-            if (values == null)
-            {
-                var message = $"{nameof(values)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            foreach (var value in values)
-            {
-                AddTrigger(value);
-            }
-
-            return this;
+            var conditions = new HashSet<TriggerCondition> { condition };
+            return AddTrigger<TTrigger>(conditions, tag);
         }
 
-        public TweenCore RemoveTrigger(Trigger value)
+        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, string tag = Trigger.UndefinedTag)
+            where TTrigger : Trigger, new()
         {
-            if (ValidateMutable(true))
-            {
-                _triggers?.Remove(value);
-            }
-
-            return this;
+            var conditions = new HashSet<TriggerCondition> { condition1, condition2 };
+            return AddTrigger<TTrigger>(conditions, tag);
         }
 
-        public TweenCore RemoveTriggers(IEnumerable<Trigger> values)
+        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, TriggerCondition condition3, string tag = Trigger.UndefinedTag)
+            where TTrigger : Trigger, new()
         {
-            if (values == null)
-            {
-                var message = $"{nameof(values)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            foreach (var value in values)
-            {
-                RemoveTrigger(value);
-            }
-
-            return this;
-        }
-
-        public TweenCore RemoveTriggers<TTrigger>(Predicate<TTrigger> predicate)
-            where TTrigger : Trigger
-        {
-            if (predicate == null)
-            {
-                var message = $"{nameof(predicate)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            if (ValidateMutable(true))
-            {
-                _triggers?.RemoveWhere(t => t is TTrigger casted && predicate.Invoke(casted));
-            }
-
-            return this;
+            var conditions = new HashSet<TriggerCondition> { condition1, condition2, condition3 };
+            return AddTrigger<TTrigger>(conditions, tag);
         }
 
         public TweenCore RemoveTriggers<TTrigger>()
@@ -374,6 +353,23 @@ namespace Better.Tweens.Runtime
             if (ValidateMutable(true))
             {
                 _triggers?.RemoveWhere(t => t is TTrigger);
+            }
+
+            return this;
+        }
+
+        public TweenCore RemoveTriggers(string tag)
+        {
+            if (tag.IsNullOrEmpty())
+            {
+                var message = $"{nameof(tag)} cannot be null or empty";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            if (ValidateMutable(true))
+            {
+                _triggers?.RemoveWhere(t => t.CompareTag(tag));
             }
 
             return this;

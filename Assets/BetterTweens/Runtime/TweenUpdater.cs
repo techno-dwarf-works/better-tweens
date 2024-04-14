@@ -42,7 +42,10 @@ namespace Better.Tweens.Runtime
             foreach (var tweenCore in _cachedReferences)
             {
                 var progress = tweenCore.DependUnityTimeScale ? scaledDeltaTime : unscaledDeltaTime;
-                tweenCore.ApplyProgress(progress);
+                if (tweenCore.TickTriggers())
+                {
+                    tweenCore.ApplyProgress(progress);
+                }
             }
 
             _cachedReferences.Clear();

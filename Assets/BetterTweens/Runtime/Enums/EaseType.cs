@@ -1,4 +1,4 @@
-﻿namespace Better.Tweens.Runtime.BetterTweens.Runtime.Enums
+﻿namespace Better.Tweens.Runtime
 {
     public enum EaseType
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Better.Tweens.Runtime.Logs;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
@@ -9,10 +9,8 @@ namespace Better.Tweens.Runtime
 
         public FuncEase(Func<float, float> func)
         {
-            if (func == null)
+            if (!FuncUtility.Validate(func))
             {
-                var message = $"{nameof(func)} cannot be null";
-                LogUtility.LogException(message);
                 return;
             }
 
@@ -21,12 +19,12 @@ namespace Better.Tweens.Runtime
 
         public override float Evaluate(float time)
         {
-            if (_func == null)
+            if (FuncUtility.TryInvoke(_func, time, out var result))
             {
-                return time;
+                return result;
             }
 
-            return _func.Invoke(time);
+            return time;
         }
 
         public override Ease Clone()

@@ -1,5 +1,6 @@
 ﻿using System;
 using Better.Tweens.Runtime.Logs;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -29,6 +30,11 @@ namespace Better.Tweens.Runtime
 
         public override float Evaluate(float time)
         {
+            if (Source == null)
+            {
+                return time;
+            }
+
             return Source.Evaluate(time);
         }
 

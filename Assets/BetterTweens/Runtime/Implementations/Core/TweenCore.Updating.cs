@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -42,6 +42,24 @@ namespace Better.Tweens.Runtime
             OnUpdated();
         }
 
+        internal bool TickTriggers()
+        {
+            if (_triggers == null)
+            {
+                return true;
+            }
+
+            foreach (var trigger in _triggers)
+            {
+                if (trigger.TryInvoke(this))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void ApplyProgressMod(ref float value)
         {
             value *= _stateMachine.CurrentState.DirectionMod;
@@ -69,7 +87,7 @@ namespace Better.Tweens.Runtime
 
         private void OnUpdated()
         {
-            CallbackUtility.Invoke(Updated);
+            ActionUtility.Invoke(Updated);
         }
     }
 }

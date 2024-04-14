@@ -1,90 +1,56 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Better.Commons.Runtime.Extensions;
 
 namespace Better.Tweens.Runtime.Triggers
 {
     public abstract class Trigger
     {
-        protected readonly TweenCore TweenCore;
-        protected readonly TriggerActionType ActionType;
+        public const string UndefinedTag = nameof(UndefinedTag);
+        private HashSet<TriggerCondition> _conditions;
+        private string _tag;
 
-        public Trigger(TweenCore tweenCore, TriggerActionType actionType)
+        internal void Initialize(string tag, HashSet<TriggerCondition> conditions)
         {
-            TweenCore = tweenCore;
-            ActionType = actionType;
+            _tag = tag;
+            _conditions = conditions;
         }
 
-        public bool TryInvoke()
+        internal bool TryInvoke(TweenCore source)
         {
-            if (ActionReadiness() && ConditionMet())
+            if (IsValidFor(source) && ConditionsMet())
             {
-                ApplyAction();
+                Invoke(source);
                 return true;
             }
 
             return false;
         }
 
-        private bool ActionReadiness()
+        private bool ConditionsMet()
         {
-            return ActionType switch
+            if (_conditions.IsEmpty())
             {
-                TriggerActionType.Play => !TweenCore.IsPlaying(),
-                TriggerActionType.Rewind => !TweenCore.IsRewinding(),
-                TriggerActionType.Pause => !TweenCore.IsPaused(),
-                TriggerActionType.TogglePause => !TweenCore.IsStopped(),
-                TriggerActionType.Stop => !TweenCore.IsStopped(),
-                TriggerActionType.Complete => !TweenCore.IsStopped(),
-                TriggerActionType.Restart => true,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-
-        protected abstract bool ConditionMet();
-
-        private void ApplyAction()
-        {
-            switch (ActionType)
-            {
-                case TriggerActionType.Play:
-                    TweenCore.Play();
-                    break;
-                case TriggerActionType.Rewind:
-                    TweenCore.Rewind();
-                    break;
-                case TriggerActionType.Pause:
-                    TweenCore.Pause();
-                    break;
-                case TriggerActionType.TogglePause:
-                    TweenCore.TogglePause();
-                    break;
-                case TriggerActionType.Stop:
-                    TweenCore.Stop();
-                    break;
-                case TriggerActionType.Restart:
-                    TweenCore.Restart();
-                    break;
-                case TriggerActionType.Complete:
-                    TweenCore.Complete();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                return false;
             }
+
+            foreach (var condition in _conditions)
+            {
+                if (!condition.Validate())
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
-    }
 
-    public abstract class Trigger<TSource> : Trigger
-        where TSource : class
-    {
-        protected readonly TSource Source;
+        protected abstract void Invoke(TweenCore tweenCore);
 
-        public Trigger(TweenCore tweenCore, TriggerActionType actionType, TSource source) : base(tweenCore, actionType)
+        protected abstract bool IsValidFor(TweenCore tweenCore);
+
+        public bool CompareTag(string tag)
         {
-            Source = source;
-        }
-
-        public bool IsSource(TSource value)
-        {
-            return Source == value;
+            return _tag == tag;
         }
     }
 }

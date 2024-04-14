@@ -1,13 +1,13 @@
 ﻿using System;
 using Better.Tweens.Runtime.Logs;
 
-namespace Better.Tweens.Runtime
+namespace Better.Tweens.Runtime.Utility
 {
-    public static class CallbackUtility
+    public static class ActionUtility
     {
         private static TweensSettings _settings;
 
-        static CallbackUtility()
+        static ActionUtility()
         {
             _settings = TweensSettings.Instance;
         }

@@ -1,11 +1,13 @@
-﻿namespace Better.Tweens.Runtime
+﻿using Better.Tweens.Runtime.Utility;
+
+namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
         protected virtual void OnLoopCompleted()
         {
             EvaluateStateByMode(1f);
-            CallbackUtility.Invoke(LoopCompleted);
+            ActionUtility.Invoke(LoopCompleted);
 
             if (CompletedLoops >= LoopCount)
             {
@@ -28,7 +30,7 @@
         protected virtual void OnLoopRewound()
         {
             EvaluateStateByMode(0f);
-            CallbackUtility.Invoke(LoopRewound);
+            ActionUtility.Invoke(LoopRewound);
 
             if (CompletedLoops <= 0)
             {

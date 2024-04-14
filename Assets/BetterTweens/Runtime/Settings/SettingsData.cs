@@ -1,6 +1,6 @@
 ﻿using System;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using Better.Tweens.Runtime.Logs;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Settings

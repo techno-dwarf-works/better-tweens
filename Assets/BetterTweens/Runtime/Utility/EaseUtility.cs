@@ -1,7 +1,6 @@
 ﻿using System;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 
-namespace Better.Tweens.Runtime
+namespace Better.Tweens.Runtime.Utility
 {
     public static class EaseUtility
     {
