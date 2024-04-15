@@ -16,6 +16,7 @@ namespace Better.Tweens.Runtime
         private const float MinDelay = 0f;
         private const int MinLoopCount = 1;
 
+        public event Action StateChanged;
         public event Action Started;
         public event Action Activated;
         public event Action Playing;

@@ -47,6 +47,7 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnPlay()
         {
             ActionUtility.Invoke(Playing);
+            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Rewind()
@@ -65,6 +66,7 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnRewind()
         {
             ActionUtility.Invoke(Rewinding);
+            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Pause()
@@ -97,6 +99,7 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnPaused()
         {
             ActionUtility.Invoke(Paused);
+            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Stop()
@@ -115,6 +118,7 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnStopped()
         {
             ActionUtility.Invoke(Stopped);
+            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Complete()
@@ -136,12 +140,16 @@ namespace Better.Tweens.Runtime
         protected virtual void OnCompleted()
         {
             ActionUtility.Invoke(Completed);
+            ActionUtility.Invoke(StateChanged);
+            
             Stop();
         }
 
         protected virtual void OnRewound()
         {
             ActionUtility.Invoke(Rewound);
+            ActionUtility.Invoke(StateChanged);
+            
             Pause();
         }
 

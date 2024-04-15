@@ -175,6 +175,16 @@ namespace Better.Tweens.Runtime
 
         #region Events
 
+        public TweenCore OnStateChanged(Action callback)
+        {
+            if (ActionUtility.Validate(callback))
+            {
+                StateChanged += callback;
+            }
+
+            return this;
+        }
+
         public TweenCore OnStarted(Action callback)
         {
             if (ActionUtility.Validate(callback))

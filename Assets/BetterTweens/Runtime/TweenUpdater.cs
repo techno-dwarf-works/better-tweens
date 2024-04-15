@@ -7,13 +7,11 @@ namespace Better.Tweens.Runtime
 {
     internal static class TweenUpdater
     {
-        private static TweensSettings _settings;
         private static List<TweenCore> _cachedReferences;
 
         [RuntimeInitializeOnLoadMethod]
         private static void Initialize()
         {
-            _settings = TweensSettings.Instance;
             _cachedReferences = new();
 
             PlayerLoopUtility.SubscribeToLoop(typeof(Update), OnUpdate);
@@ -44,6 +42,7 @@ namespace Better.Tweens.Runtime
                 var progress = tweenCore.DependUnityTimeScale ? scaledDeltaTime : unscaledDeltaTime;
                 if (tweenCore.TickTriggers())
                 {
+                    // TODO: triggers not ticked, when tween Paused or Stopped
                     tweenCore.ApplyProgress(progress);
                 }
             }

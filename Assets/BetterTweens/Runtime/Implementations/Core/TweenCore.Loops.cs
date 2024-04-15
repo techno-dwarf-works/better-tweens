@@ -9,7 +9,7 @@ namespace Better.Tweens.Runtime
             EvaluateStateByMode(1f);
             ActionUtility.Invoke(LoopCompleted);
 
-            if (CompletedLoops >= LoopCount)
+            if (IsCompleted())
             {
                 OnCompleted();
             }
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
             EvaluateStateByMode(0f);
             ActionUtility.Invoke(LoopRewound);
 
-            if (CompletedLoops <= 0)
+            if (IsRewound())
             {
                 OnRewound();
             }

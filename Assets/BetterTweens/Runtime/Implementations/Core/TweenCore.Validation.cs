@@ -32,6 +32,16 @@ namespace Better.Tweens.Runtime
             return !Initialized || _stateMachine.InState<StoppedState>();
         }
 
+        public bool IsCompleted()
+        {
+            return Initialized && CompletedLoops >= LoopCount && !IsActive();
+        }
+
+        public bool IsRewound()
+        {
+            return Initialized && CompletedLoops <= 0 && !IsActive();
+        }
+
         public bool ContainsTrigger(string tag)
         {
             return _triggers != null && _triggers.Any(t => t.CompareTag(tag));

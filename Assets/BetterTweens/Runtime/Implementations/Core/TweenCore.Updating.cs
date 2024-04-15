@@ -1,4 +1,5 @@
-﻿using Better.Tweens.Runtime.Utility;
+﻿using Better.Tweens.Runtime.Triggers;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
