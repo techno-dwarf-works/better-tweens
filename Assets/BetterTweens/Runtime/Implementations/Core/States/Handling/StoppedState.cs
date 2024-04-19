@@ -1,23 +1,19 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-
-namespace Better.Tweens.Runtime
+﻿namespace Better.Tweens.Runtime.States
 {
-    public class StoppedState : TweenState
+    public class StoppedState : HandlingState
     {
         private bool _suppressNotify;
-        public override float DirectionMod => 0f;
-        
+
         public void SuppressNextNotify()
         {
             _suppressNotify = true;
         }
 
-        public override async Task EnterAsync(CancellationToken token)
+        public override void Enter()
         {
-            await base.EnterAsync(token);
-            if (token.IsCancellationRequested) return;
+            base.Enter();
 
+            Source.Sleep();
             TryNotify();
         }
 

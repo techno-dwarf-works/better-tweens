@@ -9,7 +9,7 @@
 
         protected override bool IsValidFor(TweenCore tweenCore)
         {
-            return tweenCore.IsActive();
+            return tweenCore.IsRunning();
         }
     }
 }

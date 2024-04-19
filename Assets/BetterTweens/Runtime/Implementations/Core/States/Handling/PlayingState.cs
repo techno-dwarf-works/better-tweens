@@ -1,18 +1,13 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-
-namespace Better.Tweens.Runtime
+﻿namespace Better.Tweens.Runtime.States
 {
-    public class PlayingState : ActiveState
+    public class PlayingState : RunningState
     {
         private bool _startTrigger;
-        public override float DirectionMod => 1f;
 
-        public override async Task EnterAsync(CancellationToken token)
+        public override void Enter()
         {
             OnPreEnter();
-            await base.EnterAsync(token);
-            if (token.IsCancellationRequested) return;
+            base.Enter();
 
             Source.OnPlay();
         }

@@ -14,15 +14,15 @@ namespace Better.Tweens.Runtime
         private Task AwaitPlayStarted(CancellationToken cancellationToken = default) => new TweenPlayStartedAwaiter(this, cancellationToken).Task;
         private Task AwaitPlaying(CancellationToken cancellationToken = default) => new TweenPlayingAwaiter(this, cancellationToken).Task;
         private Task AwaitPaused(CancellationToken cancellationToken = default) => new TweenPausedAwaiter(this, cancellationToken).Task;
-        private Task AwaitCompleted(CancellationToken cancellationToken = default) => new TweenCompletedAwaiter(this, cancellationToken).Task;
-        private Task AwaitActivated(CancellationToken cancellationToken = default) => new TweenActivatedAwaiter(this, cancellationToken).Task;
+        private Task AwaitCompletion(CancellationToken cancellationToken = default) => new TweenCompletionAwaiter(this, cancellationToken).Task;
+        private Task AwaitActivated(CancellationToken cancellationToken = default) => new TweenRunAwaiter(this, cancellationToken).Task;
 
-        private Task AwaitLoopCompleted(int count = WaitTweenLoop.MinCount, CancellationToken cancellationToken = default)
+        private Task AwaitLoopCompleted(int count = WaitForTweenLoop.MinCount, CancellationToken cancellationToken = default)
         {
             return new TweenLoopCompletedAwaiter(this, cancellationToken, count).Task;
         }
 
-        private Task AwaitLoopRewound(int count = WaitTweenLoop.MinCount, CancellationToken cancellationToken = default)
+        private Task AwaitLoopRewound(int count = WaitForTweenLoop.MinCount, CancellationToken cancellationToken = default)
         {
             return new TweenLoopRewoundAwaiter(this, cancellationToken, count).Task;
         }

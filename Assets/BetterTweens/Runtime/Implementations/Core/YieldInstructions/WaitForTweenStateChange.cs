@@ -2,12 +2,12 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class WaitTweenStateChange : YieldInstruction<TweenCore>
+    public class WaitForTweenStateChange : YieldInstruction<TweenCore>
     {
         private bool _changed;
         public override bool keepWaiting => !_changed;
 
-        public WaitTweenStateChange(TweenCore source) : base(source)
+        public WaitForTweenStateChange(TweenCore source) : base(source)
         {
             WaitStateChange();
         }

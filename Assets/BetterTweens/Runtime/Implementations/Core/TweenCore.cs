@@ -4,7 +4,9 @@ using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Settings;
+using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Triggers;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -17,8 +19,12 @@ namespace Better.Tweens.Runtime
         private const int MinLoopCount = 1;
 
         public event Action StateChanged;
+        public event Action ActivityChanged;
+        public event Action Enabled;
+        public event Action Asleep;
+        public event Action Disabled;
         public event Action Started;
-        public event Action Activated;
+        public event Action Runned;
         public event Action Playing;
         public event Action Rewinding;
         public event Action Updated;
@@ -47,8 +53,10 @@ namespace Better.Tweens.Runtime
         [SerializeField] private OverridableProperty<bool> _dependGlobalTimeScale;
         [SerializeField] private float _localTimeScale;
 
-        private StateMachine<TweenState> _stateMachine;
-        private StatesCacheModule<TweenState> _statesCache;
+        private StateMachine<ActivityState> _activityMachine;
+        private StatesCacheModule<ActivityState> _activityStates;
+        private StateMachine<HandlingState> _handlingMachine;
+        private StatesCacheModule<HandlingState> _handlingStates;
         private float _rawProgress;
         private HashSet<Trigger> _triggers;
         private HashSet<object> _tags;
@@ -63,7 +71,7 @@ namespace Better.Tweens.Runtime
         public int LoopCount => _loopCount;
         public LoopMode LoopMode => _loopMode;
         public int CompletedLoops => (int)_rawProgress;
-        public Ease Ease => _ease.Value;
+        public Ease Ease => _ease.Value; // TODO: CHECK USING
         public bool DependUnityTimeScale => _dependUnityTimeScale.Value;
         public bool DependGlobalTimeScale => _dependGlobalTimeScale.Value;
         public float LocalTimeScale => _localTimeScale;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
@@ -7,40 +8,91 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        public bool IsActive()
+        #region Initializing
+
+        private bool IsInitializable()
         {
-            return Initialized && _stateMachine.InState<ActiveState>();
+#if UNITY_EDITOR
+            return Application.isPlaying;
+#endif
+
+            return true;
+        }
+
+        protected bool ValidateInitialized(bool targetState, bool logError = true)
+        {
+            var isValid = Initialized == targetState;
+            if (!isValid && logError)
+            {
+                var reason = targetState ? "must be initialized" : "must be non-initialized";
+                var message = "Not valid, " + reason;
+                LogUtility.LogError(message);
+            }
+
+            return isValid;
+        }
+
+        #endregion
+
+        #region Activity
+
+        public bool IsEnabled()
+        {
+            return Initialized && _activityMachine.InState<EnabledState>();
+        }
+
+        public bool IsSleeping()
+        {
+            return Initialized && _activityMachine.InState<SleepingState>();
+        }
+
+        public bool IsDisabled()
+        {
+            return !Initialized || _activityMachine.InState<DisabledState>();
+        }
+
+        #endregion
+
+        #region Handling
+
+        public bool IsRunning()
+        {
+            return Initialized && _handlingMachine.InState<RunningState>();
         }
 
         public bool IsPlaying()
         {
-            return Initialized && _stateMachine.InState<PlayingState>();
+            return Initialized && _handlingMachine.InState<PlayingState>();
         }
 
         public bool IsRewinding()
         {
-            return Initialized && _stateMachine.InState<RewindState>();
+            return Initialized && _handlingMachine.InState<RewindState>();
         }
 
         public bool IsPaused()
         {
-            return Initialized && _stateMachine.InState<PauseState>();
+            return Initialized && _handlingMachine.InState<PauseState>();
         }
 
         public bool IsStopped()
         {
-            return !Initialized || _stateMachine.InState<StoppedState>();
+            return !Initialized || _handlingMachine.InState<StoppedState>();
         }
 
         public bool IsCompleted()
         {
-            return Initialized && CompletedLoops >= LoopCount && !IsActive();
+            return Initialized && CompletedLoops >= LoopCount && !IsRunning();
         }
 
         public bool IsRewound()
         {
-            return Initialized && CompletedLoops <= 0 && !IsActive();
+            return Initialized && CompletedLoops <= 0 && !IsRunning();
         }
+
+        #endregion
+
+        #region Triggers
 
         public bool ContainsTrigger(string tag)
         {
@@ -92,31 +144,13 @@ namespace Better.Tweens.Runtime
             return false;
         }
 
+        #endregion
+
+        #region Mutable
+
         public bool IsMutable()
         {
             return IsStopped();
-        }
-
-        private bool IsInitializable()
-        {
-#if UNITY_EDITOR
-            return Application.isPlaying;
-#endif
-
-            return true;
-        }
-
-        protected bool ValidateInitialized(bool targetState, bool logError = true)
-        {
-            var isValid = Initialized == targetState;
-            if (!isValid && logError)
-            {
-                var reason = targetState ? "must be initialized" : "must be non-initialized";
-                var message = "Not valid, " + reason;
-                LogUtility.LogError(message);
-            }
-
-            return isValid;
         }
 
         protected bool ValidateMutable(bool targetState, bool logError = true)
@@ -132,5 +166,7 @@ namespace Better.Tweens.Runtime
 
             return isValid;
         }
+
+        #endregion
     }
 }

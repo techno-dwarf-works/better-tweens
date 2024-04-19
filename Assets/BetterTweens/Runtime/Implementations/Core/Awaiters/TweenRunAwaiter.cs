@@ -3,27 +3,27 @@ using Better.Commons.Runtime.Helpers.CompletionAwaiters;
 
 namespace Better.Tweens.Runtime
 {
-    public class TweenActivatedAwaiter : CompletionAwaiter<TweenCore, bool>
+    public class TweenRunAwaiter : CompletionAwaiter<TweenCore, bool>
     {
-        public TweenActivatedAwaiter(TweenCore source, CancellationToken cancellationToken) : base(source, cancellationToken)
+        public TweenRunAwaiter(TweenCore source, CancellationToken cancellationToken) : base(source, cancellationToken)
         {
-            if (Source.IsCompleted())
+            if (Source.IsRunning())
             {
                 SetResult(true);
                 return;
             }
 
-            Source.Activated += OnActivated;
+            Source.Runned += OnRunned;
         }
 
-        private void OnActivated()
+        private void OnRunned()
         {
             SetResult(true);
         }
 
         protected override void OnCompleted(bool result)
         {
-            Source.Activated -= OnActivated;
+            Source.Runned -= OnRunned;
         }
     }
 }

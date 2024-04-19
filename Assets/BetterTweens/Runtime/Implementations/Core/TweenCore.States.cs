@@ -1,9 +1,71 @@
-﻿using Better.Tweens.Runtime.Utility;
+﻿using Better.Tweens.Runtime.States;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
+        #region Activity
+
+        public TweenCore Enable()
+        {
+            if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
+            if (IsEnabled())
+            {
+                return this;
+            }
+
+            var state = _activityStates.Get<EnabledState>();
+            _activityMachine.ChangeState(state);
+            return this;
+        }
+
+        protected internal void OnEnabled()
+        {
+            ActionUtility.Invoke(Enabled);
+        }
+
+        public TweenCore Sleep()
+        {
+            if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
+            if (IsSleeping())
+            {
+                return this;
+            }
+
+            var state = _activityStates.Get<SleepingState>();
+            _activityMachine.ChangeState(state);
+            return this;
+        }
+
+        protected internal void OnSleep()
+        {
+            ActionUtility.Invoke(Asleep);
+        }
+
+        protected internal void OnActivityStateChanged(ActivityState state)
+        {
+            ActionUtility.Invoke(ActivityChanged);
+            OnStateChanged();
+        }
+
+        private void OnActivityStateCached(ActivityState state)
+        {
+            state.Setup(this);
+        }
+
+        #endregion
+
+        #region Handling
+
         public TweenCore Play()
         {
             TryInitialize();
@@ -17,13 +79,13 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _statesCache.GetOrAdd<PlayingState>();
+            var state = _handlingStates.GetOrAdd<PlayingState>();
             if (IsStopped())
             {
                 state.MarkStartTrigger();
             }
 
-            _stateMachine.ChangeState(state);
+            _handlingMachine.ChangeState(state);
             return this;
         }
 
@@ -39,15 +101,14 @@ namespace Better.Tweens.Runtime
             ActionUtility.Invoke(Started);
         }
 
-        protected internal virtual void OnActive()
+        protected internal virtual void OnRunned()
         {
-            ActionUtility.Invoke(Activated);
+            ActionUtility.Invoke(Runned);
         }
 
         protected internal virtual void OnPlay()
         {
             ActionUtility.Invoke(Playing);
-            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Rewind()
@@ -57,8 +118,8 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _statesCache.GetOrAdd<RewindState>();
-            _stateMachine.ChangeState(state);
+            var state = _handlingStates.GetOrAdd<RewindState>();
+            _handlingMachine.ChangeState(state);
 
             return this;
         }
@@ -66,18 +127,17 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnRewind()
         {
             ActionUtility.Invoke(Rewinding);
-            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Pause()
         {
-            if (!IsActive())
+            if (!IsRunning())
             {
                 return this;
             }
 
-            var pauseState = _statesCache.GetOrAdd<PauseState>();
-            _stateMachine.ChangeState(pauseState);
+            var pauseState = _handlingStates.GetOrAdd<PauseState>();
+            _handlingMachine.ChangeState(pauseState);
 
             return this;
         }
@@ -88,7 +148,7 @@ namespace Better.Tweens.Runtime
             {
                 Play();
             }
-            else if (IsActive())
+            else if (IsRunning())
             {
                 Pause();
             }
@@ -99,7 +159,6 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnPaused()
         {
             ActionUtility.Invoke(Paused);
-            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Stop()
@@ -109,8 +168,8 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var stoppedState = _statesCache.GetOrAdd<StoppedState>();
-            _stateMachine.ChangeState(stoppedState);
+            var stoppedState = _handlingStates.Get<StoppedState>();
+            _handlingMachine.ChangeState(stoppedState);
 
             return this;
         }
@@ -118,12 +177,11 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnStopped()
         {
             ActionUtility.Invoke(Stopped);
-            ActionUtility.Invoke(StateChanged);
         }
 
         public TweenCore Complete()
         {
-            if (IsStopped())
+            if (IsCompleted())
             {
                 return this;
             }
@@ -140,17 +198,21 @@ namespace Better.Tweens.Runtime
         protected virtual void OnCompleted()
         {
             ActionUtility.Invoke(Completed);
-            ActionUtility.Invoke(StateChanged);
-            
-            Stop();
+
+            if (IsPlaying())
+            {
+                Stop();
+            }
         }
 
         protected virtual void OnRewound()
         {
             ActionUtility.Invoke(Rewound);
-            ActionUtility.Invoke(StateChanged);
-            
-            Pause();
+
+            if (IsRewinding())
+            {
+                Pause();
+            }
         }
 
         public TweenCore Restart()
@@ -161,9 +223,21 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        private void OnCachedState(TweenState state)
+        private void OnHandlingStateChanged(HandlingState state)
+        {
+            OnStateChanged();
+        }
+
+        private void OnHandlingStateCached(HandlingState state)
         {
             state.Setup(this);
+        }
+
+        #endregion
+        
+        protected virtual void OnStateChanged()
+        {
+            ActionUtility.Invoke(StateChanged);
         }
     }
 }

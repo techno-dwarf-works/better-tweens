@@ -1,27 +1,26 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Better.StateMachine.Runtime.States;
+﻿using Better.StateMachine.Runtime.States;
 
-namespace Better.Tweens.Runtime
+namespace Better.Tweens.Runtime.States
 {
-    public abstract class TweenState : BaseState
+    public abstract class TweenState : SynchronousState
     {
         protected TweenCore Source { get; private set; }
-        public abstract float DirectionMod { get; }
 
         public virtual void Setup(TweenCore source)
         {
             Source = source;
         }
 
-        public override Task EnterAsync(CancellationToken token)
+        public override void Enter()
         {
-            return Task.CompletedTask;
         }
 
-        public override Task ExitAsync(CancellationToken token)
+        public virtual void Tick(float deltaTime)
         {
-            return Task.CompletedTask;
+        }
+
+        public override void Exit()
+        {
         }
     }
 }

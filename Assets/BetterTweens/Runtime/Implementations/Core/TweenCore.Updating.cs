@@ -1,20 +1,54 @@
-﻿using Better.Tweens.Runtime.Triggers;
-using Better.Tweens.Runtime.Utility;
+﻿using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        internal void ApplyProgress(float value)
+        internal void Tick(float deltaTime)
         {
-            ApplyProgressMod(ref value);
+            _handlingMachine.CurrentState?.Tick(deltaTime);
+            OnUpdated();
+        }
 
-            if (DecreaseDelay(ref value) && InDelay)
+        protected virtual void OnUpdated()
+        {
+            ActionUtility.Invoke(Updated);
+        }
+
+        internal bool InvokeTriggers()
+        {
+            if (_triggers == null)
             {
-                return;
+                return false;
             }
 
+            foreach (var trigger in _triggers)
+            {
+                if (trigger.TryInvoke(this))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        internal bool DecreaseDelay(ref float value)
+        {
+            if (!InDelay) return false;
+
+            var appliedValue = Mathf.Abs(value);
+            appliedValue = Mathf.Min(appliedValue, RemainingDelay);
+
+            RemainingDelay -= appliedValue;
+            value -= appliedValue * Mathf.Sign(value);
+
+            return true;
+        }
+
+        internal void ApplyProgress(float value)
+        {
             var rootCompletedLoops = CompletedLoops;
             _rawProgress += value;
             _rawProgress = Mathf.Clamp(_rawProgress, default, LoopCount);
@@ -39,56 +73,24 @@ namespace Better.Tweens.Runtime
                 var time = _ease.Value.Evaluate(LoopProgress);
                 EvaluateStateByMode(time);
             }
-
-            OnUpdated();
+        }
+        
+        internal void DecreaseSleepTimer(float value)
+        {
         }
 
-        internal bool TickTriggers()
+        internal void ApplyTimeScale(ref float value)
         {
-            if (_triggers == null)
-            {
-                return true;
-            }
-
-            foreach (var trigger in _triggers)
-            {
-                if (trigger.TryInvoke(this))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private void ApplyProgressMod(ref float value)
-        {
-            value *= _stateMachine.CurrentState.DirectionMod;
             value *= LocalTimeScale;
-            value /= Duration;
-
             if (DependGlobalTimeScale)
             {
                 value *= SettingsData.GlobalTimeScale;
             }
         }
 
-        private bool DecreaseDelay(ref float value)
+        internal void ApplyProgressMod(ref float value)
         {
-            if (!InDelay) return false;
-
-            var appliedValue = Mathf.Abs(value);
-            appliedValue = Mathf.Min(appliedValue, RemainingDelay);
-
-            RemainingDelay -= appliedValue;
-            value -= appliedValue * Mathf.Sign(value);
-
-            return true;
-        }
-
-        private void OnUpdated()
-        {
-            ActionUtility.Invoke(Updated);
+            value /= Duration;
         }
     }
 }

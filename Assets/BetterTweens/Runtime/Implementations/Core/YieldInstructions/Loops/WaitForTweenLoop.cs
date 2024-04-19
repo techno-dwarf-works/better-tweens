@@ -2,12 +2,12 @@
 
 namespace Better.Tweens.Runtime
 {
-    public abstract class WaitTweenLoop : YieldInstruction<TweenCore>
+    public abstract class WaitForTweenLoop : YieldInstruction<TweenCore>
     {
         public const int MinCount = 1;
         protected int CachedCompletedLoops { get; private set; }
 
-        protected WaitTweenLoop(TweenCore source) : base(source)
+        protected WaitForTweenLoop(TweenCore source) : base(source)
         {
             CacheCompletedLoops();
         }

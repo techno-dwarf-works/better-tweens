@@ -10,23 +10,6 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        public TweenCore SetDuration(float value)
-        {
-            if (ValidateMutable(true))
-            {
-                if (value < MinDuration)
-                {
-                    var message = $"{nameof(Duration)} cannot be less of {nameof(MinDuration)}({MinDuration}), was clamped";
-                    LogUtility.LogWarning(message);
-                    value = MinDuration;
-                }
-
-                _duration = value;
-            }
-
-            return this;
-        }
-
         #region Delays
 
         public TweenCore SetStartDelay(float value)
@@ -185,6 +168,46 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        public TweenCore OnActivityChanged(Action callback)
+        {
+            if (ActionUtility.Validate(callback))
+            {
+                ActivityChanged += callback;
+            }
+
+            return this;
+        }
+
+        public TweenCore OnEnabled(Action callback)
+        {
+            if (ActionUtility.Validate(callback))
+            {
+                Enabled += callback;
+            }
+
+            return this;
+        }
+
+        public TweenCore OnAsleep(Action callback)
+        {
+            if (ActionUtility.Validate(callback))
+            {
+                Asleep += callback;
+            }
+
+            return this;
+        }
+
+        public TweenCore OnDisabled(Action callback)
+        {
+            if (ActionUtility.Validate(callback))
+            {
+                Disabled += callback;
+            }
+
+            return this;
+        }
+
         public TweenCore OnStarted(Action callback)
         {
             if (ActionUtility.Validate(callback))
@@ -195,11 +218,11 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public TweenCore OnActivated(Action callback)
+        public TweenCore OnRunned(Action callback)
         {
             if (ActionUtility.Validate(callback))
             {
-                Activated += callback;
+                Runned += callback;
             }
 
             return this;
@@ -446,6 +469,27 @@ namespace Better.Tweens.Runtime
             foreach (var value in values)
             {
                 RemoveTag(value);
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region Misc
+
+        public TweenCore SetDuration(float value)
+        {
+            if (ValidateMutable(true))
+            {
+                if (value < MinDuration)
+                {
+                    var message = $"{nameof(Duration)} cannot be less of {nameof(MinDuration)}({MinDuration}), was clamped";
+                    LogUtility.LogWarning(message);
+                    value = MinDuration;
+                }
+
+                _duration = value;
             }
 
             return this;

@@ -11,7 +11,7 @@
 
         public override bool Validate()
         {
-            return Source.IsActive() == _state;
+            return Source.IsRunning() == _state;
         }
     }
 }

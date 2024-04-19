@@ -2,11 +2,11 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class WaitTweenPlayStarted : YieldInstruction<TweenCore>
+    public class WaitForTweenPlayStarted : YieldInstruction<TweenCore>
     {
         public override bool keepWaiting => !Source.IsPlaying();
 
-        public WaitTweenPlayStarted(TweenCore source) : base(source)
+        public WaitForTweenPlayStarted(TweenCore source) : base(source)
         {
         }
     }

@@ -3,9 +3,9 @@ using Better.Commons.Runtime.Helpers.CompletionAwaiters;
 
 namespace Better.Tweens.Runtime
 {
-    public class TweenCompletedAwaiter : CompletionAwaiter<TweenCore, bool>
+    public class TweenCompletionAwaiter : CompletionAwaiter<TweenCore, bool>
     {
-        public TweenCompletedAwaiter(TweenCore source, CancellationToken cancellationToken) : base(source, cancellationToken)
+        public TweenCompletionAwaiter(TweenCore source, CancellationToken cancellationToken) : base(source, cancellationToken)
         {
             if (Source.IsCompleted())
             {
