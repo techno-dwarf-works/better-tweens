@@ -9,6 +9,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore Enable()
         {
+            TryInitialize();
             if (!ValidateInitialized(true))
             {
                 return this;
@@ -31,6 +32,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore Sleep()
         {
+            TryInitialize();
             if (!ValidateInitialized(true))
             {
                 return this;
@@ -46,9 +48,32 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        protected internal void OnSleep()
+        protected internal void OnAsleep()
         {
             ActionUtility.Invoke(Asleep);
+        }
+
+        public TweenCore Disable()
+        {
+            TryInitialize();
+            if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
+            if (IsDisabled())
+            {
+                return this;
+            }
+
+            var state = _activityStates.Get<DisabledState>();
+            _activityMachine.ChangeState(state);
+            return this;
+        }
+
+        protected internal void OnDisabled()
+        {
+            ActionUtility.Invoke(Disabled);
         }
 
         protected internal void OnActivityStateChanged(ActivityState state)
@@ -113,6 +138,12 @@ namespace Better.Tweens.Runtime
 
         public TweenCore Rewind()
         {
+            TryInitialize();
+            if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
             if (IsRewinding() || IsStopped())
             {
                 return this;
@@ -131,6 +162,12 @@ namespace Better.Tweens.Runtime
 
         public TweenCore Pause()
         {
+            TryInitialize();
+            if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
             if (!IsRunning())
             {
                 return this;
@@ -163,6 +200,12 @@ namespace Better.Tweens.Runtime
 
         public TweenCore Stop()
         {
+            TryInitialize();
+            if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
             if (IsStopped())
             {
                 return this;
@@ -234,7 +277,7 @@ namespace Better.Tweens.Runtime
         }
 
         #endregion
-        
+
         protected virtual void OnStateChanged()
         {
             ActionUtility.Invoke(StateChanged);
