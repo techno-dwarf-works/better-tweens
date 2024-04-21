@@ -2,7 +2,7 @@
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
-namespace Better.Tweens.Runtime.Debug
+namespace Better.Tweens.Runtime
 {
     [Serializable]
     public class DebugTween : Tween<float>
@@ -133,7 +133,7 @@ namespace Better.Tweens.Runtime.Debug
         protected override void OnRewound()
         {
             base.OnRewound();
-            
+
             Log("rewound");
         }
 

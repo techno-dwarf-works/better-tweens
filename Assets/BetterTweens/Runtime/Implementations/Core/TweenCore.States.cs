@@ -240,11 +240,12 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnCompleted()
         {
+            var rootState = _handlingMachine.CurrentState;
             ActionUtility.Invoke(Completed);
 
-            if (IsPlaying())
+            if (_handlingMachine.CurrentState == rootState)
             {
-                Stop();
+                CompletionBehaviour.Invoke(this);
             }
         }
 

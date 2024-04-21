@@ -179,6 +179,33 @@ namespace Better.Tweens.Runtime
 
         #endregion
 
+        #region CompletionBehaviour
+
+        public TweenCore SetCompletionBehaviour(CompletionBehaviour value)
+        {
+            if (value == null)
+            {
+                var message = $"{nameof(value)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            if (ValidateMutable(true))
+            {
+                _completionBehaviour.Override(value);
+            }
+
+            return this;
+        }
+
+        public TweenCore SetCompletionBehaviour(CompletionBehaviourType type)
+        {
+            var completionBehaviour = CompletionBehaviourTypeUtility.GetBehaviourByType(type);
+            return SetCompletionBehaviour(completionBehaviour);
+        }
+
+        #endregion
+
         #region Events
 
         public TweenCore OnStateChanged(Action callback)

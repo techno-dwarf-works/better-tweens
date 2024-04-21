@@ -50,6 +50,7 @@ namespace Better.Tweens.Runtime
         [SerializeField] private OverridableProperty<bool> _dependGlobalTimeScale;
         [SerializeField] private float _localTimeScale;
         [SerializeField] private SleepingDuration _sleepingDuration;
+        [SerializeField] private OverridableProperty<CompletionBehaviour> _completionBehaviour;
 
         private StateMachine<ActivityState> _activityMachine;
         private StatesCacheModule<ActivityState> _activityStates;
@@ -76,6 +77,7 @@ namespace Better.Tweens.Runtime
         public float LocalTimeScale => _localTimeScale;
         public float SleepingDuration => _sleepingDuration.Value;
         public bool InfinitySleeping => _sleepingDuration.Infinity;
+        public CompletionBehaviour CompletionBehaviour => _completionBehaviour.Value;
 
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
 
@@ -90,6 +92,7 @@ namespace Better.Tweens.Runtime
             _dependGlobalTimeScale = new();
             _localTimeScale = 1f;
             _sleepingDuration = new();
+            _completionBehaviour = new();
         }
     }
 }

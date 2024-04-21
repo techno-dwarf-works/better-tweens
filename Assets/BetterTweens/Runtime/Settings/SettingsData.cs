@@ -16,6 +16,7 @@ namespace Better.Tweens.Runtime.Settings
         [SerializeField] private LogLevel _logLevel;
         [SerializeField] private bool _safeMode;
         [SerializeReference] private Ease _ease;
+        [SerializeReference] private CompletionBehaviour _completionBehaviour;
 
         public float GlobalTimeScale
         {
@@ -48,6 +49,7 @@ namespace Better.Tweens.Runtime.Settings
         }
 
         public Ease Ease => _ease;
+        public CompletionBehaviour CompletionBehaviour => CompletionBehaviour;
         public SleepingDuration SleepingDuration => _sleepingDuration;
 
         public SettingsData()
@@ -55,10 +57,11 @@ namespace Better.Tweens.Runtime.Settings
             _globalTimeScale = 1f;
             _dependGlobalTimeScale = true;
             _dependUnityTimeScale = true;
-            _sleepingDuration = new();
-            _ease = new LinearEase();
             _logLevel = LogLevel.Info;
             _safeMode = true;
+            _ease = new LinearEase();
+            _sleepingDuration = new();
+            _completionBehaviour = new StopCompletionBehaviour();
         }
 
         public void SetEase(Ease value)
@@ -71,6 +74,18 @@ namespace Better.Tweens.Runtime.Settings
             }
 
             _ease = value;
+        }
+
+        public void SetCompletionBehaviour(CompletionBehaviour value)
+        {
+            if (value == null)
+            {
+                var message = $"{nameof(value)} cannot be null";
+                LogUtility.LogException(message);
+                return;
+            }
+
+            _completionBehaviour = value;
         }
 
         public void SetEase(EaseType type, EaseMode mode = EaseMode.InOut)
@@ -100,6 +115,7 @@ namespace Better.Tweens.Runtime.Settings
             _safeMode = source._safeMode;
             _ease = source._ease.Clone();
             _sleepingDuration = source._sleepingDuration.Clone();
+            _completionBehaviour = source._completionBehaviour.Clone();
         }
     }
 }
