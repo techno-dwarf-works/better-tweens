@@ -2,16 +2,16 @@
 
 namespace Better.Tweens.Runtime
 {
-    public static class CompletionBehaviourTypeUtility
+    public static class CompletionBehaviourUtility
     {
-        public static CompletionBehaviour GetBehaviourByType(CompletionBehaviourType type)
+        public static CompletionBehaviour GetBehaviourByType(CompletionType type)
         {
             return type switch
             {
-                CompletionBehaviourType.Rewind => new RewindCompletionBehaviour(),
-                CompletionBehaviourType.Restart => new RestartCompletionBehaviour(),
-                CompletionBehaviourType.Pause => new PauseCompletionBehaviour(),
-                CompletionBehaviourType.Stop => new StopCompletionBehaviour(),
+                CompletionType.Rewind => new RewindCompletionBehaviour(),
+                CompletionType.Restart => new RestartCompletionBehaviour(),
+                CompletionType.Pause => new PauseCompletionBehaviour(),
+                CompletionType.Stop => new StopCompletionBehaviour(),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

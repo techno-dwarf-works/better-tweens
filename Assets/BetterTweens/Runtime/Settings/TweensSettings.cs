@@ -11,7 +11,6 @@ namespace Better.Tweens.Runtime
     {
         public const string Path = PrefixConstants.BetterPrefix + "/" + nameof(Tweens);
 
-        // TODO: Add attributes
         [SerializeField] private SettingsData _persistent = new();
         [SerializeField] private SettingsData _runtime = new();
 

@@ -8,7 +8,7 @@ namespace Better.Tweens.Runtime
     public abstract class Tween<TValue, TValueOptions> : TweenCore
     {
         [SerializeField] private FromMode _fromMode;
-        [SerializeField] private TValue _fromValue; // TODO: name (cache field) conflict with property
+        [SerializeField] private TValue _fromValue;
         [SerializeField] private OptionsMode _optionsMode;
         [SerializeField] private TValueOptions _options;
 

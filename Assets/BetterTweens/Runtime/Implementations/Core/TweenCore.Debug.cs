@@ -6,8 +6,6 @@ namespace Better.Tweens.Runtime
     {
         public override string ToString()
         {
-            // TODO: Update
-            
             const string separator = ": ";
 
             return new StringBuilder()

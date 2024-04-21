@@ -1,6 +1,5 @@
 ﻿using System;
 using Better.Tweens.Runtime.Utility;
-using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {

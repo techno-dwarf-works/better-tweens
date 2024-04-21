@@ -1,6 +1,6 @@
 ﻿namespace Better.Tweens.Runtime
 {
-    public enum CompletionBehaviourType
+    public enum CompletionType
     {
         Rewind,
         Restart,

@@ -6,8 +6,6 @@ namespace Better.Tweens.Runtime.Utility
     {
         public static Ease GetEaseByType(EaseType type, EaseMode mode = EaseMode.InOut)
         {
-            // TODO: Add pooling
-
             return type switch
             {
                 EaseType.Linear => new LinearEase(),

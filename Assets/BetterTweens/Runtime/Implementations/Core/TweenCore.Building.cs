@@ -198,9 +198,16 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public TweenCore SetCompletionBehaviour(CompletionBehaviourType type)
+        public TweenCore SetCompletionBehaviour<TBehaviour>()
+            where TBehaviour : CompletionBehaviour, new()
         {
-            var completionBehaviour = CompletionBehaviourTypeUtility.GetBehaviourByType(type);
+            var completionBehaviour = new TBehaviour();
+            return SetCompletionBehaviour(completionBehaviour);
+        }
+
+        public TweenCore SetCompletionBehaviour(CompletionType type)
+        {
+            var completionBehaviour = CompletionBehaviourUtility.GetBehaviourByType(type);
             return SetCompletionBehaviour(completionBehaviour);
         }
 
