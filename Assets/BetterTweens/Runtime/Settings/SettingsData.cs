@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Better.Tweens.Runtime.Settings
         [SerializeField] private float _globalTimeScale;
         [SerializeField] private bool _dependUnityTimeScale;
         [SerializeField] private bool _dependGlobalTimeScale;
+        [SerializeField] private SleepingDuration _sleepingDuration;
         [SerializeField] private LogLevel _logLevel;
         [SerializeField] private bool _safeMode;
         [SerializeReference] private Ease _ease;
@@ -46,14 +48,17 @@ namespace Better.Tweens.Runtime.Settings
         }
 
         public Ease Ease => _ease;
+        public SleepingDuration SleepingDuration => _sleepingDuration;
 
         public SettingsData()
         {
             _globalTimeScale = 1f;
             _dependGlobalTimeScale = true;
             _dependUnityTimeScale = true;
+            _sleepingDuration = new();
             _ease = new LinearEase();
             _logLevel = LogLevel.Info;
+            _safeMode = true;
         }
 
         public void SetEase(Ease value)
@@ -94,6 +99,7 @@ namespace Better.Tweens.Runtime.Settings
             _logLevel = source._logLevel;
             _safeMode = source._safeMode;
             _ease = source._ease.Clone();
+            _sleepingDuration = source._sleepingDuration.Clone();
         }
     }
 }

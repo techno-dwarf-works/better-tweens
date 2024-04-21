@@ -7,6 +7,7 @@ namespace Better.Tweens.Runtime
         protected virtual void OnLoopCompleted()
         {
             EvaluateStateByMode(1f);
+            TryHandleOverLoops();
             ActionUtility.Invoke(LoopCompleted);
 
             if (IsCompleted())

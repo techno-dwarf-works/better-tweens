@@ -1,13 +1,27 @@
-﻿using Better.Tweens.Runtime.Utility;
+﻿using System;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        internal void Tick(float deltaTime)
+        internal void OnUpdate(float deltaTime)
         {
-            _handlingMachine.CurrentState?.Tick(deltaTime);
+            if (InvokeTriggers())
+            {
+                return;
+            }
+
+            ApplyTimeScale(ref deltaTime);
+            _activityMachine.CurrentState?.OnUpdate(deltaTime);
+
+            if (IsEnabled() && !DecreaseDelay(ref deltaTime) || !InDelay)
+            {
+                ApplyProgressMod(ref deltaTime);
+                ApplyProgress(deltaTime);
+            }
+
             OnUpdated();
         }
 
@@ -16,7 +30,7 @@ namespace Better.Tweens.Runtime
             ActionUtility.Invoke(Updated);
         }
 
-        internal bool InvokeTriggers()
+        private bool InvokeTriggers()
         {
             if (_triggers == null)
             {
@@ -34,7 +48,7 @@ namespace Better.Tweens.Runtime
             return false;
         }
 
-        internal bool DecreaseDelay(ref float value)
+        private bool DecreaseDelay(ref float value)
         {
             if (!InDelay) return false;
 
@@ -47,11 +61,11 @@ namespace Better.Tweens.Runtime
             return true;
         }
 
-        internal void ApplyProgress(float value)
+        private void ApplyProgress(float value)
         {
             var rootCompletedLoops = CompletedLoops;
             _rawProgress += value;
-            _rawProgress = Mathf.Clamp(_rawProgress, default, LoopCount);
+            _rawProgress = Math.Clamp(_rawProgress, default, LoopCount);
 
             var completedLoopChanged = CompletedLoops != rootCompletedLoops;
             var rewoundCompleted = Mathf.Approximately(_rawProgress, default) && !Mathf.Approximately(value, default);
@@ -70,16 +84,12 @@ namespace Better.Tweens.Runtime
             }
             else
             {
-                var time = _ease.Value.Evaluate(LoopProgress);
+                var time = Ease.Evaluate(LoopProgress);
                 EvaluateStateByMode(time);
             }
         }
-        
-        internal void DecreaseSleepTimer(float value)
-        {
-        }
 
-        internal void ApplyTimeScale(ref float value)
+        private void ApplyTimeScale(ref float value)
         {
             value *= LocalTimeScale;
             if (DependGlobalTimeScale)
@@ -88,9 +98,32 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        internal void ApplyProgressMod(ref float value)
+        private void ApplyProgressMod(ref float value)
         {
             value /= Duration;
+        }
+
+        private void TryHandleOverLoops()
+        {
+            if (CompletedLoops < ThresholdOverLoops)
+            {
+                return;
+            }
+
+            // TODO: 1_000_000+1 loop error???
+            // TODO: fix???
+            // TODO: arki dupa
+            _rawProgress -= ThresholdOverLoops;
+            if (!InfinityLoops)
+            {
+                var loopCount = LoopCount - ThresholdOverLoops;
+                if (loopCount == 0)
+                {
+                    _rawProgress++;
+                }
+
+                _loopCount.SetValue(loopCount);
+            }
         }
     }
 }

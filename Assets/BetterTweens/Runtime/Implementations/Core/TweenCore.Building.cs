@@ -54,14 +54,17 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                if (value < MinLoopCount)
-                {
-                    var message = $"{nameof(LoopCount)} cannot be less of {nameof(MinLoopCount)}({MinLoopCount}), was clamped";
-                    LogUtility.LogWarning(message);
-                    value = MinLoopCount;
-                }
+                _loopCount.SetValue(value);
+            }
 
-                _loopCount = value;
+            return this;
+        }
+
+        public TweenCore SetInfinityLoop()
+        {
+            if (ValidateMutable(true))
+            {
+                _loopCount.MakeInfinity();
             }
 
             return this;
@@ -81,6 +84,26 @@ namespace Better.Tweens.Runtime
         {
             SetLoopCount(count);
             SetLoopMode(loopMode);
+
+            return this;
+        }
+
+        #endregion
+
+        #region Sleeping
+
+        public TweenCore SetSleepingDuration(float value)
+        {
+            _sleepingDuration.SetValue(value);
+            _activityMachine.CurrentState?.Reset();
+
+            return this;
+        }
+
+        public TweenCore SetInfinitySleeping()
+        {
+            _loopCount.MakeInfinity();
+            _activityMachine.CurrentState?.Reset();
 
             return this;
         }

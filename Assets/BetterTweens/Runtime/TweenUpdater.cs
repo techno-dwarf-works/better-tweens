@@ -21,26 +21,26 @@ namespace Better.Tweens.Runtime
 
         private static void OnUpdate()
         {
-            Tick(UpdateMode.Update, Time.deltaTime, Time.unscaledDeltaTime);
+            Update(UpdateMode.Update, Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         private static void OnLateUpdate()
         {
-            Tick(UpdateMode.LateUpdate, Time.deltaTime, Time.unscaledDeltaTime);
+            Update(UpdateMode.LateUpdate, Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         private static void OnFixedUpdate()
         {
-            Tick(UpdateMode.FixedUpdate, Time.fixedDeltaTime, Time.fixedUnscaledDeltaTime);
+            Update(UpdateMode.FixedUpdate, Time.fixedDeltaTime, Time.fixedUnscaledDeltaTime);
         }
 
-        private static void Tick(UpdateMode updateMode, float scaledDeltaTime, float unscaledDeltaTime)
+        private static void Update(UpdateMode updateMode, float scaledDeltaTime, float unscaledDeltaTime)
         {
             TweenRegistry.CollectElementsBy(updateMode, ref _cachedReferences);
             foreach (var tweenCore in _cachedReferences)
             {
                 var progress = tweenCore.DependUnityTimeScale ? scaledDeltaTime : unscaledDeltaTime;
-                tweenCore.Tick(progress);
+                tweenCore.OnUpdate(progress);
             }
 
             _cachedReferences.Clear();

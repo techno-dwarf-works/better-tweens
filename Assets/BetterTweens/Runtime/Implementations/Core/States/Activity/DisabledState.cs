@@ -5,6 +5,7 @@
         public override void Enter()
         {
             base.Enter();
+            
             Source.OnDisabled();
         }
     }

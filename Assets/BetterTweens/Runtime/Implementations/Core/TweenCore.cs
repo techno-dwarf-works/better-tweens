@@ -6,7 +6,6 @@ using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Settings;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Triggers;
-using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -14,9 +13,9 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract partial class TweenCore
     {
+        private const int ThresholdOverLoops = 1000000;
         private const float MinDuration = 0f;
         private const float MinDelay = 0f;
-        private const int MinLoopCount = 1;
 
         public event Action StateChanged;
         public event Action ActivityChanged;
@@ -44,14 +43,13 @@ namespace Better.Tweens.Runtime
         [Min(MinDelay)]
         [SerializeField] private float _loopDelay;
 
-        [Min(MinLoopCount)]
-        [SerializeField] private int _loopCount;
-
+        [SerializeField] private LoopCount _loopCount;
         [SerializeField] private LoopMode _loopMode;
         [SerializeField] private OverridableProperty<Ease> _ease;
         [SerializeField] private OverridableProperty<bool> _dependUnityTimeScale;
         [SerializeField] private OverridableProperty<bool> _dependGlobalTimeScale;
         [SerializeField] private float _localTimeScale;
+        [SerializeField] private SleepingDuration _sleepingDuration;
 
         private StateMachine<ActivityState> _activityMachine;
         private StatesCacheModule<ActivityState> _activityStates;
@@ -68,13 +66,16 @@ namespace Better.Tweens.Runtime
         public bool InDelay => RemainingDelay > 0f;
         public float LoopProgress => _rawProgress % 1f;
         public float TotalProgress => _rawProgress / LoopCount;
-        public int LoopCount => _loopCount;
+        public int LoopCount => InfinityLoops ? CompletedLoops + 1 : _loopCount.Value;
+        public bool InfinityLoops => _loopCount.Infinity;
         public LoopMode LoopMode => _loopMode;
         public int CompletedLoops => (int)_rawProgress;
-        public Ease Ease => _ease.Value; // TODO: CHECK USING
+        public Ease Ease => _ease.Value;
         public bool DependUnityTimeScale => _dependUnityTimeScale.Value;
         public bool DependGlobalTimeScale => _dependGlobalTimeScale.Value;
         public float LocalTimeScale => _localTimeScale;
+        public float SleepingDuration => _sleepingDuration.Value;
+        public bool InfinitySleeping => _sleepingDuration.Infinity;
 
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
 
@@ -83,11 +84,12 @@ namespace Better.Tweens.Runtime
 
         protected TweenCore()
         {
-            _loopCount = MinLoopCount;
+            _loopCount = new();
             _ease = new();
             _dependUnityTimeScale = new();
             _dependGlobalTimeScale = new();
             _localTimeScale = 1f;
+            _sleepingDuration = new();
         }
     }
 }

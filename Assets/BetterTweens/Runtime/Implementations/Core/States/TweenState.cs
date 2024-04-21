@@ -15,10 +15,6 @@ namespace Better.Tweens.Runtime.States
         {
         }
 
-        public virtual void Tick(float deltaTime)
-        {
-        }
-
         public override void Exit()
         {
         }
