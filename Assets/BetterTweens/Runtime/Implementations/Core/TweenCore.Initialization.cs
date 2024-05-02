@@ -23,7 +23,7 @@ namespace Better.Tweens.Runtime
             Initialized = true;
             SettingsData = TweensSettings.Instance.Current;
             InitializeStates();
-            
+
             var state = _handlingStates.GetOrAdd<StoppedState>();
             state.SuppressNextNotify();
             _handlingMachine.ChangeState(state);
@@ -45,7 +45,7 @@ namespace Better.Tweens.Runtime
             _handlingStates = new();
             _activityMachine = new();
             _handlingMachine = new();
-            
+
             _activityMachine.AddModule(_activityStates);
             _handlingMachine.AddModule(_handlingStates);
 
@@ -53,6 +53,9 @@ namespace Better.Tweens.Runtime
             _handlingMachine.StateChanged += OnHandlingStateChanged;
             _activityStates.Cached += OnActivityStateCached;
             _handlingStates.Cached += OnHandlingStateCached;
+
+            _activityMachine.Run();
+            _handlingMachine.Run();
         }
 
         protected abstract void OnInitialized();

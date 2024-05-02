@@ -1,6 +1,4 @@
-﻿using System;
-using Better.Tweens.Runtime.Utility;
-using UnityEngine;
+﻿using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
@@ -8,29 +6,27 @@ namespace Better.Tweens.Runtime
     {
         internal void OnUpdate(float deltaTime)
         {
-            if (InvokeTriggers())
+            if (TryInvokeTriggers())
             {
                 return;
             }
 
             ApplyTimeScale(ref deltaTime);
-            _activityMachine.CurrentState?.OnUpdate(deltaTime);
-
-            if (IsEnabled() && !DecreaseDelay(ref deltaTime) || !InDelay)
-            {
-                ApplyProgressMod(ref deltaTime);
-                ApplyProgress(deltaTime);
-            }
-
-            OnUpdated();
+            OnPreUpdated(deltaTime);
+            OnPostUpdated(deltaTime);
         }
 
-        protected virtual void OnUpdated()
+        protected virtual void OnPreUpdated(float deltaTime)
+        {
+            _activityMachine.CurrentState?.OnUpdate(deltaTime);
+        }
+
+        protected virtual void OnPostUpdated(float deltaTime)
         {
             ActionUtility.Invoke(Updated);
         }
 
-        private bool InvokeTriggers()
+        protected bool TryInvokeTriggers()
         {
             if (_triggers == null)
             {
@@ -48,81 +44,12 @@ namespace Better.Tweens.Runtime
             return false;
         }
 
-        private bool DecreaseDelay(ref float value)
-        {
-            if (!InDelay) return false;
-
-            var appliedValue = Mathf.Abs(value);
-            appliedValue = Mathf.Min(appliedValue, RemainingDelay);
-
-            RemainingDelay -= appliedValue;
-            value -= appliedValue * Mathf.Sign(value);
-
-            return true;
-        }
-
-        private void ApplyProgress(float value)
-        {
-            var rootCompletedLoops = CompletedLoops;
-            _rawProgress += value;
-            _rawProgress = Math.Clamp(_rawProgress, default, LoopCount);
-
-            var completedLoopChanged = CompletedLoops != rootCompletedLoops;
-            var rewoundCompleted = Mathf.Approximately(_rawProgress, default) && !Mathf.Approximately(value, default);
-            if (completedLoopChanged || rewoundCompleted)
-            {
-                if (CompletedLoops > rootCompletedLoops)
-                {
-                    var completedCount = CompletedLoops - rootCompletedLoops;
-                    OnLoopsCompleted(completedCount);
-                }
-                else
-                {
-                    var rewoundCount = Mathf.Max(rootCompletedLoops - CompletedLoops, 1);
-                    OnLoopsRewound(rewoundCount);
-                }
-            }
-            else
-            {
-                var time = Ease.Evaluate(LoopProgress);
-                EvaluateStateByMode(time);
-            }
-        }
-
         private void ApplyTimeScale(ref float value)
         {
             value *= LocalTimeScale;
             if (DependGlobalTimeScale)
             {
                 value *= SettingsData.GlobalTimeScale;
-            }
-        }
-
-        private void ApplyProgressMod(ref float value)
-        {
-            value /= Duration;
-        }
-
-        private void TryHandleOverLoops()
-        {
-            if (CompletedLoops < ThresholdOverLoops)
-            {
-                return;
-            }
-
-            // TODO: 1_000_000+1 loop error???
-            // TODO: fix???
-            // TODO: arki dupa
-            _rawProgress -= ThresholdOverLoops;
-            if (!InfinityLoops)
-            {
-                var loopCount = LoopCount - ThresholdOverLoops;
-                if (loopCount == 0)
-                {
-                    _rawProgress++;
-                }
-
-                _loopCount.SetValue(loopCount);
             }
         }
     }

@@ -14,4 +14,11 @@ namespace Better.Tweens.Runtime.Triggers
             return Source != null;
         }
     }
+
+    public abstract class ObjectCondition : ObjectCondition<Object>
+    {
+        protected ObjectCondition(Object source) : base(source)
+        {
+        }
+    }
 }

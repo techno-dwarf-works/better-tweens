@@ -2,7 +2,7 @@
 
 namespace Better.Tweens.Runtime.Triggers
 {
-    public class DestroyObjectCondition : ObjectCondition<Object>
+    public class DestroyObjectCondition : ObjectCondition
     {
         private readonly bool _destroyed;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract class Tween<TValue, TValueOptions> : TweenCore
+    public abstract class Tween<TValue, TValueOptions> : EvaluableCore
     {
         [SerializeField] private FromMode _fromMode;
         [SerializeField] private TValue _fromValue;
@@ -24,10 +24,10 @@ namespace Better.Tweens.Runtime
 
         protected internal override void OnStarted()
         {
-            base.OnStarted();
-
             FromValue = GetFromBy(FromMode);
             ToValue = CalculateTo(FromValue, _options, OptionsMode);
+            
+            base.OnStarted();
         }
 
         public Tween<TValue, TValueOptions> From(TValue value)
@@ -120,7 +120,7 @@ namespace Better.Tweens.Runtime
         {
             base.OnLoopCompleted();
 
-            if (IsStopped())
+            if (!IsPlaying())
             {
                 return;
             }
@@ -144,7 +144,7 @@ namespace Better.Tweens.Runtime
         {
             base.OnLoopRewound();
 
-            if (IsStopped() || CompletedLoops <= 0)
+            if (!IsRewinding())
             {
                 return;
             }
@@ -162,19 +162,6 @@ namespace Better.Tweens.Runtime
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        public override string ToString()
-        {
-            const string separator = ": ";
-
-            var source = base.ToString();
-            return new StringBuilder(source)
-                .AppendJoin(separator, nameof(FromValue), FromValue)
-                .AppendJoin(separator, nameof(ToValue), ToValue)
-                .AppendJoin(separator, nameof(OptionsMode), OptionsMode)
-                .AppendJoin(separator, nameof(FromMode), FromMode)
-                .ToString();
         }
     }
 

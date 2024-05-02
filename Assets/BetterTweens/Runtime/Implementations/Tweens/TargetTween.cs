@@ -10,7 +10,7 @@ namespace Better.Tweens.Runtime
     public abstract class TargetTween<TTarget, TValue, TValueOptions> : Tween<TValue, TValueOptions>
         where TTarget : class
     {
-        private const string TargetTriggerTag = nameof(TargetTriggerTag);
+        private const string TargetTriggerId = nameof(TargetTriggerId);
 
         [SerializeField] private TTarget _target;
         protected TTarget Target => _target;
@@ -25,31 +25,24 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (ValidateMutable(true))
+            if (!ValidateMutable(true))
             {
-                RemoveTriggers(TargetTriggerTag);
-                RemoveTag(_target);
-
-                _target = value;
-
-                if (_target is Object unityTarget)
-                {
-                    var destroyObjectCondition = new DestroyObjectCondition(unityTarget);
-                    AddTrigger<StopTrigger>(destroyObjectCondition, TargetTriggerTag);
-                }
-
-                AddTag(_target);
+                return this;
             }
 
+            RemoveTag(_target);
+            AddTag(value);
+
+            RemoveTriggers(TargetTriggerId);
+            if (value is Object unityTarget)
+            {
+                var destroyObjectCondition = new DestroyObjectCondition(unityTarget);
+                AddTrigger<StopTrigger>(destroyObjectCondition, TargetTriggerId);
+            }
+
+            _target = value;
             return this;
         }
-
-        protected sealed override void EvaluateState(TValue fromValue, TValue toValue, float time)
-        {
-            EvaluateState(_target, fromValue, toValue, time);
-        }
-
-        protected abstract void EvaluateState(TTarget target, TValue fromValue, TValue toValue, float time);
     }
 
     [Serializable]
@@ -59,10 +52,10 @@ namespace Better.Tweens.Runtime
     }
 
     [Serializable]
-    public abstract class TargetTween<TValue> : TargetTween<TValue, TValue>
-        where TValue : class
+    public abstract class TargetTween<TTarget> : TargetTween<TTarget, TTarget>
+        where TTarget : class
     {
-        protected override TValue GetCurrentValue()
+        protected override TTarget GetCurrentValue()
         {
             return Target;
         }

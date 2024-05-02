@@ -2,8 +2,6 @@
 {
     public class StoppedState : HandlingState
     {
-        public override float ProgressMod => 0f;
-
         private bool _suppressNotify;
 
         public void SuppressNextNotify()

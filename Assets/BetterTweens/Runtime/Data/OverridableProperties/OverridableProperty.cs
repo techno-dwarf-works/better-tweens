@@ -4,14 +4,14 @@ using UnityEngine;
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public class OverridableProperty<TValue>
+    public abstract class OverridableProperty<TValue>
     {
         [SerializeField] private bool _overriden;
-        [SerializeField] private TValue _overridenValue;
 
         private TValue _sourceValue;
 
-        public TValue Value => Overriden ? _overridenValue : _sourceValue;
+        public TValue Value => Overriden ? OverridenValue : _sourceValue;
+        protected abstract TValue OverridenValue { get; set; }
 
         public bool Overriden
         {
@@ -27,7 +27,7 @@ namespace Better.Tweens.Runtime.Data
         public void Override(TValue value)
         {
             Overriden = true;
-            _overridenValue = value;
+            OverridenValue = value;
         }
     }
 }

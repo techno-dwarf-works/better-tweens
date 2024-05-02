@@ -34,15 +34,13 @@ namespace Better.Tweens.Runtime
 
         internal static void Unregister(TweenCore element)
         {
-            if (!IsRegistered(element))
+            if (_elements.Remove(element))
             {
-                var message = $"Element({element}) not registered";
-                LogUtility.LogException(message);
-
                 return;
             }
 
-            _elements.Remove(element);
+            var message = $"Element({element}) not registered";
+            LogUtility.LogException(message);
         }
 
         public static void CollectElementsBy(UpdateMode updateMode, ref List<TweenCore> references)

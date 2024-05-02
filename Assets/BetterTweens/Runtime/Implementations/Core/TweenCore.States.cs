@@ -20,7 +20,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _activityStates.Get<EnabledState>();
+            var state = _activityStates.GetOrAdd<EnabledState>();
             _activityMachine.ChangeState(state);
             return this;
         }
@@ -43,7 +43,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _activityStates.Get<SleepingState>();
+            var state = _activityStates.GetOrAdd<SleepingState>();
             _activityMachine.ChangeState(state);
             return this;
         }
@@ -66,7 +66,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _activityStates.Get<DisabledState>();
+            var state = _activityStates.GetOrAdd<DisabledState>();
             _activityMachine.ChangeState(state);
             return this;
         }
@@ -116,10 +116,6 @@ namespace Better.Tweens.Runtime
 
         protected internal virtual void OnStarted()
         {
-            _rawProgress = default;
-            RemainingDelay = StartDelay;
-
-            _ease.SetSource(SettingsData.Ease);
             _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
 
@@ -211,7 +207,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var stoppedState = _handlingStates.Get<StoppedState>();
+            var stoppedState = _handlingStates.GetOrAdd<StoppedState>();
             _handlingMachine.ChangeState(stoppedState);
 
             return this;
@@ -229,12 +225,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            for (int i = CompletedLoops + 1; i <= LoopCount; i++)
-            {
-                _rawProgress = i;
-                OnLoopCompleted();
-            }
-
+            OnCompleted();
             return this;
         }
 

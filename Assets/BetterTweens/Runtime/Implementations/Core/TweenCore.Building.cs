@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Better.Commons.Runtime.Extensions;
+using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
@@ -10,44 +11,6 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        #region Delays
-
-        public TweenCore SetStartDelay(float value)
-        {
-            if (ValidateMutable(true))
-            {
-                if (value < MinDelay)
-                {
-                    var message = $"{nameof(StartDelay)} cannot be less of {nameof(MinDelay)}({MinDelay}), was clamped";
-                    LogUtility.LogWarning(message);
-                    value = MinDelay;
-                }
-
-                _startDelay = value;
-            }
-
-            return this;
-        }
-
-        public TweenCore SetLoopDelay(float value)
-        {
-            if (ValidateMutable(true))
-            {
-                if (value < MinDelay)
-                {
-                    var message = $"{nameof(LoopDelay)} cannot be less of {nameof(MinDelay)}({MinDelay}), was clamped";
-                    LogUtility.LogWarning(message);
-                    value = MinDelay;
-                }
-
-                _loopDelay = value;
-            }
-
-            return this;
-        }
-
-        #endregion
-
         #region Loops
 
         public TweenCore SetLoopCount(int value)
@@ -66,24 +29,6 @@ namespace Better.Tweens.Runtime
             {
                 _loopCount.MakeInfinity();
             }
-
-            return this;
-        }
-
-        public TweenCore SetLoopMode(LoopMode value)
-        {
-            if (ValidateMutable(true))
-            {
-                _loopMode = value;
-            }
-
-            return this;
-        }
-
-        public TweenCore SetLoops(int count, LoopMode loopMode)
-        {
-            SetLoopCount(count);
-            SetLoopMode(loopMode);
 
             return this;
         }
@@ -136,45 +81,6 @@ namespace Better.Tweens.Runtime
         {
             _localTimeScale = value;
             return this;
-        }
-
-        #endregion
-
-        #region Ease
-
-        public TweenCore SetEase(Ease value)
-        {
-            if (value == null)
-            {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            if (ValidateMutable(true))
-            {
-                _ease.Override(value);
-            }
-
-            return this;
-        }
-
-        public TweenCore SetEase(EaseType type, EaseMode mode = EaseMode.InOut)
-        {
-            var ease = EaseUtility.GetEaseByType(type, mode);
-            return SetEase(ease);
-        }
-
-        public TweenCore SetEase(AnimationCurve animationCurve)
-        {
-            var ease = new CurveEase(animationCurve);
-            return SetEase(ease);
-        }
-
-        public void SetEase(Func<float, float> func)
-        {
-            var ease = new FuncEase(func);
-            SetEase(ease);
         }
 
         #endregion
@@ -379,7 +285,7 @@ namespace Better.Tweens.Runtime
 
         #region Triggers
 
-        public TweenCore AddTrigger<TTrigger>(IEnumerable<TriggerCondition> conditions, string tag = Trigger.UndefinedTag)
+        public TweenCore AddTrigger<TTrigger>(IEnumerable<TriggerCondition> conditions, string id = Trigger.UndefinedId)
             where TTrigger : Trigger, new()
         {
             if (conditions == null)
@@ -397,7 +303,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (tag.IsNullOrEmpty())
+            if (id.IsNullOrEmpty())
             {
                 var message = $"{nameof(conditions)} cannot be null or empty";
                 LogUtility.LogWarning(message);
@@ -407,7 +313,7 @@ namespace Better.Tweens.Runtime
             if (ValidateMutable(true))
             {
                 var trigger = new TTrigger();
-                trigger.Initialize(tag, conditionsSet);
+                trigger.Initialize(id, conditionsSet);
 
                 _triggers ??= new();
                 _triggers.Add(trigger);
@@ -416,25 +322,25 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition, string tag = Trigger.UndefinedTag)
+        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition, string id = Trigger.UndefinedId)
             where TTrigger : Trigger, new()
         {
             var conditions = new HashSet<TriggerCondition> { condition };
-            return AddTrigger<TTrigger>(conditions, tag);
+            return AddTrigger<TTrigger>(conditions, id);
         }
 
-        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, string tag = Trigger.UndefinedTag)
+        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, string id = Trigger.UndefinedId)
             where TTrigger : Trigger, new()
         {
             var conditions = new HashSet<TriggerCondition> { condition1, condition2 };
-            return AddTrigger<TTrigger>(conditions, tag);
+            return AddTrigger<TTrigger>(conditions, id);
         }
 
-        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, TriggerCondition condition3, string tag = Trigger.UndefinedTag)
+        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, TriggerCondition condition3, string id = Trigger.UndefinedId)
             where TTrigger : Trigger, new()
         {
             var conditions = new HashSet<TriggerCondition> { condition1, condition2, condition3 };
-            return AddTrigger<TTrigger>(conditions, tag);
+            return AddTrigger<TTrigger>(conditions, id);
         }
 
         public TweenCore RemoveTriggers<TTrigger>()
@@ -459,7 +365,7 @@ namespace Better.Tweens.Runtime
 
             if (ValidateMutable(true))
             {
-                _triggers?.RemoveWhere(t => t.CompareTag(tag));
+                _triggers?.RemoveWhere(t => t.CompareId(tag));
             }
 
             return this;
@@ -526,27 +432,6 @@ namespace Better.Tweens.Runtime
             foreach (var value in values)
             {
                 RemoveTag(value);
-            }
-
-            return this;
-        }
-
-        #endregion
-
-        #region Misc
-
-        public TweenCore SetDuration(float value)
-        {
-            if (ValidateMutable(true))
-            {
-                if (value < MinDuration)
-                {
-                    var message = $"{nameof(Duration)} cannot be less of {nameof(MinDuration)}({MinDuration}), was clamped";
-                    LogUtility.LogWarning(message);
-                    value = MinDuration;
-                }
-
-                _duration = value;
             }
 
             return this;

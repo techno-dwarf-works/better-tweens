@@ -5,13 +5,13 @@ namespace Better.Tweens.Runtime.Triggers
 {
     public abstract class Trigger
     {
-        public const string UndefinedTag = nameof(UndefinedTag);
+        public const string UndefinedId = nameof(UndefinedId);
         private HashSet<TriggerCondition> _conditions;
-        private string _tag;
+        private string _id;
 
-        internal void Initialize(string tag, HashSet<TriggerCondition> conditions)
+        internal void Initialize(string id, HashSet<TriggerCondition> conditions)
         {
-            _tag = tag;
+            _id = id;
             _conditions = conditions;
         }
 
@@ -48,9 +48,9 @@ namespace Better.Tweens.Runtime.Triggers
 
         protected abstract bool IsValidFor(TweenCore tweenCore);
 
-        public bool CompareTag(string tag)
+        public bool CompareId(string value)
         {
-            return _tag == tag;
+            return _id == value;
         }
     }
 }

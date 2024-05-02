@@ -2,8 +2,6 @@
 {
     public abstract class RunningState : HandlingState
     {
-        public override float ProgressMod => 1f;
-
         public override void Enter()
         {
             base.Enter();

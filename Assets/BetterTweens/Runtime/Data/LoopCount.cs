@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Data
@@ -7,29 +8,35 @@ namespace Better.Tweens.Runtime.Data
     public class LoopCount
     {
         public const int MinValue = 1;
+        public const int MaxValue = 1000000;
 
         [SerializeField] private bool _infinity;
 
-        [Min(MinValue)]
+        [Range(MinValue, MaxValue)]
         [SerializeField] private int _value;
 
         public bool Infinity => _infinity;
         public int Value => _value;
 
-        public LoopCount(bool infinity, int value)
+        public LoopCount()
         {
-            _infinity = infinity;
-            _value = Math.Max(MinValue, value);
-        }
-
-        public LoopCount() : this(false, MinValue)
-        {
+            _value = MinValue;
+            _infinity = false;
         }
 
         public void SetValue(int value)
         {
+            if (value > MaxValue)
+            {
+                var message = $"{nameof(value)}({value}) more than the {nameof(MaxValue)}({MaxValue}), will become infinite";
+                LogUtility.LogWarning(message);
+
+                MakeInfinity();
+                return;
+            }
+
             _infinity = false;
-            _value = Mathf.Max(MinValue, value);
+            _value = Math.Max(value, MinValue);
         }
 
         public void MakeInfinity()

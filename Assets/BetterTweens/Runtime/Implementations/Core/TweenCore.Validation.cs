@@ -96,7 +96,7 @@ namespace Better.Tweens.Runtime
 
         public bool ContainsTrigger(string tag)
         {
-            return _triggers != null && _triggers.Any(t => t.CompareTag(tag));
+            return _triggers != null && _triggers.Any(t => t.CompareId(tag));
         }
 
         public bool ContainsTag(object value)

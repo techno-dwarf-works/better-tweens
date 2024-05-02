@@ -5,6 +5,8 @@ namespace Better.Tweens.Runtime.Utility
 {
     public static class LogUtility
     {
+        public const char NameValueSeparator = ':';
+        
         private static TweensSettings _settings;
 
         static LogUtility()

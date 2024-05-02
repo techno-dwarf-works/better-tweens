@@ -6,17 +6,11 @@ namespace Better.Tweens.Runtime
     {
         protected virtual void OnLoopCompleted()
         {
-            EvaluateStateByMode(1f);
-            TryHandleOverLoops();
             ActionUtility.Invoke(LoopCompleted);
 
             if (IsCompleted())
             {
                 OnCompleted();
-            }
-            else
-            {
-                RemainingDelay = LoopDelay;
             }
         }
 
@@ -30,17 +24,11 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnLoopRewound()
         {
-            EvaluateStateByMode(0f);
             ActionUtility.Invoke(LoopRewound);
 
             if (IsRewound())
             {
                 OnRewound();
-            }
-            else
-            {
-                var delay = CompletedLoops == 1 ? StartDelay : _loopDelay;
-                RemainingDelay = delay;
             }
         }
 
