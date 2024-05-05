@@ -118,6 +118,8 @@ namespace Better.Tweens.Runtime
         {
             _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
+            _sleepingDuration.SetSource(SettingsData.SleepingDuration);
+            _completionBehaviour.SetSource(SettingsData.CompletionBehaviour);
 
             ActionUtility.Invoke(Started);
         }
@@ -225,7 +227,8 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            OnCompleted();
+            var loopCount = LoopCount - CompletedLoops;
+            CompleteLoops(loopCount);
             return this;
         }
 
@@ -238,6 +241,17 @@ namespace Better.Tweens.Runtime
             {
                 CompletionBehaviour.Invoke(this);
             }
+        }
+
+        public TweenCore Rewound_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx() // TODO: Name
+        {
+            if (IsRewound())
+            {
+                return this;
+            }
+
+            RewoundLoops______xxxxxxx(CompletedLoops);
+            return this;
         }
 
         protected virtual void OnRewound()

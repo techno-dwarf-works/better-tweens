@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Better.Commons.Runtime.Extensions;
-using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
-using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
@@ -39,7 +37,8 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetSleepingDuration(float value)
         {
-            _sleepingDuration.SetValue(value);
+            _sleepingDuration.Overriden = true;
+            _sleepingDuration.Value.SetValue(value);
             _activityMachine.CurrentState?.Reset();
 
             return this;
@@ -47,7 +46,8 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetInfinitySleeping()
         {
-            _loopCount.MakeInfinity();
+            _sleepingDuration.Overriden = true;
+            _sleepingDuration.Value.MakeInfinity();
             _activityMachine.CurrentState?.Reset();
 
             return this;

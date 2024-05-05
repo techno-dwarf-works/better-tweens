@@ -3,6 +3,10 @@ using Better.Commons.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Better.Tweens.Runtime
 {
     internal static class TweenUpdater
@@ -17,6 +21,10 @@ namespace Better.Tweens.Runtime
             PlayerLoopUtility.SubscribeToLoop(typeof(Update), OnUpdate);
             PlayerLoopUtility.SubscribeToLoop(typeof(PreLateUpdate), OnLateUpdate);
             PlayerLoopUtility.SubscribeToLoop(typeof(FixedUpdate), OnFixedUpdate);
+
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
         }
 
         private static void OnUpdate()
@@ -45,5 +53,26 @@ namespace Better.Tweens.Runtime
 
             _cachedReferences.Clear();
         }
+
+#if UNITY_EDITOR
+
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                OnExitingPlayMode();
+            }
+        }
+
+        private static void OnExitingPlayMode()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+
+            PlayerLoopUtility.UnsubscribeFromLoop(typeof(Update), OnUpdate);
+            PlayerLoopUtility.UnsubscribeFromLoop(typeof(PreLateUpdate), OnLateUpdate);
+            PlayerLoopUtility.UnsubscribeFromLoop(typeof(FixedUpdate), OnFixedUpdate);
+        }
+
+#endif
     }
 }

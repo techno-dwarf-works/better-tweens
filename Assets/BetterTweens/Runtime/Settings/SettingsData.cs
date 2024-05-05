@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Attributes.Runtime.Select;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Utility;
@@ -15,7 +16,11 @@ namespace Better.Tweens.Runtime.Settings
         [SerializeField] private SleepingDuration _sleepingDuration;
         [SerializeField] private LogLevel _logLevel;
         [SerializeField] private bool _safeMode;
+
+        [Select]
         [SerializeReference] private Ease _ease;
+
+        [Select]
         [SerializeReference] private CompletionBehaviour _completionBehaviour;
 
         public float GlobalTimeScale
@@ -49,7 +54,7 @@ namespace Better.Tweens.Runtime.Settings
         }
 
         public Ease Ease => _ease;
-        public CompletionBehaviour CompletionBehaviour => CompletionBehaviour;
+        public CompletionBehaviour CompletionBehaviour => _completionBehaviour;
         public SleepingDuration SleepingDuration => _sleepingDuration;
 
         public SettingsData()

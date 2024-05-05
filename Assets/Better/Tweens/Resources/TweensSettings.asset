@@ -12,3 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01d693a53314914816aa83a58d4cd95, type: 3}
   m_Name: TweensSettings
   m_EditorClassIdentifier: 
+  _persistent:
+    _globalTimeScale: 1
+    _dependUnityTimeScale: 1
+    _dependGlobalTimeScale: 1
+    _sleepingDuration:
+      _infinity: 0
+      _value: 0
+    _logLevel: 1
+    _safeMode: 1
+    _ease:
+      rid: 1006005900960858132
+    _completionBehaviour:
+      rid: 1006005900960858133
+  _runtime:
+    _globalTimeScale: 1
+    _dependUnityTimeScale: 1
+    _dependGlobalTimeScale: 1
+    _sleepingDuration:
+      _infinity: 0
+      _value: 0
+    _logLevel: 1
+    _safeMode: 1
+    _ease:
+      rid: 1006005900960858134
+    _completionBehaviour:
+      rid: 1006005900960858135
+  references:
+    version: 2
+    RefIds:
+    - rid: 1006005900960858132
+      type: {class: LinearEase, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}
+    - rid: 1006005900960858133
+      type: {class: StopCompletionBehaviour, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}
+    - rid: 1006005900960858134
+      type: {class: LinearEase, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}
+    - rid: 1006005900960858135
+      type: {class: StopCompletionBehaviour, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}

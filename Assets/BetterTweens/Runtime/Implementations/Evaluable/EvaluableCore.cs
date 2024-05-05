@@ -7,6 +7,12 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract partial class EvaluableCore : TweenCore
     {
+        private enum ProgressDirection
+        {
+            Forward = 1,
+            Backward = -1,
+        }
+
         private const int ThresholdOverLoops = Data.LoopCount.MaxValue;
 
         [SerializeField] private SelectOverridableProperty<Ease> _ease;
@@ -23,6 +29,7 @@ namespace Better.Tweens.Runtime
         [SerializeField] private LoopMode _loopMode;
 
         private float _rawProgress;
+        private ProgressDirection _progressDirection;
 
         public float Duration => _duration;
         public float StartDelay => _startDelay;
@@ -38,6 +45,7 @@ namespace Better.Tweens.Runtime
         protected EvaluableCore()
         {
             _ease = new();
+            // TODO: default overridable value
         }
     }
 }

@@ -33,10 +33,10 @@ namespace Better.Tweens.Runtime
         public event Action LoopRewound;
 
         [SerializeField] private LoopCount _loopCount;
+        [SerializeField] private float _localTimeScale;
         [SerializeField] private NaturalOverridableProperty<bool> _dependUnityTimeScale;
         [SerializeField] private NaturalOverridableProperty<bool> _dependGlobalTimeScale;
-        [SerializeField] private float _localTimeScale;
-        [SerializeField] private SleepingDuration _sleepingDuration; // TODO: Make global settingable???
+        [SerializeField] private NaturalOverridableProperty<SleepingDuration> _sleepingDuration;
         [SerializeField] private SelectOverridableProperty<CompletionBehaviour> _completionBehaviour;
 
         private StateMachine<ActivityState> _activityMachine;
@@ -51,8 +51,8 @@ namespace Better.Tweens.Runtime
         public bool DependUnityTimeScale => _dependUnityTimeScale.Value;
         public bool DependGlobalTimeScale => _dependGlobalTimeScale.Value;
         public float LocalTimeScale => _localTimeScale;
-        public float SleepingDuration => _sleepingDuration.Value;
-        public bool InfinitySleeping => _sleepingDuration.Infinity;
+        public float SleepingDuration => _sleepingDuration.Value.Value;
+        public bool InfinitySleeping => _sleepingDuration.Value.Infinity;
         public CompletionBehaviour CompletionBehaviour => _completionBehaviour.Value;
 
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
@@ -66,6 +66,7 @@ namespace Better.Tweens.Runtime
             _localTimeScale = 1f;
             _loopCount = new();
             _sleepingDuration = new();
+            // TODO: default overridable value
             _dependUnityTimeScale = new();
             _dependGlobalTimeScale = new();
             _completionBehaviour = new();

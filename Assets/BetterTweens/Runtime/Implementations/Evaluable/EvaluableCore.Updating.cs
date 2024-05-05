@@ -9,12 +9,18 @@ namespace Better.Tweens.Runtime
         {
             base.OnPreUpdated(deltaTime);
 
-            // TODO: check tick when Sleeping
-            if (IsEnabled() && !DecreaseDelay(ref deltaTime) || !InDelay)
+            if (!IsEnabled())
             {
-                ApplyProgressMod(ref deltaTime);
-                ApplyProgress(deltaTime);
+                return;
             }
+
+            if (DecreaseDelay(ref deltaTime) || InDelay)
+            {
+                return;
+            }
+
+            ApplyProgressMod(ref deltaTime);
+            ApplyProgress(deltaTime);
         }
 
         private bool DecreaseDelay(ref float value)
@@ -34,7 +40,6 @@ namespace Better.Tweens.Runtime
         {
             var rootCompletedLoops = CompletedLoops;
             _rawProgress += value;
-            _rawProgress = Math.Clamp(_rawProgress, default, LoopCount);
 
             var completedLoopChanged = CompletedLoops != rootCompletedLoops;
             var rewoundCompleted = Mathf.Approximately(_rawProgress, default) && !Mathf.Approximately(value, default);
@@ -53,28 +58,34 @@ namespace Better.Tweens.Runtime
             }
             else
             {
-                var time = Ease.Evaluate(LoopProgress);
-                EvaluateStateByMode(time);
+                EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
             }
         }
-        
+
         private void ApplyProgressMod(ref float value)
         {
             value /= Duration;
+            value *= (float)_progressDirection;
         }
-        
+
         protected abstract void EvaluateState(float time);
 
-        protected void EvaluateStateByMode(float time)
+        protected void EvaluateStateBy_xxxxxxxxxxxxxxxx(float time, LoopMode loopMode, int loop) // TODO
         {
-            var evaluatedTime = LoopMode switch
+            time = Ease.Evaluate(time);
+            time = loopMode switch
             {
                 LoopMode.Restart or LoopMode.Incremental => time,
-                LoopMode.PingPong => CompletedLoops % 2 == 0 ? 1f - time : time,
-                _ => throw new ArgumentOutOfRangeException(nameof(LoopMode))
+                LoopMode.PingPong => loop % 2 == 0 ? 1f - time : time,
+                _ => throw new ArgumentOutOfRangeException(nameof(loopMode))
             };
 
-            EvaluateState(evaluatedTime);
+            EvaluateState(time);
+        }
+
+        protected void EvaluateStateBy_xxxxxxxxxxxxxxxx(float time) // TODO
+        {
+            EvaluateStateBy_xxxxxxxxxxxxxxxx(time, LoopMode, CompletedLoops);
         }
     }
 }

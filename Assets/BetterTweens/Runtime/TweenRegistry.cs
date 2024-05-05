@@ -1,17 +1,25 @@
 using System.Collections.Generic;
-using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Utility;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Better.Tweens.Runtime
 {
     public static class TweenRegistry
     {
-        private static List<TweenCore> _elements;
+        private static readonly List<TweenCore> _elements;
         private static List<TweenCore> _cachedReferences;
 
         static TweenRegistry()
         {
             _elements = new();
+            _cachedReferences = new();
+
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
         }
 
         internal static void Register(TweenCore element)
@@ -101,5 +109,25 @@ namespace Better.Tweens.Runtime
 
             return _cachedReferences.ToArray();
         }
+
+#if UNITY_EDITOR
+
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                OnExitingPlayMode();
+            }
+        }
+
+        private static void OnExitingPlayMode()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+
+            _elements.Clear();
+            _cachedReferences.Clear();
+        }
+
+#endif
     }
 }

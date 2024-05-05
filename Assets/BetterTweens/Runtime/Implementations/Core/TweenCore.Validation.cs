@@ -82,12 +82,12 @@ namespace Better.Tweens.Runtime
 
         public bool IsCompleted()
         {
-            return Initialized && CompletedLoops >= LoopCount && !IsRunning();
+            return Initialized && CompletedLoops >= LoopCount && !IsRewinding();
         }
 
         public bool IsRewound()
         {
-            return Initialized && CompletedLoops <= 0 && !IsRunning();
+            return Initialized && CompletedLoops <= 0 && !IsPlaying();
         }
 
         #endregion

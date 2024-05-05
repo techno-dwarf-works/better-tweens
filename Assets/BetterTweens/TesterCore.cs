@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Better.Tweens.Runtime.TESTS
 {
@@ -15,94 +16,104 @@ namespace Better.Tweens.Runtime.TESTS
         [SerializeField] private bool _complete;
         [SerializeField] private bool _restart;
         [SerializeField] private bool _stress;
+        [SerializeField] private bool _enable;
+        [SerializeField] private bool _sleep;
+        [SerializeField] private bool _disable;
 
-        [Header("PARAMS")]
-        [SerializeField] private float _duration;
-
-        [SerializeField] private float _from;
-        [SerializeField] private float _to;
-
-        // [Header("SERIALIZATION")]
-        // private DebugTween _tween11111111111111;
+        [Header("SERIALIZATION")]
+        [SerializeField] private DebugTween _tween;
 
         public void OnValidate()
         {
             if (!Application.isPlaying)
             {
-                // TODO
                 return;
             }
 
-            // if (_tween11111111111111 == null)
-            // {
-                // Debug.Log("Hmmm, null tween.");
-                // _tween11111111111111 = new DebugTween();
-                
-                // _tween11111111111111.SetTarget(_from)
-                    // .SetOptions(_to)
-                    // .SetDuration(_duration);
-            // }
+            if (_tween == null)
+            {
+                Debug.Log("Hmmm, null tween.");
+                _tween = new DebugTween();
+            }
 
-            // if (_play)
-            // {
-                // _play = false;
-                // _tween11111111111111.Play();
-            // }
+            if (_play)
+            {
+                _play = false;
+                _tween.Play();
+            }
 
-            // if (_pause)
-            // {
-                // _pause = false;
-                // _tween11111111111111.Pause();
-            // }
+            if (_pause)
+            {
+                _pause = false;
+                _tween.Pause();
+            }
 
-            // if (_complete)
-            // {
-                // _complete = false;
-                // _tween11111111111111.Complete();
-            // }
+            if (_complete)
+            {
+                _complete = false;
+                _tween.Complete();
+            }
 
-            // if (_stop)
-            // {
-                // _stop = false;
-                // _tween11111111111111.Stop();
-            // }
+            if (_stop)
+            {
+                _stop = false;
+                _tween.Stop();
+            }
 
-            // if (_rewind)
-            // {
-                // _rewind = false;
-                // _tween11111111111111.Rewind();
-            // }
+            if (_rewind)
+            {
+                _rewind = false;
+                _tween.Rewind();
+            }
 
-            // if (_restart)
-            // {
-                // _restart = false;
-                // _tween11111111111111.Restart();
-            // }
+            if (_restart)
+            {
+                _restart = false;
+                _tween.Restart();
+            }
 
-            // if (_stress)
-            // {
-                // _stress = false;
-                // Stress();
-            // }
+            if (_stress)
+            {
+                _stress = false;
+                Stress();
+            }
+            
+            if (_enable)
+            {
+                _enable = false;
+                _tween.Enable();
+            }
+            
+            if (_sleep)
+            {
+                _sleep = false;
+                _tween.Sleep();
+            }
+            
+            if (_disable)
+            {
+                _disable = false;
+                _tween.Disable();
+            }
         }
 
         private void Stress()
         {
-            // _tween11111111111111.Pause();
-            // _tween11111111111111.Play();
-            // _tween11111111111111.Pause();
-            // _tween11111111111111.Play();
-            // _tween11111111111111.Complete();
-            // _tween11111111111111.Pause();
-            // _tween11111111111111.Pause();
-            // _tween11111111111111.Play();
-            // _tween11111111111111.Play();
-            // _tween11111111111111.Pause();
-            // _tween11111111111111.Stop();
-            // _tween11111111111111.Play();
-            // _tween11111111111111.Complete();
-            // _tween11111111111111.Restart();
-            // _tween11111111111111.Stop();
+            _tween.Pause();
+            _tween.Play();
+            _tween.Pause();
+            _tween.Play();
+            _tween.Complete();
+            _tween.Pause();
+            _tween.Pause();
+            _tween.Play();
+            _tween.Play();
+            _tween.Pause();
+            _tween.Stop();
+            _tween.Play();
+            _tween.Complete();
+            _tween.Restart();
+            _tween.Stop();
         }
     }
 }
