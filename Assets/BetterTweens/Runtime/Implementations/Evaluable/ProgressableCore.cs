@@ -5,15 +5,13 @@ using UnityEngine;
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract partial class EvaluableCore : TweenCore
+    public abstract partial class ProgressableCore : TweenCore
     {
         private enum ProgressDirection
         {
             Forward = 1,
             Backward = -1,
         }
-
-        private const int ThresholdOverLoops = Data.LoopCount.MaxValue;
 
         [SerializeField] private SelectOverridableProperty<Ease> _ease;
 
@@ -28,21 +26,18 @@ namespace Better.Tweens.Runtime
 
         [SerializeField] private LoopMode _loopMode;
 
-        private float _rawProgress;
         private ProgressDirection _progressDirection;
 
         public float Duration => _duration;
         public float StartDelay => _startDelay;
         public float LoopDelay => _loopDelay;
+        public float LoopProgress { get; private set; }
         public float RemainingDelay { get; private set; }
         public bool InDelay => RemainingDelay > 0f;
-        public float LoopProgress => _rawProgress % 1f;
-        public float TotalProgress => _rawProgress / LoopCount;
         public Ease Ease => _ease.Value;
         public LoopMode LoopMode => _loopMode;
-        public override int CompletedLoops => (int)_rawProgress;
 
-        protected EvaluableCore()
+        protected ProgressableCore()
         {
             _ease = new();
             // TODO: default overridable value

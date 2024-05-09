@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
-    public abstract partial class EvaluableCore
+    public abstract partial class ProgressableCore
     {
         protected override void OnPreUpdated(float deltaTime)
         {
@@ -14,7 +14,8 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            if (DecreaseDelay(ref deltaTime) || InDelay)
+            // TODO: Merge?
+            if (DecreaseDelay(ref deltaTime) && InDelay)
             {
                 return;
             }
@@ -38,23 +39,30 @@ namespace Better.Tweens.Runtime
 
         private void ApplyProgress(float value)
         {
-            var rootCompletedLoops = CompletedLoops;
-            _rawProgress += value;
-
-            var completedLoopChanged = CompletedLoops != rootCompletedLoops;
-            var rewoundCompleted = Mathf.Approximately(_rawProgress, default) && !Mathf.Approximately(value, default);
-            if (completedLoopChanged || rewoundCompleted)
+            if (Mathf.Approximately(value, default))
             {
-                if (CompletedLoops > rootCompletedLoops)
+                return;
+            }
+
+            LoopProgress += value;
+
+            if (LoopProgress <= 0f)
+            {
+                if (CompletedLoops == 0)
                 {
-                    var completedCount = CompletedLoops - rootCompletedLoops;
-                    OnLoopsCompleted(completedCount);
+                    OnLoopRewound();
                 }
                 else
                 {
-                    var rewoundCount = Mathf.Max(rootCompletedLoops - CompletedLoops, 1);
-                    OnLoopsRewound(rewoundCount);
+                    var loopsCount = (int)Mathf.Abs(LoopProgress); // TODO
+                    loopsCount += 1;
+                    RewoundLoops______xxxxxxx(loopsCount);
                 }
+            }
+            else if (LoopProgress >= 1f)
+            {
+                var loopsCount = (int)LoopProgress;
+                CompleteLoops(loopsCount);
             }
             else
             {

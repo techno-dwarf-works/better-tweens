@@ -8,11 +8,9 @@ namespace Better.Tweens.Runtime.Data
     public class LoopCount
     {
         public const int MinValue = 1;
-        public const int MaxValue = 1000000;
+        public const int MaxValue = 1000000000;
 
         [SerializeField] private bool _infinity;
-
-        [Range(MinValue, MaxValue)]
         [SerializeField] private int _value;
 
         public bool Infinity => _infinity;

@@ -6,6 +6,14 @@ namespace Better.Tweens.Runtime
     {
         protected virtual void CompleteLoop()
         {
+            if (CompletedLoops >= LoopCount)
+            {
+                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be increased";
+                LogUtility.LogException(message);
+                return;
+            }
+
+            CompletedLoops++;
             OnLoopCompleted();
         }
 
@@ -24,7 +32,9 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnLoopCompleted()
         {
+            CheckOverLoops(); // TODO: Re-set state in check?
             ActionUtility.Invoke(LoopCompleted);
+            // TODO: change state in event, but not handle this
 
             if (IsCompleted())
             {
@@ -32,23 +42,16 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        protected void OnLoopsCompleted(int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                if (!IsPlaying()) return;
-
-                OnLoopCompleted();
-            }
-        }
-
         protected virtual void RewoundLoop___xxxxxxxxxx() // TODO: Name
         {
-            if (IsStopped() || IsRewound())
+            if (CompletedLoops <= 0)
             {
+                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be decreased";
+                LogUtility.LogException(message);
                 return;
             }
 
+            CompletedLoops--;
             OnLoopRewound();
         }
 
@@ -75,13 +78,12 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        protected void OnLoopsRewound(int count)
+        private void CheckOverLoops()
         {
-            for (int i = 0; i < count; i++)
+            if (CompletedLoops > Data.LoopCount.MaxValue)
             {
-                if (!IsRewinding()) return;
-
-                OnLoopRewound();
+                // TODO: Add warning, use infinity
+                Stop();
             }
         }
     }

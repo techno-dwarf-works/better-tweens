@@ -80,12 +80,12 @@ namespace Better.Tweens.Runtime
             return !Initialized || _handlingMachine.InState<StoppedState>();
         }
 
-        public bool IsCompleted()
+        public virtual bool IsCompleted()
         {
             return Initialized && CompletedLoops >= LoopCount && !IsRewinding();
         }
 
-        public bool IsRewound()
+        public virtual bool IsRewound()
         {
             return Initialized && CompletedLoops <= 0 && !IsPlaying();
         }

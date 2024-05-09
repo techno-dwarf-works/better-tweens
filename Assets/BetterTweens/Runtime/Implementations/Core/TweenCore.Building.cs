@@ -288,6 +288,13 @@ namespace Better.Tweens.Runtime
         public TweenCore AddTrigger<TTrigger>(IEnumerable<TriggerCondition> conditions, string id = Trigger.UndefinedId)
             where TTrigger : Trigger, new()
         {
+            if (id.IsNullOrEmpty())
+            {
+                var message = $"{nameof(id)} cannot be null or empty";
+                LogUtility.LogWarning(message);
+                return this;
+            }
+
             if (conditions == null)
             {
                 var message = $"{nameof(conditions)} cannot be null";
@@ -299,13 +306,6 @@ namespace Better.Tweens.Runtime
             if (conditionsSet.IsEmpty())
             {
                 var message = $"{nameof(conditions)} cannot be empty";
-                LogUtility.LogWarning(message);
-                return this;
-            }
-
-            if (id.IsNullOrEmpty())
-            {
-                var message = $"{nameof(conditions)} cannot be null or empty";
                 LogUtility.LogWarning(message);
                 return this;
             }

@@ -11,7 +11,7 @@ namespace Better.Tweens.Runtime.Triggers
 
         protected bool IsNullSource()
         {
-            return Source != null;
+            return Source == null;
         }
     }
 

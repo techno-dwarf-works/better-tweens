@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
-    public abstract partial class EvaluableCore
+    public abstract partial class ProgressableCore
     {
         #region Delays
 

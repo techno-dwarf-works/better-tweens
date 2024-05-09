@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract class Tween<TValue, TValueOptions> : EvaluableCore
+    public abstract class Tween<TValue, TValueOptions> : ProgressableCore
     {
         [SerializeField] private FromMode _fromMode;
         [SerializeField] private TValue _fromValue;

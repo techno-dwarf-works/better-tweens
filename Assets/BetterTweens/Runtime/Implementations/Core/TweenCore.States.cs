@@ -120,6 +120,8 @@ namespace Better.Tweens.Runtime
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
             _sleepingDuration.SetSource(SettingsData.SleepingDuration);
             _completionBehaviour.SetSource(SettingsData.CompletionBehaviour);
+            
+            CompletedLoops = 0;
 
             ActionUtility.Invoke(Started);
         }

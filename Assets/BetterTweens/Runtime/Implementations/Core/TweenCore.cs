@@ -56,7 +56,7 @@ namespace Better.Tweens.Runtime
         public CompletionBehaviour CompletionBehaviour => _completionBehaviour.Value;
 
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
-        public abstract int CompletedLoops { get; }
+        public int CompletedLoops { get; private set; }
 
         protected bool Initialized { get; private set; }
         protected SettingsData SettingsData { get; private set; }

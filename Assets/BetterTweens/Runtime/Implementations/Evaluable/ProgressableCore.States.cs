@@ -1,12 +1,12 @@
 ﻿namespace Better.Tweens.Runtime
 {
-    public abstract partial class EvaluableCore
+    public abstract partial class ProgressableCore
     {
         protected internal override void OnStarted()
         {
-            _rawProgress = 0f;
             _ease.SetSource(SettingsData.Ease);
             RemainingDelay = StartDelay;
+            LoopProgress = 0f;
             EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
 
             base.OnStarted();
@@ -28,17 +28,17 @@
 
         protected override void OnCompleted()
         {
-            _rawProgress = LoopCount;
             RemainingDelay = 0f;
-            EvaluateStateBy_xxxxxxxxxxxxxxxx(1f);
+            LoopProgress = 1f;
+            EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
 
             base.OnCompleted();
         }
 
         protected override void OnRewound()
         {
-            _rawProgress = 0f;
             RemainingDelay = StartDelay;
+            LoopProgress = 0f;
             EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
 
             base.OnRewound();

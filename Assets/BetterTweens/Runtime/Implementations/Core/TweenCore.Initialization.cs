@@ -22,6 +22,8 @@ namespace Better.Tweens.Runtime
 
             Initialized = true;
             SettingsData = TweensSettings.Instance.Current;
+            CompletedLoops = 0;
+            
             InitializeStates();
 
             var state = _handlingStates.GetOrAdd<StoppedState>();
