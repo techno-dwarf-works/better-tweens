@@ -1,5 +1,6 @@
 ﻿using System;
-using Better.Tweens.Runtime.Triggers;
+using Better.Conditions.Runtime;
+using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -36,8 +37,8 @@ namespace Better.Tweens.Runtime
             RemoveTriggers(TargetTriggerId);
             if (value is Object unityTarget)
             {
-                var destroyObjectCondition = new DestroyObjectCondition(unityTarget);
-                AddTrigger<StopTrigger>(destroyObjectCondition, TargetTriggerId);
+                var destroyObjectCondition = new NullReferenceObjectCondition(unityTarget, true);
+                AddTrigger<StopAction>(destroyObjectCondition, TargetTriggerId);
             }
 
             _target = value;

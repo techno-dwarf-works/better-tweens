@@ -119,8 +119,8 @@ namespace Better.Tweens.Runtime
             _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
             _sleepingDuration.SetSource(SettingsData.SleepingDuration);
-            _completionBehaviour.SetSource(SettingsData.CompletionBehaviour);
-            
+            _completionAction.SetSource(SettingsData.CompletionAction);
+
             CompletedLoops = 0;
 
             ActionUtility.Invoke(Started);
@@ -222,13 +222,14 @@ namespace Better.Tweens.Runtime
             ActionUtility.Invoke(Stopped);
         }
 
-        public TweenCore Complete()
+        public TweenCore ForceComplete()
         {
-            if (IsCompleted())
+            if (IsCompletable())
             {
                 return this;
             }
 
+            // TODO: Test with infinity loops
             var loopCount = LoopCount - CompletedLoops;
             CompleteLoops(loopCount);
             return this;
@@ -241,18 +242,28 @@ namespace Better.Tweens.Runtime
 
             if (_handlingMachine.CurrentState == rootState)
             {
-                CompletionBehaviour.Invoke(this);
+                if (CompletionAction.ReadinessFor(this))
+                {
+                    CompletionAction.Invoke(this);
+                }
+                else
+                {
+                    var message = $"{nameof(CompletionAction)} not readiness, will used {nameof(DefaultCompletionAction)}";
+                    LogUtility.LogWarning(message);
+
+                    DefaultCompletionAction.Invoke(this);
+                }
             }
         }
 
-        public TweenCore Rewound_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx() // TODO: Name
+        public TweenCore ForceRewound() // TODO: Instant or Force?
         {
-            if (IsRewound())
+            if (IsRewindable())
             {
                 return this;
             }
 
-            RewoundLoops______xxxxxxx(CompletedLoops);
+            RewoundLoops(CompletedLoops);
             return this;
         }
 

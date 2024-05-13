@@ -6,6 +6,7 @@ namespace Better.Tweens.Runtime.Data
     [Serializable]
     public class SleepingDuration
     {
+        // TODO: ref LoopCount
         public const float MinValue = 0f;
 
         [SerializeField] private bool _infinity;

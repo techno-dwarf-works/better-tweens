@@ -7,6 +7,7 @@ namespace Better.Tweens.Runtime.Data
     [Serializable]
     public class LoopCount
     {
+        // TODO: Create InfinitableProperty?
         public const int MinValue = 1;
         public const int MaxValue = 1000000000;
 

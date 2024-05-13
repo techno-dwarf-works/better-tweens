@@ -11,16 +11,15 @@ namespace Better.Tweens.Runtime
 
             LoopProgress = Mathf.Min(1f, LoopProgress);
             LoopProgress -= 1f;
-
+            
             base.OnLoopCompleted();
         }
-
 
         protected override void OnLoopRewound()
         {
             EvaluateStateBy_xxxxxxxxxxxxxxxx(0f);
             RemainingDelay = CompletedLoops == 1 ? StartDelay : LoopDelay;
-
+ 
             if (CompletedLoops == 0)
             {
                 LoopProgress = 0f;

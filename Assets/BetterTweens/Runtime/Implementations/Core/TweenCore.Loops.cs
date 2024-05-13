@@ -42,7 +42,7 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        protected virtual void RewoundLoop___xxxxxxxxxx() // TODO: Name
+        protected virtual void RewoundLoop()
         {
             if (CompletedLoops <= 0)
             {
@@ -55,7 +55,7 @@ namespace Better.Tweens.Runtime
             OnLoopRewound();
         }
 
-        protected void RewoundLoops______xxxxxxx(int loopCount) // TODO: Name 
+        protected void RewoundLoops(int loopCount)
         {
             for (int i = 0; i < loopCount; i++)
             {
@@ -64,7 +64,7 @@ namespace Better.Tweens.Runtime
                     return;
                 }
 
-                RewoundLoop___xxxxxxxxxx();
+                RewoundLoop();
             }
         }
 

@@ -6,7 +6,7 @@ namespace Better.Tweens.Runtime
     {
         internal void OnUpdate(float deltaTime)
         {
-            if (TryInvokeTriggers())
+            if (InvokeTriggers())
             {
                 return;
             }
@@ -26,7 +26,7 @@ namespace Better.Tweens.Runtime
             ActionUtility.Invoke(Updated);
         }
 
-        protected bool TryInvokeTriggers()
+        protected bool InvokeTriggers()
         {
             if (_triggers == null)
             {
@@ -35,7 +35,7 @@ namespace Better.Tweens.Runtime
 
             foreach (var trigger in _triggers)
             {
-                if (trigger.TryInvoke(this))
+                if (trigger.Invoke(this))
                 {
                     return true;
                 }

@@ -1,52 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Better.Commons.Runtime.Extensions;
+using Better.Conditions.Runtime;
+using Better.Tweens.Runtime.Actions;
 
 namespace Better.Tweens.Runtime.Triggers
 {
-    public abstract class Trigger
+    public class Trigger
     {
         public const string UndefinedId = nameof(UndefinedId);
-        private HashSet<TriggerCondition> _conditions;
-        private string _id;
 
-        internal void Initialize(string id, HashSet<TriggerCondition> conditions)
+        private readonly string _id;
+        private readonly TweenCoreAction _action;
+        private readonly Condition _condition;
+
+        public Trigger(string id, TweenCoreAction action, Condition condition)
         {
+            if (id.IsNullOrEmpty())
+            {
+                var message = $"{nameof(id)} cannot be null or empty";
+                throw new ArgumentException(message);
+            }
+
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            if (condition == null)
+            {
+                throw new ArgumentNullException(nameof(condition));
+            }
+
             _id = id;
-            _conditions = conditions;
+            _action = action;
+            _condition = condition;
         }
 
-        internal bool TryInvoke(TweenCore source)
+        public void Rebuild()
         {
-            if (IsValidFor(source) && ConditionsMet())
+            _condition.Rebuild();
+        }
+
+        public bool Invoke(TweenCore tweenCore)
+        {
+            if (_action.ReadinessFor(tweenCore)
+                && _condition.Invoke())
             {
-                Invoke(source);
+                _action.Invoke(tweenCore);
                 return true;
             }
 
             return false;
         }
-
-        private bool ConditionsMet()
-        {
-            if (_conditions.IsEmpty())
-            {
-                return false;
-            }
-
-            foreach (var condition in _conditions)
-            {
-                if (!condition.Validate())
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        protected abstract void Invoke(TweenCore tweenCore);
-
-        protected abstract bool IsValidFor(TweenCore tweenCore);
 
         public bool CompareId(string value)
         {

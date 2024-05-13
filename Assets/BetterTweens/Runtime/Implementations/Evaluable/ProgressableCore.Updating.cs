@@ -56,7 +56,7 @@ namespace Better.Tweens.Runtime
                 {
                     var loopsCount = (int)Mathf.Abs(LoopProgress); // TODO
                     loopsCount += 1;
-                    RewoundLoops______xxxxxxx(loopsCount);
+                    RewoundLoops(loopsCount);
                 }
             }
             else if (LoopProgress >= 1f)

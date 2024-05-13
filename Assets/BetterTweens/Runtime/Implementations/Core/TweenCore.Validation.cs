@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
@@ -85,9 +86,19 @@ namespace Better.Tweens.Runtime
             return Initialized && CompletedLoops >= LoopCount && !IsRewinding();
         }
 
+        public virtual bool IsCompletable()
+        {
+            return Initialized && !IsStopped() && !IsCompleted();
+        }
+
         public virtual bool IsRewound()
         {
             return Initialized && CompletedLoops <= 0 && !IsPlaying();
+        }
+        
+        public virtual bool IsRewindable()
+        {
+            return Initialized && !IsStopped() && !IsRewound();
         }
 
         #endregion
@@ -165,6 +176,15 @@ namespace Better.Tweens.Runtime
             }
 
             return isValid;
+        }
+
+        #endregion
+
+        #region Misc
+
+        public bool CompletionActionIs<TAction>() where TAction : TweenCoreAction
+        {
+            return CompletionAction is TAction;
         }
 
         #endregion

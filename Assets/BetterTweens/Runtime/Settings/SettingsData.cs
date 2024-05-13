@@ -1,5 +1,6 @@
 ﻿using System;
 using Better.Attributes.Runtime.Select;
+using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Utility;
@@ -21,7 +22,7 @@ namespace Better.Tweens.Runtime.Settings
         [SerializeReference] private Ease _ease;
 
         [Select]
-        [SerializeReference] private CompletionBehaviour _completionBehaviour;
+        [SerializeReference] private TweenCoreAction _completionAction;
 
         public float GlobalTimeScale
         {
@@ -54,7 +55,7 @@ namespace Better.Tweens.Runtime.Settings
         }
 
         public Ease Ease => _ease;
-        public CompletionBehaviour CompletionBehaviour => _completionBehaviour;
+        public TweenCoreAction CompletionAction => _completionAction;
         public SleepingDuration SleepingDuration => _sleepingDuration;
 
         public SettingsData()
@@ -66,7 +67,7 @@ namespace Better.Tweens.Runtime.Settings
             _safeMode = true;
             _ease = new LinearEase();
             _sleepingDuration = new();
-            _completionBehaviour = new StopCompletionBehaviour();
+            _completionAction = TweenCore.DefaultCompletionAction;
         }
 
         public void SetEase(Ease value)
@@ -81,7 +82,7 @@ namespace Better.Tweens.Runtime.Settings
             _ease = value;
         }
 
-        public void SetCompletionBehaviour(CompletionBehaviour value)
+        public void SetCompletionAction(TweenCoreAction value)
         {
             if (value == null)
             {
@@ -90,7 +91,14 @@ namespace Better.Tweens.Runtime.Settings
                 return;
             }
 
-            _completionBehaviour = value;
+            _completionAction = value;
+        }
+
+        public void SetCompletionAction<TAction>()
+            where TAction : TweenCoreAction, new()
+        {
+            var action = new TAction();
+            SetCompletionAction(action);
         }
 
         public void SetEase(EaseType type, EaseMode mode = EaseMode.InOut)
@@ -120,7 +128,7 @@ namespace Better.Tweens.Runtime.Settings
             _safeMode = source._safeMode;
             _ease = source._ease.Clone();
             _sleepingDuration = source._sleepingDuration.Clone();
-            _completionBehaviour = source._completionBehaviour.Clone();
+            _completionAction = source._completionAction.Clone();
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Better.Commons.Runtime.Extensions;
+using Better.Conditions.Runtime;
+using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
 
@@ -87,7 +89,7 @@ namespace Better.Tweens.Runtime
 
         #region CompletionBehaviour
 
-        public TweenCore SetCompletionBehaviour(CompletionBehaviour value)
+        public TweenCore SetCompletionAction(TweenCoreAction value)
         {
             if (value == null)
             {
@@ -98,23 +100,17 @@ namespace Better.Tweens.Runtime
 
             if (ValidateMutable(true))
             {
-                _completionBehaviour.Override(value);
+                _completionAction.Override(value);
             }
 
             return this;
         }
 
-        public TweenCore SetCompletionBehaviour<TBehaviour>()
-            where TBehaviour : CompletionBehaviour, new()
+        public TweenCore SetCompletionAction<TAction>()
+            where TAction : TweenCoreAction, new()
         {
-            var completionBehaviour = new TBehaviour();
-            return SetCompletionBehaviour(completionBehaviour);
-        }
-
-        public TweenCore SetCompletionBehaviour(CompletionType type)
-        {
-            var completionBehaviour = CompletionBehaviourUtility.GetBehaviourByType(type);
-            return SetCompletionBehaviour(completionBehaviour);
+            var action = new TAction();
+            return SetCompletionAction(action);
         }
 
         #endregion
@@ -285,8 +281,25 @@ namespace Better.Tweens.Runtime
 
         #region Triggers
 
-        public TweenCore AddTrigger<TTrigger>(IEnumerable<TriggerCondition> conditions, string id = Trigger.UndefinedId)
-            where TTrigger : Trigger, new()
+        public TweenCore AddTrigger(Trigger trigger)
+        {
+            if (trigger == null)
+            {
+                var message = $"{nameof(trigger)} cannot be null";
+                LogUtility.LogWarning(message);
+                return this;
+            }
+
+            if (ValidateMutable(true))
+            {
+                _triggers ??= new();
+                _triggers.Add(trigger);
+            }
+
+            return this;
+        }
+
+        public TweenCore AddTrigger(TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
         {
             if (id.IsNullOrEmpty())
             {
@@ -295,63 +308,37 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (conditions == null)
+            if (action == null)
             {
-                var message = $"{nameof(conditions)} cannot be null";
+                var message = $"{nameof(action)} cannot be null";
                 LogUtility.LogWarning(message);
                 return this;
             }
 
-            var conditionsSet = conditions.ToHashSet();
-            if (conditionsSet.IsEmpty())
+            if (condition == null)
             {
-                var message = $"{nameof(conditions)} cannot be empty";
+                var message = $"{nameof(condition)} cannot be null";
                 LogUtility.LogWarning(message);
                 return this;
             }
 
-            if (ValidateMutable(true))
-            {
-                var trigger = new TTrigger();
-                trigger.Initialize(id, conditionsSet);
-
-                _triggers ??= new();
-                _triggers.Add(trigger);
-            }
-
-            return this;
+            var trigger = new Trigger(id, action, condition);
+            return AddTrigger(trigger);
         }
 
-        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition, string id = Trigger.UndefinedId)
-            where TTrigger : Trigger, new()
+        public TweenCore AddTrigger<TAction>(Condition condition, string id = Trigger.UndefinedId)
+            where TAction : TweenCoreAction, new()
         {
-            var conditions = new HashSet<TriggerCondition> { condition };
-            return AddTrigger<TTrigger>(conditions, id);
+            var action = new TAction();
+            return AddTrigger(action, condition, id);
         }
 
-        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, string id = Trigger.UndefinedId)
-            where TTrigger : Trigger, new()
+        public TweenCore AddTrigger<TAction, TCondition>(string id = Trigger.UndefinedId)
+            where TAction : TweenCoreAction, new()
+            where TCondition : Condition, new()
         {
-            var conditions = new HashSet<TriggerCondition> { condition1, condition2 };
-            return AddTrigger<TTrigger>(conditions, id);
-        }
-
-        public TweenCore AddTrigger<TTrigger>(TriggerCondition condition1, TriggerCondition condition2, TriggerCondition condition3, string id = Trigger.UndefinedId)
-            where TTrigger : Trigger, new()
-        {
-            var conditions = new HashSet<TriggerCondition> { condition1, condition2, condition3 };
-            return AddTrigger<TTrigger>(conditions, id);
-        }
-
-        public TweenCore RemoveTriggers<TTrigger>()
-            where TTrigger : Trigger
-        {
-            if (ValidateMutable(true))
-            {
-                _triggers?.RemoveWhere(t => t is TTrigger);
-            }
-
-            return this;
+            var condition = new TCondition();
+            return AddTrigger<TAction>(condition, id);
         }
 
         public TweenCore RemoveTriggers(string tag)

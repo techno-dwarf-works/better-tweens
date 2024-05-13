@@ -1,12 +1,15 @@
 ﻿using System;
+using Better.Conditions.Runtime;
+using Better.Tweens.Runtime.Actions;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Better.Tweens.Runtime.TESTS
 {
     [Serializable]
     public class TesterCore
     {
+        [SerializeField] private MonoBehaviour _triggerMonoTarget;
+
         [Header("TRIGGERS")]
         [SerializeField] private bool _play;
 
@@ -19,6 +22,7 @@ namespace Better.Tweens.Runtime.TESTS
         [SerializeField] private bool _enable;
         [SerializeField] private bool _sleep;
         [SerializeField] private bool _disable;
+        [SerializeField] private bool _addTrigger;
 
         [Header("SERIALIZATION")]
         [SerializeField] private DebugTween _tween;
@@ -51,7 +55,7 @@ namespace Better.Tweens.Runtime.TESTS
             if (_complete)
             {
                 _complete = false;
-                _tween.Complete();
+                _tween.ForceComplete();
             }
 
             if (_stop)
@@ -77,23 +81,33 @@ namespace Better.Tweens.Runtime.TESTS
                 _stress = false;
                 Stress();
             }
-            
+
             if (_enable)
             {
                 _enable = false;
                 _tween.Enable();
             }
-            
+
             if (_sleep)
             {
                 _sleep = false;
                 _tween.Sleep();
             }
-            
+
             if (_disable)
             {
                 _disable = false;
                 _tween.Disable();
+            }
+
+            if (_addTrigger)
+            {
+                _addTrigger = false;
+
+                var enableCondition = new EnabledBehaviourCondition(_triggerMonoTarget, true);
+                var disableCondition = new EnabledBehaviourCondition(_triggerMonoTarget, false);
+                _tween.AddTrigger<PlayAction>(enableCondition);
+                _tween.AddTrigger<StopAction>(disableCondition);
             }
         }
 
@@ -103,7 +117,7 @@ namespace Better.Tweens.Runtime.TESTS
             _tween.Play();
             _tween.Pause();
             _tween.Play();
-            _tween.Complete();
+            _tween.ForceComplete();
             _tween.Pause();
             _tween.Pause();
             _tween.Play();
@@ -111,7 +125,7 @@ namespace Better.Tweens.Runtime.TESTS
             _tween.Pause();
             _tween.Stop();
             _tween.Play();
-            _tween.Complete();
+            _tween.ForceComplete();
             _tween.Restart();
             _tween.Stop();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
+using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Settings;
 using Better.Tweens.Runtime.States;
@@ -14,6 +15,8 @@ namespace Better.Tweens.Runtime
     public abstract partial class TweenCore
     {
         protected const float MinTime = 0f;
+        
+        public static readonly TweenCoreAction DefaultCompletionAction = StopAction.Instance;
 
         public event Action StateChanged;
         public event Action ActivityChanged;
@@ -37,7 +40,7 @@ namespace Better.Tweens.Runtime
         [SerializeField] private NaturalOverridableProperty<bool> _dependUnityTimeScale;
         [SerializeField] private NaturalOverridableProperty<bool> _dependGlobalTimeScale;
         [SerializeField] private NaturalOverridableProperty<SleepingDuration> _sleepingDuration;
-        [SerializeField] private SelectOverridableProperty<CompletionBehaviour> _completionBehaviour;
+        [SerializeField] private SelectOverridableProperty<TweenCoreAction> _completionAction; // TODO: Add for rewound
 
         private StateMachine<ActivityState> _activityMachine;
         private StatesCacheModule<ActivityState> _activityStates;
@@ -53,7 +56,7 @@ namespace Better.Tweens.Runtime
         public float LocalTimeScale => _localTimeScale;
         public float SleepingDuration => _sleepingDuration.Value.Value;
         public bool InfinitySleeping => _sleepingDuration.Value.Infinity;
-        public CompletionBehaviour CompletionBehaviour => _completionBehaviour.Value;
+        private TweenCoreAction CompletionAction => _completionAction.Value;
 
         public virtual UpdateMode UpdateMode => UpdateMode.Update;
         public int CompletedLoops { get; private set; }
@@ -69,7 +72,7 @@ namespace Better.Tweens.Runtime
             // TODO: default overridable value
             _dependUnityTimeScale = new();
             _dependGlobalTimeScale = new();
-            _completionBehaviour = new();
+            _completionAction = new();
         }
     }
 }
