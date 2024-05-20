@@ -1,4 +1,7 @@
-﻿using Better.Tweens.Runtime.States;
+﻿using Better.StateMachine.Runtime;
+using Better.StateMachine.Runtime.Modules;
+using Better.StateMachine.Runtime.Modules.Snapshot;
+using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
@@ -20,7 +23,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _activityStates.GetOrAdd<EnabledState>();
+            var state = GetActivityState<EnabledState>();
             _activityMachine.ChangeState(state);
             return this;
         }
@@ -43,7 +46,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _activityStates.GetOrAdd<SleepingState>();
+            var state = GetActivityState<SleepingState>();
             _activityMachine.ChangeState(state);
             return this;
         }
@@ -66,7 +69,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            var state = _activityStates.GetOrAdd<DisabledState>();
+            var state = GetActivityState<DisabledState>();
             _activityMachine.ChangeState(state);
             return this;
         }
@@ -87,6 +90,13 @@ namespace Better.Tweens.Runtime
             state.Setup(this);
         }
 
+        private TState GetActivityState<TState>()
+            where TState : ActivityState, new()
+        {
+            var module = _activityMachine.GetModule<ActivityState, CacheModule<ActivityState>>();
+            return module.GetOrAddState<TState>();
+        }
+
         #endregion
 
         #region Handling
@@ -99,12 +109,12 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (IsPlaying())
+            if (!IsPlayable())
             {
                 return this;
             }
 
-            var state = _handlingStates.GetOrAdd<PlayingState>();
+            var state = GetHandlingState<PlayingState>();
             if (IsStopped())
             {
                 state.MarkStartTrigger();
@@ -144,12 +154,12 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (IsRewinding() || IsStopped())
+            if (!IsRewindable())
             {
                 return this;
             }
 
-            var state = _handlingStates.GetOrAdd<RewindState>();
+            var state = GetHandlingState<RewindState>();
             _handlingMachine.ChangeState(state);
 
             return this;
@@ -168,12 +178,12 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (!IsRunning())
+            if (!IsPausable())
             {
                 return this;
             }
 
-            var pauseState = _handlingStates.GetOrAdd<PauseState>();
+            var pauseState = GetHandlingState<PauseState>();
             _handlingMachine.ChangeState(pauseState);
 
             return this;
@@ -206,12 +216,12 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (IsStopped())
+            if (!IsStoppable())
             {
                 return this;
             }
 
-            var stoppedState = _handlingStates.GetOrAdd<StoppedState>();
+            var stoppedState = GetHandlingState<StoppedState>();
             _handlingMachine.ChangeState(stoppedState);
 
             return this;
@@ -222,9 +232,9 @@ namespace Better.Tweens.Runtime
             ActionUtility.Invoke(Stopped);
         }
 
-        public TweenCore ForceComplete()
+        public TweenCore InstantComplete()
         {
-            if (IsCompletable())
+            if (!IsCompletable())
             {
                 return this;
             }
@@ -237,28 +247,28 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnCompleted()
         {
-            var rootState = _handlingMachine.CurrentState;
+            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
+            var snapshotToken = snapshotModule.CreateToken();
+
             ActionUtility.Invoke(Completed);
-
-            if (_handlingMachine.CurrentState == rootState)
+            if (snapshotToken.HasChanges)
             {
-                if (CompletionAction.ReadinessFor(this))
-                {
-                    CompletionAction.Invoke(this);
-                }
-                else
-                {
-                    var message = $"{nameof(CompletionAction)} not readiness, will used {nameof(DefaultCompletionAction)}";
-                    LogUtility.LogWarning(message);
-
-                    DefaultCompletionAction.Invoke(this);
-                }
+                return;
             }
+
+            if (CompletionAction.TryInvoke(this) && snapshotToken.HasChanges)
+            {
+                return;
+            }
+
+            var message = $"{nameof(CompletionAction)} did not change state, will used {nameof(Stop)}";
+            LogUtility.LogWarning(message);
+            Stop();
         }
 
-        public TweenCore ForceRewound() // TODO: Instant or Force?
+        public TweenCore InstantRewound()
         {
-            if (IsRewindable())
+            if (!IsRewindable())
             {
                 return this;
             }
@@ -269,12 +279,23 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnRewound()
         {
-            ActionUtility.Invoke(Rewound);
+            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
+            var snapshotToken = snapshotModule.CreateToken();
 
-            if (IsRewinding())
+            ActionUtility.Invoke(Rewound);
+            if (snapshotToken.HasChanges)
             {
-                Pause();
+                return;
             }
+
+            if (RewoundAction.TryInvoke(this) && snapshotToken.HasChanges)
+            {
+                return;
+            }
+
+            var message = $"{nameof(RewoundAction)} did not change state, will used {nameof(Pause)}";
+            LogUtility.LogWarning(message);
+            Pause();
         }
 
         public TweenCore Restart()
@@ -293,6 +314,13 @@ namespace Better.Tweens.Runtime
         private void OnHandlingStateCached(HandlingState state)
         {
             state.Setup(this);
+        }
+
+        private TState GetHandlingState<TState>()
+            where TState : HandlingState, new()
+        {
+            var module = _handlingMachine.GetModule<HandlingState, CacheModule<HandlingState>>();
+            return module.GetOrAddState<TState>();
         }
 
         #endregion

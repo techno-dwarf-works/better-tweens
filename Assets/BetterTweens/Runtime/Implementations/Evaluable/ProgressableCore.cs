@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
             Backward = -1,
         }
 
-        [SerializeField] private SelectOverridableProperty<Ease> _ease;
+        [SerializeField] private ImplementationOverridable<Ease> _ease;
 
         [Min(MinTime)]
         [SerializeField] private float _duration;
@@ -39,8 +39,8 @@ namespace Better.Tweens.Runtime
 
         protected ProgressableCore()
         {
-            _ease = new();
-            // TODO: default overridable value
+            var defaultEase = SettingsData.Ease.Clone();
+            _ease = new(defaultEase);
         }
     }
 }

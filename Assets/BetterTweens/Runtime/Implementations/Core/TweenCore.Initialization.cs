@@ -1,4 +1,7 @@
-﻿using Better.Tweens.Runtime.States;
+﻿using Better.StateMachine.Runtime;
+using Better.StateMachine.Runtime.Modules;
+using Better.StateMachine.Runtime.Modules.Snapshot;
+using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
@@ -21,12 +24,11 @@ namespace Better.Tweens.Runtime
             }
 
             Initialized = true;
-            SettingsData = TweensSettings.Instance.Current;
             CompletedLoops = 0;
-            
+
             InitializeStates();
 
-            var state = _handlingStates.GetOrAdd<StoppedState>();
+            var state = GetHandlingState<StoppedState>();
             state.SuppressNextNotify();
             _handlingMachine.ChangeState(state);
 
@@ -43,21 +45,20 @@ namespace Better.Tweens.Runtime
 
         private void InitializeStates()
         {
-            _activityStates = new();
-            _handlingStates = new();
             _activityMachine = new();
             _handlingMachine = new();
 
-            _activityMachine.AddModule(_activityStates);
-            _handlingMachine.AddModule(_handlingStates);
-
-            _activityMachine.StateChanged += OnActivityStateChanged;
-            _handlingMachine.StateChanged += OnHandlingStateChanged;
-            _activityStates.Cached += OnActivityStateCached;
-            _handlingStates.Cached += OnHandlingStateCached;
+            _handlingMachine.AddModule<HandlingState, SnapshotModule<HandlingState>>();
+            var activityCacheModule = _activityMachine.AddModule<ActivityState, CacheModule<ActivityState>>();
+            var handlingCacheModule = _handlingMachine.AddModule<HandlingState, CacheModule<HandlingState>>();
 
             _activityMachine.Run();
             _handlingMachine.Run();
+
+            _activityMachine.StateChanged += OnActivityStateChanged;
+            _handlingMachine.StateChanged += OnHandlingStateChanged;
+            activityCacheModule.StateCached += OnActivityStateCached;
+            handlingCacheModule.StateCached += OnHandlingStateCached;
         }
 
         protected abstract void OnInitialized();

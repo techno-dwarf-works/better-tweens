@@ -4,6 +4,7 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
+        // TODO: Update waiters
         public IEnumerator WaitForUpdate() => new WaitForTweenUpdated(this);
         public IEnumerator WaitForStopped() => new WaitForTweenStopped(this);
         public IEnumerator WaitForStateChange() => new WaitForTweenStateChange(this);

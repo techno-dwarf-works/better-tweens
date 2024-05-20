@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public override Ease Clone()
         {
-            return new LinearEase();
+            return this;
         }
     }
 }

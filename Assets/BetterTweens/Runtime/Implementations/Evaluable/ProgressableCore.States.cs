@@ -7,7 +7,7 @@
             _ease.SetSource(SettingsData.Ease);
             RemainingDelay = StartDelay;
             LoopProgress = 0f;
-            EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
+            EvaluateStateByLoop(LoopProgress);
 
             base.OnStarted();
         }
@@ -30,7 +30,7 @@
         {
             RemainingDelay = 0f;
             LoopProgress = 1f;
-            EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
+            EvaluateStateByLoop(LoopProgress);
 
             base.OnCompleted();
         }
@@ -39,7 +39,7 @@
         {
             RemainingDelay = StartDelay;
             LoopProgress = 0f;
-            EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
+            EvaluateStateByLoop(LoopProgress);
 
             base.OnRewound();
         }

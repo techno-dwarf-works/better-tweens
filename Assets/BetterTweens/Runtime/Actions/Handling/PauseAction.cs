@@ -16,7 +16,7 @@ namespace Better.Tweens.Runtime.Actions
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return !tweenCore.IsPaused();
+            return tweenCore.IsPausable();
         }
     }
 }

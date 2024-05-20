@@ -55,7 +55,7 @@ namespace Better.Tweens.Runtime.TESTS
             if (_complete)
             {
                 _complete = false;
-                _tween.ForceComplete();
+                _tween.InstantComplete();
             }
 
             if (_stop)
@@ -117,7 +117,7 @@ namespace Better.Tweens.Runtime.TESTS
             _tween.Play();
             _tween.Pause();
             _tween.Play();
-            _tween.ForceComplete();
+            _tween.InstantComplete();
             _tween.Pause();
             _tween.Pause();
             _tween.Play();
@@ -125,7 +125,7 @@ namespace Better.Tweens.Runtime.TESTS
             _tween.Pause();
             _tween.Stop();
             _tween.Play();
-            _tween.ForceComplete();
+            _tween.InstantComplete();
             _tween.Restart();
             _tween.Stop();
         }

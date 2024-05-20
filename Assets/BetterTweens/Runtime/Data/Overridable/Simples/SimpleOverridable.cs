@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public class NaturalOverridableProperty<TValue> : OverridableProperty<TValue>
+    public class SimpleOverridable<TValue> : OverridableData<TValue>
     {
         [SerializeField] private TValue _overridenValue;
 
@@ -13,6 +13,11 @@ namespace Better.Tweens.Runtime.Data
         {
             get => _overridenValue;
             set => _overridenValue = value;
+        }
+
+        public SimpleOverridable(TValue overridenValue)
+        {
+            _overridenValue = overridenValue;
         }
     }
 }

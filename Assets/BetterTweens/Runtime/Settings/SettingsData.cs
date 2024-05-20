@@ -24,6 +24,9 @@ namespace Better.Tweens.Runtime.Settings
         [Select]
         [SerializeReference] private TweenCoreAction _completionAction;
 
+        [Select]
+        [SerializeReference] private TweenCoreAction _rewoundAction;
+
         public float GlobalTimeScale
         {
             get => _globalTimeScale;
@@ -56,6 +59,7 @@ namespace Better.Tweens.Runtime.Settings
 
         public Ease Ease => _ease;
         public TweenCoreAction CompletionAction => _completionAction;
+        public TweenCoreAction RewoundAction => _rewoundAction;
         public SleepingDuration SleepingDuration => _sleepingDuration;
 
         public SettingsData()
@@ -67,7 +71,8 @@ namespace Better.Tweens.Runtime.Settings
             _safeMode = true;
             _ease = new LinearEase();
             _sleepingDuration = new();
-            _completionAction = TweenCore.DefaultCompletionAction;
+            _completionAction = PlayAction.Instance;
+            _rewoundAction = PauseAction.Instance;
         }
 
         public void SetEase(Ease value)
@@ -126,9 +131,11 @@ namespace Better.Tweens.Runtime.Settings
             _dependGlobalTimeScale = source._dependGlobalTimeScale;
             _logLevel = source._logLevel;
             _safeMode = source._safeMode;
+
             _ease = source._ease.Clone();
             _sleepingDuration = source._sleepingDuration.Clone();
             _completionAction = source._completionAction.Clone();
+            _rewoundAction = source._rewoundAction.Clone();
         }
     }
 }

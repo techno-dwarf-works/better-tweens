@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Better.Commons.Runtime.Extensions;
+using Better.Commons.Runtime.Utility;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Triggers;
@@ -39,8 +39,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetSleepingDuration(float value)
         {
-            _sleepingDuration.Overriden = true;
-            _sleepingDuration.Value.SetValue(value);
+            _sleepingDuration.OverrideDuration(value);
             _activityMachine.CurrentState?.Reset();
 
             return this;
@@ -48,8 +47,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetInfinitySleeping()
         {
-            _sleepingDuration.Overriden = true;
-            _sleepingDuration.Value.MakeInfinity();
+            _sleepingDuration.OverrideInfinity();
             _activityMachine.CurrentState?.Reset();
 
             return this;
@@ -61,21 +59,13 @@ namespace Better.Tweens.Runtime
 
         public TweenCore DependencyUnityTimeScale(bool depend)
         {
-            if (ValidateMutable(true))
-            {
-                _dependUnityTimeScale.Override(depend);
-            }
-
+            _dependUnityTimeScale.Override(depend);
             return this;
         }
 
-        public TweenCore DependencyGlobalTimeScale(bool value)
+        public TweenCore DependencyGlobalTimeScale(bool depend)
         {
-            if (ValidateMutable(true))
-            {
-                _dependGlobalTimeScale.Override(value);
-            }
-
+            _dependGlobalTimeScale.Override(depend);
             return this;
         }
 
@@ -87,7 +77,7 @@ namespace Better.Tweens.Runtime
 
         #endregion
 
-        #region CompletionBehaviour
+        #region Actions
 
         public TweenCore SetCompletionAction(TweenCoreAction value)
         {
@@ -98,12 +88,14 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (ValidateMutable(true))
-            {
-                _completionAction.Override(value);
-            }
-
+            _completionAction.Override(value);
             return this;
+        }
+
+        public TweenCore SetCompletionAction(ActionType actionType)
+        {
+            var action = TweenCoreActionUtility.GetActionByType(actionType);
+            return SetCompletionAction(action);
         }
 
         public TweenCore SetCompletionAction<TAction>()
@@ -111,6 +103,32 @@ namespace Better.Tweens.Runtime
         {
             var action = new TAction();
             return SetCompletionAction(action);
+        }
+
+        public TweenCore SetRewoundAction(TweenCoreAction value)
+        {
+            if (value == null)
+            {
+                var message = $"{nameof(value)} cannot be null";
+                LogUtility.LogException(message);
+                return this;
+            }
+
+            _rewoundAction.Override(value);
+            return this;
+        }
+
+        public TweenCore SetRewoundAction<TAction>()
+            where TAction : TweenCoreAction, new()
+        {
+            var action = new TAction();
+            return SetRewoundAction(action);
+        }
+
+        public TweenCore SetRewoundAction(ActionType actionType)
+        {
+            var action = TweenCoreActionUtility.GetActionByType(actionType);
+            return SetRewoundAction(action);
         }
 
         #endregion
@@ -290,11 +308,8 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (ValidateMutable(true))
-            {
-                _triggers ??= new();
-                _triggers.Add(trigger);
-            }
+            _triggers ??= new();
+            _triggers.Add(trigger);
 
             return this;
         }
@@ -341,6 +356,19 @@ namespace Better.Tweens.Runtime
             return AddTrigger<TAction>(condition, id);
         }
 
+        public TweenCore RemoveTriggers(Predicate<Trigger> predicate)
+        {
+            if (predicate == null)
+            {
+                var message = $"{nameof(predicate)} cannot be null";
+                LogUtility.LogWarning(message);
+                return this;
+            }
+
+            _triggers?.RemoveWhere(predicate);
+            return this;
+        }
+
         public TweenCore RemoveTriggers(string tag)
         {
             if (tag.IsNullOrEmpty())
@@ -350,12 +378,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (ValidateMutable(true))
-            {
-                _triggers?.RemoveWhere(t => t.CompareId(tag));
-            }
-
-            return this;
+            return RemoveTriggers(trigger => trigger.CompareId(tag));
         }
 
         #endregion
@@ -371,7 +394,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (ValidateMutable(true) && !ContainsTag(value))
+            if (!ContainsTag(value))
             {
                 _tags ??= new();
                 _tags.Add(value);
@@ -399,11 +422,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore RemoveTag(object value)
         {
-            if (ValidateMutable(true))
-            {
-                _tags?.Remove(value);
-            }
-
+            _tags?.Remove(value);
             return this;
         }
 

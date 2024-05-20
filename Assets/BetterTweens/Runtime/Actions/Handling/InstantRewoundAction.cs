@@ -3,20 +3,20 @@
 namespace Better.Tweens.Runtime.Actions
 {
     [Serializable]
-    public class TogglePauseAction : SingleAction<TogglePauseAction>
+    public class InstantRewoundAction : SingleAction<InstantRewoundAction>
     {
-        public TogglePauseAction()
+        public InstantRewoundAction()
         {
         }
 
         public override void Invoke(TweenCore tweenCore)
         {
-            tweenCore.TogglePause();
+            tweenCore.InstantRewound();
         }
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return !tweenCore.IsStopped();
+            return tweenCore.IsRewindable();
         }
     }
 }

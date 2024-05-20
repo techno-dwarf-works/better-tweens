@@ -1,4 +1,7 @@
-﻿using Better.Tweens.Runtime.Utility;
+﻿using Better.StateMachine.Runtime;
+using Better.StateMachine.Runtime.Modules.Snapshot;
+using Better.Tweens.Runtime.States;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
@@ -32,9 +35,15 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnLoopCompleted()
         {
-            CheckOverLoops(); // TODO: Re-set state in check?
+            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
+            var snapshotToken = snapshotModule.CreateToken();
+
             ActionUtility.Invoke(LoopCompleted);
-            // TODO: change state in event, but not handle this
+            HandleOverLoops();
+            if (snapshotToken.HasChanges)
+            {
+                return;
+            }
 
             if (IsCompleted())
             {
@@ -70,7 +79,14 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnLoopRewound()
         {
+            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
+            var snapshotToken = snapshotModule.CreateToken();
+
             ActionUtility.Invoke(LoopRewound);
+            if (snapshotToken.HasChanges)
+            {
+                return;
+            }
 
             if (IsRewound())
             {
@@ -78,7 +94,7 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        private void CheckOverLoops()
+        private void HandleOverLoops()
         {
             if (CompletedLoops > Data.LoopCount.MaxValue)
             {

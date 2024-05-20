@@ -56,9 +56,19 @@ namespace Better.Tweens.Runtime
 
         #region Handling
 
+        public bool IsRunnable()
+        {
+            return !IsRunning();
+        }
+
         public bool IsRunning()
         {
             return Initialized && _handlingMachine.InState<RunningState>();
+        }
+
+        public bool IsPlayable()
+        {
+            return !IsPlaying() && !IsCompleted();
         }
 
         public bool IsPlaying()
@@ -66,9 +76,19 @@ namespace Better.Tweens.Runtime
             return Initialized && _handlingMachine.InState<PlayingState>();
         }
 
+        public virtual bool IsRewindable()
+        {
+            return !IsStopped() && !IsRewound();
+        }
+
         public bool IsRewinding()
         {
             return Initialized && _handlingMachine.InState<RewindState>();
+        }
+
+        public bool IsPausable()
+        {
+            return IsRunning();
         }
 
         public bool IsPaused()
@@ -76,14 +96,14 @@ namespace Better.Tweens.Runtime
             return Initialized && _handlingMachine.InState<PauseState>();
         }
 
+        public bool IsStoppable()
+        {
+            return !IsStopped();
+        }
+
         public bool IsStopped()
         {
             return !Initialized || _handlingMachine.InState<StoppedState>();
-        }
-
-        public virtual bool IsCompleted()
-        {
-            return Initialized && CompletedLoops >= LoopCount && !IsRewinding();
         }
 
         public virtual bool IsCompletable()
@@ -91,14 +111,14 @@ namespace Better.Tweens.Runtime
             return Initialized && !IsStopped() && !IsCompleted();
         }
 
+        public virtual bool IsCompleted()
+        {
+            return Initialized && CompletedLoops >= LoopCount && !IsRewinding();
+        }
+
         public virtual bool IsRewound()
         {
             return Initialized && CompletedLoops <= 0 && !IsPlaying();
-        }
-        
-        public virtual bool IsRewindable()
-        {
-            return Initialized && !IsStopped() && !IsRewound();
         }
 
         #endregion
@@ -180,11 +200,18 @@ namespace Better.Tweens.Runtime
 
         #endregion
 
-        #region Misc
+        #region Actions
 
-        public bool CompletionActionIs<TAction>() where TAction : TweenCoreAction
+        public bool CompletionActionIs<TAction>()
+            where TAction : TweenCoreAction
         {
-            return CompletionAction is TAction;
+            return _completionAction.Value is TAction;
+        }
+
+        public bool RewoundActionIs<TAction>()
+            where TAction : TweenCoreAction
+        {
+            return _rewoundAction.Value is TAction;
         }
 
         #endregion

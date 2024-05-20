@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public abstract class OverridableProperty<TValue>
+    public abstract class OverridableData<TValue>
     {
         [SerializeField] private bool _overriden;
 

@@ -3,20 +3,20 @@
 namespace Better.Tweens.Runtime.Actions
 {
     [Serializable]
-    public class ForceCompleteAction : SingleAction<ForceCompleteAction>
+    public class StopAction : SingleAction<StopAction>
     {
-        public ForceCompleteAction()
+        public StopAction()
         {
         }
 
         public override void Invoke(TweenCore tweenCore)
         {
-            tweenCore.ForceComplete();
+            tweenCore.Stop();
         }
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return !tweenCore.IsCompletable();
+            return tweenCore.IsStoppable();
         }
     }
 }

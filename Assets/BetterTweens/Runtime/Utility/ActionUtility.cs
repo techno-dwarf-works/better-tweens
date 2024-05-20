@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Logs;
 
 namespace Better.Tweens.Runtime.Utility
@@ -31,20 +32,14 @@ namespace Better.Tweens.Runtime.Utility
                 return;
             }
 
-            if (!_settings.Current.SafeMode)
+            if (_settings.Current.SafeMode)
             {
-                callback();
+                var allowLogException = LogUtility.AllowLogLevel(LogLevel.Exception);
+                callback.SafeInvoke(allowLogException);
                 return;
             }
 
-            try
-            {
-                callback();
-            }
-            catch (Exception exception)
-            {
-                LogUtility.LogException(exception.Message);
-            }
+            callback.Invoke();
         }
     }
 }

@@ -3,20 +3,20 @@
 namespace Better.Tweens.Runtime.Actions
 {
     [Serializable]
-    public class ForceRewoundAction : SingleAction<ForceRewoundAction>
+    public class InstantCompleteAction : SingleAction<InstantCompleteAction>
     {
-        public ForceRewoundAction()
+        public InstantCompleteAction()
         {
         }
 
         public override void Invoke(TweenCore tweenCore)
         {
-            tweenCore.ForceRewound();
+            tweenCore.InstantComplete();
         }
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return !tweenCore.IsRewindable();
+            return tweenCore.IsCompletable();
         }
     }
 }

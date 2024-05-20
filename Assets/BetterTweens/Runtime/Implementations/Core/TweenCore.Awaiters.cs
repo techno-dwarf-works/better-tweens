@@ -5,6 +5,7 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
+        // TODO: Update awaiters
         private Task AwaitUpdate(CancellationToken cancellationToken = default) => new TweenUpdateAwaiter(this, cancellationToken).Task;
         private Task AwaitStopped(CancellationToken cancellationToken = default) => new TweenStoppedAwaiter(this, cancellationToken).Task;
         private Task AwaitStateChange(CancellationToken cancellationToken = default) => new TweenStateChangeAwaiter(this, cancellationToken).Task;

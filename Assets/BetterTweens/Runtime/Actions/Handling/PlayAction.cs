@@ -3,20 +3,20 @@
 namespace Better.Tweens.Runtime.Actions
 {
     [Serializable]
-    public class RewindAction : SingleAction<RewindAction>
+    public class PlayAction : SingleAction<PlayAction>
     {
-        public RewindAction()
+        public PlayAction()
         {
         }
 
         public override void Invoke(TweenCore tweenCore)
         {
-            tweenCore.Rewind();
+            tweenCore.Play();
         }
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return !tweenCore.IsRewinding();
+            return tweenCore.IsPlayable();
         }
     }
 }

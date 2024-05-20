@@ -66,7 +66,7 @@ namespace Better.Tweens.Runtime
             }
             else
             {
-                EvaluateStateBy_xxxxxxxxxxxxxxxx(LoopProgress);
+                EvaluateStateByLoop(LoopProgress);
             }
         }
 
@@ -78,7 +78,7 @@ namespace Better.Tweens.Runtime
 
         protected abstract void EvaluateState(float time);
 
-        protected void EvaluateStateBy_xxxxxxxxxxxxxxxx(float time, LoopMode loopMode, int loop) // TODO
+        protected void EvaluateStateByLoop(float time, LoopMode loopMode, int loop)
         {
             time = Ease.Evaluate(time);
             time = loopMode switch
@@ -91,9 +91,9 @@ namespace Better.Tweens.Runtime
             EvaluateState(time);
         }
 
-        protected void EvaluateStateBy_xxxxxxxxxxxxxxxx(float time) // TODO
+        protected void EvaluateStateByLoop(float time)
         {
-            EvaluateStateBy_xxxxxxxxxxxxxxxx(time, LoopMode, CompletedLoops);
+            EvaluateStateByLoop(time, LoopMode, CompletedLoops);
         }
     }
 }
