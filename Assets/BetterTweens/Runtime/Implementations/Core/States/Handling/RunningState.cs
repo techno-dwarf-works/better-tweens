@@ -2,12 +2,20 @@
 {
     public abstract class RunningState : HandlingState
     {
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
+            base.OnEntered();
+
+            if (!IsActive)
+            {
+                return;
+            }
 
             Source.Enable();
-            Source.OnRunned();
+            if (IsActive)
+            {
+                Source.OnRunned();
+            }
         }
     }
 }

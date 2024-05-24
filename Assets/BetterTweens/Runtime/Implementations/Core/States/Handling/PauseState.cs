@@ -2,12 +2,20 @@
 {
     public class PauseState : HandlingState
     {
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
+            base.OnEntered();
+
+            if (!IsActive)
+            {
+                return;
+            }
 
             Source.Sleep();
-            Source.OnPaused();
+            if (IsActive)
+            {
+                Source.OnPaused();
+            }
         }
     }
 }

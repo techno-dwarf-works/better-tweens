@@ -26,7 +26,9 @@ namespace Better.Tweens.Runtime
             Initialized = true;
             CompletedLoops = 0;
 
-            InitializeStates();
+            InitializeMachines();
+            _activityMachine.Run();
+            _handlingMachine.Run();
 
             var state = GetHandlingState<StoppedState>();
             state.SuppressNextNotify();
@@ -43,22 +45,24 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        private void InitializeStates()
+        private void InitializeMachines()
         {
             _activityMachine = new();
-            _handlingMachine = new();
-
-            _handlingMachine.AddModule<HandlingState, SnapshotModule<HandlingState>>();
             var activityCacheModule = _activityMachine.AddModule<ActivityState, CacheModule<ActivityState>>();
-            var handlingCacheModule = _handlingMachine.AddModule<HandlingState, CacheModule<HandlingState>>();
-
-            _activityMachine.Run();
-            _handlingMachine.Run();
+            var activityOverflowModule = _activityMachine.AddModule<ActivityState, StackOverflowModule<ActivityState>>();
 
             _activityMachine.StateChanged += OnActivityStateChanged;
-            _handlingMachine.StateChanged += OnHandlingStateChanged;
             activityCacheModule.StateCached += OnActivityStateCached;
+            activityOverflowModule.Locked += OnMachineOverflowed;
+            
+            _handlingMachine = new();
+            _handlingMachine.AddModule<HandlingState, SnapshotModule<HandlingState>>();
+            var handlingCacheModule = _handlingMachine.AddModule<HandlingState, CacheModule<HandlingState>>();
+            var handlingOverflowModule = _handlingMachine.AddModule<HandlingState, StackOverflowModule<HandlingState>>();
+            
+            _handlingMachine.StateChanged += OnHandlingStateChanged;
             handlingCacheModule.StateCached += OnHandlingStateCached;
+            handlingOverflowModule.Locked += OnMachineOverflowed;
         }
 
         protected abstract void OnInitialized();

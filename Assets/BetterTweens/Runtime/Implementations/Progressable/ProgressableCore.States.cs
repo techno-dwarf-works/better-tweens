@@ -10,6 +10,12 @@
             EvaluateStateByLoop(LoopProgress);
 
             base.OnStarted();
+
+            if (IsRunning() && InfinityLoops && Duration <= MinTime)
+            {
+                // TODO: Log?
+                Stop();
+            }
         }
 
         protected internal override void OnPlay()
@@ -17,6 +23,11 @@
             _progressDirection = ProgressDirection.Forward;
 
             base.OnPlay();
+
+            if (IsPlaying() && Duration <= MinTime)
+            {
+                InstantComplete();
+            }
         }
 
         protected internal override void OnRewind()
@@ -24,6 +35,11 @@
             _progressDirection = ProgressDirection.Backward;
 
             base.OnRewind();
+
+            if (IsRewinding() && Duration <= MinTime)
+            {
+                InstantRewound();
+            }
         }
 
         protected override void OnCompleted()

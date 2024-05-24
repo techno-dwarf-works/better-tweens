@@ -5,6 +5,8 @@ namespace Better.Tweens.Runtime.Actions
     [Serializable]
     public abstract class TweenCoreAction
     {
+        // TODO: Add SafeInvoke
+        
         public bool TryInvoke(TweenCore tweenCore)
         {
             if (ReadinessFor(tweenCore))

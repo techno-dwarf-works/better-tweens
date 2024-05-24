@@ -5,10 +5,6 @@ namespace Better.Tweens.Runtime.Actions
     [Serializable]
     public class PlayAction : SingleAction<PlayAction>
     {
-        public PlayAction()
-        {
-        }
-
         public override void Invoke(TweenCore tweenCore)
         {
             tweenCore.Play();
@@ -16,7 +12,7 @@ namespace Better.Tweens.Runtime.Actions
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return tweenCore.IsPlayable();
+            return !tweenCore.IsPlaying() && tweenCore.IsPlayable();
         }
     }
 }

@@ -4,16 +4,24 @@
     {
         private bool _startTrigger;
 
-        public override void Enter()
+        public override void OnEntered()
         {
-            OnPreEnter();
-            base.Enter();
+            OnPreEntered();
+            base.OnEntered();
 
-            Source.OnPlay();
+            if (IsActive)
+            {
+                Source.OnPlay();
+            }
         }
 
-        private void OnPreEnter()
+        private void OnPreEntered()
         {
+            if (!IsActive)
+            {
+                return;
+            }
+
             if (_startTrigger)
             {
                 _startTrigger = false;

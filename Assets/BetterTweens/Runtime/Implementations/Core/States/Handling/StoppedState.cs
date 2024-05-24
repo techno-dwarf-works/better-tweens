@@ -9,12 +9,20 @@
             _suppressNotify = true;
         }
 
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
+            base.OnEntered();
+
+            if (!IsActive)
+            {
+                return;
+            }
 
             Source.Sleep();
-            TryNotify();
+            if (IsActive)
+            {
+                TryNotify();
+            }
         }
 
         private void TryNotify()

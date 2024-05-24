@@ -115,26 +115,26 @@ namespace Better.Tweens.Runtime
 
         protected internal override void OnStarted()
         {
-            base.OnStarted();
             Log("Started;");
+            base.OnStarted();
         }
 
         protected override void OnLoopCompleted()
         {
-            base.OnLoopCompleted();
             Log("Loop completed;");
+            base.OnLoopCompleted();
         }
 
         protected override void OnLoopRewound()
         {
-            base.OnLoopRewound();
             Log("Loop rewound;");
+            base.OnLoopRewound();
         }
 
         protected override void OnCompleted()
         {
-            base.OnCompleted();
             Log("Completed;");
+            base.OnCompleted();
         }
 
         protected override void OnPreUpdated(float deltaTime)
@@ -163,44 +163,44 @@ namespace Better.Tweens.Runtime
 
         protected internal override void OnRunned()
         {
-            base.OnRunned();
             Log("Runned;");
+            base.OnRunned();
         }
 
         protected internal override void OnPlay()
         {
-            base.OnPlay();
             Log("Play;");
+            base.OnPlay();
         }
 
         protected internal override void OnRewind()
         {
-            base.OnRewind();
             Log("Rewind;");
+            base.OnRewind();
         }
 
         protected internal override void OnPaused()
         {
-            base.OnPaused();
             Log("Paused;");
+            base.OnPaused();
         }
 
         protected internal override void OnStopped()
         {
-            base.OnStopped();
             Log("Stopped;");
+            base.OnStopped();
         }
 
         protected override void OnRewound()
         {
-            base.OnRewound();
             Log("Rewound;");
+            base.OnRewound();
         }
 
         protected override void OnStateChanged()
         {
-            base.OnStateChanged();
             Log("State changed;");
+            base.OnStateChanged();
         }
 
         public override bool Equals(object obj)

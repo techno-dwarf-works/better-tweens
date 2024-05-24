@@ -2,10 +2,14 @@
 {
     public class RewindState : RunningState
     {
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
-            Source.OnRewind();
+            base.OnEntered();
+
+            if (IsActive)
+            {
+                Source.OnRewind();
+            }
         }
     }
 }

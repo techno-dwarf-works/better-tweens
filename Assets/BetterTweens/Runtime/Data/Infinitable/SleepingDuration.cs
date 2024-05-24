@@ -7,7 +7,7 @@ namespace Better.Tweens.Runtime.Data
     public class SleepingDuration : InfinitableData<float>
     {
         public const float MinValue = 0f;
-        public const float DefaultValue = 1f;
+        public const float DefaultValue = 15f;
 
         [Min(MinValue)]
         [SerializeField] private float _value;

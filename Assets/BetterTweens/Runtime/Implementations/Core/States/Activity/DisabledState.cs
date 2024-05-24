@@ -2,10 +2,10 @@
 {
     public class DisabledState : ActivityState
     {
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
-            
+            base.OnEntered();
+
             Source.OnDisabled();
         }
     }

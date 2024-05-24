@@ -60,7 +60,7 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.statemachine": {
-      "version": "0.1.8",
+      "version": "0.1.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {

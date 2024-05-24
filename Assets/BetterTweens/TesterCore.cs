@@ -16,7 +16,8 @@ namespace Better.Tweens.Runtime.TESTS
         [SerializeField] private bool _rewind;
         [SerializeField] private bool _pause;
         [SerializeField] private bool _stop;
-        [SerializeField] private bool _complete;
+        [SerializeField] private bool _instantComplete;
+        [SerializeField] private bool _instantRewound;
         [SerializeField] private bool _restart;
         [SerializeField] private bool _stress;
         [SerializeField] private bool _enable;
@@ -52,10 +53,16 @@ namespace Better.Tweens.Runtime.TESTS
                 _tween.Pause();
             }
 
-            if (_complete)
+            if (_instantComplete)
             {
-                _complete = false;
+                _instantComplete = false;
                 _tween.InstantComplete();
+            }
+            
+            if (_instantRewound)
+            {
+                _instantRewound = false;
+                _tween.InstantRewound();
             }
 
             if (_stop)

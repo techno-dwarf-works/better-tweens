@@ -5,10 +5,6 @@ namespace Better.Tweens.Runtime.Actions
     [Serializable]
     public class RestartAction : SingleAction<RestartAction>
     {
-        public RestartAction()
-        {
-        }
-
         public override void Invoke(TweenCore tweenCore)
         {
             tweenCore.Restart();

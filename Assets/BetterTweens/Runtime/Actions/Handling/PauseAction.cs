@@ -5,10 +5,6 @@ namespace Better.Tweens.Runtime.Actions
     [Serializable]
     public class PauseAction : SingleAction<PauseAction>
     {
-        public PauseAction()
-        {
-        }
-
         public override void Invoke(TweenCore tweenCore)
         {
             tweenCore.Pause();
@@ -16,7 +12,7 @@ namespace Better.Tweens.Runtime.Actions
 
         public override bool ReadinessFor(TweenCore tweenCore)
         {
-            return tweenCore.IsPausable();
+            return !tweenCore.IsPaused() && tweenCore.IsPausable();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Better.StateMachine.Runtime.Modules.Snapshot;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
@@ -9,6 +10,7 @@ namespace Better.Tweens.Runtime
     {
         protected virtual void CompleteLoop()
         {
+            xxxxxxxxx
             if (CompletedLoops >= LoopCount)
             {
                 var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be increased";
@@ -22,9 +24,10 @@ namespace Better.Tweens.Runtime
 
         protected void CompleteLoops(int loopCount)
         {
+            // TODO: handle change state
             for (int i = 0; i < loopCount; i++)
             {
-                if (IsStopped() || IsCompleted())
+                if (!IsCompletable())
                 {
                     return;
                 }
@@ -53,22 +56,26 @@ namespace Better.Tweens.Runtime
 
         protected virtual void RewoundLoop()
         {
-            if (CompletedLoops <= 0)
+            xxxxxxxx
+            if (!IsRewindable())
             {
-                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be decreased";
+                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be rewindable";
                 LogUtility.LogException(message);
                 return;
             }
 
             CompletedLoops--;
+            CompletedLoops = Mathf.Min(CompletedLoops, 0);
+
             OnLoopRewound();
         }
 
         protected void RewoundLoops(int loopCount)
         {
+            // TODO: handle change state
             for (int i = 0; i < loopCount; i++)
             {
-                if (IsStopped() || IsRewound())
+                if (!IsRewindable())
                 {
                     return;
                 }
@@ -96,11 +103,25 @@ namespace Better.Tweens.Runtime
 
         private void HandleOverLoops()
         {
-            if (CompletedLoops > Data.LoopCount.MaxValue)
+            if (CompletedLoops <= Data.LoopCount.MaxValue)
             {
-                // TODO: Add warning, use infinity
-                Stop();
+                return;
             }
+
+            var message = $"Overloops({nameof(CompletedLoops)}: {CompletedLoops}) handling, try will restart with infinity loops...";
+            LogUtility.LogWarning(message);
+
+            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
+            var snapshotToken = snapshotModule.CreateToken();
+
+            Stop();
+            if (snapshotToken.HasChanges)
+            {
+                return;
+            }
+
+            SetInfinityLoop();
+            Play();
         }
     }
 }

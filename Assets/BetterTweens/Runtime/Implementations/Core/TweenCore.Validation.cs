@@ -37,17 +37,17 @@ namespace Better.Tweens.Runtime
 
         #region Activity
 
-        public bool IsEnabled()
+        public virtual bool IsEnabled()
         {
             return Initialized && _activityMachine.InState<EnabledState>();
         }
 
-        public bool IsSleeping()
+        public virtual bool IsSleeping()
         {
             return Initialized && _activityMachine.InState<SleepingState>();
         }
 
-        public bool IsDisabled()
+        public virtual bool IsDisabled()
         {
             return !Initialized || _activityMachine.InState<DisabledState>();
         }
@@ -56,52 +56,62 @@ namespace Better.Tweens.Runtime
 
         #region Handling
 
-        public bool IsRunnable()
+        public virtual bool IsRunnable()
         {
-            return !IsRunning();
+            return true;
         }
 
-        public bool IsRunning()
+        public virtual bool IsRunning()
         {
             return Initialized && _handlingMachine.InState<RunningState>();
         }
 
-        public bool IsPlayable()
+        public virtual bool IsPlayable()
         {
-            return !IsPlaying() && !IsCompleted();
+            if (!IsRunnable())
+            {
+                return false;
+            }
+
+            return !IsCompleted() || IsStopped();
         }
 
-        public bool IsPlaying()
+        public virtual bool IsPlaying()
         {
             return Initialized && _handlingMachine.InState<PlayingState>();
         }
 
         public virtual bool IsRewindable()
         {
-            return !IsStopped() && !IsRewound();
+            return IsRunnable() && !IsStopped() && !IsRewound();
         }
 
-        public bool IsRewinding()
+        public virtual bool IsRewinding()
         {
             return Initialized && _handlingMachine.InState<RewindState>();
         }
 
-        public bool IsPausable()
+        public virtual bool IsRewound()
         {
-            return IsRunning();
+            return Initialized && CompletedLoops <= 0;
         }
 
-        public bool IsPaused()
-        {
-            return Initialized && _handlingMachine.InState<PauseState>();
-        }
-
-        public bool IsStoppable()
+        public virtual bool IsPausable()
         {
             return !IsStopped();
         }
 
-        public bool IsStopped()
+        public virtual bool IsPaused()
+        {
+            return Initialized && _handlingMachine.InState<PauseState>();
+        }
+
+        public virtual bool IsStoppable()
+        {
+            return true;
+        }
+
+        public virtual bool IsStopped()
         {
             return !Initialized || _handlingMachine.InState<StoppedState>();
         }
@@ -113,19 +123,14 @@ namespace Better.Tweens.Runtime
 
         public virtual bool IsCompleted()
         {
-            return Initialized && CompletedLoops >= LoopCount && !IsRewinding();
-        }
-
-        public virtual bool IsRewound()
-        {
-            return Initialized && CompletedLoops <= 0 && !IsPlaying();
+            return Initialized && CompletedLoops >= LoopCount;
         }
 
         #endregion
 
         #region Triggers
 
-        public bool ContainsTrigger(string tag)
+        public  bool ContainsTrigger(string tag)
         {
             return _triggers != null && _triggers.Any(t => t.CompareId(tag));
         }
@@ -179,7 +184,7 @@ namespace Better.Tweens.Runtime
 
         #region Mutable
 
-        public bool IsMutable()
+        public virtual bool IsMutable()
         {
             return IsStopped();
         }

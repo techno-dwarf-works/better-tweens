@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -14,27 +15,31 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            // TODO: Merge?
-            if (DecreaseDelay(ref deltaTime) && InDelay)
+            if (InDelay)
             {
-                return;
+                DecreaseDelay(ref deltaTime);
+                if (InDelay)
+                {
+                    return;
+                }
             }
 
             ApplyProgressMod(ref deltaTime);
             ApplyProgress(deltaTime);
         }
 
-        private bool DecreaseDelay(ref float value)
+        private void DecreaseDelay(ref float value)
         {
-            if (!InDelay) return false;
+            if (!InDelay)
+            {
+                var message = "Unexpected operation, not delayed";
+                LogUtility.LogException(message);
+                return;
+            }
 
-            var appliedValue = Mathf.Abs(value);
-            appliedValue = Mathf.Min(appliedValue, RemainingDelay);
-
+            var appliedValue = Mathf.Min(value, RemainingDelay);
             RemainingDelay -= appliedValue;
-            value -= appliedValue * Mathf.Sign(value);
-
-            return true;
+            value -= appliedValue;
         }
 
         private void ApplyProgress(float value)
@@ -45,24 +50,28 @@ namespace Better.Tweens.Runtime
             }
 
             LoopProgress += value;
-
-            if (LoopProgress <= 0f)
+            if (LoopProgress >= 1f)
+            {
+                var loopsCount = (int)LoopProgress;
+                var extraProgress = LoopProgress - loopsCount;
+                CompleteLoops(loopsCount);
+                LoopProgress += extraProgress;
+            }
+            else if (LoopProgress <= 0f)
             {
                 if (CompletedLoops == 0)
                 {
+                    LoopProgress = 0f;
                     OnLoopRewound();
                 }
                 else
                 {
-                    var loopsCount = (int)Mathf.Abs(LoopProgress); // TODO
-                    loopsCount += 1;
+                    var absedLoopProgress = Mathf.Abs(LoopProgress);
+                    var loopsCount = (int)absedLoopProgress + 1;
+                    var extraProgress = absedLoopProgress % 1f;
                     RewoundLoops(loopsCount);
+                    LoopProgress -= extraProgress;
                 }
-            }
-            else if (LoopProgress >= 1f)
-            {
-                var loopsCount = (int)LoopProgress;
-                CompleteLoops(loopsCount);
             }
             else
             {

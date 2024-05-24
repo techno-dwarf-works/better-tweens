@@ -71,7 +71,7 @@ namespace Better.Tweens.Runtime.Settings
             _safeMode = true;
             _ease = new LinearEase();
             _sleepingDuration = new();
-            _completionAction = PlayAction.Instance;
+            _completionAction = StopAction.Instance;
             _rewoundAction = PauseAction.Instance;
         }
 

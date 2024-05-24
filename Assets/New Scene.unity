@@ -237,16 +237,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tester:
+    _triggerMonoTarget: {fileID: 0}
     _play: 0
     _rewind: 0
     _pause: 0
     _stop: 0
-    _complete: 0
+    _instantComplete: 0
+    _instantRewound: 0
     _restart: 0
     _stress: 0
-    _duration: 5
-    _from: 0
-    _to: 10
+    _enable: 0
+    _sleep: 0
+    _disable: 0
+    _addTrigger: 0
+    _tween:
+      _loopCount:
+        _infinity: 0
+        _value: 5
+      _localTimeScale: 1
+      _dependUnityTimeScale:
+        _overriden: 0
+        _overridenValue: 0
+      _dependGlobalTimeScale:
+        _overriden: 0
+        _overridenValue: 0
+      _sleepingDuration:
+        _overriden: 1
+        _overridenValue:
+          _infinity: 0
+          _value: 5
+      _completionAction:
+        _overriden: 0
+        _overridenValue:
+          rid: 1006006364295135239
+      _rewoundAction:
+        _overriden: 0
+        _overridenValue:
+          rid: 1006006364295135240
+      _ease:
+        _overriden: 0
+        _overridenValue:
+          rid: -2
+      _duration: 10
+      _startDelay: 0
+      _loopDelay: 0
+      _loopMode: 0
+      _fromMode: 1
+      _fromValue: 1
+      _optionsMode: 0
+      _options: 100
+      _id: DebugTween
+      _currentValue: 0
+      _logLevel: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1006006364295135239
+      type: {class: RewindAction, ns: Better.Tweens.Runtime.Actions, asm: Better.Tweens.Runtime}
+    - rid: 1006006364295135240
+      type: {class: PlayAction, ns: Better.Tweens.Runtime.Actions, asm: Better.Tweens.Runtime}
 --- !u!4 &487290160
 Transform:
   m_ObjectHideFlags: 0

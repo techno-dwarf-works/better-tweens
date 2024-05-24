@@ -4,9 +4,9 @@
     {
         private float _elapsedTime;
 
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
+            base.OnEntered();
 
             TweenRegistry.Register(Source);
             Source.OnAsleep();
@@ -30,9 +30,9 @@
             _elapsedTime = default;
         }
 
-        public override void Exit()
+        public override void OnExited()
         {
-            base.Exit();
+            base.OnExited();
 
             TweenRegistry.Unregister(Source);
         }

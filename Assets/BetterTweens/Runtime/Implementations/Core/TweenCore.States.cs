@@ -1,4 +1,5 @@
-﻿using Better.StateMachine.Runtime;
+﻿using System.Threading.Tasks;
+using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
 using Better.StateMachine.Runtime.Modules.Snapshot;
 using Better.Tweens.Runtime.States;
@@ -109,7 +110,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (!IsPlayable())
+            if (IsPlaying() || !IsPlayable())
             {
                 return this;
             }
@@ -130,6 +131,7 @@ namespace Better.Tweens.Runtime
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
             _sleepingDuration.SetSource(SettingsData.SleepingDuration);
             _completionAction.SetSource(SettingsData.CompletionAction);
+            _rewoundAction.SetSource(SettingsData.RewoundAction);
 
             CompletedLoops = 0;
 
@@ -154,7 +156,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (!IsRewindable())
+            if (IsRewinding() || !IsRewindable())
             {
                 return this;
             }
@@ -178,7 +180,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (!IsPausable())
+            if (IsPaused() || !IsPausable())
             {
                 return this;
             }
@@ -216,7 +218,7 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (!IsStoppable())
+            if (IsStopped() || !IsStoppable())
             {
                 return this;
             }
@@ -239,9 +241,16 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            // TODO: Test with infinity loops
+            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
+            var snapshotToken = snapshotModule.CreateToken();
+
             var loopCount = LoopCount - CompletedLoops;
             CompleteLoops(loopCount);
+            if (InfinityLoops && !snapshotToken.HasChanges)
+            {
+                OnCompleted();
+            }
+
             return this;
         }
 
@@ -256,12 +265,12 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            if (CompletionAction.TryInvoke(this) && snapshotToken.HasChanges)
+            if (CompletionAction != null && CompletionAction.TryInvoke(this) && snapshotToken.HasChanges)
             {
                 return;
             }
 
-            var message = $"{nameof(CompletionAction)} did not change state, will used {nameof(Stop)}";
+            var message = $"{nameof(CompletionAction)}({CompletionAction}) did not change state, will used {nameof(Stop)}";
             LogUtility.LogWarning(message);
             Stop();
         }
@@ -273,7 +282,8 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            RewoundLoops(CompletedLoops);
+            xxxxxxxxx
+            RewoundLoops(CompletedLoops + 1);
             return this;
         }
 
@@ -288,12 +298,12 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            if (RewoundAction.TryInvoke(this) && snapshotToken.HasChanges)
+            if (RewoundAction != null && RewoundAction.TryInvoke(this) && snapshotToken.HasChanges)
             {
                 return;
             }
 
-            var message = $"{nameof(RewoundAction)} did not change state, will used {nameof(Pause)}";
+            var message = $"{nameof(RewoundAction)}({RewoundAction}) did not change state, will used {nameof(Pause)}";
             LogUtility.LogWarning(message);
             Pause();
         }
@@ -328,6 +338,29 @@ namespace Better.Tweens.Runtime
         protected virtual void OnStateChanged()
         {
             ActionUtility.Invoke(StateChanged);
+        }
+
+        private async void OnMachineOverflowed()
+        {
+            Disable();
+
+            await _activityMachine.TransitionTask;
+            await _handlingMachine.TransitionTask;
+            await Task.Yield();
+
+            var activityOverflowModule = _activityMachine.GetModule<ActivityState, StackOverflowModule<ActivityState>>();
+            activityOverflowModule.Unlock();
+
+            var handlingOverflowModule = _handlingMachine.GetModule<HandlingState, StackOverflowModule<HandlingState>>();
+            handlingOverflowModule.Unlock();
+
+            if (IsStopped())
+            {
+                return;
+            }
+
+            // TODO: Log?
+            Stop();
         }
     }
 }

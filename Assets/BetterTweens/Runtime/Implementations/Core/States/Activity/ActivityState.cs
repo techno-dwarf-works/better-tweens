@@ -2,10 +2,10 @@
 {
     public abstract class ActivityState : TweenState
     {
-        public override void Enter()
+        public override void OnEntered()
         {
-            base.Enter();
-            
+            base.OnEntered();
+
             Reset();
         }
 
