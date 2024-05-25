@@ -220,6 +220,9 @@ namespace Better.Tweens.Runtime
 
         private void LogByBuilder()
         {
+            _logBuilder.AppendLine();
+            CollectInfo(ref _logBuilder);
+
             var idPrefix = $"({_id}) ";
             _logBuilder.Insert(0, idPrefix);
 

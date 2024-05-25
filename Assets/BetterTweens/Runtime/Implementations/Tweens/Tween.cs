@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -161,6 +163,16 @@ namespace Better.Tweens.Runtime
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public override void CollectInfo(ref StringBuilder stringBuilder)
+        {
+            base.CollectInfo(ref stringBuilder);
+
+            stringBuilder.AppendFieldLine(nameof(OptionsMode), OptionsMode)
+                .AppendFieldLine(nameof(FromMode), FromMode)
+                .AppendFieldLine(nameof(FromValue), FromValue)
+                .AppendFieldLine(nameof(ToValue), ToValue);
         }
     }
 

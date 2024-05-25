@@ -282,7 +282,6 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            xxxxxxxxx
             RewoundLoops(CompletedLoops + 1);
             return this;
         }

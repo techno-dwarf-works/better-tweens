@@ -10,7 +10,6 @@ namespace Better.Tweens.Runtime
     {
         protected virtual void CompleteLoop()
         {
-            xxxxxxxxx
             if (CompletedLoops >= LoopCount)
             {
                 var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be increased";
@@ -56,7 +55,6 @@ namespace Better.Tweens.Runtime
 
         protected virtual void RewoundLoop()
         {
-            xxxxxxxx
             if (!IsRewindable())
             {
                 var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be rewindable";
@@ -65,7 +63,7 @@ namespace Better.Tweens.Runtime
             }
 
             CompletedLoops--;
-            CompletedLoops = Mathf.Min(CompletedLoops, 0);
+            CompletedLoops = Mathf.Max(CompletedLoops, 0);
 
             OnLoopRewound();
         }
