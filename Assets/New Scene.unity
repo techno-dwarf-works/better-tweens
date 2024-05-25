@@ -281,7 +281,7 @@ MonoBehaviour:
       _duration: 10
       _startDelay: 0
       _loopDelay: 0
-      _loopMode: 0
+      _loopMode: 2
       _fromMode: 1
       _fromValue: 1
       _optionsMode: 0

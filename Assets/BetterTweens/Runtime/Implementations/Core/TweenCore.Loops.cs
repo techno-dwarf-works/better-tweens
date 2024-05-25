@@ -2,7 +2,6 @@
 using Better.StateMachine.Runtime.Modules.Snapshot;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
-using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
@@ -10,12 +9,13 @@ namespace Better.Tweens.Runtime
     {
         protected virtual void CompleteLoop()
         {
-            if (CompletedLoops >= LoopCount)
-            {
-                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be increased";
-                LogUtility.LogException(message);
-                return;
-            }
+            // TODO: validation ?
+            // if (CompletedLoops >= LoopCount)
+            // {
+            //     var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be increased";
+            //     LogUtility.LogException(message);
+            //     return;
+            // }
 
             CompletedLoops++;
             OnLoopCompleted();
@@ -26,10 +26,11 @@ namespace Better.Tweens.Runtime
             // TODO: handle change state
             for (int i = 0; i < loopCount; i++)
             {
-                if (!IsCompletable())
-                {
-                    return;
-                }
+                // TODO: validation ?
+                // if (!IsCompletable())
+                // {
+                //     return;
+                // }
 
                 CompleteLoop();
             }
@@ -55,15 +56,18 @@ namespace Better.Tweens.Runtime
 
         protected virtual void RewoundLoop()
         {
-            if (!IsRewindable())
-            {
-                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be rewindable";
-                LogUtility.LogException(message);
-                return;
-            }
+            // TODO: validation ?
+            // if (!IsRewindable())
+            // {
+            //     var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be rewindable";
+            //     LogUtility.LogException(message);
+            //     return;
+            // }
 
-            CompletedLoops--;
-            CompletedLoops = Mathf.Max(CompletedLoops, 0);
+            if (CompletedLoops > 0)
+            {
+                CompletedLoops--;
+            }
 
             OnLoopRewound();
         }
@@ -73,10 +77,11 @@ namespace Better.Tweens.Runtime
             // TODO: handle change state
             for (int i = 0; i < loopCount; i++)
             {
-                if (!IsRewindable())
-                {
-                    return;
-                }
+                // TODO: validation ?
+                // if (!IsRewindable())
+                // {
+                //     return;
+                // }
 
                 RewoundLoop();
             }

@@ -275,12 +275,13 @@ namespace Better.Tweens.Runtime
             Stop();
         }
 
-        public TweenCore InstantRewound()
+        public virtual TweenCore InstantRewound()
         {
-            if (!IsRewindable())
-            {
-                return this;
-            }
+            // TODO: validation ?
+            // if (!IsRewindable())
+            // {
+            //     return this;
+            // }
 
             RewoundLoops(CompletedLoops + 1);
             return this;

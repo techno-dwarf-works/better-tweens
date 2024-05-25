@@ -27,7 +27,7 @@ namespace Better.Tweens.Runtime
         {
             FromValue = GetFromBy(FromMode);
             ToValue = CalculateTo(FromValue, _options, OptionsMode);
-            
+
             base.OnStarted();
         }
 
@@ -121,10 +121,11 @@ namespace Better.Tweens.Runtime
         {
             base.OnLoopCompleted();
 
-            if (!IsPlaying())
-            {
-                return;
-            }
+            // TODO: validation ?
+            // if (!IsPlaying())
+            // {
+            //     return;
+            // }
 
             switch (LoopMode)
             {
@@ -145,10 +146,16 @@ namespace Better.Tweens.Runtime
         {
             base.OnLoopRewound();
 
-            if (!IsRewinding())
+            // TODO: validation ?
+            if (IsRewound())
             {
                 return;
             }
+            // TODO: validation ?
+            // if (!IsRewinding())
+            // {
+            //     return;
+            // }
 
             switch (LoopMode)
             {
