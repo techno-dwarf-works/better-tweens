@@ -7,11 +7,8 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract partial class ProgressableCore : TweenCore
     {
-        private enum ProgressDirection
-        {
-            Forward = 1,
-            Backward = -1,
-        }
+        private const float PlayingProgressMod = 1f;
+        private const float RewindingProgressMod = -1f;
 
         [SerializeField] private ImplementationOverridable<Ease> _ease;
 
@@ -26,7 +23,7 @@ namespace Better.Tweens.Runtime
 
         [SerializeField] private LoopMode _loopMode;
 
-        private ProgressDirection _progressDirection;
+        private float _progressDirectionMod;
 
         public float Duration => _duration;
         public float StartDelay => _startDelay;

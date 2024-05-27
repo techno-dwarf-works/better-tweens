@@ -20,7 +20,7 @@
 
         protected internal override void OnPlay()
         {
-            _progressDirection = ProgressDirection.Forward;
+            _progressDirectionMod = PlayingProgressMod;
 
             base.OnPlay();
 
@@ -32,7 +32,7 @@
 
         protected internal override void OnRewind()
         {
-            _progressDirection = ProgressDirection.Backward;
+            _progressDirectionMod = RewindingProgressMod;
 
             base.OnRewind();
 

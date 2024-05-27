@@ -1,7 +1,4 @@
-﻿using Better.StateMachine.Runtime;
-using Better.StateMachine.Runtime.Modules.Snapshot;
-using Better.Tweens.Runtime.States;
-using Better.Tweens.Runtime.Utility;
+﻿using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
@@ -38,12 +35,11 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnLoopCompleted()
         {
-            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
-            var snapshotToken = snapshotModule.CreateToken();
+            var rootStateToken = _handlingMachine.CurrentState.Token;
 
             ActionUtility.Invoke(LoopCompleted);
             HandleOverLoops();
-            if (snapshotToken.HasChanges)
+            if (rootStateToken.IsCancellationRequested)
             {
                 return;
             }
@@ -89,11 +85,10 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnLoopRewound()
         {
-            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
-            var snapshotToken = snapshotModule.CreateToken();
+            var rootStateToken = _handlingMachine.CurrentState.Token;
 
             ActionUtility.Invoke(LoopRewound);
-            if (snapshotToken.HasChanges)
+            if (rootStateToken.IsCancellationRequested)
             {
                 return;
             }
@@ -106,6 +101,8 @@ namespace Better.Tweens.Runtime
 
         private void HandleOverLoops()
         {
+            // TODO: Check it. Completed loops it increase_able when infinity, etc
+            
             if (CompletedLoops <= Data.LoopCount.MaxValue)
             {
                 return;
@@ -114,11 +111,10 @@ namespace Better.Tweens.Runtime
             var message = $"Overloops({nameof(CompletedLoops)}: {CompletedLoops}) handling, try will restart with infinity loops...";
             LogUtility.LogWarning(message);
 
-            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
-            var snapshotToken = snapshotModule.CreateToken();
+            var rootStateToken = _handlingMachine.CurrentState.Token;
 
             Stop();
-            if (snapshotToken.HasChanges)
+            if (rootStateToken.IsCancellationRequested)
             {
                 return;
             }

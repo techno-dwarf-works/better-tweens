@@ -6,21 +6,20 @@
 
         public override void OnEntered()
         {
-            OnPreEntered();
             base.OnEntered();
-
-            if (IsActive)
-            {
-                Source.OnPlay();
-            }
-        }
-
-        private void OnPreEntered()
-        {
-            if (!IsActive)
+            TryStartNotify();
+            
+            if (Token.IsCancellationRequested)
             {
                 return;
             }
+
+            Source.OnPlay();
+        }
+
+        private void TryStartNotify()
+        {
+            if (Token.IsCancellationRequested) return;
 
             if (_startTrigger)
             {

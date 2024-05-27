@@ -54,6 +54,7 @@ namespace Better.Tweens.Runtime
             {
                 var loopsCount = (int)LoopProgress;
                 var extraProgress = LoopProgress - loopsCount;
+                
                 CompleteLoops(loopsCount);
                 LoopProgress += extraProgress;
             }
@@ -69,6 +70,7 @@ namespace Better.Tweens.Runtime
                     var absedLoopProgress = Mathf.Abs(LoopProgress);
                     var loopsCount = (int)absedLoopProgress + 1;
                     var extraProgress = absedLoopProgress % 1f;
+                    
                     RewoundLoops(loopsCount);
                     LoopProgress -= extraProgress;
                 }
@@ -82,7 +84,7 @@ namespace Better.Tweens.Runtime
         private void ApplyProgressMod(ref float value)
         {
             value /= Duration;
-            value *= (float)_progressDirection;
+            value *= _progressDirectionMod;
         }
 
         protected abstract void EvaluateState(float time);

@@ -13,13 +13,13 @@
         {
             base.OnEntered();
 
-            if (!IsActive)
+            if (Token.IsCancellationRequested)
             {
                 return;
             }
 
             Source.Sleep();
-            if (IsActive)
+            if (!Token.IsCancellationRequested)
             {
                 TryNotify();
             }

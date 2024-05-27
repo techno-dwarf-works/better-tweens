@@ -6,13 +6,13 @@
         {
             base.OnEntered();
 
-            if (!IsActive)
+            if (Token.IsCancellationRequested)
             {
                 return;
             }
 
             Source.Enable();
-            if (IsActive)
+            if (!Token.IsCancellationRequested)
             {
                 Source.OnRunned();
             }

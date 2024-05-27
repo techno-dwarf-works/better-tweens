@@ -1,6 +1,5 @@
 ﻿using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
-using Better.StateMachine.Runtime.Modules.Snapshot;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
 
@@ -24,15 +23,11 @@ namespace Better.Tweens.Runtime
             }
 
             Initialized = true;
-            CompletedLoops = 0;
-
+            InitializeOverridableData();
             InitializeMachines();
+
             _activityMachine.Run();
             _handlingMachine.Run();
-
-            var state = GetHandlingState<StoppedState>();
-            state.SuppressNextNotify();
-            _handlingMachine.ChangeState(state);
 
             OnInitialized();
         }
@@ -54,17 +49,30 @@ namespace Better.Tweens.Runtime
             _activityMachine.StateChanged += OnActivityStateChanged;
             activityCacheModule.StateCached += OnActivityStateCached;
             activityOverflowModule.Locked += OnMachineOverflowed;
-            
+
             _handlingMachine = new();
-            _handlingMachine.AddModule<HandlingState, SnapshotModule<HandlingState>>();
             var handlingCacheModule = _handlingMachine.AddModule<HandlingState, CacheModule<HandlingState>>();
             var handlingOverflowModule = _handlingMachine.AddModule<HandlingState, StackOverflowModule<HandlingState>>();
-            
+
             _handlingMachine.StateChanged += OnHandlingStateChanged;
             handlingCacheModule.StateCached += OnHandlingStateCached;
             handlingOverflowModule.Locked += OnMachineOverflowed;
         }
 
-        protected abstract void OnInitialized();
+        private void InitializeOverridableData()
+        {
+            _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
+            _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
+            _sleepingDuration.SetSource(SettingsData.SleepingDuration);
+            _completionAction.SetSource(SettingsData.CompletionAction);
+            _rewoundAction.SetSource(SettingsData.RewoundAction);
+        }
+
+        protected virtual void OnInitialized()
+        {
+            var stoppedState = GetHandlingState<StoppedState>();
+            stoppedState.SuppressNextNotify();
+            _handlingMachine.ChangeState(stoppedState);
+        }
     }
 }

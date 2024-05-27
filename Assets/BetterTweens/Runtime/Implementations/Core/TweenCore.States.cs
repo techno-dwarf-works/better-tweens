@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
-using Better.StateMachine.Runtime.Modules.Snapshot;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
 
@@ -127,14 +126,7 @@ namespace Better.Tweens.Runtime
 
         protected internal virtual void OnStarted()
         {
-            _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
-            _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
-            _sleepingDuration.SetSource(SettingsData.SleepingDuration);
-            _completionAction.SetSource(SettingsData.CompletionAction);
-            _rewoundAction.SetSource(SettingsData.RewoundAction);
-
             CompletedLoops = 0;
-
             ActionUtility.Invoke(Started);
         }
 
@@ -236,17 +228,18 @@ namespace Better.Tweens.Runtime
 
         public TweenCore InstantComplete()
         {
-            if (!IsCompletable())
-            {
-                return this;
-            }
+            // TODO: validation ?
+            // if (!IsCompletable())
+            // {
+            //     return this;
+            // }
 
-            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
-            var snapshotToken = snapshotModule.CreateToken();
+            var rootStateToken = _handlingMachine.CurrentState.Token;
 
             var loopCount = LoopCount - CompletedLoops;
             CompleteLoops(loopCount);
-            if (InfinityLoops && !snapshotToken.HasChanges)
+
+            if (InfinityLoops && !rootStateToken.IsCancellationRequested)
             {
                 OnCompleted();
             }
@@ -256,16 +249,15 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnCompleted()
         {
-            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
-            var snapshotToken = snapshotModule.CreateToken();
+            var rootStateToken = _handlingMachine.CurrentState.Token;
 
             ActionUtility.Invoke(Completed);
-            if (snapshotToken.HasChanges)
+            if (rootStateToken.IsCancellationRequested)
             {
                 return;
             }
 
-            if (CompletionAction != null && CompletionAction.TryInvoke(this) && snapshotToken.HasChanges)
+            if (CompletionAction != null && CompletionAction.TryInvoke(this) && rootStateToken.IsCancellationRequested)
             {
                 return;
             }
@@ -289,16 +281,15 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnRewound()
         {
-            var snapshotModule = _handlingMachine.GetModule<HandlingState, SnapshotModule<HandlingState>>();
-            var snapshotToken = snapshotModule.CreateToken();
+            var rootStateToken = _handlingMachine.CurrentState.Token;
 
             ActionUtility.Invoke(Rewound);
-            if (snapshotToken.HasChanges)
+            if (rootStateToken.IsCancellationRequested)
             {
                 return;
             }
 
-            if (RewoundAction != null && RewoundAction.TryInvoke(this) && snapshotToken.HasChanges)
+            if (RewoundAction != null && RewoundAction.TryInvoke(this) && rootStateToken.IsCancellationRequested)
             {
                 return;
             }

@@ -369,16 +369,9 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
-        public TweenCore RemoveTriggers(string tag)
+        public TweenCore RemoveTriggers(string id)
         {
-            if (tag.IsNullOrEmpty())
-            {
-                var message = $"{nameof(tag)} cannot be null or empty";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            return RemoveTriggers(trigger => trigger.CompareId(tag));
+            return RemoveTriggers(trigger => trigger.CompareId(id));
         }
 
         #endregion

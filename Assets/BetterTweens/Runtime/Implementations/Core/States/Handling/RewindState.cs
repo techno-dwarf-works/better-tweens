@@ -6,10 +6,12 @@
         {
             base.OnEntered();
 
-            if (IsActive)
+            if (Token.IsCancellationRequested)
             {
-                Source.OnRewind();
+                return;
             }
+
+            Source.OnRewind();
         }
     }
 }
