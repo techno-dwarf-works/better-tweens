@@ -34,9 +34,9 @@ namespace Better.Tweens.Runtime
         protected virtual void OnLoopCompleted()
         {
             var rootStateToken = GetHandlingStateToken();
-
             ActionUtility.Invoke(LoopCompleted);
             HandleOverLoops();
+
             if (rootStateToken.IsCancellationRequested)
             {
                 return;
@@ -90,20 +90,22 @@ namespace Better.Tweens.Runtime
 
         private void HandleOverLoops()
         {
-            // TODO: Check it. Completed loops it increase_able when infinity, etc
-
-            if (CompletedLoops <= Data.LoopCount.MaxValue)
+            if (CompletedLoops <= OverLoopsThreshold)
             {
                 return;
             }
 
-            var message = $"Overloops({nameof(CompletedLoops)}: {CompletedLoops}) handling, try will restart with infinity loops...";
+            if (InfinityLoops)
+            {
+                CompletedLoops %= OverLoopsThreshold;
+                return;
+            }
+
+            var message = $"{nameof(CompletedLoops)}({CompletedLoops}) is overlooped: handling, try will restart with infinity loops...";
             LogUtility.LogWarning(message);
 
-            var rootStateToken = GetHandlingStateToken();
-
             Stop();
-            if (rootStateToken.IsCancellationRequested)
+            if (!IsStopped())
             {
                 return;
             }

@@ -14,6 +14,7 @@ namespace Better.Tweens.Runtime
     public abstract partial class TweenCore
     {
         protected const float MinTime = 0f;
+        private const int OverLoopsThreshold = Data.LoopCount.MaxValue;
 
         public event Action StateChanged;
         public event Action ActivityChanged;

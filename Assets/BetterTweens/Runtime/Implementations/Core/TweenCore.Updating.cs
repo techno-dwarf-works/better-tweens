@@ -6,7 +6,6 @@ namespace Better.Tweens.Runtime
     {
         internal void OnUpdate(float deltaTime)
         {
-            // TODO: Check invoking when overflowed process active (machines is locked)
             if (InvokeTriggers())
             {
                 return;
