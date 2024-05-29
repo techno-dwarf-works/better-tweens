@@ -4,38 +4,36 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        protected virtual void CompleteLoop()
+        public virtual void InstantCompleteLoop()
         {
-            // TODO: validation ?
-            // if (CompletedLoops >= LoopCount)
-            // {
-            //     var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be increased";
-            //     LogUtility.LogException(message);
-            //     return;
-            // }
+            if (!IsCompletable())
+            {
+                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be completed";
+                LogUtility.LogException(message);
+                return;
+            }
 
             CompletedLoops++;
             OnLoopCompleted();
         }
 
-        protected void CompleteLoops(int loopCount)
+        public void InstantCompleteLoops(int loopCount)
         {
-            // TODO: handle change state
+            var rootStateToken = GetHandlingStateToken();
             for (int i = 0; i < loopCount; i++)
             {
-                // TODO: validation ?
-                // if (!IsCompletable())
-                // {
-                //     return;
-                // }
+                InstantCompleteLoop();
 
-                CompleteLoop();
+                if (rootStateToken.IsCancellationRequested)
+                {
+                    return;
+                }
             }
         }
 
         protected virtual void OnLoopCompleted()
         {
-            var rootStateToken = _handlingMachine.CurrentState.Token;
+            var rootStateToken = GetHandlingStateToken();
 
             ActionUtility.Invoke(LoopCompleted);
             HandleOverLoops();
@@ -50,16 +48,8 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        protected virtual void RewoundLoop()
+        public virtual void InstantRewoundLoop()
         {
-            // TODO: validation ?
-            // if (!IsRewindable())
-            // {
-            //     var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be rewindable";
-            //     LogUtility.LogException(message);
-            //     return;
-            // }
-
             if (CompletedLoops > 0)
             {
                 CompletedLoops--;
@@ -68,24 +58,23 @@ namespace Better.Tweens.Runtime
             OnLoopRewound();
         }
 
-        protected void RewoundLoops(int loopCount)
+        public void InstantRewoundLoops(int loopCount)
         {
-            // TODO: handle change state
+            var rootStateToken = GetHandlingStateToken();
             for (int i = 0; i < loopCount; i++)
             {
-                // TODO: validation ?
-                // if (!IsRewindable())
-                // {
-                //     return;
-                // }
+                InstantRewoundLoop();
 
-                RewoundLoop();
+                if (rootStateToken.IsCancellationRequested)
+                {
+                    return;
+                }
             }
         }
 
         protected virtual void OnLoopRewound()
         {
-            var rootStateToken = _handlingMachine.CurrentState.Token;
+            var rootStateToken = GetHandlingStateToken();
 
             ActionUtility.Invoke(LoopRewound);
             if (rootStateToken.IsCancellationRequested)
@@ -102,7 +91,7 @@ namespace Better.Tweens.Runtime
         private void HandleOverLoops()
         {
             // TODO: Check it. Completed loops it increase_able when infinity, etc
-            
+
             if (CompletedLoops <= Data.LoopCount.MaxValue)
             {
                 return;
@@ -111,7 +100,7 @@ namespace Better.Tweens.Runtime
             var message = $"Overloops({nameof(CompletedLoops)}: {CompletedLoops}) handling, try will restart with infinity loops...";
             LogUtility.LogWarning(message);
 
-            var rootStateToken = _handlingMachine.CurrentState.Token;
+            var rootStateToken = GetHandlingStateToken();
 
             Stop();
             if (rootStateToken.IsCancellationRequested)

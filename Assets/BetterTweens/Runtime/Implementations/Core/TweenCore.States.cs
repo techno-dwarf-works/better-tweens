@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Better.StateMachine.Runtime;
 using Better.StateMachine.Runtime.Modules;
 using Better.Tweens.Runtime.States;
@@ -79,7 +80,7 @@ namespace Better.Tweens.Runtime
             ActionUtility.Invoke(Disabled);
         }
 
-        protected internal void OnActivityStateChanged(ActivityState state)
+        private void OnActivityStateChanged(ActivityState state)
         {
             ActionUtility.Invoke(ActivityChanged);
             OnStateChanged();
@@ -95,6 +96,17 @@ namespace Better.Tweens.Runtime
         {
             var module = _activityMachine.GetModule<ActivityState, CacheModule<ActivityState>>();
             return module.GetOrAddState<TState>();
+        }
+        
+        protected CancellationToken GetActivityStateToken()
+        {
+            TryInitialize();
+            if (!ValidateInitialized(true))
+            {
+                return CancellationToken.None;
+            }
+
+            return _activityMachine.CurrentState.Token;
         }
 
         #endregion
@@ -228,16 +240,14 @@ namespace Better.Tweens.Runtime
 
         public TweenCore InstantComplete()
         {
-            // TODO: validation ?
-            // if (!IsCompletable())
-            // {
-            //     return this;
-            // }
+            if (!IsCompletable())
+            {
+                return this;
+            }
 
-            var rootStateToken = _handlingMachine.CurrentState.Token;
-
+            var rootStateToken = GetHandlingStateToken();
             var loopCount = LoopCount - CompletedLoops;
-            CompleteLoops(loopCount);
+            InstantCompleteLoops(loopCount);
 
             if (InfinityLoops && !rootStateToken.IsCancellationRequested)
             {
@@ -249,7 +259,7 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnCompleted()
         {
-            var rootStateToken = _handlingMachine.CurrentState.Token;
+            var rootStateToken = GetHandlingStateToken();
 
             ActionUtility.Invoke(Completed);
             if (rootStateToken.IsCancellationRequested)
@@ -269,19 +279,18 @@ namespace Better.Tweens.Runtime
 
         public virtual TweenCore InstantRewound()
         {
-            // TODO: validation ?
-            // if (!IsRewindable())
-            // {
-            //     return this;
-            // }
+            if (!IsRewindable())
+            {
+                return this;
+            }
 
-            RewoundLoops(CompletedLoops + 1);
+            InstantRewoundLoops(CompletedLoops + 1);
             return this;
         }
 
         protected virtual void OnRewound()
         {
-            var rootStateToken = _handlingMachine.CurrentState.Token;
+            var rootStateToken = GetHandlingStateToken();
 
             ActionUtility.Invoke(Rewound);
             if (rootStateToken.IsCancellationRequested)
@@ -324,6 +333,17 @@ namespace Better.Tweens.Runtime
             return module.GetOrAddState<TState>();
         }
 
+        protected CancellationToken GetHandlingStateToken()
+        {
+            TryInitialize();
+            if (!ValidateInitialized(true))
+            {
+                return CancellationToken.None;
+            }
+
+            return _handlingMachine.CurrentState.Token;
+        }
+
         #endregion
 
         protected virtual void OnStateChanged()
@@ -350,7 +370,8 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
-            // TODO: Log?
+            var message = $"States was stack overflowed, will be {nameof(Stop)}";
+            LogUtility.LogWarning(message);
             Stop();
         }
     }

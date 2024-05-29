@@ -2,32 +2,32 @@
 {
     public abstract partial class ProgressableCore
     {
-        protected override void CompleteLoop()
+        public override void InstantCompleteLoop()
         {
             LoopProgress = 0f;
 
-            base.CompleteLoop();
-        }
-
-        protected override void RewoundLoop()
-        {
-            LoopProgress = CompletedLoops > 0 ? 1f : 0f;
-
-            base.RewoundLoop();
+            base.InstantCompleteLoop();
         }
 
         protected override void OnLoopCompleted()
         {
-            EvaluateStateByLoop(1f);
             RemainingDelay = LoopDelay;
+            EvaluateStateByLoop(1f);
 
             base.OnLoopCompleted();
         }
 
+        public override void InstantRewoundLoop()
+        {
+            LoopProgress = CompletedLoops > 0 ? 1f : 0f;
+
+            base.InstantRewoundLoop();
+        }
+
         protected override void OnLoopRewound()
         {
-            EvaluateStateByLoop(0f);
             RemainingDelay = CompletedLoops == 0 ? StartDelay : LoopDelay;
+            EvaluateStateByLoop(0f);
 
             base.OnLoopRewound();
         }

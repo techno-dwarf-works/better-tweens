@@ -23,11 +23,7 @@ namespace Better.Tweens.Runtime
 
         protected TValue FromValue { get; private set; }
         protected TValue ToValue { get; private set; }
-
-        protected override void OnInitialized()
-        {
-        }
-
+        
         protected internal override void OnStarted()
         {
             FromValue = GetFromBy(FromMode);
@@ -124,13 +120,13 @@ namespace Better.Tweens.Runtime
 
         protected override void OnLoopCompleted()
         {
+            var rootStateToken = GetHandlingStateToken();
             base.OnLoopCompleted();
 
-            // TODO: validation ?
-            // if (!IsPlaying())
-            // {
-            //     return;
-            // }
+            if (rootStateToken.IsCancellationRequested)
+            {
+                return;
+            }
 
             switch (LoopMode)
             {
@@ -149,18 +145,13 @@ namespace Better.Tweens.Runtime
 
         protected override void OnLoopRewound()
         {
+            var rootStateToken = GetHandlingStateToken();
             base.OnLoopRewound();
 
-            // TODO: validation ?
-            if (IsRewound())
+            if (rootStateToken.IsCancellationRequested)
             {
                 return;
             }
-            // TODO: validation ?
-            // if (!IsRewinding())
-            // {
-            //     return;
-            // }
 
             switch (LoopMode)
             {

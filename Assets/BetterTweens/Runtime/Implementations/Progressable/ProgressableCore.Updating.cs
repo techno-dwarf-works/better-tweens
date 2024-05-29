@@ -50,34 +50,32 @@ namespace Better.Tweens.Runtime
             }
 
             LoopProgress += value;
-            if (LoopProgress >= 1f)
+            if (LoopProgress > 0f && LoopProgress < 1f)
+            {
+                EvaluateStateByLoop(LoopProgress);
+                return;
+            }
+
+            var rootStateToken = GetHandlingStateToken();
+            var extraProgress = 0f;
+            
+            if (LoopProgress > 0f)
             {
                 var loopsCount = (int)LoopProgress;
-                var extraProgress = LoopProgress - loopsCount;
-                
-                CompleteLoops(loopsCount);
-                LoopProgress += extraProgress;
-            }
-            else if (LoopProgress <= 0f)
-            {
-                if (CompletedLoops == 0)
-                {
-                    LoopProgress = 0f;
-                    OnLoopRewound();
-                }
-                else
-                {
-                    var absedLoopProgress = Mathf.Abs(LoopProgress);
-                    var loopsCount = (int)absedLoopProgress + 1;
-                    var extraProgress = absedLoopProgress % 1f;
-                    
-                    RewoundLoops(loopsCount);
-                    LoopProgress -= extraProgress;
-                }
+                extraProgress += LoopProgress - loopsCount;
+                InstantCompleteLoops(loopsCount);
             }
             else
             {
-                EvaluateStateByLoop(LoopProgress);
+                var absedLoopProgress = Mathf.Abs(LoopProgress);
+                var loopsCount = (int)absedLoopProgress + 1;
+                extraProgress -= absedLoopProgress % 1f;
+                InstantRewoundLoops(loopsCount);
+            }
+            
+            if (!rootStateToken.IsCancellationRequested)
+            {
+                LoopProgress += extraProgress;
             }
         }
 

@@ -1,10 +1,11 @@
-﻿namespace Better.Tweens.Runtime
+﻿using Better.Tweens.Runtime.Utility;
+
+namespace Better.Tweens.Runtime
 {
     public abstract partial class ProgressableCore
     {
         protected internal override void OnStarted()
         {
-            _ease.SetSource(SettingsData.Ease);
             RemainingDelay = StartDelay;
             LoopProgress = 0f;
             EvaluateStateByLoop(LoopProgress);
@@ -13,7 +14,9 @@
 
             if (IsRunning() && InfinityLoops && Duration <= MinTime)
             {
-                // TODO: Log?
+                var message = $"Cannot started with {nameof(InfinityLoops)} and {nameof(Duration)} less of {nameof(MinTime)}({MinTime}), will be {nameof(Stop)}";
+                LogUtility.LogWarning(message);
+
                 Stop();
             }
         }
