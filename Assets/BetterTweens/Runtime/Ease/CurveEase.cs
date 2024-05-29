@@ -16,9 +16,10 @@ namespace Better.Tweens.Runtime
         {
             if (source == null)
             {
-                var message = $"{nameof(source)} cannot be null";
+                var message = $"{nameof(source)} cannot be null, will be used linear";
                 LogUtility.LogException(message);
-                return;
+                
+                source = AnimationCurve.Linear(0f, 0f, 1f, 1f);
             }
 
             _source = source;

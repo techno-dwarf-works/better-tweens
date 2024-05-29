@@ -304,7 +304,7 @@ namespace Better.Tweens.Runtime
             if (trigger == null)
             {
                 var message = $"{nameof(trigger)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogException(message);
                 return this;
             }
 
@@ -319,21 +319,21 @@ namespace Better.Tweens.Runtime
             if (id.IsNullOrEmpty())
             {
                 var message = $"{nameof(id)} cannot be null or empty";
-                LogUtility.LogWarning(message);
+                LogUtility.LogException(message);
                 return this;
             }
 
             if (action == null)
             {
                 var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogException(message);
                 return this;
             }
 
             if (condition == null)
             {
                 var message = $"{nameof(condition)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogException(message);
                 return this;
             }
 
@@ -361,7 +361,7 @@ namespace Better.Tweens.Runtime
             if (predicate == null)
             {
                 var message = $"{nameof(predicate)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogException(message);
                 return this;
             }
 

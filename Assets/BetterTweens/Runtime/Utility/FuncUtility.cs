@@ -12,25 +12,25 @@ namespace Better.Tweens.Runtime.Utility
             _settings = TweensSettings.Instance;
         }
 
-        public static bool Validate<TResult>(Func<TResult> func, bool logWarning = true)
+        public static bool Validate<TResult>(Func<TResult> func, bool logError = true)
         {
             var isValid = func != null;
-            if (!isValid && logWarning)
+            if (!isValid && logError)
             {
                 var message = $"{nameof(func)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogError(message);
             }
 
             return isValid;
         }
 
-        public static bool Validate<TValue, TResult>(Func<TValue, TResult> func, bool logWarning = true)
+        public static bool Validate<TValue, TResult>(Func<TValue, TResult> func, bool logError = true)
         {
             var isValid = func != null;
-            if (!isValid && logWarning)
+            if (!isValid && logError)
             {
                 var message = $"{nameof(func)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogError(message);
             }
 
             return isValid;

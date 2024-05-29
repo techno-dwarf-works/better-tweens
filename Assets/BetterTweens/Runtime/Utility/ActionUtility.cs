@@ -13,13 +13,13 @@ namespace Better.Tweens.Runtime.Utility
             _settings = TweensSettings.Instance;
         }
 
-        public static bool Validate(Action action, bool logWarning = true)
+        public static bool Validate(Action action, bool logError = true)
         {
             var isValid = action != null;
-            if (!isValid && logWarning)
+            if (!isValid && logError)
             {
                 var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogWarning(message);
+                LogUtility.LogError(message);
             }
 
             return isValid;

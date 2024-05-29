@@ -8,8 +8,6 @@ namespace Better.Tweens.Runtime
         {
             if (!IsCompletable())
             {
-                var message = $"{nameof(CompletedLoops)}({CompletedLoops}) cannot be completed";
-                LogUtility.LogException(message);
                 return;
             }
 
