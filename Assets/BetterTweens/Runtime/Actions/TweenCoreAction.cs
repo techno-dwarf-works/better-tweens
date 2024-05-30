@@ -1,16 +1,23 @@
 ﻿using System;
+using Better.Tweens.Runtime.Settings;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime.Actions
 {
     [Serializable]
     public abstract class TweenCoreAction
     {
-        // TODO: Add SafeInvoke
-        
+        private SettingsData Settings => TweensSettings.Instance.Current;
+
         public bool TryInvoke(TweenCore tweenCore)
         {
             if (ReadinessFor(tweenCore))
             {
+                if (Settings.SafeMode)
+                {
+                    return SafeInvoke(tweenCore);
+                }
+
                 Invoke(tweenCore);
                 return true;
             }
@@ -18,8 +25,28 @@ namespace Better.Tweens.Runtime.Actions
             return false;
         }
 
-        public abstract void Invoke(TweenCore tweenCore);
-        public abstract bool ReadinessFor(TweenCore tweenCore);
+        protected abstract void Invoke(TweenCore tweenCore);
+
+        protected bool SafeInvoke(TweenCore tweenCore, bool logException = true)
+        {
+            try
+            {
+                Invoke(tweenCore);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                if (logException)
+                {
+                    LogUtility.LogException(exception);
+                }
+
+                return false;
+            }
+        }
+
+        protected abstract bool ReadinessFor(TweenCore tweenCore);
+
         public abstract TweenCoreAction Clone();
     }
 }

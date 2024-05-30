@@ -23,7 +23,7 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnPostUpdated(float deltaTime)
         {
-            ActionUtility.Invoke(Updated);
+            ActionUtility.TryInvokeBySafe(Updated);
         }
 
         protected bool InvokeTriggers()

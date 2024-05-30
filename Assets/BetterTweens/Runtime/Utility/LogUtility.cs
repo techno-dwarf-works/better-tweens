@@ -1,4 +1,5 @@
-﻿using Better.Tweens.Runtime.Logs;
+﻿using System;
+using Better.Tweens.Runtime.Logs;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Utility
@@ -6,7 +7,7 @@ namespace Better.Tweens.Runtime.Utility
     public static class LogUtility
     {
         public const char NameValueSeparator = ':';
-        
+
         private static TweensSettings _settings;
 
         static LogUtility()
@@ -50,6 +51,11 @@ namespace Better.Tweens.Runtime.Utility
             Log(message, LogLevel.Exception);
         }
 
+        public static void LogException(Exception exception)
+        {
+            LogException(exception.Message);
+        }
+        
         public static bool AllowLogLevel(LogLevel logLevel)
         {
             return logLevel >= _settings.Current.LogLevel;

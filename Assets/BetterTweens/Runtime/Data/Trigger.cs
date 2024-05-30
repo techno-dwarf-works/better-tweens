@@ -43,14 +43,7 @@ namespace Better.Tweens.Runtime.Triggers
 
         public bool Invoke(TweenCore tweenCore)
         {
-            if (_action.ReadinessFor(tweenCore)
-                && _condition.Invoke())
-            {
-                _action.Invoke(tweenCore);
-                return true;
-            }
-
-            return false;
+            return _condition.Invoke() && _action.TryInvoke(tweenCore);
         }
 
         public bool CompareId(string value)

@@ -1,87 +1,63 @@
 ﻿using System;
+using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Logs;
 
 namespace Better.Tweens.Runtime.Utility
 {
     public static class FuncUtility
     {
-        private static TweensSettings _settings;
+        private static TweensSettings Settings { get; }
+        private static bool SafeMode => Settings.Current.SafeMode;
 
         static FuncUtility()
         {
-            _settings = TweensSettings.Instance;
+            Settings = TweensSettings.Instance;
         }
 
-        public static bool Validate<TResult>(Func<TResult> func, bool logError = true)
+        public static bool Validate<TResult>(Func<TResult> func, bool logException = true)
         {
             var isValid = func != null;
-            if (!isValid && logError)
+            if (!isValid && logException)
             {
                 var message = $"{nameof(func)} cannot be null";
-                LogUtility.LogError(message);
+                LogUtility.LogException(message);
             }
 
             return isValid;
         }
 
-        public static bool Validate<TValue, TResult>(Func<TValue, TResult> func, bool logError = true)
+        public static bool Validate<TValue, TResult>(Func<TValue, TResult> func, bool logException = true)
         {
             var isValid = func != null;
-            if (!isValid && logError)
+            if (!isValid && logException)
             {
                 var message = $"{nameof(func)} cannot be null";
-                LogUtility.LogError(message);
+                LogUtility.LogException(message);
             }
 
             return isValid;
         }
 
-        public static bool TryInvoke<TResult>(Func<TResult> func, out TResult result)
+        public static bool TryInvokeBySafe<TResult>(Func<TResult> func, out TResult result, bool logException = true)
         {
-            if (!_settings.Current.SafeMode)
+            if (SafeMode)
             {
-                result = func.Invoke();
-                return true;
+                return func.TryInvoke(out result, logException);
             }
 
-            try
-            {
-                result = func.Invoke();
-                return true;
-            }
-            catch (Exception exception)
-            {
-                LogUtility.LogException(exception.Message);
-                result = default;
-                return false;
-            }
+            result = func.Invoke();
+            return true;
         }
 
-        public static bool TryInvoke<TValue, TResult>(Func<TValue, TResult> func, TValue value, out TResult result)
+        public static bool TryInvokeBySafe<TValue, TResult>(Func<TValue, TResult> func, TValue value, out TResult result, bool logException = true)
         {
-            if (func == null)
+            if (SafeMode)
             {
-                result = default;
-                return false;
+                return func.TryInvoke(value, out result, logException);
             }
 
-            if (!_settings.Current.SafeMode)
-            {
-                result = func.Invoke(value);
-                return true;
-            }
-
-            try
-            {
-                result = func.Invoke(value);
-                return true;
-            }
-            catch (Exception exception)
-            {
-                LogUtility.LogException(exception.Message);
-                result = default;
-                return false;
-            }
+            result = func.Invoke(value);
+            return true;
         }
     }
 }

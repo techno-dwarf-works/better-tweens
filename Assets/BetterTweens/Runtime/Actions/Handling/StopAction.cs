@@ -5,12 +5,12 @@ namespace Better.Tweens.Runtime.Actions
     [Serializable]
     public class StopAction : SingleAction<StopAction>
     {
-        public override void Invoke(TweenCore tweenCore)
+        protected override void Invoke(TweenCore tweenCore)
         {
             tweenCore.Stop();
         }
 
-        public override bool ReadinessFor(TweenCore tweenCore)
+        protected override bool ReadinessFor(TweenCore tweenCore)
         {
             return !tweenCore.IsStopped() && tweenCore.IsStoppable();
         }

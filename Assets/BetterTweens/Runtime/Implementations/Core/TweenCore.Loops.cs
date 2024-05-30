@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
         protected virtual void OnLoopCompleted()
         {
             var rootStateToken = GetHandlingStateToken();
-            ActionUtility.Invoke(LoopCompleted);
+            ActionUtility.TryInvokeBySafe(LoopCompleted);
             HandleOverLoops();
 
             if (rootStateToken.IsCancellationRequested)
@@ -74,7 +74,7 @@ namespace Better.Tweens.Runtime
         {
             var rootStateToken = GetHandlingStateToken();
 
-            ActionUtility.Invoke(LoopRewound);
+            ActionUtility.TryInvokeBySafe(LoopRewound);
             if (rootStateToken.IsCancellationRequested)
             {
                 return;

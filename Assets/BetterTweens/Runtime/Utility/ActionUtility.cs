@@ -6,40 +6,46 @@ namespace Better.Tweens.Runtime.Utility
 {
     public static class ActionUtility
     {
-        private static TweensSettings _settings;
+        private static TweensSettings Settings { get; }
+        private static bool SafeMode => Settings.Current.SafeMode;
 
         static ActionUtility()
         {
-            _settings = TweensSettings.Instance;
+            Settings = TweensSettings.Instance;
         }
 
-        public static bool Validate(Action action, bool logError = true)
+        public static bool Validate(Action action, bool logException = true)
         {
             var isValid = action != null;
-            if (!isValid && logError)
+            if (!isValid && logException)
             {
                 var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogError(message);
+                LogUtility.LogException(message);
             }
 
             return isValid;
         }
 
-        public static void Invoke(Action callback)
+        public static bool TryInvokeBySafe(Action action, bool logException = true)
         {
-            if (callback == null)
+            if (SafeMode)
             {
-                return;
+                return action.TryInvoke(logException);
             }
 
-            if (_settings.Current.SafeMode)
+            action.Invoke();
+            return true;
+        }
+
+        public static bool TryInvokeBySafe<TValue>(Action<TValue> action, TValue value, bool logException = true)
+        {
+            if (SafeMode)
             {
-                var allowLogException = LogUtility.AllowLogLevel(LogLevel.Exception);
-                callback.SafeInvoke(allowLogException);
-                return;
+                return action.TryInvoke(value, logException);
             }
 
-            callback.Invoke();
+            action.Invoke(value);
+            return true;
         }
     }
 }

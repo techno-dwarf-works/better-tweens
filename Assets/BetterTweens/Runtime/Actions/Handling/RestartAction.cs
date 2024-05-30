@@ -5,12 +5,12 @@ namespace Better.Tweens.Runtime.Actions
     [Serializable]
     public class RestartAction : SingleAction<RestartAction>
     {
-        public override void Invoke(TweenCore tweenCore)
+        protected override void Invoke(TweenCore tweenCore)
         {
             tweenCore.Restart();
         }
 
-        public override bool ReadinessFor(TweenCore tweenCore)
+        protected override bool ReadinessFor(TweenCore tweenCore)
         {
             return true;
         }

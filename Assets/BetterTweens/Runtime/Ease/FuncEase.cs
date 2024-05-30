@@ -19,7 +19,7 @@ namespace Better.Tweens.Runtime
 
         public override float Evaluate(float time)
         {
-            if (FuncUtility.TryInvoke(_func, time, out var result))
+            if (FuncUtility.TryInvokeBySafe(_func, time, out var result))
             {
                 return result;
             }

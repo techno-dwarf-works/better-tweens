@@ -9,12 +9,12 @@ namespace Better.Tweens.Runtime.Actions
         {
         }
 
-        public override void Invoke(TweenCore tweenCore)
+        protected override void Invoke(TweenCore tweenCore)
         {
             tweenCore.Disable();
         }
 
-        public override bool ReadinessFor(TweenCore tweenCore)
+        protected override bool ReadinessFor(TweenCore tweenCore)
         {
             return !tweenCore.IsDisabled();
         }
