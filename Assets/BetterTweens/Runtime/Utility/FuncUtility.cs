@@ -40,6 +40,12 @@ namespace Better.Tweens.Runtime.Utility
 
         public static bool TryInvokeBySafe<TResult>(Func<TResult> func, out TResult result, bool logException = true)
         {
+            if (func == null)
+            {
+                result = default;
+                return false;
+            }
+
             if (SafeMode)
             {
                 return func.TryInvoke(out result, logException);
@@ -51,6 +57,12 @@ namespace Better.Tweens.Runtime.Utility
 
         public static bool TryInvokeBySafe<TValue, TResult>(Func<TValue, TResult> func, TValue value, out TResult result, bool logException = true)
         {
+            if (func == null)
+            {
+                result = default;
+                return false;
+            }
+
             if (SafeMode)
             {
                 return func.TryInvoke(value, out result, logException);

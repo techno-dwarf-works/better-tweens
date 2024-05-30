@@ -28,6 +28,11 @@ namespace Better.Tweens.Runtime.Utility
 
         public static bool TryInvokeBySafe(Action action, bool logException = true)
         {
+            if (action == null)
+            {
+                return false;
+            }
+
             if (SafeMode)
             {
                 return action.TryInvoke(logException);
@@ -39,6 +44,11 @@ namespace Better.Tweens.Runtime.Utility
 
         public static bool TryInvokeBySafe<TValue>(Action<TValue> action, TValue value, bool logException = true)
         {
+            if (action == null)
+            {
+                return false;
+            }
+
             if (SafeMode)
             {
                 return action.TryInvoke(value, logException);

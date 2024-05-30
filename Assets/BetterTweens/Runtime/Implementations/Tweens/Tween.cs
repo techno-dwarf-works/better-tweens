@@ -23,7 +23,7 @@ namespace Better.Tweens.Runtime
 
         protected TValue FromValue { get; private set; }
         protected TValue ToValue { get; private set; }
-        
+
         protected internal override void OnStarted()
         {
             FromValue = GetFromBy(FromMode);

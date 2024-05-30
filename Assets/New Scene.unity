@@ -250,6 +250,7 @@ MonoBehaviour:
     _sleep: 0
     _disable: 0
     _addTrigger: 0
+    _logState: 0
     _tween:
       _loopCount:
         _infinity: 0
@@ -286,9 +287,9 @@ MonoBehaviour:
       _fromValue: 1
       _optionsMode: 0
       _options: 100
+      CurrentValue: 0
       _id: DebugTween
-      _currentValue: 0
-      _logLevel: 2
+      _lowLevel: 0
   references:
     version: 2
     RefIds:

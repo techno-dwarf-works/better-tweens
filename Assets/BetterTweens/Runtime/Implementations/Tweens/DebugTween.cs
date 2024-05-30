@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
@@ -9,35 +10,32 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public class DebugTween : Tween<int>
     {
+        private const LogLevel LogLevel = Logs.LogLevel.Debug;
         private const string DefaultId = "DebugTween";
 
-        [SerializeField] private string _id = DefaultId;
-        [SerializeField] private int _currentValue;
-        [SerializeField] private LogLevel _logLevel;
+        public int CurrentValue;
 
-        private StringBuilder _logBuilder = new(); // TODO
+        [SerializeField] private string _id = DefaultId;
+        [SerializeField] private bool _lowLevel;
+
+        private StringBuilder _stringBuilder = new();
 
         protected override void OnInitialized()
         {
-            base.OnInitialized();
+            Log("Initialized");
 
-            Log("Initialized;");
+            base.OnInitialized();
         }
 
         protected override int CalculateRelativeFrom(int to, int options)
         {
             var result = to - options;
+            var builder = PrebuildLog("Calculated Relative From")
+                .AppendFieldLine(nameof(to), to)
+                .AppendFieldLine(nameof(options), options)
+                .AppendFieldLine(nameof(result), result);
 
-            _logBuilder.Clear()
-                .AppendLine("Relative From calculated;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(to), to)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(options), options)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(result), result)
-                .AppendLine();
-
-            LogByBuilder();
+            Log(builder);
             return result;
         }
 
@@ -51,155 +49,175 @@ namespace Better.Tweens.Runtime
                 _ => throw new ArgumentOutOfRangeException(nameof(optionsMode), optionsMode, null)
             };
 
-            _logBuilder.Clear()
-                .AppendLine("To calculated;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(from), from)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(options), options)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(optionsMode), optionsMode)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(result), result)
-                .AppendLine();
+            var builder = PrebuildLog("Calculated To")
+                .AppendFieldLine(nameof(from), from)
+                .AppendFieldLine(nameof(options), options)
+                .AppendFieldLine(nameof(optionsMode), optionsMode)
+                .AppendFieldLine(nameof(result), result);
 
-            LogByBuilder();
+            Log(builder);
             return result;
         }
 
         protected override int GetCurrentValue()
         {
-            var result = _currentValue;
+            var result = CurrentValue;
+            var builder = PrebuildLog("Getting current value")
+                .AppendFieldLine(nameof(result), result);
 
-            _logBuilder.Clear()
-                .AppendLine("CurrentValue got;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(result), result)
-                .AppendLine();
-
-            LogByBuilder();
+            Log(builder);
             return result;
         }
 
         protected override int GetRelativeOptions(int from, int to)
         {
             var result = to - from;
+            var builder = PrebuildLog("Getting Relative options")
+                .AppendFieldLine(nameof(from), from)
+                .AppendFieldLine(nameof(to), to)
+                .AppendFieldLine(nameof(result), result);
 
-            _logBuilder.Clear()
-                .AppendLine("Relative options calculated;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(from), from)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(to), to)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(result), result)
-                .AppendLine();
-
-            LogByBuilder();
+            Log(builder);
             return result;
         }
 
         protected override void EvaluateState(int fromValue, int toValue, float time)
         {
             var raw = Mathf.Lerp(fromValue, toValue, time);
-            _currentValue = (int)raw;
+            CurrentValue = (int)raw;
 
-            _logBuilder.Clear()
-                .AppendLine("State evaluated;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(fromValue), fromValue)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(toValue), toValue)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(time), time)
-                .AppendLine();
+            if (_lowLevel)
+            {
+                var builder = PrebuildLog("State Evaluated")
+                    .AppendFieldLine(nameof(fromValue), fromValue)
+                    .AppendFieldLine(nameof(toValue), toValue)
+                    .AppendFieldLine(nameof(time), time);
 
-            // LogByBuilder();
+                Log(builder);
+            }
         }
 
         protected internal override void OnStarted()
         {
-            Log("Started;");
+            Log("Started");
+
             base.OnStarted();
         }
 
         protected override void OnLoopCompleted()
         {
-            Log("Loop completed;");
+            Log("Loop Completed");
+
             base.OnLoopCompleted();
         }
 
         protected override void OnLoopRewound()
         {
-            Log("Loop rewound;");
-            base.OnLoopRewound();
-        }
+            Log("Loop Rewound");
 
-        protected override void OnCompleted()
-        {
-            Log("Completed;");
-            base.OnCompleted();
+            base.OnLoopRewound();
         }
 
         protected override void OnPreUpdated(float deltaTime)
         {
+            if (_lowLevel)
+            {
+                var builder = PrebuildLog("Pre-Updated")
+                    .AppendFieldLine(nameof(deltaTime), deltaTime);
+
+                Log(builder);
+            }
+
             base.OnPreUpdated(deltaTime);
-
-            _logBuilder.Clear()
-                .AppendLine("Pre-Updated;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(deltaTime), deltaTime)
-                .AppendLine();
-
-            // LogByBuilder();
         }
 
         protected override void OnPostUpdated(float deltaTime)
         {
+            if (_lowLevel)
+            {
+                var builder = PrebuildLog("Post-Updated")
+                    .AppendFieldLine(nameof(deltaTime), deltaTime);
+
+                Log(builder);
+            }
+
             base.OnPostUpdated(deltaTime);
-
-            _logBuilder.Clear()
-                .AppendLine("Post-Updated;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(deltaTime), deltaTime)
-                .AppendLine();
-
-            // LogByBuilder();
-        }
-
-        protected internal override void OnRunned()
-        {
-            Log("Runned;");
-            base.OnRunned();
         }
 
         protected internal override void OnPlay()
         {
-            Log("Play;");
+            Log("Play");
+
             base.OnPlay();
         }
 
         protected internal override void OnRewind()
         {
-            Log("Rewind;");
+            Log("Rewind");
+
             base.OnRewind();
+        }
+
+        protected override void OnCompleted()
+        {
+            Log("Completed");
+
+            base.OnCompleted();
+        }
+
+        protected override void OnRewound()
+        {
+            Log("Rewound");
+
+            base.OnRewound();
+        }
+
+        public override void InstantCompleteLoop()
+        {
+            Log("Instant Complete Loop");
+
+            base.InstantCompleteLoop();
+        }
+
+        public override void InstantRewoundLoop()
+        {
+            Log("Instant Rewound Loop");
+
+            base.InstantRewoundLoop();
+        }
+
+        protected internal override void OnRunned()
+        {
+            Log("Runned");
+
+            base.OnRunned();
         }
 
         protected internal override void OnPaused()
         {
-            Log("Paused;");
+            Log("Paused");
+
             base.OnPaused();
         }
 
         protected internal override void OnStopped()
         {
-            Log("Stopped;");
+            Log("Stopped");
+
             base.OnStopped();
         }
 
-        protected override void OnRewound()
+        public override TweenCore InstantRewound()
         {
-            Log("Rewound;");
-            base.OnRewound();
+            Log("Instant Rewound");
+
+            return base.InstantRewound();
         }
 
         protected override void OnStateChanged()
         {
-            Log("State changed;");
+            Log("State Changed");
+
             base.OnStateChanged();
         }
 
@@ -207,33 +225,47 @@ namespace Better.Tweens.Runtime
         {
             var result = base.Equals(obj);
 
-            _logBuilder.Clear()
-                .AppendLine("Equals;")
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(obj), obj)
-                .AppendLine()
-                .AppendJoin(LogUtility.NameValueSeparator, nameof(result), result)
-                .AppendLine();
+            if (_lowLevel)
+            {
+                var builder = PrebuildLog("Equals")
+                    .AppendFieldLine(nameof(obj), obj)
+                    .AppendFieldLine(nameof(result), result);
 
-            LogByBuilder();
+                Log(builder);
+            }
+
             return result;
         }
 
-        private void LogByBuilder()
+        public override void CollectInfo(ref StringBuilder stringBuilder)
         {
-            _logBuilder.AppendLine();
-            CollectInfo(ref _logBuilder);
+            base.CollectInfo(ref stringBuilder);
 
-            var idPrefix = $"({_id}) ";
-            _logBuilder.Insert(0, idPrefix);
-
-            var log = _logBuilder.ToString();
-            LogUtility.Log(log, _logLevel);
+            stringBuilder.AppendLine()
+                .AppendFieldLine(nameof(CurrentValue), CurrentValue);
         }
 
-        private void Log(string message)
+        private StringBuilder PrebuildLog(string operationName)
         {
-            _logBuilder.Clear().AppendLine(message);
-            LogByBuilder();
+            return _stringBuilder.Clear()
+                .Append(_id)
+                .Append(" - ")
+                .AppendLine(operationName);
+        }
+
+        private void Log(StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine();
+            CollectInfo(ref stringBuilder);
+
+            var message = stringBuilder.ToString();
+            LogUtility.Log(message, LogLevel);
+        }
+
+        private void Log(string operationName)
+        {
+            var builder = PrebuildLog(operationName);
+            Log(builder);
         }
     }
 }

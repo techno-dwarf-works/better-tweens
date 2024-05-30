@@ -24,9 +24,11 @@ namespace Better.Tweens.Runtime.TESTS
         [SerializeField] private bool _sleep;
         [SerializeField] private bool _disable;
         [SerializeField] private bool _addTrigger;
+        [SerializeField] private bool _logState;
 
         [Header("SERIALIZATION")]
         [SerializeField] private DebugTween _tween;
+
 
         public void OnValidate()
         {
@@ -58,7 +60,7 @@ namespace Better.Tweens.Runtime.TESTS
                 _instantComplete = false;
                 _tween.InstantComplete();
             }
-            
+
             if (_instantRewound)
             {
                 _instantRewound = false;
@@ -115,6 +117,14 @@ namespace Better.Tweens.Runtime.TESTS
                 var disableCondition = new EnabledBehaviourCondition(_triggerMonoTarget, false);
                 _tween.AddTrigger<PlayAction>(enableCondition);
                 _tween.AddTrigger<StopAction>(disableCondition);
+            }
+
+            if (_logState)
+            {
+                _logState = false;
+
+                var message = _tween.ToString();
+                Debug.Log(message);
             }
         }
 
