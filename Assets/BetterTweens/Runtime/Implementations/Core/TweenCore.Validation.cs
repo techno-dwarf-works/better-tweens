@@ -130,9 +130,9 @@ namespace Better.Tweens.Runtime
 
         #region Triggers
 
-        public  bool ContainsTrigger(string tag)
+        public  bool ContainsTriggerWith(string id)
         {
-            return _triggers != null && _triggers.Any(t => t.CompareId(tag));
+            return _triggers != null && _triggers.Any(t => t.CompareId(id));
         }
 
         public bool ContainsTag(object value)
