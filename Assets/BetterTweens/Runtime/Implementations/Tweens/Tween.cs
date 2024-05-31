@@ -16,6 +16,8 @@ namespace Better.Tweens.Runtime
         [SerializeField] private FromMode _fromMode;
         [SerializeField] private TValue _fromValue;
         [SerializeField] private OptionsMode _optionsMode;
+
+        [SerializeReference]
         [SerializeField] private TValueOptions _options;
 
         public OptionsMode OptionsMode => _optionsMode;
@@ -85,14 +87,6 @@ namespace Better.Tweens.Runtime
             {
                 _options = options;
             }
-
-            return this;
-        }
-
-        public Tween<TValue, TValueOptions> SetOptions(TValueOptions options, OptionsMode mode)
-        {
-            SetOptions(options);
-            SetOptionsMode(mode);
 
             return this;
         }

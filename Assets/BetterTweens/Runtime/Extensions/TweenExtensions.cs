@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Better.Tweens.Runtime.Triggers.ValueOptions;
 using Better.Tweens.Runtime.Utility;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
@@ -56,40 +58,6 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
-        public static IEnumerable<Tween<TValue, TValueOptions>> SetOptions<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, TValueOptions options)
-        {
-            if (self == null)
-            {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-                return self;
-            }
-
-            foreach (var tween in self)
-            {
-                tween.SetOptions(options);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<Tween<TValue, TValueOptions>> SetOptions<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, TValueOptions options, OptionsMode optionsMode)
-        {
-            if (self == null)
-            {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-                return self;
-            }
-
-            foreach (var tween in self)
-            {
-                tween.SetOptions(options, optionsMode);
-            }
-
-            return self;
-        }
-
         public static IEnumerable<Tween<TValue, TValueOptions>> SetOptionsMode<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, OptionsMode optionsMode)
         {
             if (self == null)
@@ -102,6 +70,36 @@ namespace Better.Tweens.Runtime
             foreach (var tween in self)
             {
                 tween.SetOptionsMode(optionsMode);
+            }
+
+            return self;
+        }
+
+        public static Tween<TValue, ColorOptions> SetOptions<TValue>(this Tween<TValue, ColorOptions> self, Color color)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            var options = new CustomColorOptions(color);
+            return self.SetOptions(options);
+        }
+
+        public static IEnumerable<Tween<TValue, ColorOptions>> SetOptions<TValue>(this IEnumerable<Tween<TValue, ColorOptions>> self, Color color)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.SetOptions(color);
             }
 
             return self;

@@ -6,6 +6,8 @@ namespace Better.Tweens.Runtime.Utility
 {
     public static class LogUtility
     {
+        // TODO: Add AssertNull method
+        
         private static TweensSettings _settings;
 
         static LogUtility()
@@ -53,7 +55,7 @@ namespace Better.Tweens.Runtime.Utility
         {
             LogException(exception.Message);
         }
-        
+
         public static bool AllowLogLevel(LogLevel logLevel)
         {
             return logLevel >= _settings.Current.LogLevel;
