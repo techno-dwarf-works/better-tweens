@@ -4,6 +4,6 @@
     {
         To = 0,
         Relative,
-        SpeedBased,
+        Speed,
     }
 }

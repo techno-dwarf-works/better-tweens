@@ -92,12 +92,12 @@ namespace Better.Tweens.Runtime
         public Tween<TValue, TValueOptions> SetOptions(TValueOptions options, OptionsMode mode)
         {
             SetOptions(options);
-            SetOptionMode(mode);
+            SetOptionsMode(mode);
 
             return this;
         }
 
-        public Tween<TValue, TValueOptions> SetOptionMode(OptionsMode mode)
+        public Tween<TValue, TValueOptions> SetOptionsMode(OptionsMode mode)
         {
             if (ValidateMutable(true))
             {

@@ -45,7 +45,7 @@ namespace Better.Tweens.Runtime
             {
                 OptionsMode.To => options,
                 OptionsMode.Relative => from + options,
-                OptionsMode.SpeedBased => Mathf.RoundToInt(from + options * Duration),
+                OptionsMode.Speed => Mathf.RoundToInt(from + options * Duration),
                 _ => throw new ArgumentOutOfRangeException(nameof(optionsMode), optionsMode, null)
             };
 
