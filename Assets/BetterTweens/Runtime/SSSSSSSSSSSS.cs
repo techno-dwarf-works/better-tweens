@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using Better.Commons.Runtime.Extensions;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -51,7 +52,7 @@ namespace Better.Tweens.Runtime
             Vector2 l_Vector2;
             Vector2Int l_Vector2Int; // l_Vector2  with "casted" to integers
             Vector3 l_Vector3;
-            Vector3Int l_Vector3Int;  // l_Vector3  with "casted" to integers
+            Vector3Int l_Vector3Int; // l_Vector3  with "casted" to integers
             Vector4 l_Vector4;
         }
 
@@ -61,6 +62,9 @@ namespace Better.Tweens.Runtime
 
         private void DO_Static()
         {
+            VirtualTweening.Create(() => Time.timeScale, value => Time.timeScale = value)
+                .From(1f)
+                .Play();
         }
 
         private void Components()
