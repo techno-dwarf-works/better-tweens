@@ -5,7 +5,6 @@ using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Settings;
 using Better.Tweens.Runtime.States;
-using Better.Tweens.Runtime.Triggers;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime

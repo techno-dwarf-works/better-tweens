@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Better.Commons.Runtime.Extensions;
-using Better.Commons.Runtime.Utility;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
-using Better.Tweens.Runtime.Triggers;
+using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using Better.Commons.Runtime.Extensions;
-using Better.Tweens.Runtime.Triggers.ValueOptions;
+using Better.Tweens.Runtime.Data;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime

@@ -3,7 +3,7 @@ using Better.Commons.Runtime.Extensions;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 
-namespace Better.Tweens.Runtime.Triggers
+namespace Better.Tweens.Runtime.Data
 {
     public class Trigger
     {

@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
-using Better.Tweens.Runtime.Triggers;
+using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime

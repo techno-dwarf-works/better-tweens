@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Better.Tweens.Runtime.Triggers.ValueOptions
+namespace Better.Tweens.Runtime.Data
 {
     public class CustomColorOptions : ColorOptions
     {

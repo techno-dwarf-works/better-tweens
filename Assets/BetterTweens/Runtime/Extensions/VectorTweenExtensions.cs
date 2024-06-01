@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Utility;
-using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
-    public static class TweenExtensions
+    public static class VectorTweenExtensions
     {
-        public static IEnumerable<Tween<TValue, TValueOptions>> From<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, TValue value)
+        public static IEnumerable<VectorTween<TVector, TConstraint>> SetSpherical<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, bool spherical = true)
         {
             if (self == null)
             {
@@ -18,13 +16,14 @@ namespace Better.Tweens.Runtime
 
             foreach (var tween in self)
             {
-                tween.From(value);
+                tween.SetSpherical(spherical);
             }
 
             return self;
         }
 
-        public static IEnumerable<Tween<TValue, TValueOptions>> From<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self)
+        public static IEnumerable<VectorTween<TTarget, TVector, TConstraint>> SetSpherical<TTarget, TVector, TConstraint>(this IEnumerable<VectorTween<TTarget, TVector, TConstraint>> self, bool spherical = true)
+            where TTarget : class
         {
             if (self == null)
             {
@@ -35,13 +34,13 @@ namespace Better.Tweens.Runtime
 
             foreach (var tween in self)
             {
-                tween.From();
+                tween.SetSpherical(spherical);
             }
 
             return self;
         }
 
-        public static IEnumerable<Tween<TValue, TValueOptions>> FromAuto<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self)
+        public static IEnumerable<VectorTween<TVector, TConstraint>> AddConstraint<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, TConstraint constraint)
         {
             if (self == null)
             {
@@ -52,13 +51,14 @@ namespace Better.Tweens.Runtime
 
             foreach (var tween in self)
             {
-                tween.FromAuto();
+                tween.AddConstraint(constraint);
             }
 
             return self;
         }
 
-        public static IEnumerable<Tween<TValue, TValueOptions>> SetOptionsMode<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, OptionsMode optionsMode)
+        public static IEnumerable<VectorTween<TTarget, TVector, TConstraint>> AddConstraint<TTarget, TVector, TConstraint>(this IEnumerable<VectorTween<TTarget, TVector, TConstraint>> self, TConstraint constraint)
+            where TTarget : class
         {
             if (self == null)
             {
@@ -69,26 +69,13 @@ namespace Better.Tweens.Runtime
 
             foreach (var tween in self)
             {
-                tween.SetOptionsMode(optionsMode);
+                tween.AddConstraint(constraint);
             }
 
             return self;
         }
 
-        public static Tween<TValue, ColorOptions> SetOptions<TValue>(this Tween<TValue, ColorOptions> self, Color color)
-        {
-            if (self == null)
-            {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-                return self;
-            }
-
-            var options = new CustomColorOptions(color);
-            return self.SetOptions(options);
-        }
-
-        public static IEnumerable<Tween<TValue, ColorOptions>> SetOptions<TValue>(this IEnumerable<Tween<TValue, ColorOptions>> self, Color color)
+        public static IEnumerable<VectorTween<TVector, TConstraint>> RemoveConstraint<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, TConstraint constraint)
         {
             if (self == null)
             {
@@ -99,7 +86,25 @@ namespace Better.Tweens.Runtime
 
             foreach (var tween in self)
             {
-                tween.SetOptions(color);
+                tween.RemoveConstraint(constraint);
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<VectorTween<TTarget, TVector, TConstraint>> RemoveConstraint<TTarget, TVector, TConstraint>(this IEnumerable<VectorTween<TTarget, TVector, TConstraint>> self, TConstraint constraint)
+            where TTarget : class
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.RemoveConstraint(constraint);
             }
 
             return self;

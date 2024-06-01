@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Better.Tweens.Runtime.Triggers.ValueOptions
+namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
     public class LDRColorOptions : ColorOptions
