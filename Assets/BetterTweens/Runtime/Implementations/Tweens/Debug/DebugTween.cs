@@ -10,6 +10,8 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public class DebugTween : Tween<int>
     {
+        // TODO: Add different parent-versions
+        
         private const LogLevel LogLevel = Logs.LogLevel.Debug;
         private const string DefaultId = "DebugTween";
 

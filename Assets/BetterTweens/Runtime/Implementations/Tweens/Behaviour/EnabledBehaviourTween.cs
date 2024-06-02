@@ -1,17 +1,17 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
-    public class FillCenterImageTween : BoolTween<Image>
+    public class EnabledBehaviourTween : BoolTween<Behaviour>
     {
         protected override bool GetCurrentValue()
         {
-            return Target.fillCenter;
+            return Target.enabled;
         }
 
         protected override void SetCurrentValue(bool value)
         {
-            Target.fillCenter = value;
+            Target.enabled = value;
         }
     }
 }

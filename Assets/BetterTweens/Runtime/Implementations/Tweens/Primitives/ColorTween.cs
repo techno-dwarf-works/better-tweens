@@ -44,6 +44,12 @@ namespace Better.Tweens.Runtime
         protected sealed override void EvaluateState(Color fromValue, Color toValue, float time)
         {
             var value = Color.Lerp(fromValue, toValue, time);
+            if (IgnoreAlpha)
+            {
+                var currentColor = GetCurrentValue();
+                value.a = currentColor.a;
+            }
+
             SetCurrentValue(value);
         }
 
@@ -97,6 +103,12 @@ namespace Better.Tweens.Runtime
         protected sealed override void EvaluateState(Color fromValue, Color toValue, float time)
         {
             var value = Color.Lerp(fromValue, toValue, time);
+            if (IgnoreAlpha)
+            {
+                var currentColor = GetCurrentValue();
+                value.a = currentColor.a;
+            }
+
             SetCurrentValue(value);
         }
 

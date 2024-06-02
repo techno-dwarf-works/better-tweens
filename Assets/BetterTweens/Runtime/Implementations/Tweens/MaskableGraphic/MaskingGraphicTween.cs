@@ -2,16 +2,16 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class FillCenterImageTween : BoolTween<Image>
+    public class MaskingGraphicTween : BoolTween<MaskableGraphic>
     {
         protected override bool GetCurrentValue()
         {
-            return Target.fillCenter;
+            return Target.isMaskingGraphic;
         }
 
         protected override void SetCurrentValue(bool value)
         {
-            Target.fillCenter = value;
+            Target.isMaskingGraphic = value;
         }
     }
 }

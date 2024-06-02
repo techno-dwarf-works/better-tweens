@@ -1,18 +1,17 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
 {
-    public class MaskaableGraphicTween : ColorTween<Graphic>
+    public class MaskableGraphicTween : BoolTween<MaskableGraphic>
     {
-        protected override Color GetCurrentValue()
+        protected override bool GetCurrentValue()
         {
-            return Target.color;
+            return Target.maskable;
         }
 
-        protected override void SetCurrentValue(Color value)
+        protected override void SetCurrentValue(bool value)
         {
-            Target.color = value;
+            Target.maskable = value;
         }
     }
 }
