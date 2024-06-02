@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Better.Tweens.Runtime.Data
+namespace Better.Tweens.Runtime.Behaviours
 {
     [Serializable]
-    public class WorldInstantiateOptions : InstantiateOptions
+    public class WorldInstantiateBehaviour : InstantiateBehaviour
     {
         [SerializeField] private Vector3 _position;
         [SerializeField] private Quaternion _rotation;
@@ -12,17 +12,17 @@ namespace Better.Tweens.Runtime.Data
         public Vector3 Position => _position;
         public Quaternion Rotation => _rotation;
 
-        public WorldInstantiateOptions(Vector3 position, Quaternion rotation)
+        public WorldInstantiateBehaviour(Vector3 position, Quaternion rotation)
         {
             _position = position;
             _rotation = rotation;
         }
 
-        public WorldInstantiateOptions(Vector3 position) : this(position, Quaternion.identity)
+        public WorldInstantiateBehaviour(Vector3 position) : this(position, Quaternion.identity)
         {
         }
 
-        protected WorldInstantiateOptions() : this(Vector3.zero)
+        public WorldInstantiateBehaviour() : this(Vector3.zero)
         {
         }
 

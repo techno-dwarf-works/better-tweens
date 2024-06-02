@@ -1,7 +1,9 @@
-﻿using UnityEngine.UI;
+﻿using System;
+using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class MaskingGraphicTween : BoolTween<MaskableGraphic>
     {
         protected override bool GetCurrentValue()
@@ -11,6 +13,11 @@ namespace Better.Tweens.Runtime
 
         protected override void SetCurrentValue(bool value)
         {
+            if (Target.isMaskingGraphic == value)
+            {
+                return;
+            }
+            
             Target.isMaskingGraphic = value;
         }
     }

@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class RaycastPaddingGraphicTween : Vector4Tween<Graphic>
     {
         protected override Vector4 GetCurrentValue()

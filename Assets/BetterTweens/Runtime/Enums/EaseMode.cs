@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace Better.Tweens.Runtime
+﻿namespace Better.Tweens.Runtime
 {
-    [Flags]
     public enum EaseMode
     {
         In = 1,

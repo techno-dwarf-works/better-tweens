@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Better.Tweens.Runtime.Data
+namespace Better.Tweens.Runtime.Behaviours
 {
     [Serializable]
-    public class IntoInstantiateOptions : InstantiateOptions
+    public class IntoInstantiateBehaviour : InstantiateBehaviour
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private bool _inWorldSpace;
@@ -12,13 +12,13 @@ namespace Better.Tweens.Runtime.Data
         public Transform Parent => _parent;
         public bool InWorldSpace => _inWorldSpace;
 
-        public IntoInstantiateOptions(Transform parent, bool inWorldSpace = false)
+        public IntoInstantiateBehaviour(Transform parent, bool inWorldSpace = false)
         {
             _parent = parent;
             _inWorldSpace = inWorldSpace;
         }
 
-        protected IntoInstantiateOptions() : this(null)
+        protected IntoInstantiateBehaviour() : this(null)
         {
         }
 

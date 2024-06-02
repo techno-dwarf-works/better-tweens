@@ -50,6 +50,7 @@ namespace Better.Tweens.Runtime
     public abstract class TargetTween<TTarget, TValue> : TargetTween<TTarget, TValue, TValue>
         where TTarget : class
     {
+        // TODO: Add Button SaveCurrent for "smart" setup
     }
 
     [Serializable]

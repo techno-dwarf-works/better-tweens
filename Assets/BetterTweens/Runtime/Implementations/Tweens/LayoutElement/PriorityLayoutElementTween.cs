@@ -1,7 +1,9 @@
-﻿using UnityEngine.UI;
+﻿using System;
+using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class PriorityLayoutElementTween : IntTween<LayoutElement>
     {
         protected override int GetCurrentValue()

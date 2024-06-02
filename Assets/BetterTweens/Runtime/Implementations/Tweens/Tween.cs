@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Better.Attributes.Runtime.Select;
 using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
@@ -17,8 +18,8 @@ namespace Better.Tweens.Runtime
         [SerializeField] private TValue _fromValue;
         [SerializeField] private OptionsMode _optionsMode;
 
-        [SerializeReference]
-        [SerializeField] private TValueOptions _options;
+        // [Select] TODO: Update Attributes :)
+        [SerializeReference, SerializeField] private TValueOptions _options;
 
         public OptionsMode OptionsMode => _optionsMode;
         public FromMode FromMode => _fromMode;

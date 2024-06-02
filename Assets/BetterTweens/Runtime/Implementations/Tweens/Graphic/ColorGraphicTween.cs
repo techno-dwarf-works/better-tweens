@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class ColorGraphicTween : ColorTween<Graphic>
     {
         protected override Color GetCurrentValue()

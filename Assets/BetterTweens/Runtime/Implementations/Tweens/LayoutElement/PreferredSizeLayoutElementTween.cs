@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class PreferredSizeLayoutElementTween : Vector2Tween<LayoutElement>
     {
         protected override Vector2 GetCurrentValue()

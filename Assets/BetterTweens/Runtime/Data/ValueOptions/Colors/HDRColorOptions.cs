@@ -10,5 +10,14 @@ namespace Better.Tweens.Runtime.Data
         [SerializeField] private Color _value;
 
         public override Color Color => _value;
+
+        public HDRColorOptions(Color value)
+        {
+            _value = value;
+        }
+
+        public HDRColorOptions() : this(Color.white)
+        {
+        }
     }
 }

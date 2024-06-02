@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
@@ -47,6 +48,14 @@ namespace Better.Tweens.Runtime
         }
 
         protected abstract void SetCurrentValue(Quaternion value);
+
+        public override void CollectInfo(ref StringBuilder stringBuilder)
+        {
+            base.CollectInfo(ref stringBuilder);
+
+            stringBuilder.AppendLine()
+                .AppendFieldLine(nameof(Spherical), Spherical);
+        }
     }
 
     [Serializable]
@@ -93,5 +102,13 @@ namespace Better.Tweens.Runtime
         }
 
         protected abstract void SetCurrentValue(Quaternion value);
+
+        public override void CollectInfo(ref StringBuilder stringBuilder)
+        {
+            base.CollectInfo(ref stringBuilder);
+
+            stringBuilder.AppendLine()
+                .AppendFieldLine(nameof(Spherical), Spherical);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract class VectorTween<TVector, TConstraint> : Tween<TVector>
     {
+        // TODO: Add method Free constnds
+
         [SerializeField] private List<TConstraint> _axisConstraints;
         [SerializeField] private bool _spherical;
 
@@ -45,12 +48,29 @@ namespace Better.Tweens.Runtime
 
             return this;
         }
+
+        public override void CollectInfo(ref StringBuilder stringBuilder)
+        {
+            base.CollectInfo(ref stringBuilder);
+
+            stringBuilder.AppendLine()
+                .AppendFieldLine(nameof(Spherical), Spherical)
+                .AppendFieldLine(nameof(HasConstraints), HasConstraints);
+
+            if (HasConstraints)
+            {
+                string constrainsValue = string.Join(", ", Constraints);
+                stringBuilder.AppendFieldLine(nameof(Constraints), constrainsValue);
+            }
+        }
     }
 
     [Serializable]
     public abstract class VectorTween<TTarget, TVector, TConstraint> : TargetTween<TTarget, TVector>
         where TTarget : class
     {
+        // TODO: Add method Free constnds
+        
         [SerializeField] private List<TConstraint> _axisConstraints;
         [SerializeField] private bool _spherical;
 
@@ -87,6 +107,21 @@ namespace Better.Tweens.Runtime
             _axisConstraints?.Remove(constraint);
 
             return this;
+        }
+
+        public override void CollectInfo(ref StringBuilder stringBuilder)
+        {
+            base.CollectInfo(ref stringBuilder);
+
+            stringBuilder.AppendLine()
+                .AppendFieldLine(nameof(Spherical), Spherical)
+                .AppendFieldLine(nameof(HasConstraints), HasConstraints);
+
+            if (HasConstraints)
+            {
+                string constrainsValue = string.Join(", ", Constraints);
+                stringBuilder.AppendFieldLine(nameof(Constraints), constrainsValue);
+            }
         }
     }
 }

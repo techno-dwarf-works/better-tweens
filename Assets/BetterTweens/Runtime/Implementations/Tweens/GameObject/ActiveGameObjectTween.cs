@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class ActiveGameObjectTween : BoolTween<GameObject>
     {
         protected override bool GetCurrentValue()
@@ -11,10 +13,12 @@ namespace Better.Tweens.Runtime
 
         protected override void SetCurrentValue(bool value)
         {
-            if (Target.activeSelf != value)
+            if (Target.activeSelf == value)
             {
-                Target.SetActive(value);
+                return;
             }
+
+            Target.SetActive(value);
         }
     }
 }

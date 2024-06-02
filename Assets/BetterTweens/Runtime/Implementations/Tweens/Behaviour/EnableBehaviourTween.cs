@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
-    public class EnabledBehaviourTween : BoolTween<Behaviour>
+    [Serializable]
+    public class EnableBehaviourTween : BoolTween<Behaviour>
     {
         protected override bool GetCurrentValue()
         {
@@ -11,6 +13,11 @@ namespace Better.Tweens.Runtime
 
         protected override void SetCurrentValue(bool value)
         {
+            if (Target.enabled == value)
+            {
+                return;
+            }
+            
             Target.enabled = value;
         }
     }
