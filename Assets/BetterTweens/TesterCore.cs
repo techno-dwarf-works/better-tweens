@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Attributes.Runtime.Select;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 using UnityEngine;
@@ -8,10 +9,10 @@ namespace Better.Tweens.Runtime.TESTS
     [Serializable]
     public class TesterCore
     {
+        [Select] 
         [SerializeField] private MonoBehaviour _triggerMonoTarget;
 
-        [Header("TRIGGERS")]
-        [SerializeField] private bool _play;
+        [Header("TRIGGERS")] [SerializeField] private bool _play;
 
         [SerializeField] private bool _rewind;
         [SerializeField] private bool _pause;
@@ -26,9 +27,8 @@ namespace Better.Tweens.Runtime.TESTS
         [SerializeField] private bool _addTrigger;
         [SerializeField] private bool _logState;
 
-        [Header("SERIALIZATION")]
-        [SerializeField] private DebugTween _tween;
-
+        [Header("SERIALIZATION")] [SerializeField]
+        private MinSizeLayoutElementTween _tween;
 
         public void OnValidate()
         {
@@ -40,7 +40,7 @@ namespace Better.Tweens.Runtime.TESTS
             if (_tween == null)
             {
                 Debug.Log("Hmmm, null tween.");
-                _tween = new DebugTween();
+                // _tween = new DebugTween();
             }
 
             if (_play)

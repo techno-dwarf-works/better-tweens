@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using Better.Attributes.Runtime.Select;
 using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
@@ -22,6 +23,9 @@ namespace Better.Tweens.Runtime
 {
     public class SSSSSSSSSSSS
     {
+        [Select]
+        [SerializeField] private float _float;
+
         private void BaseTypes()
         {
             // string l_string;
