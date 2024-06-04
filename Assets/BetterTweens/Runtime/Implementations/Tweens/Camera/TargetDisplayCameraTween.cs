@@ -4,16 +4,21 @@ using UnityEngine;
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public class SortingLayerIdRendererTween : IntTween<Renderer>
+    public class TargetDisplayCameraTween : IntTween<Camera>
     {
         protected override int GetCurrentValue()
         {
-            return Target.sortingLayerID;
+            return Target.targetDisplay;
         }
 
         protected override void SetCurrentValue(int value)
         {
-            Target.sortingLayerID = value;
+            if (Target.targetDisplay == value)
+            {
+                return;
+            }
+
+            Target.targetDisplay = value;
         }
     }
 }
