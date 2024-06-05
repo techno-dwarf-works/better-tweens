@@ -2,16 +2,16 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class TimeScale : FloatTween
+    public class MaxDepenetrationVelocityRigidbody2DTween : FloatTween<Rigidbody>
     {
         protected override float GetCurrentValue()
         {
-            return Time.timeScale;
+            return Target.maxDepenetrationVelocity;
         }
 
         protected override void SetCurrentValue(float value)
         {
-            Time.timeScale = value;
+            Target.maxDepenetrationVelocity = value;
         }
     }
 }

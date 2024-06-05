@@ -8,6 +8,8 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract class QuaternionTween : Tween<Quaternion>
     {
+        // TODO: Add Fast/Beyond modes
+
         [SerializeField] private bool _spherical;
         public bool Spherical => _spherical;
 
@@ -62,6 +64,8 @@ namespace Better.Tweens.Runtime
     public abstract class QuaternionTween<TTarget> : TargetTween<TTarget, Quaternion>
         where TTarget : class
     {
+        // TODO: Add Fast/Beyond modes
+
         [SerializeField] private bool _spherical;
         public bool Spherical => _spherical;
 
