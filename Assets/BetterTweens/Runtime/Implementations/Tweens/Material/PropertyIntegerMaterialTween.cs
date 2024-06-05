@@ -4,12 +4,12 @@ using UnityEngine;
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public class PropertyIntMaterialTween : IntTween<Material>
+    public class PropertyIntegerMaterialTween : IntTween<Material>
     {
         [SerializeField] private string _propertyName;
         public string PropertyName => _propertyName;
 
-        public PropertyIntMaterialTween SetPropertyName(string name)
+        public PropertyIntegerMaterialTween SetPropertyName(string name)
         {
             _propertyName = name;
             return this;

@@ -2,7 +2,7 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class TimeScaleTween : FloatTween
+    public class ScaleTimeTween : FloatTween
     {
         protected override float GetCurrentValue()
         {

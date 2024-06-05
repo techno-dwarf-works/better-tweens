@@ -10,6 +10,8 @@ namespace Better.Tweens.Runtime
             LoopProgress = 0f;
             EvaluateStateByLoop(LoopProgress);
 
+            // TODO: Handle Target null
+            
             base.OnStarted();
 
             if (IsRunning() && InfinityLoops && Duration <= MinTime)

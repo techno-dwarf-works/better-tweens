@@ -5,7 +5,7 @@ namespace Better.Tweens.Runtime
 {
     public static class PropertyIntMaterialTweenExtensions
     {
-        public static IEnumerable<PropertyIntMaterialTween> SetPropertyName(this IEnumerable<PropertyIntMaterialTween> self, string propertyName)
+        public static IEnumerable<PropertyIntegerMaterialTween> SetPropertyName(this IEnumerable<PropertyIntegerMaterialTween> self, string propertyName)
         {
             if (self == null)
             {

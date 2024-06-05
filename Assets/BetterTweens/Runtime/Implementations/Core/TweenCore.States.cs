@@ -138,6 +138,8 @@ namespace Better.Tweens.Runtime
 
         protected internal virtual void OnStarted()
         {
+            // TODO: Handle Target null
+            
             CompletedLoops = 0;
             ActionUtility.TryInvokeBySafe(Started);
         }
