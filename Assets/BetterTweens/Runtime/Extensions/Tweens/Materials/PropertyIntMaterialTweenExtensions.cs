@@ -3,7 +3,7 @@ using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
-    public static class PropertyIntMaterialTweenExtensions
+    public static class PropertyIntegerMaterialTweenExtensions
     {
         public static IEnumerable<PropertyIntegerMaterialTween> SetPropertyName(this IEnumerable<PropertyIntegerMaterialTween> self, string propertyName)
         {
