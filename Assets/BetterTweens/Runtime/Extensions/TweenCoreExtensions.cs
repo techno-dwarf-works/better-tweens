@@ -2193,14 +2193,23 @@ namespace Better.Tweens.Runtime
 
         #region Tweens
 
-        public static LocalTimeScaleCoreTween TweenLocalTimeScale(this TweenCore self, float options, OptionsMode mode = default)
+        public static LocalTimeScaleCoreTween TweenLocalTimeScale(this TweenCore self, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<LocalTimeScaleCoreTween, TweenCore, float, float>(options, mode);
+            return self.Tween<LocalTimeScaleCoreTween, TweenCore, float, float>(options, optionsMode);
         }
 
-        public static IEnumerable<LocalTimeScaleCoreTween> TweensLocalTimeScale(this IEnumerable<TweenCore> self, float options, OptionsMode mode = default)
+        public static IEnumerable<LocalTimeScaleCoreTween> TweensLocalTimeScale(this IEnumerable<TweenCore> self, float options, OptionsMode optionsMode = default)
         {
-            return self.Tweens<LocalTimeScaleCoreTween, TweenCore, float, float>(options, mode);
+            // TODO: Add self validation
+
+            var tweens = new List<LocalTimeScaleCoreTween>();
+            foreach (var target in self)
+            {
+                var tween = target.TweenLocalTimeScale(options, optionsMode);
+                tweens.Add(tween);
+            }
+
+            return tweens;
         }
 
         #endregion
