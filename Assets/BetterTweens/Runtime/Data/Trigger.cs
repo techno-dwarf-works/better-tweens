@@ -7,6 +7,8 @@ namespace Better.Tweens.Runtime.Data
 {
     public class Trigger
     {
+        // TODO: Update with dependency tween-tween impl
+        
         public const string UndefinedId = nameof(UndefinedId);
 
         private readonly string _id;

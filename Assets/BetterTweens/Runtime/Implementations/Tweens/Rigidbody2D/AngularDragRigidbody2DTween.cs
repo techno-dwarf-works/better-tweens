@@ -2,7 +2,7 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class AngularDragRigidbody2DTween : FloatTween<Rigidbody>
+    public class AngularDragRigidbody2DTween : FloatTween<Rigidbody2D>
     {
         protected override float GetCurrentValue()
         {

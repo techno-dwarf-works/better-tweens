@@ -2,14 +2,14 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class AngularVelocityRigidbody2DTween : Vector3Tween<Rigidbody>
+    public class AngularVelocityRigidbody2DTween : FloatTween<Rigidbody2D>
     {
-        protected override Vector3 GetCurrentValue()
+        protected override float GetCurrentValue()
         {
             return Target.angularVelocity;
         }
 
-        protected override void SetCurrentValue(Vector3 value)
+        protected override void SetCurrentValue(float value)
         {
             Target.angularVelocity = value;
         }

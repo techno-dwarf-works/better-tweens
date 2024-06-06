@@ -2,16 +2,16 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class RotationRigidbody2DTween : QuaternionTween<Rigidbody>
+    public class RotationRigidbody2DTween : FloatTween<Rigidbody2D>
     {
         public override UpdateMode UpdateMode => UpdateMode.FixedUpdate;
 
-        protected override Quaternion GetCurrentValue()
+        protected override float GetCurrentValue()
         {
             return Target.rotation;
         }
 
-        protected override void SetCurrentValue(Quaternion value)
+        protected override void SetCurrentValue(float value)
         {
             Target.MoveRotation(value);
         }

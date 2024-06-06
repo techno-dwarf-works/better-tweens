@@ -7,6 +7,156 @@ namespace Better.Tweens.Runtime
 {
     public static class TweenExtensions
     {
+        public static Tween<TValue, Vector2> SetOptions<TValue>(this Tween<TValue, Vector2> self, float options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            var vectorOptions = Vector2.one * options;
+            return self.SetOptions(vectorOptions);
+        }
+
+        public static IEnumerable<Tween<TValue, Vector2>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector2>> self, float options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.SetOptions(options);
+            }
+
+            return self;
+        }
+
+        public static Tween<TValue, Vector2Int> SetOptions<TValue>(this Tween<TValue, Vector2Int> self, int options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            var vectorOptions = Vector2Int.one * options;
+            return self.SetOptions(vectorOptions);
+        }
+
+        public static IEnumerable<Tween<TValue, Vector2Int>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector2Int>> self, int options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.SetOptions(options);
+            }
+
+            return self;
+        }
+
+        public static Tween<TValue, Vector3> SetOptions<TValue>(this Tween<TValue, Vector3> self, float options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            var vectorOptions = Vector3.one * options;
+            return self.SetOptions(vectorOptions);
+        }
+
+        public static IEnumerable<Tween<TValue, Vector3>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector3>> self, float options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.SetOptions(options);
+            }
+
+            return self;
+        }
+
+        public static Tween<TValue, Vector3Int> SetOptions<TValue>(this Tween<TValue, Vector3Int> self, int options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            var vectorOptions = Vector3Int.one * options;
+            return self.SetOptions(vectorOptions);
+        }
+
+        public static IEnumerable<Tween<TValue, Vector3Int>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector3Int>> self, int options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.SetOptions(options);
+            }
+
+            return self;
+        }
+
+        public static Tween<TValue, Vector4> SetOptions<TValue>(this Tween<TValue, Vector4> self, float options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            var vectorOptions = Vector4.one * options;
+            return self.SetOptions(vectorOptions);
+        }
+
+        public static IEnumerable<Tween<TValue, Vector4>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector4>> self, float options)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+                return self;
+            }
+
+            foreach (var tween in self)
+            {
+                tween.SetOptions(options);
+            }
+
+            return self;
+        }
+
         public static IEnumerable<Tween<TValue, TValueOptions>> From<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, TValue value)
         {
             if (self == null)

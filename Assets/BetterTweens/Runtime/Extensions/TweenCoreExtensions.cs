@@ -2190,5 +2190,19 @@ namespace Better.Tweens.Runtime
         }
 
         #endregion
+
+        #region Tweens
+
+        public static LocalTimeScaleCoreTween TweenLocalTimeScale(this TweenCore self, float options, OptionsMode mode = default)
+        {
+            return self.Tween<LocalTimeScaleCoreTween, TweenCore, float, float>(options, mode);
+        }
+
+        public static IEnumerable<LocalTimeScaleCoreTween> TweensLocalTimeScale(this IEnumerable<TweenCore> self, float options, OptionsMode mode = default)
+        {
+            return self.Tweens<LocalTimeScaleCoreTween, TweenCore, float, float>(options, mode);
+        }
+
+        #endregion
     }
 }

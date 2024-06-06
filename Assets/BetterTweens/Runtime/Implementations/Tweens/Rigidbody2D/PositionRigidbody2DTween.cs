@@ -2,16 +2,16 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class PositionRigidbody2DTween : Vector3Tween<Rigidbody>
+    public class PositionRigidbody2DTween : Vector2Tween<Rigidbody2D>
     {
         public override UpdateMode UpdateMode => UpdateMode.FixedUpdate;
 
-        protected override Vector3 GetCurrentValue()
+        protected override Vector2 GetCurrentValue()
         {
             return Target.position;
         }
 
-        protected override void SetCurrentValue(Vector3 value)
+        protected override void SetCurrentValue(Vector2 value)
         {
             Target.MovePosition(value);
         }

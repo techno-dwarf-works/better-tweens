@@ -2,14 +2,14 @@
 
 namespace Better.Tweens.Runtime
 {
-    public class CenterOfMassRigidbody2DTween : Vector3Tween<Rigidbody>
+    public class CenterOfMassRigidbody2DTween : Vector2Tween<Rigidbody2D>
     {
-        protected override Vector3 GetCurrentValue()
+        protected override Vector2 GetCurrentValue()
         {
             return Target.centerOfMass;
         }
 
-        protected override void SetCurrentValue(Vector3 value)
+        protected override void SetCurrentValue(Vector2 value)
         {
             Target.centerOfMass = value;
         }
