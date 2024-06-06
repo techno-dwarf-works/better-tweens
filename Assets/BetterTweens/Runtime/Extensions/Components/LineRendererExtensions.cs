@@ -6,247 +6,247 @@ namespace Better.Tweens.Runtime
 {
     public static class LineRendererExtensions
     {
-        public static EndColorLineRendererTween TweenEndColor(this LineRenderer self, ColorOptions options, OptionsMode optionsMode = default)
+        public static EndColorLineRendererTween TweenEndColor(this LineRenderer self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            return self.Tween<EndColorLineRendererTween, LineRenderer, Color, ColorOptions>(options, optionsMode);
+            return self.Tween<EndColorLineRendererTween, LineRenderer, Color, ColorOptions>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<EndColorLineRendererTween> TweensEndColor(this IEnumerable<LineRenderer> self, ColorOptions options, OptionsMode optionsMode = default)
-        {
-            // TODO: Add self validation
-
-            var tweens = new List<EndColorLineRendererTween>();
-            foreach (var target in self)
-            {
-                var tween = target.TweenEndColor(options, optionsMode);
-                tweens.Add(tween);
-            }
-
-            return tweens;
-        }
-
-        public static EndColorLineRendererTween TweenEndColor(this LineRenderer self, Color options, OptionsMode optionsMode = default)
-        {
-            return self.TweenColor<EndColorLineRendererTween, LineRenderer>(options, optionsMode);
-        }
-
-        public static IEnumerable<EndColorLineRendererTween> TweensEndColor(this IEnumerable<LineRenderer> self, Color options, OptionsMode optionsMode = default)
+        public static IEnumerable<EndColorLineRendererTween> TweensEndColor(this IEnumerable<LineRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<EndColorLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenEndColor(options, optionsMode);
+                var tween = target.TweenEndColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static EndWidthLineRendererTween TweenEndWidth(this LineRenderer self, float options, OptionsMode optionsMode = default)
+        public static EndColorLineRendererTween TweenEndColor(this LineRenderer self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            return self.Tween<EndWidthLineRendererTween, LineRenderer, float>(options, optionsMode);
+            return self.TweenColor<EndColorLineRendererTween, LineRenderer>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<EndWidthLineRendererTween> TweensEndWidth(this IEnumerable<LineRenderer> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<EndColorLineRendererTween> TweensEndColor(this IEnumerable<LineRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
+        {
+            // TODO: Add self validation
+
+            var tweens = new List<EndColorLineRendererTween>();
+            foreach (var target in self)
+            {
+                var tween = target.TweenEndColor(duration, options, optionsMode);
+                tweens.Add(tween);
+            }
+
+            return tweens;
+        }
+
+        public static EndWidthLineRendererTween TweenEndWidth(this LineRenderer self, float duration, float options, OptionsMode optionsMode = default)
+        {
+            return self.Tween<EndWidthLineRendererTween, LineRenderer, float>(duration, options, optionsMode);
+        }
+
+        public static IEnumerable<EndWidthLineRendererTween> TweensEndWidth(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<EndWidthLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenEndWidth(options, optionsMode);
+                var tween = target.TweenEndWidth(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static LoopLineRendererTween TweenLoop(this LineRenderer self, bool options, OptionsMode optionsMode = default)
+        public static LoopLineRendererTween TweenLoop(this LineRenderer self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            return self.Tween<LoopLineRendererTween, LineRenderer, bool>(options, optionsMode);
+            return self.Tween<LoopLineRendererTween, LineRenderer, bool>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<LoopLineRendererTween> TweensLoop(this IEnumerable<LineRenderer> self, bool options, OptionsMode optionsMode = default)
+        public static IEnumerable<LoopLineRendererTween> TweensLoop(this IEnumerable<LineRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<LoopLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenLoop(options, optionsMode);
+                var tween = target.TweenLoop(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static NumCapVerticesLineRendererTween TweenNumCapVertices(this LineRenderer self, int options, OptionsMode optionsMode = default)
+        public static NumCapVerticesLineRendererTween TweenNumCapVertices(this LineRenderer self, float duration, int options, OptionsMode optionsMode = default)
         {
-            return self.Tween<NumCapVerticesLineRendererTween, LineRenderer, int>(options, optionsMode);
+            return self.Tween<NumCapVerticesLineRendererTween, LineRenderer, int>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<NumCapVerticesLineRendererTween> TweensNumCapVertices(this IEnumerable<LineRenderer> self, int options, OptionsMode optionsMode = default)
+        public static IEnumerable<NumCapVerticesLineRendererTween> TweensNumCapVertices(this IEnumerable<LineRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<NumCapVerticesLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenNumCapVertices(options, optionsMode);
+                var tween = target.TweenNumCapVertices(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static NumCornerVerticesLineRendererTween TweenNumCornerVertices(this LineRenderer self, int options, OptionsMode optionsMode = default)
+        public static NumCornerVerticesLineRendererTween TweenNumCornerVertices(this LineRenderer self, float duration, int options, OptionsMode optionsMode = default)
         {
-            return self.Tween<NumCornerVerticesLineRendererTween, LineRenderer, int>(options, optionsMode);
+            return self.Tween<NumCornerVerticesLineRendererTween, LineRenderer, int>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<NumCornerVerticesLineRendererTween> TweensNumCornerVertices(this IEnumerable<LineRenderer> self, int options, OptionsMode optionsMode = default)
+        public static IEnumerable<NumCornerVerticesLineRendererTween> TweensNumCornerVertices(this IEnumerable<LineRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<NumCornerVerticesLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenNumCornerVertices(options, optionsMode);
+                var tween = target.TweenNumCornerVertices(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static PositionCountLineRendererTween TweenPositionCount(this LineRenderer self, int options, OptionsMode optionsMode = default)
+        public static PositionCountLineRendererTween TweenPositionCount(this LineRenderer self, float duration, int options, OptionsMode optionsMode = default)
         {
-            return self.Tween<PositionCountLineRendererTween, LineRenderer, int>(options, optionsMode);
+            return self.Tween<PositionCountLineRendererTween, LineRenderer, int>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<PositionCountLineRendererTween> TweensPositionCount(this IEnumerable<LineRenderer> self, int options, OptionsMode optionsMode = default)
+        public static IEnumerable<PositionCountLineRendererTween> TweensPositionCount(this IEnumerable<LineRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<PositionCountLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenPositionCount(options, optionsMode);
+                var tween = target.TweenPositionCount(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static ShadowBiasLineRendererTween TweenShadowBias(this LineRenderer self, float options, OptionsMode optionsMode = default)
+        public static ShadowBiasLineRendererTween TweenShadowBias(this LineRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<ShadowBiasLineRendererTween, LineRenderer, float>(options, optionsMode);
+            return self.Tween<ShadowBiasLineRendererTween, LineRenderer, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<ShadowBiasLineRendererTween> TweensShadowBias(this IEnumerable<LineRenderer> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<ShadowBiasLineRendererTween> TweensShadowBias(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<ShadowBiasLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenShadowBias(options, optionsMode);
+                var tween = target.TweenShadowBias(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static StartColorLineRendererTween TweenStartColor(this LineRenderer self, ColorOptions options, OptionsMode optionsMode = default)
+        public static StartColorLineRendererTween TweenStartColor(this LineRenderer self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            return self.Tween<StartColorLineRendererTween, LineRenderer, Color, ColorOptions>(options, optionsMode);
+            return self.Tween<StartColorLineRendererTween, LineRenderer, Color, ColorOptions>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<StartColorLineRendererTween> TweensStartColor(this IEnumerable<LineRenderer> self, ColorOptions options, OptionsMode optionsMode = default)
+        public static IEnumerable<StartColorLineRendererTween> TweensStartColor(this IEnumerable<LineRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<StartColorLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenStartColor(options, optionsMode);
+                var tween = target.TweenStartColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static StartColorLineRendererTween TweenStartColor(this LineRenderer self, Color options, OptionsMode optionsMode = default)
+        public static StartColorLineRendererTween TweenStartColor(this LineRenderer self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            return self.TweenColor<StartColorLineRendererTween, LineRenderer>(options, optionsMode);
+            return self.TweenColor<StartColorLineRendererTween, LineRenderer>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<StartColorLineRendererTween> TweensStartColor(this IEnumerable<LineRenderer> self, Color options, OptionsMode optionsMode = default)
+        public static IEnumerable<StartColorLineRendererTween> TweensStartColor(this IEnumerable<LineRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<StartColorLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenStartColor(options, optionsMode);
+                var tween = target.TweenStartColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static StartWidthLineRendererTween TweenStartWidth(this LineRenderer self, float options, OptionsMode optionsMode = default)
+        public static StartWidthLineRendererTween TweenStartWidth(this LineRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<StartWidthLineRendererTween, LineRenderer, float>(options, optionsMode);
+            return self.Tween<StartWidthLineRendererTween, LineRenderer, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<StartWidthLineRendererTween> TweensStartWidth(this IEnumerable<LineRenderer> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<StartWidthLineRendererTween> TweensStartWidth(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<StartWidthLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenStartWidth(options, optionsMode);
+                var tween = target.TweenStartWidth(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static WidthMultiplierLineRendererTween TweenWidthMultiplier(this LineRenderer self, float options, OptionsMode optionsMode = default)
+        public static WidthMultiplierLineRendererTween TweenWidthMultiplier(this LineRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<WidthMultiplierLineRendererTween, LineRenderer, float>(options, optionsMode);
+            return self.Tween<WidthMultiplierLineRendererTween, LineRenderer, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<WidthMultiplierLineRendererTween> TweensWidthMultiplier(this IEnumerable<LineRenderer> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<WidthMultiplierLineRendererTween> TweensWidthMultiplier(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<WidthMultiplierLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenWidthMultiplier(options, optionsMode);
+                var tween = target.TweenWidthMultiplier(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static WorldSpaceLineRendererTween TweenWorldSpace(this LineRenderer self, bool options, OptionsMode optionsMode = default)
+        public static WorldSpaceLineRendererTween TweenWorldSpace(this LineRenderer self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            return self.Tween<WorldSpaceLineRendererTween, LineRenderer, bool>(options, optionsMode);
+            return self.Tween<WorldSpaceLineRendererTween, LineRenderer, bool>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<WorldSpaceLineRendererTween> TweensWorldSpace(this IEnumerable<LineRenderer> self, bool options, OptionsMode optionsMode = default)
+        public static IEnumerable<WorldSpaceLineRendererTween> TweensWorldSpace(this IEnumerable<LineRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<WorldSpaceLineRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenWorldSpace(options, optionsMode);
+                var tween = target.TweenWorldSpace(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 

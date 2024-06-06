@@ -6,9 +6,9 @@ namespace Better.Tweens.Runtime
     {
         // Add Tweens for all extsns IEnumerable<>
         
-        public static GlobalTimeScaleSettingsTween TweenGlobalTimeScale(this SettingsData self, float options, OptionsMode optionsMode = default)
+        public static GlobalTimeScaleSettingsTween TweenGlobalTimeScale(this SettingsData self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<GlobalTimeScaleSettingsTween, SettingsData, float>(options, optionsMode);
+            return self.Tween<GlobalTimeScaleSettingsTween, SettingsData, float>(duration, options, optionsMode);
         }
     }
 }

@@ -6,285 +6,285 @@ namespace Better.Tweens.Runtime
 {
     public static class CameraExtensions
     {
-        public static AspectCameraTween TweenAspect(this Camera self, float options, OptionsMode optionsMode = default)
+        public static AspectCameraTween TweenAspect(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<AspectCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<AspectCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<AspectCameraTween> TweensAspect(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<AspectCameraTween> TweensAspect(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<AspectCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenAspect(options, optionsMode);
+                var tween = target.TweenAspect(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static BackgroundColorCameraTween TweenBackgroundColor(this Camera self, ColorOptions options, OptionsMode optionsMode = default)
+        public static BackgroundColorCameraTween TweenBackgroundColor(this Camera self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            return self.Tween<BackgroundColorCameraTween, Camera, Color, ColorOptions>(options, optionsMode);
+            return self.Tween<BackgroundColorCameraTween, Camera, Color, ColorOptions>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<BackgroundColorCameraTween> TweensBackgroundColor(this IEnumerable<Camera> self, ColorOptions options, OptionsMode optionsMode = default)
+        public static IEnumerable<BackgroundColorCameraTween> TweensBackgroundColor(this IEnumerable<Camera> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<BackgroundColorCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenBackgroundColor(options, optionsMode);
+                var tween = target.TweenBackgroundColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static BackgroundColorCameraTween TweenBackgroundColor(this Camera self, Color options, OptionsMode optionsMode = default)
+        public static BackgroundColorCameraTween TweenBackgroundColor(this Camera self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            return self.TweenColor<BackgroundColorCameraTween, Camera>(options, optionsMode);
+            return self.TweenColor<BackgroundColorCameraTween, Camera>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<BackgroundColorCameraTween> TweensBackgroundColor(this IEnumerable<Camera> self, Color options, OptionsMode optionsMode = default)
+        public static IEnumerable<BackgroundColorCameraTween> TweensBackgroundColor(this IEnumerable<Camera> self, float duration, Color options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<BackgroundColorCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenBackgroundColor(options, optionsMode);
+                var tween = target.TweenBackgroundColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static DepthCameraTween TweenDepth(this Camera self, float options, OptionsMode optionsMode = default)
+        public static DepthCameraTween TweenDepth(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<DepthCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<DepthCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<DepthCameraTween> TweensDepth(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<DepthCameraTween> TweensDepth(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<DepthCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenDepth(options, optionsMode);
+                var tween = target.TweenDepth(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static FarClipPlaneCameraTween TweenFarClipPlane(this Camera self, float options, OptionsMode optionsMode = default)
+        public static FarClipPlaneCameraTween TweenFarClipPlane(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<FarClipPlaneCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<FarClipPlaneCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<FarClipPlaneCameraTween> TweensFarClipPlane(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<FarClipPlaneCameraTween> TweensFarClipPlane(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<FarClipPlaneCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenFarClipPlane(options, optionsMode);
+                var tween = target.TweenFarClipPlane(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static FocalLengthCameraTween TweenFocalLength(this Camera self, float options, OptionsMode optionsMode = default)
+        public static FocalLengthCameraTween TweenFocalLength(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<FocalLengthCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<FocalLengthCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<FocalLengthCameraTween> TweensFocalLength(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<FocalLengthCameraTween> TweensFocalLength(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<FocalLengthCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenFocalLength(options, optionsMode);
+                var tween = target.TweenFocalLength(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static FOVCameraTween TweenFOV(this Camera self, float options, OptionsMode optionsMode = default)
+        public static FOVCameraTween TweenFOV(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<FOVCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<FOVCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<FOVCameraTween> TweensFOV(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<FOVCameraTween> TweensFOV(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<FOVCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenFOV(options, optionsMode);
+                var tween = target.TweenFOV(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static LensShiftCameraTween TweenLensShift(this Camera self, Vector2 options, OptionsMode optionsMode = default)
+        public static LensShiftCameraTween TweenLensShift(this Camera self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            return self.Tween<LensShiftCameraTween, Camera, Vector2>(options, optionsMode);
+            return self.Tween<LensShiftCameraTween, Camera, Vector2>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<LensShiftCameraTween> TweensLensShift(this IEnumerable<Camera> self, Vector2 options, OptionsMode optionsMode = default)
+        public static IEnumerable<LensShiftCameraTween> TweensLensShift(this IEnumerable<Camera> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<LensShiftCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenLensShift(options, optionsMode);
+                var tween = target.TweenLensShift(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static NearClipPlaneCameraTween TweenNearClipPlane(this Camera self, float options, OptionsMode optionsMode = default)
+        public static NearClipPlaneCameraTween TweenNearClipPlane(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<NearClipPlaneCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<NearClipPlaneCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<NearClipPlaneCameraTween> TweensNearClipPlane(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<NearClipPlaneCameraTween> TweensNearClipPlane(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<NearClipPlaneCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenNearClipPlane(options, optionsMode);
+                var tween = target.TweenNearClipPlane(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static OrthographicCameraTween TweenOrthographic(this Camera self, bool options, OptionsMode optionsMode = default)
+        public static OrthographicCameraTween TweenOrthographic(this Camera self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            return self.Tween<OrthographicCameraTween, Camera, bool>(options, optionsMode);
+            return self.Tween<OrthographicCameraTween, Camera, bool>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<OrthographicCameraTween> TweensOrthographic(this IEnumerable<Camera> self, bool options, OptionsMode optionsMode = default)
+        public static IEnumerable<OrthographicCameraTween> TweensOrthographic(this IEnumerable<Camera> self, float duration, bool options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<OrthographicCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenOrthographic(options, optionsMode);
+                var tween = target.TweenOrthographic(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static OrthographicSizeCameraTween TweenOrthographicSize(this Camera self, float options, OptionsMode optionsMode = default)
+        public static OrthographicSizeCameraTween TweenOrthographicSize(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<OrthographicSizeCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<OrthographicSizeCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<OrthographicSizeCameraTween> TweensOrthographicSize(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<OrthographicSizeCameraTween> TweensOrthographicSize(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<OrthographicSizeCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenOrthographicSize(options, optionsMode);
+                var tween = target.TweenOrthographicSize(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static SensorSizeCameraTween TweenSensorSize(this Camera self, Vector2 options, OptionsMode optionsMode = default)
+        public static SensorSizeCameraTween TweenSensorSize(this Camera self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            return self.Tween<SensorSizeCameraTween, Camera, Vector2>(options, optionsMode);
+            return self.Tween<SensorSizeCameraTween, Camera, Vector2>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<SensorSizeCameraTween> TweensSensorSize(this IEnumerable<Camera> self, Vector2 options, OptionsMode optionsMode = default)
+        public static IEnumerable<SensorSizeCameraTween> TweensSensorSize(this IEnumerable<Camera> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<SensorSizeCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenSensorSize(options, optionsMode);
+                var tween = target.TweenSensorSize(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static StereoConvergenceCameraTween TweenStereoConvergence(this Camera self, float options, OptionsMode optionsMode = default)
+        public static StereoConvergenceCameraTween TweenStereoConvergence(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<StereoConvergenceCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<StereoConvergenceCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<StereoConvergenceCameraTween> TweensStereoConvergence(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<StereoConvergenceCameraTween> TweensStereoConvergence(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<StereoConvergenceCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenStereoConvergence(options, optionsMode);
+                var tween = target.TweenStereoConvergence(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static StereoSeparationCameraTween TweenStereoSeparation(this Camera self, float options, OptionsMode optionsMode = default)
+        public static StereoSeparationCameraTween TweenStereoSeparation(this Camera self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<StereoSeparationCameraTween, Camera, float>(options, optionsMode);
+            return self.Tween<StereoSeparationCameraTween, Camera, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<StereoSeparationCameraTween> TweensStereoSeparation(this IEnumerable<Camera> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<StereoSeparationCameraTween> TweensStereoSeparation(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<StereoSeparationCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenStereoSeparation(options, optionsMode);
+                var tween = target.TweenStereoSeparation(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static TargetDisplayCameraTween TweenTargetDisplay(this Camera self, int options, OptionsMode optionsMode = default)
+        public static TargetDisplayCameraTween TweenTargetDisplay(this Camera self, float duration, int options, OptionsMode optionsMode = default)
         {
-            return self.Tween<TargetDisplayCameraTween, Camera, int>(options, optionsMode);
+            return self.Tween<TargetDisplayCameraTween, Camera, int>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<TargetDisplayCameraTween> TweensTargetDisplay(this IEnumerable<Camera> self, int options, OptionsMode optionsMode = default)
+        public static IEnumerable<TargetDisplayCameraTween> TweensTargetDisplay(this IEnumerable<Camera> self, float duration, int options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<TargetDisplayCameraTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenTargetDisplay(options, optionsMode);
+                var tween = target.TweenTargetDisplay(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 

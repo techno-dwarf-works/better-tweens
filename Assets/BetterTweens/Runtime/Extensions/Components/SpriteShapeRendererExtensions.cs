@@ -7,38 +7,38 @@ namespace Better.Tweens.Runtime
 {
     public static class SpriteShapeRendererExtensions
     {
-        public static ColorSpriteShapeRendererTween TweenColor(this SpriteShapeRenderer self, ColorOptions options, OptionsMode optionsMode = default)
+        public static ColorSpriteShapeRendererTween TweenColor(this SpriteShapeRenderer self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            return self.Tween<ColorSpriteShapeRendererTween, SpriteShapeRenderer, Color, ColorOptions>(options, optionsMode);
+            return self.Tween<ColorSpriteShapeRendererTween, SpriteShapeRenderer, Color, ColorOptions>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, ColorOptions options, OptionsMode optionsMode = default)
+        public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<ColorSpriteShapeRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenColor(options, optionsMode);
+                var tween = target.TweenColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static ColorSpriteShapeRendererTween TweenColor(this SpriteShapeRenderer self, Color options, OptionsMode optionsMode = default)
+        public static ColorSpriteShapeRendererTween TweenColor(this SpriteShapeRenderer self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            return self.TweenColor<ColorSpriteShapeRendererTween, SpriteShapeRenderer>(options, optionsMode);
+            return self.TweenColor<ColorSpriteShapeRendererTween, SpriteShapeRenderer>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, Color options, OptionsMode optionsMode = default)
+        public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<ColorSpriteShapeRendererTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenColor(options, optionsMode);
+                var tween = target.TweenColor(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 

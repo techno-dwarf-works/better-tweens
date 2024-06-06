@@ -6,38 +6,38 @@ namespace Better.Tweens.Runtime
 {
     public static class RectMask2DExtensions
     {
-        public static PaddingRectMaskTween TweenPadding(this RectMask2D self, Vector4 options, OptionsMode optionsMode = default)
+        public static PaddingRectMaskTween TweenPadding(this RectMask2D self, float duration, Vector4 options, OptionsMode optionsMode = default)
         {
-            return self.Tween<PaddingRectMaskTween, RectMask2D, Vector4>(options, optionsMode);
+            return self.Tween<PaddingRectMaskTween, RectMask2D, Vector4>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<PaddingRectMaskTween> TweensPadding(this IEnumerable<RectMask2D> self, Vector4 options, OptionsMode optionsMode = default)
+        public static IEnumerable<PaddingRectMaskTween> TweensPadding(this IEnumerable<RectMask2D> self, float duration, Vector4 options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<PaddingRectMaskTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenPadding(options, optionsMode);
+                var tween = target.TweenPadding(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static SoftnessRectMaskTween TweenSoftness(this RectMask2D self, Vector2 options, OptionsMode optionsMode = default)
+        public static SoftnessRectMaskTween TweenSoftness(this RectMask2D self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            return self.Tween<SoftnessRectMaskTween, RectMask2D, Vector2>(options, optionsMode);
+            return self.Tween<SoftnessRectMaskTween, RectMask2D, Vector2>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<SoftnessRectMaskTween> TweensSoftness(this IEnumerable<RectMask2D> self, Vector2 options, OptionsMode optionsMode = default)
+        public static IEnumerable<SoftnessRectMaskTween> TweensSoftness(this IEnumerable<RectMask2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<SoftnessRectMaskTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenSoftness(options, optionsMode);
+                var tween = target.TweenSoftness(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 

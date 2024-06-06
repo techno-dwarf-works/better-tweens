@@ -6,57 +6,57 @@ namespace Better.Tweens.Runtime
 {
     public static class ScrollRectExtensions
     {
-        public static HorizontalNormalizedPositionScrollRectTween TweenHorizontalNormalizedPosition(this ScrollRect self, float options, OptionsMode optionsMode = default)
+        public static HorizontalNormalizedPositionScrollRectTween TweenHorizontalNormalizedPosition(this ScrollRect self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<HorizontalNormalizedPositionScrollRectTween, ScrollRect, float>(options, optionsMode);
+            return self.Tween<HorizontalNormalizedPositionScrollRectTween, ScrollRect, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<HorizontalNormalizedPositionScrollRectTween> TweensHorizontalNormalizedPosition(this IEnumerable<ScrollRect> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<HorizontalNormalizedPositionScrollRectTween> TweensHorizontalNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<HorizontalNormalizedPositionScrollRectTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenHorizontalNormalizedPosition(options, optionsMode);
+                var tween = target.TweenHorizontalNormalizedPosition(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static NormalizedPositionScrollRectTween TweenNormalizedPosition(this ScrollRect self, Vector2 options, OptionsMode optionsMode = default)
+        public static NormalizedPositionScrollRectTween TweenNormalizedPosition(this ScrollRect self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            return self.Tween<NormalizedPositionScrollRectTween, ScrollRect, Vector2>(options, optionsMode);
+            return self.Tween<NormalizedPositionScrollRectTween, ScrollRect, Vector2>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<NormalizedPositionScrollRectTween> TweensNormalizedPosition(this IEnumerable<ScrollRect> self, Vector2 options, OptionsMode optionsMode = default)
+        public static IEnumerable<NormalizedPositionScrollRectTween> TweensNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<NormalizedPositionScrollRectTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenNormalizedPosition(options, optionsMode);
+                var tween = target.TweenNormalizedPosition(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static VerticalNormalizedPositionScrollRectTween TweenVerticalNormalizedPosition(this ScrollRect self, float options, OptionsMode optionsMode = default)
+        public static VerticalNormalizedPositionScrollRectTween TweenVerticalNormalizedPosition(this ScrollRect self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<VerticalNormalizedPositionScrollRectTween, ScrollRect, float>(options, optionsMode);
+            return self.Tween<VerticalNormalizedPositionScrollRectTween, ScrollRect, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<VerticalNormalizedPositionScrollRectTween> TweensVerticalNormalizedPosition(this IEnumerable<ScrollRect> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<VerticalNormalizedPositionScrollRectTween> TweensVerticalNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<VerticalNormalizedPositionScrollRectTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenVerticalNormalizedPosition(options, optionsMode);
+                var tween = target.TweenVerticalNormalizedPosition(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 

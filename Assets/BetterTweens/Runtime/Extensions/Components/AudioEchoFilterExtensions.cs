@@ -5,76 +5,76 @@ namespace Better.Tweens.Runtime
 {
     public static class AudioEchoFilterExtensions
     {
-        public static DecayRatioAudioEchoFilterTween TweenDecayRatio(this AudioEchoFilter self, float options, OptionsMode optionsMode = default)
+        public static DecayRatioAudioEchoFilterTween TweenDecayRatio(this AudioEchoFilter self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<DecayRatioAudioEchoFilterTween, AudioEchoFilter, float>(options, optionsMode);
+            return self.Tween<DecayRatioAudioEchoFilterTween, AudioEchoFilter, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<DecayRatioAudioEchoFilterTween> TweensDecayRatio(this IEnumerable<AudioEchoFilter> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<DecayRatioAudioEchoFilterTween> TweensDecayRatio(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<DecayRatioAudioEchoFilterTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenDecayRatio(options, optionsMode);
+                var tween = target.TweenDecayRatio(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static DelayAudioEchoFilterTween TweenDelay(this AudioEchoFilter self, float options, OptionsMode optionsMode = default)
+        public static DelayAudioEchoFilterTween TweenDelay(this AudioEchoFilter self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<DelayAudioEchoFilterTween, AudioEchoFilter, float>(options, optionsMode);
+            return self.Tween<DelayAudioEchoFilterTween, AudioEchoFilter, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<DelayAudioEchoFilterTween> TweensDelay(this IEnumerable<AudioEchoFilter> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<DelayAudioEchoFilterTween> TweensDelay(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<DelayAudioEchoFilterTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenDelay(options, optionsMode);
+                var tween = target.TweenDelay(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static DryMixAudioEchoFilterTween TweenDryMix(this AudioEchoFilter self, float options, OptionsMode optionsMode = default)
+        public static DryMixAudioEchoFilterTween TweenDryMix(this AudioEchoFilter self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<DryMixAudioEchoFilterTween, AudioEchoFilter, float>(options, optionsMode);
+            return self.Tween<DryMixAudioEchoFilterTween, AudioEchoFilter, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<DryMixAudioEchoFilterTween> TweensDryMix(this IEnumerable<AudioEchoFilter> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<DryMixAudioEchoFilterTween> TweensDryMix(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<DryMixAudioEchoFilterTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenDryMix(options, optionsMode);
+                var tween = target.TweenDryMix(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
             return tweens;
         }
 
-        public static WetMixAudioEchoFilterTween TweenWetMix(this AudioEchoFilter self, float options, OptionsMode optionsMode = default)
+        public static WetMixAudioEchoFilterTween TweenWetMix(this AudioEchoFilter self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.Tween<WetMixAudioEchoFilterTween, AudioEchoFilter, float>(options, optionsMode);
+            return self.Tween<WetMixAudioEchoFilterTween, AudioEchoFilter, float>(duration, options, optionsMode);
         }
 
-        public static IEnumerable<WetMixAudioEchoFilterTween> TweensWetMix(this IEnumerable<AudioEchoFilter> self, float options, OptionsMode optionsMode = default)
+        public static IEnumerable<WetMixAudioEchoFilterTween> TweensWetMix(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
             // TODO: Add self validation
 
             var tweens = new List<WetMixAudioEchoFilterTween>();
             foreach (var target in self)
             {
-                var tween = target.TweenWetMix(options, optionsMode);
+                var tween = target.TweenWetMix(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
