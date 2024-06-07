@@ -58,8 +58,8 @@ namespace Better.Tweens.Runtime
 
         protected bool Initialized { get; private set; }
         protected SettingsData SettingsData => TweensSettings.Instance.Current;
-        protected TweenCoreAction CompletionAction => _completionAction.Value;
-        protected TweenCoreAction RewoundAction => _rewoundAction.Value;
+        private TweenCoreAction CompletionAction => _completionAction.Value;
+        private TweenCoreAction RewoundAction => _rewoundAction.Value;
 
         protected TweenCore()
         {
