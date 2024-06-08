@@ -4,6 +4,7 @@ using Better.Commons.Runtime.Extensions;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
@@ -312,49 +313,7 @@ namespace Better.Tweens.Runtime
 
             return this;
         }
-
-        public TweenCore AddTrigger(TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
-        {
-            if (id.IsNullOrEmpty())
-            {
-                var message = $"{nameof(id)} cannot be null or empty";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            if (action == null)
-            {
-                var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            if (condition == null)
-            {
-                var message = $"{nameof(condition)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
-            }
-
-            var trigger = new Trigger(id, action, condition);
-            return AddTrigger(trigger);
-        }
-
-        public TweenCore AddTrigger<TAction>(Condition condition, string id = Trigger.UndefinedId)
-            where TAction : TweenCoreAction, new()
-        {
-            var action = new TAction();
-            return AddTrigger(action, condition, id);
-        }
-
-        public TweenCore AddTrigger<TAction, TCondition>(string id = Trigger.UndefinedId)
-            where TAction : TweenCoreAction, new()
-            where TCondition : Condition, new()
-        {
-            var condition = new TCondition();
-            return AddTrigger<TAction>(condition, id);
-        }
-
+        
         public TweenCore RemoveTriggers(Predicate<Trigger> predicate)
         {
             if (predicate == null)

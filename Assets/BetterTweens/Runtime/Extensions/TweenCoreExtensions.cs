@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
@@ -802,11 +803,71 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
+        public static TweenCore AddTriggers(this TweenCore self, IEnumerable<Trigger> triggers)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+
+                return self;
+            }
+
+            if (triggers == null)
+            {
+                var message = $"{nameof(triggers)} cannot be null";
+                LogUtility.LogException(message);
+
+                return self;
+            }
+
+            foreach (var trigger in triggers)
+            {
+                self.AddTrigger(trigger);
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> AddTriggers(this IEnumerable<TweenCore> self, IEnumerable<Trigger> triggers)
+        {
+            if (self == null)
+            {
+                var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+
+                return self;
+            }
+
+            if (triggers == null)
+            {
+                var message = $"{nameof(triggers)} cannot be null";
+                LogUtility.LogException(message);
+
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.AddTriggers(triggers);
+            }
+
+            return self;
+        }
+
         public static IEnumerable<TweenCore> AddTrigger(this IEnumerable<TweenCore> self, Trigger trigger)
         {
             if (self == null)
             {
                 var message = $"{nameof(self)} cannot be null";
+                LogUtility.LogException(message);
+
+                return self;
+            }
+
+            if (trigger == null)
+            {
+                var message = $"{nameof(trigger)} cannot be null";
                 LogUtility.LogException(message);
 
                 return self;
@@ -820,61 +881,56 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
-        public static IEnumerable<TweenCore> AddTrigger(this IEnumerable<TweenCore> self, TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
+        public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
         {
             if (self == null)
             {
-                var message = $"{nameof(self)} cannot be null";
+                var message = $"{nameof(action)} cannot be null";
+                LogUtility.LogException(message);
+
+                return null;
+            }
+
+            if (action == null)
+            {
+                var message = $"{nameof(action)} cannot be null";
                 LogUtility.LogException(message);
 
                 return self;
             }
 
-            foreach (var tweenCore in self)
+            if (condition == null)
             {
-                tweenCore.AddTrigger(action, condition, id);
+                var message = $"{nameof(condition)} cannot be null";
+                LogUtility.LogException(message);
+
+                return self;
             }
 
-            return self;
+            var trigger = new ConditionTrigger(id, action, condition);
+            return self.AddTrigger(trigger);
         }
 
-        public static IEnumerable<TweenCore> AddTrigger<TAction>(this IEnumerable<TweenCore> self, Condition condition, string id = Trigger.UndefinedId)
+        public static TweenCore AddTrigger<TAction>(this TweenCore self, Condition condition, string id = Trigger.UndefinedId)
             where TAction : TweenCoreAction, new()
         {
-            if (self == null)
-            {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.AddTrigger<TAction>(condition, id);
-            }
-
-            return self;
+            var action = new TAction();
+            return self.AddTrigger(action, condition, id);
         }
 
-        public static IEnumerable<TweenCore> AddTrigger<TAction, TCondition>(this IEnumerable<TweenCore> self, string id = Trigger.UndefinedId)
+        public static TweenCore AddTrigger<TCondition>(this TweenCore self, TweenCoreAction action, string id = Trigger.UndefinedId)
+            where TCondition : Condition, new()
+        {
+            var condition = new TCondition();
+            return self.AddTrigger(action, condition, id);
+        }
+
+        public static TweenCore AddTrigger<TAction, TCondition>(this TweenCore self, string id = Trigger.UndefinedId)
             where TAction : TweenCoreAction, new()
             where TCondition : Condition, new()
         {
-            if (self == null)
-            {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.AddTrigger<TAction, TCondition>(id);
-            }
-
-            return self;
+            var condition = new TCondition();
+            return self.AddTrigger<TAction>(condition, id);
         }
 
         public static IEnumerable<TweenCore> RemoveTriggers(this IEnumerable<TweenCore> self, Predicate<Trigger> predicate)

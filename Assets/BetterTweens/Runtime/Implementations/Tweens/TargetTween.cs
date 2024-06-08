@@ -38,7 +38,7 @@ namespace Better.Tweens.Runtime
             if (value is Object unityTarget)
             {
                 var destroyObjectCondition = new NullReferenceObjectCondition(unityTarget, true);
-                AddTrigger<StopAction>(destroyObjectCondition, TargetTriggerId);
+                this.AddTrigger<StopAction>(destroyObjectCondition, TargetTriggerId);
             }
 
             _target = value;
