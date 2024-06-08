@@ -66,9 +66,6 @@ namespace Better.Tweens.Runtime
 
         private void DO_Static()
         {
-            VirtualTweening.Create(() => Time.timeScale, value => Time.timeScale = value)
-                .From(1f)
-                .Play();
         }
 
         private void Components()

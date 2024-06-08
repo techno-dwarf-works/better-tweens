@@ -11,6 +11,11 @@ namespace Better.Tweens.Runtime.Actions
 
         public bool TryInvoke(TweenCore tweenCore)
         {
+            if (tweenCore == null)
+            {
+                return false;
+            }
+
             if (ReadinessFor(tweenCore))
             {
                 if (Settings.SafeMode)
