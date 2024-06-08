@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using Better.Tweens.Runtime.Data;
 using UnityEngine;
 
@@ -124,7 +124,7 @@ namespace Better.Tweens.Runtime
         public static SizeSpriteRendererTween TweenSizeX(this SpriteRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeSpriteRendererTween, SpriteRenderer>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
         public static SizeSpriteRendererTween TweenSizeY(this SpriteRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeSpriteRendererTween, SpriteRenderer>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }

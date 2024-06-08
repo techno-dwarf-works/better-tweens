@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -47,7 +47,7 @@ namespace Better.Tweens.Runtime
         public static AnchoredPositionRectTransformTween TweenAnchoredPositionX(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<AnchoredPositionRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
@@ -69,7 +69,7 @@ namespace Better.Tweens.Runtime
         public static AnchoredPositionRectTransformTween TweenAnchoredPositionY(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<AnchoredPositionRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }
@@ -186,7 +186,7 @@ namespace Better.Tweens.Runtime
         public static PivotRectTransformTween TweenPivotX(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PivotRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
@@ -208,7 +208,7 @@ namespace Better.Tweens.Runtime
         public static PivotRectTransformTween TweenPivotY(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PivotRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }
@@ -249,7 +249,7 @@ namespace Better.Tweens.Runtime
         public static SizeDeltaRectTransformTween TweenSizeDeltaX(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeDeltaRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
@@ -271,7 +271,7 @@ namespace Better.Tweens.Runtime
         public static SizeDeltaRectTransformTween TweenSizeDeltaY(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeDeltaRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }

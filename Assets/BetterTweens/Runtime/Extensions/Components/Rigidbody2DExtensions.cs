@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -161,7 +161,7 @@ namespace Better.Tweens.Runtime
         public static PositionRigidbody2DTween TweenPositionX(this Rigidbody2D self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PositionRigidbody2DTween, Rigidbody2D>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
@@ -183,7 +183,7 @@ namespace Better.Tweens.Runtime
         public static PositionRigidbody2DTween TweenPositionY(this Rigidbody2D self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PositionRigidbody2DTween, Rigidbody2D>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }

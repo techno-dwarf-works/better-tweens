@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -91,8 +91,8 @@ namespace Better.Tweens.Runtime
         public static PositionTransformTween TweenPositionX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<PositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.Y)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.Y)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -114,8 +114,8 @@ namespace Better.Tweens.Runtime
         public static PositionTransformTween TweenPositionY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<PositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -137,8 +137,8 @@ namespace Better.Tweens.Runtime
         public static PositionTransformTween TweenPositionZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<PositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Y);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Y);
 
             return tween;
         }
@@ -183,8 +183,8 @@ namespace Better.Tweens.Runtime
         public static LocalPositionTransformTween TweenLocalPositionX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalPositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.Y)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.Y)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -206,8 +206,8 @@ namespace Better.Tweens.Runtime
         public static LocalPositionTransformTween TweenLocalPositionY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalPositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -229,8 +229,8 @@ namespace Better.Tweens.Runtime
         public static LocalPositionTransformTween TweenLocalPositionZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalPositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Y);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Y);
 
             return tween;
         }
@@ -275,8 +275,8 @@ namespace Better.Tweens.Runtime
         public static EulerAnglesTransformTween TweenEulerAngleX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<EulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.Y)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.Y)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -298,8 +298,8 @@ namespace Better.Tweens.Runtime
         public static EulerAnglesTransformTween TweenEulerAngleY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<EulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -321,8 +321,8 @@ namespace Better.Tweens.Runtime
         public static EulerAnglesTransformTween TweenEulerAngleZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<EulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Y);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Y);
 
             return tween;
         }
@@ -386,8 +386,8 @@ namespace Better.Tweens.Runtime
         public static LocalEulerAnglesTransformTween TweenLocalEulerAngleX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalEulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.Y)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.Y)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -409,8 +409,8 @@ namespace Better.Tweens.Runtime
         public static LocalEulerAnglesTransformTween TweenLocalEulerAngleY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalEulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -432,8 +432,8 @@ namespace Better.Tweens.Runtime
         public static LocalEulerAnglesTransformTween TweenLocalEulerAngleZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalEulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Y);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Y);
 
             return tween;
         }
@@ -516,8 +516,8 @@ namespace Better.Tweens.Runtime
         public static LocalScaleTransformTween TweenLocalScaleX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.Y)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.Y)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -539,8 +539,8 @@ namespace Better.Tweens.Runtime
         public static LocalScaleTransformTween TweenLocalScaleY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Z);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Z);
 
             return tween;
         }
@@ -562,8 +562,8 @@ namespace Better.Tweens.Runtime
         public static LocalScaleTransformTween TweenLocalScaleZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(XYZAxis.X)
-                .AddConstraint(XYZAxis.Y);
+            tween.AddConstraint(Vector3Axis.X)
+                .AddConstraint(Vector3Axis.Y);
 
             return tween;
         }
