@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Commons.Runtime.Enums;
+using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchoredPosition3DRectTransformTween> TweensAnchoredPosition3D(this IEnumerable<RectTransform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AnchoredPosition3DRectTransformTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchoredPositionRectTransformTween> TweensAnchoredPosition(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AnchoredPositionRectTransformTween>();
             foreach (var target in self)
@@ -47,14 +47,14 @@ namespace Better.Tweens.Runtime
         public static AnchoredPositionRectTransformTween TweenAnchoredPositionX(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<AnchoredPositionRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector2Axis.Y);
+            tween.AddConstraint(XYAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<AnchoredPositionRectTransformTween> TweensAnchoredPositionX(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AnchoredPositionRectTransformTween>();
             foreach (var target in self)
@@ -69,14 +69,14 @@ namespace Better.Tweens.Runtime
         public static AnchoredPositionRectTransformTween TweenAnchoredPositionY(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<AnchoredPositionRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector2Axis.X);
+            tween.AddConstraint(XYAxis.X);
 
             return tween;
         }
 
         public static IEnumerable<AnchoredPositionRectTransformTween> TweensAnchoredPositionY(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AnchoredPositionRectTransformTween>();
             foreach (var target in self)
@@ -95,7 +95,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchorMaxRectTransformTween> TweensAnchorMax(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AnchorMaxRectTransformTween>();
             foreach (var target in self)
@@ -114,7 +114,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchorMinRectTransformTween> TweensAnchorMin(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AnchorMinRectTransformTween>();
             foreach (var target in self)
@@ -133,7 +133,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OffsetMaxRectTransformTween> TweensOffsetMax(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<OffsetMaxRectTransformTween>();
             foreach (var target in self)
@@ -152,7 +152,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OffsetMinRectTransformTween> TweensOffsetMin(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<OffsetMinRectTransformTween>();
             foreach (var target in self)
@@ -171,7 +171,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PivotRectTransformTween> TweensPivot(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PivotRectTransformTween>();
             foreach (var target in self)
@@ -186,14 +186,14 @@ namespace Better.Tweens.Runtime
         public static PivotRectTransformTween TweenPivotX(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PivotRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector2Axis.Y);
+            tween.AddConstraint(XYAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<PivotRectTransformTween> TweensPivotX(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PivotRectTransformTween>();
             foreach (var target in self)
@@ -208,14 +208,14 @@ namespace Better.Tweens.Runtime
         public static PivotRectTransformTween TweenPivotY(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PivotRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector2Axis.X);
+            tween.AddConstraint(XYAxis.X);
 
             return tween;
         }
 
         public static IEnumerable<PivotRectTransformTween> TweensPivotY(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PivotRectTransformTween>();
             foreach (var target in self)
@@ -234,7 +234,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeDeltaRectTransformTween> TweensSizeDelta(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<SizeDeltaRectTransformTween>();
             foreach (var target in self)
@@ -249,14 +249,14 @@ namespace Better.Tweens.Runtime
         public static SizeDeltaRectTransformTween TweenSizeDeltaX(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeDeltaRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector2Axis.Y);
+            tween.AddConstraint(XYAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<SizeDeltaRectTransformTween> TweensSizeDeltaX(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<SizeDeltaRectTransformTween>();
             foreach (var target in self)
@@ -271,14 +271,14 @@ namespace Better.Tweens.Runtime
         public static SizeDeltaRectTransformTween TweenSizeDeltaY(this RectTransform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeDeltaRectTransformTween, RectTransform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector2Axis.X);
+            tween.AddConstraint(XYAxis.X);
 
             return tween;
         }
 
         public static IEnumerable<SizeDeltaRectTransformTween> TweensSizeDeltaY(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<SizeDeltaRectTransformTween>();
             foreach (var target in self)

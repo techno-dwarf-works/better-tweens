@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Commons.Runtime.Enums;
+using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -15,7 +15,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<UpTransformTween> TweensUp(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<UpTransformTween>();
             foreach (var target in self)
@@ -34,7 +34,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ForwardTransformTween> TweensForward(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ForwardTransformTween>();
             foreach (var target in self)
@@ -53,7 +53,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RightTransformTween> TweensRight(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<RightTransformTween>();
             foreach (var target in self)
@@ -76,7 +76,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PositionTransformTween> TweensPosition(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PositionTransformTween>();
             foreach (var target in self)
@@ -91,15 +91,15 @@ namespace Better.Tweens.Runtime
         public static PositionTransformTween TweenPositionX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<PositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.Y)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.Y)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<PositionTransformTween> TweensPositionX(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PositionTransformTween>();
             foreach (var target in self)
@@ -114,15 +114,15 @@ namespace Better.Tweens.Runtime
         public static PositionTransformTween TweenPositionY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<PositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<PositionTransformTween> TweensPositionY(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PositionTransformTween>();
             foreach (var target in self)
@@ -137,15 +137,15 @@ namespace Better.Tweens.Runtime
         public static PositionTransformTween TweenPositionZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<PositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Y);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<PositionTransformTween> TweensPositionZ(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PositionTransformTween>();
             foreach (var target in self)
@@ -168,7 +168,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LocalPositionTransformTween> TweensLocalPosition(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalPositionTransformTween>();
             foreach (var target in self)
@@ -183,15 +183,15 @@ namespace Better.Tweens.Runtime
         public static LocalPositionTransformTween TweenLocalPositionX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalPositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.Y)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.Y)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<LocalPositionTransformTween> TweensLocalPositionX(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalPositionTransformTween>();
             foreach (var target in self)
@@ -206,15 +206,15 @@ namespace Better.Tweens.Runtime
         public static LocalPositionTransformTween TweenLocalPositionY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalPositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<LocalPositionTransformTween> TweensLocalPositionY(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalPositionTransformTween>();
             foreach (var target in self)
@@ -229,15 +229,15 @@ namespace Better.Tweens.Runtime
         public static LocalPositionTransformTween TweenLocalPositionZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalPositionTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Y);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<LocalPositionTransformTween> TweensLocalPositionZ(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalPositionTransformTween>();
             foreach (var target in self)
@@ -260,7 +260,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EulerAnglesTransformTween> TweensEulerAngles(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EulerAnglesTransformTween>();
             foreach (var target in self)
@@ -275,15 +275,15 @@ namespace Better.Tweens.Runtime
         public static EulerAnglesTransformTween TweenEulerAngleX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<EulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.Y)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.Y)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<EulerAnglesTransformTween> TweensEulerAngleX(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EulerAnglesTransformTween>();
             foreach (var target in self)
@@ -298,15 +298,15 @@ namespace Better.Tweens.Runtime
         public static EulerAnglesTransformTween TweenEulerAngleY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<EulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<EulerAnglesTransformTween> TweensEulerAngleY(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EulerAnglesTransformTween>();
             foreach (var target in self)
@@ -321,15 +321,15 @@ namespace Better.Tweens.Runtime
         public static EulerAnglesTransformTween TweenEulerAngleZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<EulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Y);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<EulerAnglesTransformTween> TweensEulerAngleZ(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EulerAnglesTransformTween>();
             foreach (var target in self)
@@ -348,7 +348,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RotationTransformTween> TweensRotation(this IEnumerable<Transform> self, float duration, Quaternion options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<RotationTransformTween>();
             foreach (var target in self)
@@ -371,7 +371,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LocalEulerAnglesTransformTween> TweensLocalEulerAngles(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalEulerAnglesTransformTween>();
             foreach (var target in self)
@@ -386,15 +386,15 @@ namespace Better.Tweens.Runtime
         public static LocalEulerAnglesTransformTween TweenLocalEulerAngleX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalEulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.Y)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.Y)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<LocalEulerAnglesTransformTween> TweensLocalEulerAngleX(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalEulerAnglesTransformTween>();
             foreach (var target in self)
@@ -409,15 +409,15 @@ namespace Better.Tweens.Runtime
         public static LocalEulerAnglesTransformTween TweenLocalEulerAngleY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalEulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<LocalEulerAnglesTransformTween> TweensLocalEulerAngleY(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalEulerAnglesTransformTween>();
             foreach (var target in self)
@@ -432,15 +432,15 @@ namespace Better.Tweens.Runtime
         public static LocalEulerAnglesTransformTween TweenLocalEulerAngleZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalEulerAnglesTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Y);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<LocalEulerAnglesTransformTween> TweensLocalEulerAngleZ(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalEulerAnglesTransformTween>();
             foreach (var target in self)
@@ -459,7 +459,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LocalRotationTransformTween> TweensLocalRotation(this IEnumerable<Transform> self, float duration, Quaternion options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalRotationTransformTween>();
             foreach (var target in self)
@@ -482,7 +482,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LocalScaleTransformTween> TweensLocalScale(this IEnumerable<Transform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalScaleTransformTween>();
             foreach (var target in self)
@@ -501,7 +501,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LocalScaleTransformTween> TweensLocalScale(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalScaleTransformTween>();
             foreach (var target in self)
@@ -516,15 +516,15 @@ namespace Better.Tweens.Runtime
         public static LocalScaleTransformTween TweenLocalScaleX(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.Y)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.Y)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<LocalScaleTransformTween> TweensLocalScaleX(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalScaleTransformTween>();
             foreach (var target in self)
@@ -539,15 +539,15 @@ namespace Better.Tweens.Runtime
         public static LocalScaleTransformTween TweenLocalScaleY(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Z);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Z);
 
             return tween;
         }
 
         public static IEnumerable<LocalScaleTransformTween> TweensLocalScaleY(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalScaleTransformTween>();
             foreach (var target in self)
@@ -562,15 +562,15 @@ namespace Better.Tweens.Runtime
         public static LocalScaleTransformTween TweenLocalScaleZ(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
-            tween.AddConstraint(Vector3Axis.X)
-                .AddConstraint(Vector3Axis.Y);
+            tween.AddConstraint(XYZAxis.X)
+                .AddConstraint(XYZAxis.Y);
 
             return tween;
         }
 
         public static IEnumerable<LocalScaleTransformTween> TweensLocalScaleZ(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LocalScaleTransformTween>();
             foreach (var target in self)

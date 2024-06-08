@@ -14,7 +14,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorSpriteShapeRendererTween>();
             foreach (var target in self)
@@ -33,7 +33,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorSpriteShapeRendererTween>();
             foreach (var target in self)

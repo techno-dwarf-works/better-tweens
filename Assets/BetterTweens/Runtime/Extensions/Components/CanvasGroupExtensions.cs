@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BlocksRaycastsCanvasGroupTween> TweensBlocksRaycasts(this IEnumerable<CanvasGroup> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<BlocksRaycastsCanvasGroupTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InteractableCanvasGroupTween> TweensInteractable(this IEnumerable<CanvasGroup> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<InteractableCanvasGroupTween>();
             foreach (var target in self)
@@ -50,7 +50,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FadeCanvasGroupTween> TweensFade(this IEnumerable<CanvasGroup> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<FadeCanvasGroupTween>();
             foreach (var target in self)
@@ -69,7 +69,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IgnoreParentCanvasGroupTween> TweensIgnoreParent(this IEnumerable<CanvasGroup> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<IgnoreParentCanvasGroupTween>();
             foreach (var target in self)

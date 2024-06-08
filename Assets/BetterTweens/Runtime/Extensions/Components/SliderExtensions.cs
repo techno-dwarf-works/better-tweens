@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NormalizedValueSliderTween> TweensNormalizedValue(this IEnumerable<Slider> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<NormalizedValueSliderTween>();
             foreach (var target in self)

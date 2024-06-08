@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AspectCameraTween> TweensAspect(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AspectCameraTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BackgroundColorCameraTween> TweensBackgroundColor(this IEnumerable<Camera> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<BackgroundColorCameraTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BackgroundColorCameraTween> TweensBackgroundColor(this IEnumerable<Camera> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<BackgroundColorCameraTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DepthCameraTween> TweensDepth(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DepthCameraTween>();
             foreach (var target in self)
@@ -89,7 +89,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FarClipPlaneCameraTween> TweensFarClipPlane(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<FarClipPlaneCameraTween>();
             foreach (var target in self)
@@ -108,7 +108,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FocalLengthCameraTween> TweensFocalLength(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<FocalLengthCameraTween>();
             foreach (var target in self)
@@ -127,7 +127,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FOVCameraTween> TweensFOV(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<FOVCameraTween>();
             foreach (var target in self)
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LensShiftCameraTween> TweensLensShift(this IEnumerable<Camera> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LensShiftCameraTween>();
             foreach (var target in self)
@@ -165,7 +165,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NearClipPlaneCameraTween> TweensNearClipPlane(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<NearClipPlaneCameraTween>();
             foreach (var target in self)
@@ -184,7 +184,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OrthographicCameraTween> TweensOrthographic(this IEnumerable<Camera> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<OrthographicCameraTween>();
             foreach (var target in self)
@@ -203,7 +203,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OrthographicSizeCameraTween> TweensOrthographicSize(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<OrthographicSizeCameraTween>();
             foreach (var target in self)
@@ -222,7 +222,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SensorSizeCameraTween> TweensSensorSize(this IEnumerable<Camera> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<SensorSizeCameraTween>();
             foreach (var target in self)
@@ -241,7 +241,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StereoConvergenceCameraTween> TweensStereoConvergence(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<StereoConvergenceCameraTween>();
             foreach (var target in self)
@@ -260,7 +260,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StereoSeparationCameraTween> TweensStereoSeparation(this IEnumerable<Camera> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<StereoSeparationCameraTween>();
             foreach (var target in self)
@@ -279,7 +279,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TargetDisplayCameraTween> TweensTargetDisplay(this IEnumerable<Camera> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<TargetDisplayCameraTween>();
             foreach (var target in self)

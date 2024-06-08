@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HorizontalNormalizedPositionScrollRectTween> TweensHorizontalNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<HorizontalNormalizedPositionScrollRectTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NormalizedPositionScrollRectTween> TweensNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<NormalizedPositionScrollRectTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VerticalNormalizedPositionScrollRectTween> TweensVerticalNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<VerticalNormalizedPositionScrollRectTween>();
             foreach (var target in self)

@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AspectRatioFitterTween> TweensAspectRatio(this IEnumerable<AspectRatioFitter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<AspectRatioFitterTween>();
             foreach (var target in self)

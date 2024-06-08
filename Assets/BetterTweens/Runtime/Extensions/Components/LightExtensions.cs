@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BounceIntensityLightTween> TweensBounceIntensity(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<BounceIntensityLightTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BoundingSphereLightTween> TweensBoundingSphere(this IEnumerable<Light> self, float duration, Vector4 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<BoundingSphereLightTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorLightTween> TweensColor(this IEnumerable<Light> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorLightTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorLightTween> TweensColor(this IEnumerable<Light> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorLightTween>();
             foreach (var target in self)
@@ -89,7 +89,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorTemperatureLightTween> TweensColorTemperature(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorTemperatureLightTween>();
             foreach (var target in self)
@@ -108,7 +108,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<CookieSizeLightTween> TweensCookieSize(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<CookieSizeLightTween>();
             foreach (var target in self)
@@ -127,7 +127,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InnerSpotAngleLightTween> TweensInnerSpotAngle(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<InnerSpotAngleLightTween>();
             foreach (var target in self)
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IntensityLightTween> TweensIntensity(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<IntensityLightTween>();
             foreach (var target in self)
@@ -165,7 +165,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RangeLightTween> TweensRange(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<RangeLightTween>();
             foreach (var target in self)
@@ -184,7 +184,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowAngleLightTween> TweensShadowAngle(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowAngleLightTween>();
             foreach (var target in self)
@@ -203,7 +203,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowBiasLightTween> TweensShadowBias(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowBiasLightTween>();
             foreach (var target in self)
@@ -222,7 +222,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowCustomResolutionLightTween> TweensShadowCustomResolution(this IEnumerable<Light> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowCustomResolutionLightTween>();
             foreach (var target in self)
@@ -241,7 +241,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowNearPlaneLightTween> TweensShadowNearPlane(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowNearPlaneLightTween>();
             foreach (var target in self)
@@ -260,7 +260,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowNormalBiasLightTween> TweensShadowNormalBias(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowNormalBiasLightTween>();
             foreach (var target in self)
@@ -279,7 +279,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowRadiusLightTween> TweensShadowRadius(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowRadiusLightTween>();
             foreach (var target in self)
@@ -298,7 +298,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowStrengthLightTween> TweensShadowStrength(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowStrengthLightTween>();
             foreach (var target in self)
@@ -317,7 +317,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SpotAngleLightTween> TweensSpotAngle(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<SpotAngleLightTween>();
             foreach (var target in self)
@@ -336,7 +336,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<UseBoundingSphereLightTween> TweensUseBoundingSphere(this IEnumerable<Light> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<UseBoundingSphereLightTween>();
             foreach (var target in self)
@@ -355,7 +355,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<UseColorTemperatureLightTween> TweensUseColorTemperature(this IEnumerable<Light> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<UseColorTemperatureLightTween>();
             foreach (var target in self)
@@ -374,7 +374,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<UseFrustumShadowCasterLightTween> TweensUseFrustumShadowCaster(this IEnumerable<Light> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<UseFrustumShadowCasterLightTween>();
             foreach (var target in self)
@@ -393,7 +393,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<UseShadowMatrixLightTween> TweensUseShadowMatrix(this IEnumerable<Light> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<UseShadowMatrixLightTween>();
             foreach (var target in self)

@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShowGraphicMaskTween> TweensShowGraphic(this IEnumerable<Mask> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShowGraphicMaskTween>();
             foreach (var target in self)

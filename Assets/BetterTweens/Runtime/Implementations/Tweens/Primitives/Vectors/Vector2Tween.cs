@@ -1,11 +1,11 @@
 ﻿using System;
-using Better.Commons.Runtime.Enums;
+using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract class Vector2Tween : VectorTween<Vector2, Vector2Axis>
+    public abstract class Vector2Tween : VectorTween<Vector2, XYAxis>
     {
         protected override Vector2 CalculateRelativeFrom(Vector2 to, Vector2 options)
         {
@@ -52,7 +52,7 @@ namespace Better.Tweens.Runtime
     }
 
     [Serializable]
-    public abstract class Vector2Tween<TTarget> : VectorTween<TTarget, Vector2, Vector2Axis>
+    public abstract class Vector2Tween<TTarget> : VectorTween<TTarget, Vector2, XYAxis>
         where TTarget : class
     {
         protected override Vector2 CalculateRelativeFrom(Vector2 to, Vector2 options)

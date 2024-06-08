@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EndColorLineRendererTween> TweensEndColor(this IEnumerable<LineRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EndColorLineRendererTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EndColorLineRendererTween> TweensEndColor(this IEnumerable<LineRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EndColorLineRendererTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EndWidthLineRendererTween> TweensEndWidth(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EndWidthLineRendererTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LoopLineRendererTween> TweensLoop(this IEnumerable<LineRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LoopLineRendererTween>();
             foreach (var target in self)
@@ -89,7 +89,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NumCapVerticesLineRendererTween> TweensNumCapVertices(this IEnumerable<LineRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<NumCapVerticesLineRendererTween>();
             foreach (var target in self)
@@ -108,7 +108,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NumCornerVerticesLineRendererTween> TweensNumCornerVertices(this IEnumerable<LineRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<NumCornerVerticesLineRendererTween>();
             foreach (var target in self)
@@ -127,7 +127,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PositionCountLineRendererTween> TweensPositionCount(this IEnumerable<LineRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PositionCountLineRendererTween>();
             foreach (var target in self)
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowBiasLineRendererTween> TweensShadowBias(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ShadowBiasLineRendererTween>();
             foreach (var target in self)
@@ -165,7 +165,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StartColorLineRendererTween> TweensStartColor(this IEnumerable<LineRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<StartColorLineRendererTween>();
             foreach (var target in self)
@@ -184,7 +184,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StartColorLineRendererTween> TweensStartColor(this IEnumerable<LineRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<StartColorLineRendererTween>();
             foreach (var target in self)
@@ -203,7 +203,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StartWidthLineRendererTween> TweensStartWidth(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<StartWidthLineRendererTween>();
             foreach (var target in self)
@@ -222,7 +222,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WidthMultiplierLineRendererTween> TweensWidthMultiplier(this IEnumerable<LineRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<WidthMultiplierLineRendererTween>();
             foreach (var target in self)
@@ -241,7 +241,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WorldSpaceLineRendererTween> TweensWorldSpace(this IEnumerable<LineRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<WorldSpaceLineRendererTween>();
             foreach (var target in self)

@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorPropertyBlockRendererTween> TweensColorPropertyBlock(this IEnumerable<Renderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorPropertyBlockRendererTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorPropertyBlockRendererTween> TweensColorPropertyBlock(this IEnumerable<Renderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ColorPropertyBlockRendererTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DynamicOcclusionRendererTween> TweensDynamicOcclusion(this IEnumerable<Renderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DynamicOcclusionRendererTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EnabledRendererTween> TweensEnabled(this IEnumerable<Renderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<EnabledRendererTween>();
             foreach (var target in self)
@@ -89,7 +89,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FloatPropertyBlockRendererTween> TweensFloatPropertyBlock(this IEnumerable<Renderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<FloatPropertyBlockRendererTween>();
             foreach (var target in self)
@@ -108,7 +108,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ForceRenderingOffRendererTween> TweensForceRenderingOff(this IEnumerable<Renderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ForceRenderingOffRendererTween>();
             foreach (var target in self)
@@ -127,7 +127,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IntegerPropertyBlockRendererTween> TweensIntegerPropertyBlock(this IEnumerable<Renderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<IntegerPropertyBlockRendererTween>();
             foreach (var target in self)
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PriorityRendererTween> TweensPriority(this IEnumerable<Renderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<PriorityRendererTween>();
             foreach (var target in self)
@@ -165,7 +165,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReceiveShadowsRendererTween> TweensReceiveShadows(this IEnumerable<Renderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ReceiveShadowsRendererTween>();
             foreach (var target in self)
@@ -184,7 +184,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SortingOrderRendererTween> TweensSortingOrder(this IEnumerable<Renderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<SortingOrderRendererTween>();
             foreach (var target in self)
@@ -203,7 +203,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StaticShadowCasterRendererTween> TweensStaticShadowCaster(this IEnumerable<Renderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<StaticShadowCasterRendererTween>();
             foreach (var target in self)
@@ -222,7 +222,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VectorPropertyBlockRendererTween> TweensVectorPropertyBlock(this IEnumerable<Renderer> self, float duration, Vector4 options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<VectorPropertyBlockRendererTween>();
             foreach (var target in self)

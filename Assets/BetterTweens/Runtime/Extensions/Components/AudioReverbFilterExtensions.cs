@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayHFRatioAudioReverbFilterTween> TweensDecayHFRatio(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DecayHFRatioAudioReverbFilterTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayTimeAudioReverbFilterTween> TweensDecayTime(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DecayTimeAudioReverbFilterTween>();
             foreach (var target in self)
@@ -50,7 +50,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DensityAudioReverbFilterTween> TweensDensity(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DensityAudioReverbFilterTween>();
             foreach (var target in self)
@@ -69,7 +69,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DiffusionAudioReverbFilterTween> TweensDiffusion(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DiffusionAudioReverbFilterTween>();
             foreach (var target in self)
@@ -88,7 +88,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DryLevelAudioReverbFilterTween> TweensDryLevel(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<DryLevelAudioReverbFilterTween>();
             foreach (var target in self)
@@ -107,7 +107,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HfReferenceAudioReverbFilterTween> TweensHfReference(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<HfReferenceAudioReverbFilterTween>();
             foreach (var target in self)
@@ -126,7 +126,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LfReferenceAudioReverbFilterTween> TweensLFReference(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<LfReferenceAudioReverbFilterTween>();
             foreach (var target in self)
@@ -145,7 +145,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReflectionsLevelAudioReverbFilterTween> TweensReflectionsLevel(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ReflectionsLevelAudioReverbFilterTween>();
             foreach (var target in self)
@@ -164,7 +164,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReflectionsDelayAudioReverbFilterTween> TweensReflectionsDelay(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ReflectionsDelayAudioReverbFilterTween>();
             foreach (var target in self)
@@ -183,7 +183,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbLevelAudioReverbFilterTween> TweensReverbLevel(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ReverbLevelAudioReverbFilterTween>();
             foreach (var target in self)
@@ -202,7 +202,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbDelayAudioReverbFilterTween> TweensReverbDelay(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<ReverbDelayAudioReverbFilterTween>();
             foreach (var target in self)
@@ -221,7 +221,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomAudioReverbFilterTween> TweensRoom(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<RoomAudioReverbFilterTween>();
             foreach (var target in self)
@@ -240,7 +240,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomHFAudioReverbFilterTween> TweensRoomHF(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<RoomHFAudioReverbFilterTween>();
             foreach (var target in self)
@@ -259,7 +259,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomLFAudioReverbFilterTween> TweensRoomLF(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            
+            // TODO: Add self validation
 
             var tweens = new List<RoomLFAudioReverbFilterTween>();
             foreach (var target in self)
