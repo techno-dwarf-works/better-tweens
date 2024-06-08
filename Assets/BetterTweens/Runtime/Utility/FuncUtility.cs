@@ -14,18 +14,6 @@ namespace Better.Tweens.Runtime.Utility
             Settings = TweensSettings.Instance;
         }
 
-        public static bool Validate<TResult>(Func<TResult> func, bool logException = true)
-        {
-            var isValid = func != null;
-            if (!isValid && logException)
-            {
-                var message = $"{nameof(func)} cannot be null";
-                LogUtility.LogException(message);
-            }
-
-            return isValid;
-        }
-
         public static bool Validate<TValue, TResult>(Func<TValue, TResult> func, bool logException = true)
         {
             var isValid = func != null;

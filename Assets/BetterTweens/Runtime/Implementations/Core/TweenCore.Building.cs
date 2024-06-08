@@ -136,7 +136,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnStateChanged(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 StateChanged += callback;
             }
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnActivityChanged(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 ActivityChanged += callback;
             }
@@ -156,7 +156,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnEnabled(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Enabled += callback;
             }
@@ -166,7 +166,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnAsleep(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Asleep += callback;
             }
@@ -176,7 +176,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnDisabled(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Disabled += callback;
             }
@@ -186,7 +186,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnStarted(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Started += callback;
             }
@@ -196,7 +196,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnRunned(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Runned += callback;
             }
@@ -206,7 +206,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnPlaying(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Playing += callback;
             }
@@ -216,7 +216,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnRewinding(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Rewinding += callback;
             }
@@ -226,7 +226,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnUpdated(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Updated += callback;
             }
@@ -236,7 +236,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnPaused(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Paused += callback;
             }
@@ -246,7 +246,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnStopped(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Stopped += callback;
             }
@@ -256,7 +256,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnCompleted(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Completed += callback;
             }
@@ -266,7 +266,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnRewound(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 Rewound += callback;
             }
@@ -276,7 +276,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnLoopCompleted(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 LoopCompleted += callback;
             }
@@ -286,7 +286,7 @@ namespace Better.Tweens.Runtime
 
         public TweenCore OnLoopRewound(Action callback)
         {
-            if (ActionUtility.Validate(callback))
+            if (ValidationUtility.Validate(callback))
             {
                 LoopRewound += callback;
             }

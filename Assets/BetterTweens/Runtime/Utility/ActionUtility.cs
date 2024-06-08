@@ -14,18 +14,6 @@ namespace Better.Tweens.Runtime.Utility
             Settings = TweensSettings.Instance;
         }
 
-        public static bool Validate(Action action, bool logException = true)
-        {
-            var isValid = action != null;
-            if (!isValid && logException)
-            {
-                var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogException(message);
-            }
-
-            return isValid;
-        }
-
         public static bool TryInvokeBySafe(Action action, bool logException = true)
         {
             if (action == null)

@@ -6,8 +6,6 @@ namespace Better.Tweens.Runtime.Utility
 {
     public static class LogUtility
     {
-        // TODO: Add AssertNull method
-        
         private static TweensSettings _settings;
 
         static LogUtility()
