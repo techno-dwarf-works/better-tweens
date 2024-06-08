@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using Better.Tweens.Runtime.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EffectColorShadowTween> TweensEffectColor(this IEnumerable<Shadow> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EffectColorShadowTween>();
             foreach (var target in self)
@@ -34,7 +34,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EffectColorShadowTween> TweensEffectColor(this IEnumerable<Shadow> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EffectColorShadowTween>();
             foreach (var target in self)
@@ -53,7 +53,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EffectDistanceShadowTween> TweensEffectDistance(this IEnumerable<Shadow> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EffectDistanceShadowTween>();
             foreach (var target in self)
@@ -72,7 +72,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EffectDistanceShadowTween> TweensEffectDistance(this IEnumerable<Shadow> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EffectDistanceShadowTween>();
             foreach (var target in self)
@@ -87,14 +87,14 @@ namespace Better.Tweens.Runtime
         public static EffectDistanceShadowTween TweenEffectDistanceX(this Shadow self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<EffectDistanceShadowTween, Shadow>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
 
         public static IEnumerable<EffectDistanceShadowTween> TweensEffectDistanceX(this IEnumerable<Shadow> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EffectDistanceShadowTween>();
             foreach (var target in self)
@@ -109,14 +109,14 @@ namespace Better.Tweens.Runtime
         public static EffectDistanceShadowTween TweenEffectDistanceY(this Shadow self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<EffectDistanceShadowTween, Shadow>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }
 
         public static IEnumerable<EffectDistanceShadowTween> TweensEffectDistanceY(this IEnumerable<Shadow> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EffectDistanceShadowTween>();
             foreach (var target in self)
@@ -135,7 +135,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<UseAlphaShadowTween> TweensUseAlpha(this IEnumerable<Shadow> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<UseAlphaShadowTween>();
             foreach (var target in self)

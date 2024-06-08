@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MaskableGraphicTween> TweensMaskable(this IEnumerable<MaskableGraphic> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<MaskableGraphicTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MaskingGraphicTween> TweensMasking(this IEnumerable<MaskableGraphic> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<MaskingGraphicTween>();
             foreach (var target in self)

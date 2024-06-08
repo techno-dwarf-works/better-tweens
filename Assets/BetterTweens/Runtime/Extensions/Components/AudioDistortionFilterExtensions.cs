@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LevelAudioDistortionFilterTween> TweensLevel(this IEnumerable<AudioDistortionFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<LevelAudioDistortionFilterTween>();
             foreach (var target in self)

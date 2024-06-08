@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EnableBehaviourTween> TweensEnable(this IEnumerable<Behaviour> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<EnableBehaviourTween>();
             foreach (var target in self)

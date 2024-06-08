@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayRatioAudioEchoFilterTween> TweensDecayRatio(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DecayRatioAudioEchoFilterTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DelayAudioEchoFilterTween> TweensDelay(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DelayAudioEchoFilterTween>();
             foreach (var target in self)
@@ -50,7 +50,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DryMixAudioEchoFilterTween> TweensDryMix(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DryMixAudioEchoFilterTween>();
             foreach (var target in self)
@@ -69,7 +69,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMixAudioEchoFilterTween> TweensWetMix(this IEnumerable<AudioEchoFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<WetMixAudioEchoFilterTween>();
             foreach (var target in self)

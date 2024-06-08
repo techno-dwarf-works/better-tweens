@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<CellSizeLayoutGroupTween> TweensCellSize(this IEnumerable<GridLayoutGroup> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<CellSizeLayoutGroupTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ConstraintCountLayoutGroupTween> TweensConstraintCount(this IEnumerable<GridLayoutGroup> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ConstraintCountLayoutGroupTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<GridSpacingLayoutGroupTween> TweensGridSpacing(this IEnumerable<GridLayoutGroup> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<GridSpacingLayoutGroupTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<GridSpacingLayoutGroupTween> TweensGridSpacing(this IEnumerable<GridLayoutGroup> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<GridSpacingLayoutGroupTween>();
             foreach (var target in self)

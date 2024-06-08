@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AngularDragRigidbody2DTween> TweensAngularDrag(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<AngularDragRigidbody2DTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AngularVelocityRigidbody2DTween> TweensAngularVelocity(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<AngularVelocityRigidbody2DTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<CenterOfMassRigidbody2DTween> TweensCenterOfMass(this IEnumerable<Rigidbody2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<CenterOfMassRigidbody2DTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DragRigidbody2DTween> TweensDrag(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DragRigidbody2DTween>();
             foreach (var target in self)
@@ -89,7 +89,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InertiaRigidbody2DTween> TweensInertia(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<InertiaRigidbody2DTween>();
             foreach (var target in self)
@@ -108,7 +108,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<KinematicRigidbody2DTween> TweensKinematic(this IEnumerable<Rigidbody2D> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<KinematicRigidbody2DTween>();
             foreach (var target in self)
@@ -127,7 +127,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MassRigidbody2DTween> TweensMass(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<MassRigidbody2DTween>();
             foreach (var target in self)
@@ -146,7 +146,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PositionRigidbody2DTween> TweensPosition(this IEnumerable<Rigidbody2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<PositionRigidbody2DTween>();
             foreach (var target in self)
@@ -161,14 +161,14 @@ namespace Better.Tweens.Runtime
         public static PositionRigidbody2DTween TweenPositionX(this Rigidbody2D self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PositionRigidbody2DTween, Rigidbody2D>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
 
         public static IEnumerable<PositionRigidbody2DTween> TweensPositionX(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<PositionRigidbody2DTween>();
             foreach (var target in self)
@@ -183,14 +183,14 @@ namespace Better.Tweens.Runtime
         public static PositionRigidbody2DTween TweenPositionY(this Rigidbody2D self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<PositionRigidbody2DTween, Rigidbody2D>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }
 
         public static IEnumerable<PositionRigidbody2DTween> TweensPositionY(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<PositionRigidbody2DTween>();
             foreach (var target in self)
@@ -209,7 +209,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RotationRigidbody2DTween> TweensRotation(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<RotationRigidbody2DTween>();
             foreach (var target in self)
@@ -228,7 +228,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<GravityScaleRigidbody2DTween> TweensGravityScale(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<GravityScaleRigidbody2DTween>();
             foreach (var target in self)
@@ -247,7 +247,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VelocityRigidbody2DTween> TweensVelocity(this IEnumerable<Rigidbody2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<VelocityRigidbody2DTween>();
             foreach (var target in self)

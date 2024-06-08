@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ActiveGameObjectTween> TweensActive(this IEnumerable<GameObject> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ActiveGameObjectTween>();
             foreach (var target in self)

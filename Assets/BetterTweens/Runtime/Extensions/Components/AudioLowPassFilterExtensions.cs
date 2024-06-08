@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ResonanceAudioLowPassFilterTween> TweensResonance(this IEnumerable<AudioLowPassFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ResonanceAudioLowPassFilterTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FrequencyAudioLowPassFilterTween> TweensFrequency(this IEnumerable<AudioLowPassFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<FrequencyAudioLowPassFilterTween>();
             foreach (var target in self)

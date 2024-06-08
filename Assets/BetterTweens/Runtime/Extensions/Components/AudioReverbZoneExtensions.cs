@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayHFRatioAudioReverbZoneTween> TweensDecayHFRatio(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DecayHFRatioAudioReverbZoneTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayTimeAudioReverbZoneTween> TweensDecayTime(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DecayTimeAudioReverbZoneTween>();
             foreach (var target in self)
@@ -50,7 +50,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DensityAudioReverbZoneTween> TweensDensity(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DensityAudioReverbZoneTween>();
             foreach (var target in self)
@@ -69,7 +69,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DiffusionAudioReverbZoneTween> TweensDiffusion(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DiffusionAudioReverbZoneTween>();
             foreach (var target in self)
@@ -88,7 +88,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HFReferenceAudioReverbZoneTween> TweensHFReference(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<HFReferenceAudioReverbZoneTween>();
             foreach (var target in self)
@@ -107,7 +107,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LFReferenceAudioReverbZoneTween> TweensLFReference(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<LFReferenceAudioReverbZoneTween>();
             foreach (var target in self)
@@ -126,7 +126,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MaxDistanceAudioReverbZoneTween> TweensMaxDistance(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<MaxDistanceAudioReverbZoneTween>();
             foreach (var target in self)
@@ -145,7 +145,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MinDistanceAudioReverbZoneTween> TweensMinDistance(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<MinDistanceAudioReverbZoneTween>();
             foreach (var target in self)
@@ -164,7 +164,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReflectionsAudioReverbZoneTween> TweensReflections(this IEnumerable<AudioReverbZone> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ReflectionsAudioReverbZoneTween>();
             foreach (var target in self)
@@ -183,7 +183,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReflectionsDelayAudioReverbZoneTween> TweensReflectionsDelay(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ReflectionsDelayAudioReverbZoneTween>();
             foreach (var target in self)
@@ -202,7 +202,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbAudioReverbZoneTween> TweensReverb(this IEnumerable<AudioReverbZone> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ReverbAudioReverbZoneTween>();
             foreach (var target in self)
@@ -221,7 +221,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbDelayAudioReverbZoneTween> TweensReverbDelay(this IEnumerable<AudioReverbZone> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ReverbDelayAudioReverbZoneTween>();
             foreach (var target in self)
@@ -240,7 +240,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomAudioReverbZoneTween> TweensRoom(this IEnumerable<AudioReverbZone> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<RoomAudioReverbZoneTween>();
             foreach (var target in self)
@@ -259,7 +259,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomHFAudioReverbZoneTween> TweensRoomHF(this IEnumerable<AudioReverbZone> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<RoomHFAudioReverbZoneTween>();
             foreach (var target in self)
@@ -278,7 +278,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomLFAudioReverbZoneTween> TweensRoomLF(this IEnumerable<AudioReverbZone> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<RoomLFAudioReverbZoneTween>();
             foreach (var target in self)

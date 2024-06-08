@@ -13,7 +13,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BrightnessLensFlareTween> TweensBrightness(this IEnumerable<LensFlare> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<BrightnessLensFlareTween>();
             foreach (var target in self)
@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorLensFlareTween> TweensColor(this IEnumerable<LensFlare> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ColorLensFlareTween>();
             foreach (var target in self)
@@ -51,7 +51,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorLensFlareTween> TweensColor(this IEnumerable<LensFlare> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ColorLensFlareTween>();
             foreach (var target in self)
@@ -70,7 +70,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FadeSpeedLensFlareTween> TweensFadeSpeed(this IEnumerable<LensFlare> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<FadeSpeedLensFlareTween>();
             foreach (var target in self)

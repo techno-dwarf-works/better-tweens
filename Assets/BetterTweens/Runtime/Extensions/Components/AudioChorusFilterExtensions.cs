@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DelayAudioChorusFilterTween> TweensDelay(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DelayAudioChorusFilterTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DepthAudioChorusFilterTween> TweensDepth(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DepthAudioChorusFilterTween>();
             foreach (var target in self)
@@ -50,7 +50,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DryMixAudioChorusFilterTween> TweensDryMix(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DryMixAudioChorusFilterTween>();
             foreach (var target in self)
@@ -69,7 +69,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RateAudioChorusFilterTween> TweensRate(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<RateAudioChorusFilterTween>();
             foreach (var target in self)
@@ -88,7 +88,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMix1AudioChorusFilterTween> TweensWetMix1(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<WetMix1AudioChorusFilterTween>();
             foreach (var target in self)
@@ -107,7 +107,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMix2AudioChorusFilterTween> TweensWetMix2(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<WetMix2AudioChorusFilterTween>();
             foreach (var target in self)
@@ -126,7 +126,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMix3AudioChorusFilterTween> TweensWetMix3(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<WetMix3AudioChorusFilterTween>();
             foreach (var target in self)

@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OrderSortingGroupTween> TweensOrderSorting(this IEnumerable<SortingGroup> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<OrderSortingGroupTween>();
             foreach (var target in self)

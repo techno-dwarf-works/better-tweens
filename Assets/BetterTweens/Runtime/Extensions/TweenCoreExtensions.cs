@@ -2200,7 +2200,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LocalTimeScaleCoreTween> TweensLocalTimeScale(this IEnumerable<TweenCore> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<LocalTimeScaleCoreTween>();
             foreach (var target in self)

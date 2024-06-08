@@ -12,7 +12,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BouncinessPhysicMaterialTween> TweensTweenBounciness(this IEnumerable<PhysicMaterial> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<BouncinessPhysicMaterialTween>();
             foreach (var target in self)
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DynamicFrictionPhysicMaterialTween> TweensTweenDynamicFriction(this IEnumerable<PhysicMaterial> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<DynamicFrictionPhysicMaterialTween>();
             foreach (var target in self)
@@ -50,7 +50,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StaticFrictionPhysicMaterialTween> TweensTweenStaticFriction(this IEnumerable<PhysicMaterial> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<StaticFrictionPhysicMaterialTween>();
             foreach (var target in self)

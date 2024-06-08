@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Better.Tweens.Runtime.BetterTweens.Runtime.Enums;
+using Better.Commons.Runtime.Enums;
 using Better.Tweens.Runtime.Data;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteRendererTween> TweensColor(this IEnumerable<SpriteRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ColorSpriteRendererTween>();
             foreach (var target in self)
@@ -33,7 +33,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteRendererTween> TweensColor(this IEnumerable<SpriteRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<ColorSpriteRendererTween>();
             foreach (var target in self)
@@ -52,7 +52,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HorizontalFlipSpriteRendererTween> TweensHorizontalFlip(this IEnumerable<SpriteRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<HorizontalFlipSpriteRendererTween>();
             foreach (var target in self)
@@ -71,7 +71,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VerticalFlipSpriteRendererTween> TweensVerticalFlip(this IEnumerable<SpriteRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<VerticalFlipSpriteRendererTween>();
             foreach (var target in self)
@@ -90,7 +90,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSize(this IEnumerable<SpriteRenderer> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
@@ -109,7 +109,7 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSize(this IEnumerable<SpriteRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
@@ -124,14 +124,14 @@ namespace Better.Tweens.Runtime
         public static SizeSpriteRendererTween TweenSizeX(this SpriteRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeSpriteRendererTween, SpriteRenderer>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.Y);
+            tween.AddConstraint(Vector2Axis.Y);
 
             return tween;
         }
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSizeX(this IEnumerable<SpriteRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
@@ -146,14 +146,14 @@ namespace Better.Tweens.Runtime
         public static SizeSpriteRendererTween TweenSizeY(this SpriteRenderer self, float duration, float options, OptionsMode optionsMode = default)
         {
             var tween = self.TweenVector2<SizeSpriteRendererTween, SpriteRenderer>(duration, options, optionsMode);
-            tween.AddConstraint(XYAxis.X);
+            tween.AddConstraint(Vector2Axis.X);
 
             return tween;
         }
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSizeY(this IEnumerable<SpriteRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
