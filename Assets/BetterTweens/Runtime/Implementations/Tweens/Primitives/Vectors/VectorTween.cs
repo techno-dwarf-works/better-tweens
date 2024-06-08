@@ -49,6 +49,12 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        public VectorTween<TVector, TConstraint> RemoveConstraints()
+        {
+            _axisConstraints?.Clear();
+            return this;
+        }
+
         public override void CollectInfo(ref StringBuilder stringBuilder)
         {
             base.CollectInfo(ref stringBuilder);
@@ -70,7 +76,7 @@ namespace Better.Tweens.Runtime
         where TTarget : class
     {
         // TODO: Add method Free constnds
-        
+
         [SerializeField] private List<TConstraint> _axisConstraints;
         [SerializeField] private bool _spherical;
 
@@ -106,6 +112,12 @@ namespace Better.Tweens.Runtime
         {
             _axisConstraints?.Remove(constraint);
 
+            return this;
+        }
+
+        public VectorTween<TTarget, TVector, TConstraint> RemoveConstraints()
+        {
+            _axisConstraints?.Clear();
             return this;
         }
 
