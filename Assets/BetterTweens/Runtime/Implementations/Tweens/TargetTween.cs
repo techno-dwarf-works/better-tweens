@@ -16,6 +16,14 @@ namespace Better.Tweens.Runtime
         [SerializeField] private TTarget _target;
         protected TTarget Target => _target;
 
+        protected override void OnInitialized()
+        {
+            RemoveTargetDependency();
+            AddTargetDependency();
+
+            base.OnInitialized();
+        }
+
         public TargetTween<TTarget, TValue, TValueOptions> SetTarget(TTarget value)
         {
             if (value == null)
@@ -26,23 +34,46 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
-            if (!ValidateMutable(true))
+            if (ValidateMutable(true))
             {
-                return this;
+                OnTargetPreChanged();
+                _target = value;
+                OnTargetChanged();
             }
 
-            RemoveTag(_target);
-            AddTag(value);
+            return this;
+        }
 
-            RemoveTriggers(TargetTriggerId);
-            if (value is Object unityTarget)
+        protected virtual void OnTargetPreChanged()
+        {
+            RemoveTargetDependency();
+        }
+
+        protected virtual void OnTargetChanged()
+        {
+            AddTargetDependency();
+        }
+
+        private void AddTargetDependency()
+        {
+            AddTag(Target);
+
+            if (Target is Object unityTarget)
             {
                 var destroyObjectCondition = new NullReferenceObjectCondition(unityTarget, true);
                 this.AddTrigger<StopAction>(destroyObjectCondition, TargetTriggerId);
             }
+        }
 
-            _target = value;
-            return this;
+        private void RemoveTargetDependency()
+        {
+            RemoveTag(Target);
+            RemoveTriggers(TargetTriggerId);
+        }
+
+        public override bool IsRunnable()
+        {
+            return base.IsRunnable() && Target != null;
         }
     }
 
