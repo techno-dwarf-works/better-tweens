@@ -57,10 +57,8 @@ namespace Better.Tweens.Runtime
 
         private static void CollectElementsBy(UpdateMode updateMode, ref ICollection<TweenCore> references)
         {
-            if (references == null)
+            if (!ValidationUtility.ValidateNullReference(references))
             {
-                var message = $"{nameof(references)} cannot be null";
-                LogUtility.LogException(message);
                 return;
             }
 

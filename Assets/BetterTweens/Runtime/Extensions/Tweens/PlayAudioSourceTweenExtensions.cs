@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<PlayAudioSourceTween> SetOnce(this IEnumerable<PlayAudioSourceTween> self, bool once = true)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

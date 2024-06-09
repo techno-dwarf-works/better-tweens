@@ -17,10 +17,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Enable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -34,10 +32,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Sleep(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -51,10 +47,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Disable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -68,10 +62,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Play(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -85,10 +77,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Rewind(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -102,10 +92,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Pause(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -119,10 +107,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> TogglePause(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -136,10 +122,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Stop(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -153,10 +137,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> InstantComplete(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -170,10 +152,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> InstantRewound(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -187,10 +167,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> Restart(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -208,10 +186,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> InstantCompleteLoop(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -225,10 +201,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> InstantCompleteLoops(this IEnumerable<TweenCore> self, int loopCount)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -242,10 +216,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> InstantRewoundLoop(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -259,10 +231,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> InstantRewoundLoops(this IEnumerable<TweenCore> self, int loopCount)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -280,11 +250,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetLoopCount(this IEnumerable<TweenCore> self, int value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -298,11 +265,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetInfinityLoop(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -316,11 +280,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetSleepingDuration(this IEnumerable<TweenCore> self, float value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -334,11 +295,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetInfinitySleeping(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -352,11 +310,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> DependencyUnityTimeScale(this IEnumerable<TweenCore> self, bool depend)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -370,11 +325,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> DependencyGlobalTimeScale(this IEnumerable<TweenCore> self, bool depend)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -388,11 +340,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetLocalTimeScale(this IEnumerable<TweenCore> self, float value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -407,11 +356,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<TweenCore> SetCompletionAction<TAction>(this IEnumerable<TweenCore> self)
             where TAction : TweenCoreAction, new()
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -425,11 +371,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetCompletionAction(this IEnumerable<TweenCore> self, TweenCoreAction value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -443,11 +386,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetCompletionAction(this IEnumerable<TweenCore> self, ActionType actionType)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -462,11 +402,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<TweenCore> SetRewoundAction<TAction>(this IEnumerable<TweenCore> self)
             where TAction : TweenCoreAction, new()
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -480,11 +417,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetRewoundAction(this IEnumerable<TweenCore> self, ActionType actionType)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -498,11 +432,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> SetRewoundAction(this IEnumerable<TweenCore> self, TweenCoreAction value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -516,11 +447,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnStateChanged(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -534,11 +462,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnActivityChanged(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -552,11 +477,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnEnabled(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -570,11 +492,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnAsleep(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -588,11 +507,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnDisabled(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -606,11 +522,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnStarted(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -624,11 +537,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnRunned(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -642,11 +552,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnPlaying(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -660,11 +567,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnRewinding(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -678,11 +582,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnUpdated(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -696,11 +597,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnPaused(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -714,11 +612,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnStopped(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -732,11 +627,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnCompleted(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -750,11 +642,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnRewound(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -768,11 +657,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnLoopCompleted(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -786,11 +672,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> OnLoopRewound(this IEnumerable<TweenCore> self, Action callback)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -804,19 +687,13 @@ namespace Better.Tweens.Runtime
 
         public static TweenCore AddTriggers(this TweenCore self, IEnumerable<Trigger> triggers)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
-            if (triggers == null)
+            if (!ValidationUtility.ValidateNullReference(triggers))
             {
-                var message = $"{nameof(triggers)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -830,19 +707,13 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> AddTriggers(this IEnumerable<TweenCore> self, IEnumerable<Trigger> triggers)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
-            if (triggers == null)
+            if (!ValidationUtility.ValidateNullReference(triggers))
             {
-                var message = $"{nameof(triggers)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -856,19 +727,13 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> AddTrigger(this IEnumerable<TweenCore> self, Trigger trigger)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
-            if (trigger == null)
+            if (!ValidationUtility.ValidateNullReference(trigger))
             {
-                var message = $"{nameof(trigger)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -882,27 +747,18 @@ namespace Better.Tweens.Runtime
 
         public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogException(message);
-
                 return null;
             }
 
-            if (action == null)
+            if (!ValidationUtility.ValidateNullReference(action))
             {
-                var message = $"{nameof(action)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
-            if (condition == null)
+            if (!ValidationUtility.ValidateNullReference(condition))
             {
-                var message = $"{nameof(condition)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -934,11 +790,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> RemoveTriggers(this IEnumerable<TweenCore> self, Predicate<Trigger> predicate)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -952,11 +805,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> RemoveTriggers(this IEnumerable<TweenCore> self, string id)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -970,11 +820,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> AddTag(this IEnumerable<TweenCore> self, object value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -988,11 +835,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> AddTags(this IEnumerable<TweenCore> self, IEnumerable<object> values)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -1006,11 +850,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TweenCore> RemoveTag(this IEnumerable<TweenCore> self, object value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return self;
             }
 
@@ -1028,11 +869,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllEnabled(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1049,11 +887,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyEnabled(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1070,11 +905,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllSleeping(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1091,11 +923,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnySleeping(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1112,11 +941,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllDisabled(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1133,11 +959,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyDisabled(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1154,11 +977,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllRunnable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1175,11 +995,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyRunnable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1196,11 +1013,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllRunning(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1217,11 +1031,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyRunning(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1238,11 +1049,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllPlayable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1259,11 +1067,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyPlayable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1280,11 +1085,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllPlaying(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1301,11 +1103,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyPlaying(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1322,11 +1121,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllRewindable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1343,11 +1139,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyRewindable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1364,11 +1157,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllRewinding(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1385,11 +1175,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyRewinding(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1406,11 +1193,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllRewound(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1427,11 +1211,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyRewound(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1448,11 +1229,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllPausable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1469,11 +1247,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyPausable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1490,11 +1265,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllPaused(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1511,11 +1283,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyPaused(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1532,11 +1301,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllStoppable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1553,11 +1319,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyStoppable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1574,11 +1337,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllStopped(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1595,11 +1355,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyStopped(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1616,11 +1373,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllCompletable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1637,11 +1391,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyCompletable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1658,11 +1409,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllCompleted(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1679,11 +1427,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyCompleted(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1700,11 +1445,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllContainsTriggerWith(this IEnumerable<TweenCore> self, string id)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1721,11 +1463,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyContainsTriggerWith(this IEnumerable<TweenCore> self, string id)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1742,11 +1481,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllContainsTag(this IEnumerable<TweenCore> self, object value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1763,11 +1499,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyContainsTag(this IEnumerable<TweenCore> self, object value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1784,11 +1517,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllContainsAllTags(this IEnumerable<TweenCore> self, IEnumerable<object> values)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1805,11 +1535,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyContainsAllTags(this IEnumerable<TweenCore> self, IEnumerable<object> values)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1826,11 +1553,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllContainsAnyTags(this IEnumerable<TweenCore> self, IEnumerable<object> values)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1847,11 +1571,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyContainsAnyTags(this IEnumerable<TweenCore> self, IEnumerable<object> values)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1868,11 +1589,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AllMutable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1889,11 +1607,8 @@ namespace Better.Tweens.Runtime
 
         public static bool AnyMutable(this IEnumerable<TweenCore> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return false;
             }
 
@@ -1919,11 +1634,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitActivityChange(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -1937,11 +1649,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitAsleep(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -1955,11 +1664,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitCompletion(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -1973,11 +1679,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitDisable(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -1991,11 +1694,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitEnable(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2009,11 +1709,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitPaused(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2027,11 +1724,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitPlaying(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2045,11 +1739,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitPlayStarted(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2063,11 +1754,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitRewinding(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2081,11 +1769,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitRewindStarted(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2099,11 +1784,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitRewound(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2117,11 +1799,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitRun(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2135,11 +1814,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitStateChange(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2153,11 +1829,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitStopped(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2171,11 +1844,8 @@ namespace Better.Tweens.Runtime
 
         public static Task[] AwaitUpdate(this IEnumerable<TweenCore> self, CancellationToken cancellationToken = default)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
-
                 return Array.Empty<Task>();
             }
 
@@ -2233,12 +1903,9 @@ namespace Better.Tweens.Runtime
 
         private static IEnumerator[] SelectEnumerators(IEnumerable<TweenCore> source, Func<TweenCore, IEnumerator> selector)
         {
-            if (source == null)
+            if (!ValidationUtility.ValidateNullReference(source))
             {
-                var message = $"{nameof(source)} cannot be null";
-                LogUtility.LogException(message);
-
-                return Array.Empty<WaitForTweenUpdated>();
+                return Array.Empty<IEnumerator>();
             }
 
             return source.Select(selector).ToArray();

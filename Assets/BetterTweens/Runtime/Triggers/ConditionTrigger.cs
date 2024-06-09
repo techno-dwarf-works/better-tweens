@@ -1,6 +1,6 @@
-﻿using System;
-using Better.Conditions.Runtime;
+﻿using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime.Triggers
 {
@@ -10,12 +10,10 @@ namespace Better.Tweens.Runtime.Triggers
 
         public ConditionTrigger(string id, TweenCoreAction action, Condition condition) : base(id, action)
         {
-            if (condition == null)
+            if (ValidationUtility.ValidateNullReference(condition))
             {
-                throw new ArgumentNullException(nameof(condition));
+                _condition = condition;
             }
-
-            _condition = condition;
         }
 
         public override void Rebuild()

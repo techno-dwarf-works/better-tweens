@@ -48,10 +48,8 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetEase(Ease value)
         {
-            if (value == null)
+            if (!ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
                 return this;
             }
 

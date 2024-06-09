@@ -18,7 +18,6 @@ namespace Better.Tweens.Runtime
         [SerializeField] private TValue _fromValue;
         [SerializeField] private OptionsMode _optionsMode;
 
-        // [Select] TODO: Update Attributes :)
         [SerializeReference, SerializeField] private TValueOptions _options;
 
         public OptionsMode OptionsMode => _optionsMode;

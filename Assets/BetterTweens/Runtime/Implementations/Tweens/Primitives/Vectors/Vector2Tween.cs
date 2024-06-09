@@ -1,5 +1,6 @@
 ﻿using System;
 using Better.Commons.Runtime.Enums;
+using Better.Commons.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -30,9 +31,8 @@ namespace Better.Tweens.Runtime
 
         protected sealed override void EvaluateState(Vector2 fromValue, Vector2 toValue, float time)
         {
-            // TODO: Add Vector2.Slerp to Commons, and update this
             var evaluatedValue = Spherical
-                ? Vector2.Lerp(fromValue, toValue, time)
+                ? Vector2Utility.Slerp(fromValue, toValue, time)
                 : Vector2.Lerp(fromValue, toValue, time);
 
             if (HasConstraints)
@@ -44,7 +44,7 @@ namespace Better.Tweens.Runtime
                     evaluatedValue[axisIndex] = currentValue[axisIndex];
                 }
             }
-            
+
             SetCurrentValue(evaluatedValue);
         }
 
@@ -78,9 +78,8 @@ namespace Better.Tweens.Runtime
 
         protected sealed override void EvaluateState(Vector2 fromValue, Vector2 toValue, float time)
         {
-            // TODO: Add Vector2.Slerp to Commons, and update this
             var evaluatedValue = Spherical
-                ? Vector2.Lerp(fromValue, toValue, time)
+                ? Vector2Utility.Slerp(fromValue, toValue, time)
                 : Vector2.Lerp(fromValue, toValue, time);
 
             if (HasConstraints)

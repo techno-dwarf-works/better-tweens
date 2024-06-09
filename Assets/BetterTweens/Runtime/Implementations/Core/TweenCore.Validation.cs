@@ -130,7 +130,7 @@ namespace Better.Tweens.Runtime
 
         #region Triggers
 
-        public  bool ContainsTriggerWith(string id)
+        public bool ContainsTriggerWith(string id)
         {
             return _triggers != null && _triggers.Any(t => t.CompareId(id));
         }
@@ -142,10 +142,8 @@ namespace Better.Tweens.Runtime
 
         public bool ContainsAllTags(IEnumerable<object> values)
         {
-            if (values == null)
+            if (!ValidationUtility.ValidateNullReference(values))
             {
-                var message = $"{nameof(values)} cannot be null";
-                LogUtility.LogException(message);
                 return false;
             }
 
@@ -162,10 +160,8 @@ namespace Better.Tweens.Runtime
 
         public bool ContainsAnyTags(IEnumerable<object> values)
         {
-            if (values == null)
+            if (!ValidationUtility.ValidateNullReference(values))
             {
-                var message = $"{nameof(values)} cannot be null";
-                LogUtility.LogException(message);
                 return false;
             }
 

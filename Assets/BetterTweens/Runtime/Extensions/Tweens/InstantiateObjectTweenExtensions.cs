@@ -9,10 +9,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<InstantiateObjectTween> SetBehaviour(this IEnumerable<InstantiateObjectTween> self, InstantiateBehaviour value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -26,10 +24,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InstantiateObjectTween> SetBehaviour(this IEnumerable<InstantiateObjectTween> self, Transform parent, Vector3 position, Quaternion rotation)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -43,10 +39,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InstantiateObjectTween> SetBehaviour(this IEnumerable<InstantiateObjectTween> self, Transform parent, Vector3 position)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -60,10 +54,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InstantiateObjectTween> SetBehaviour(this IEnumerable<InstantiateObjectTween> self, Transform parent, bool inWorldSpace = false)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -77,10 +69,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InstantiateObjectTween> SetBehaviour(this IEnumerable<InstantiateObjectTween> self, Vector3 position, Quaternion rotation)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -94,10 +84,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InstantiateObjectTween> SetBehaviour(this IEnumerable<InstantiateObjectTween> self, Vector3 position)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

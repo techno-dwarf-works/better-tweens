@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<PropertyFloatMaterialTween> SetPropertyName(this IEnumerable<PropertyFloatMaterialTween> self, string propertyName)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

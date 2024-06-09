@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<VectorTween<TVector, TConstraint>> SetSpherical<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, bool spherical = true)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -25,10 +23,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<VectorTween<TTarget, TVector, TConstraint>> SetSpherical<TTarget, TVector, TConstraint>(this IEnumerable<VectorTween<TTarget, TVector, TConstraint>> self, bool spherical = true)
             where TTarget : class
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -42,10 +38,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VectorTween<TVector, TConstraint>> AddConstraint<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, TConstraint constraint)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -60,10 +54,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<VectorTween<TTarget, TVector, TConstraint>> AddConstraint<TTarget, TVector, TConstraint>(this IEnumerable<VectorTween<TTarget, TVector, TConstraint>> self, TConstraint constraint)
             where TTarget : class
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -77,10 +69,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VectorTween<TVector, TConstraint>> RemoveConstraint<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, TConstraint constraint)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -95,10 +85,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<VectorTween<TTarget, TVector, TConstraint>> RemoveConstraint<TTarget, TVector, TConstraint>(this IEnumerable<VectorTween<TTarget, TVector, TConstraint>> self, TConstraint constraint)
             where TTarget : class
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

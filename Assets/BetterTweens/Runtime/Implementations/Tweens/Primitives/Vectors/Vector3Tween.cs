@@ -43,7 +43,7 @@ namespace Better.Tweens.Runtime
                     evaluatedValue[axisIndex] = currentValue[axisIndex];
                 }
             }
-            
+
             SetCurrentValue(evaluatedValue);
         }
 
@@ -90,7 +90,7 @@ namespace Better.Tweens.Runtime
                     evaluatedValue[axisIndex] = currentValue[axisIndex];
                 }
             }
-            
+
             SetCurrentValue(evaluatedValue);
         }
 

@@ -9,10 +9,8 @@ namespace Better.Tweens.Runtime
     {
         public static Tween<TValue, Vector2> SetOptions<TValue>(this Tween<TValue, Vector2> self, float options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -22,10 +20,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, Vector2>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector2>> self, float options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -39,10 +35,8 @@ namespace Better.Tweens.Runtime
 
         public static Tween<TValue, Vector2Int> SetOptions<TValue>(this Tween<TValue, Vector2Int> self, int options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -52,10 +46,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, Vector2Int>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector2Int>> self, int options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -69,10 +61,8 @@ namespace Better.Tweens.Runtime
 
         public static Tween<TValue, Vector3> SetOptions<TValue>(this Tween<TValue, Vector3> self, float options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -82,10 +72,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, Vector3>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector3>> self, float options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -99,10 +87,8 @@ namespace Better.Tweens.Runtime
 
         public static Tween<TValue, Vector3Int> SetOptions<TValue>(this Tween<TValue, Vector3Int> self, int options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -112,10 +98,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, Vector3Int>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector3Int>> self, int options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -129,10 +113,8 @@ namespace Better.Tweens.Runtime
 
         public static Tween<TValue, Vector4> SetOptions<TValue>(this Tween<TValue, Vector4> self, float options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -142,10 +124,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, Vector4>> SetOptions<TValue>(this IEnumerable<Tween<TValue, Vector4>> self, float options)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -159,10 +139,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, TValueOptions>> From<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, TValue value)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -176,10 +154,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, TValueOptions>> From<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -193,10 +169,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, TValueOptions>> FromAuto<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -210,10 +184,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, TValueOptions>> SetOptionsMode<TValue, TValueOptions>(this IEnumerable<Tween<TValue, TValueOptions>> self, OptionsMode optionsMode)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -227,10 +199,8 @@ namespace Better.Tweens.Runtime
 
         public static Tween<TValue, ColorOptions> SetOptions<TValue>(this Tween<TValue, ColorOptions> self, Color color)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -240,10 +210,8 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<Tween<TValue, ColorOptions>> SetOptions<TValue>(this IEnumerable<Tween<TValue, ColorOptions>> self, Color color)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

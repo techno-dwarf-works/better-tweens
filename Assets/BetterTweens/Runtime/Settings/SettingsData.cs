@@ -77,26 +77,18 @@ namespace Better.Tweens.Runtime.Settings
 
         public void SetEase(Ease value)
         {
-            if (value == null)
+            if (ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
-                return;
+                _ease = value;
             }
-
-            _ease = value;
         }
 
         public void SetCompletionAction(TweenCoreAction value)
         {
-            if (value == null)
+            if (ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
-                return;
+                _completionAction = value;
             }
-
-            _completionAction = value;
         }
 
         public void SetCompletionAction<TAction>()

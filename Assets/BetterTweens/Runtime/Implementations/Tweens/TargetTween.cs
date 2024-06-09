@@ -26,11 +26,8 @@ namespace Better.Tweens.Runtime
 
         public TargetTween<TTarget, TValue, TValueOptions> SetTarget(TTarget value)
         {
-            if (value == null)
+            if (!ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
-
                 return this;
             }
 

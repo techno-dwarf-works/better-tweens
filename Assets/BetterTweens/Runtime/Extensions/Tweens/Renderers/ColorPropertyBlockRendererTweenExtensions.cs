@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<ColorPropertyBlockRendererTween> SetPropertyName(this IEnumerable<ColorPropertyBlockRendererTween> self, string propertyName)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

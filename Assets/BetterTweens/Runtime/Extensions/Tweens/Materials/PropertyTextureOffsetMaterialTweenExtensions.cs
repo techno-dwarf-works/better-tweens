@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<PropertyTextureOffsetMaterialTween> SetPropertyName(this IEnumerable<PropertyTextureOffsetMaterialTween> self, string propertyName)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

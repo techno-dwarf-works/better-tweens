@@ -1,5 +1,5 @@
-﻿using System;
-using Better.Tweens.Runtime.Actions;
+﻿using Better.Tweens.Runtime.Actions;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime.Triggers
 {
@@ -9,12 +9,10 @@ namespace Better.Tweens.Runtime.Triggers
 
         public ActionTrigger(string id, TweenCoreAction action) : base(id)
         {
-            if (action == null)
+            if (ValidationUtility.ValidateNullReference(action))
             {
-                throw new ArgumentNullException(nameof(action));
+                _action = action;
             }
-
-            _action = action;
         }
 
         public override bool Invoke(TweenCore tweenCore)

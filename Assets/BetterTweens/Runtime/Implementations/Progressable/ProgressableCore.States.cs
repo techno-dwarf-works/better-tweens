@@ -9,8 +9,6 @@ namespace Better.Tweens.Runtime
             RemainingDelay = StartDelay;
             LoopProgress = 0f;
             EvaluateStateByLoop(LoopProgress);
-
-            // TODO: Handle Target null
             
             base.OnStarted();
 

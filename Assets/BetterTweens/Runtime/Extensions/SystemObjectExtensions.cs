@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
@@ -7,9 +7,9 @@ namespace Better.Tweens.Runtime
     {
         public static void TweensTagged(this object self, ref ICollection<TweenCore> references)
         {
-            if (references == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                throw new ArgumentNullException(nameof(references));
+                return;
             }
 
             foreach (var tweenCore in TweenRegistry.Elements)

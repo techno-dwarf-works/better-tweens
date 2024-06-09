@@ -58,7 +58,7 @@ namespace Better.Tweens.Runtime
 
             var rootStateToken = GetHandlingStateToken();
             var extraProgress = 0f;
-            
+
             if (LoopProgress > 0f)
             {
                 var loopsCount = (int)LoopProgress;
@@ -72,7 +72,7 @@ namespace Better.Tweens.Runtime
                 extraProgress -= absedLoopProgress % 1f;
                 InstantRewoundLoops(loopsCount);
             }
-            
+
             if (!rootStateToken.IsCancellationRequested)
             {
                 LoopProgress += extraProgress;

@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<ColorTween> SetIgnoreAlpha(this IEnumerable<ColorTween> self, bool ignored = true)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -25,10 +23,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<ColorTween<TTarget>> SetIgnoreAlpha<TTarget>(this IEnumerable<ColorTween<TTarget>> self, bool ignored = true)
             where TTarget : class
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

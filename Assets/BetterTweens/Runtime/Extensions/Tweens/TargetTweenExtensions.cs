@@ -12,10 +12,9 @@ namespace Better.Tweens.Runtime
             where TTween : TargetTween<TTarget, TValue, TValueOptions>, new()
             where TTarget : class
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
+
                 return null;
             }
 

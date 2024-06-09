@@ -3,6 +3,7 @@ using System.Text;
 using Better.Attributes.Runtime.Select;
 using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Behaviours;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -20,13 +21,11 @@ namespace Better.Tweens.Runtime
 
         public InstantiateObjectTween SetBehaviour(InstantiateBehaviour value)
         {
-            if (value == null)
+            if (ValidationUtility.ValidateNullReference(value))
             {
-                // TODO: LogUtility
-                return this;
+                _behaviour = value;
             }
 
-            _behaviour = value;
             return this;
         }
 

@@ -9,8 +9,6 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract class VectorTween<TVector, TConstraint> : Tween<TVector>
     {
-        // TODO: Add method Free constnds
-
         [SerializeField] private List<TConstraint> _axisConstraints;
         [SerializeField] private bool _spherical;
 
@@ -75,8 +73,6 @@ namespace Better.Tweens.Runtime
     public abstract class VectorTween<TTarget, TVector, TConstraint> : TargetTween<TTarget, TVector>
         where TTarget : class
     {
-        // TODO: Add method Free constnds
-
         [SerializeField] private List<TConstraint> _axisConstraints;
         [SerializeField] private bool _spherical;
 

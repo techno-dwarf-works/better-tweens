@@ -81,14 +81,11 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetCompletionAction(TweenCoreAction value)
         {
-            if (value == null)
+            if (ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
+                _completionAction.Override(value);
             }
 
-            _completionAction.Override(value);
             return this;
         }
 
@@ -107,14 +104,11 @@ namespace Better.Tweens.Runtime
 
         public TweenCore SetRewoundAction(TweenCoreAction value)
         {
-            if (value == null)
+            if (ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
+                _rewoundAction.Override(value);
             }
 
-            _rewoundAction.Override(value);
             return this;
         }
 
@@ -301,29 +295,22 @@ namespace Better.Tweens.Runtime
 
         public TweenCore AddTrigger(Trigger trigger)
         {
-            if (trigger == null)
+            if (ValidationUtility.ValidateNullReference(trigger))
             {
-                var message = $"{nameof(trigger)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
+                _triggers ??= new();
+                _triggers.Add(trigger);
             }
-
-            _triggers ??= new();
-            _triggers.Add(trigger);
 
             return this;
         }
-        
+
         public TweenCore RemoveTriggers(Predicate<Trigger> predicate)
         {
-            if (predicate == null)
+            if (ValidationUtility.ValidateNullReference(predicate))
             {
-                var message = $"{nameof(predicate)} cannot be null";
-                LogUtility.LogException(message);
-                return this;
+                _triggers?.RemoveWhere(predicate);
             }
 
-            _triggers?.RemoveWhere(predicate);
             return this;
         }
 
@@ -338,10 +325,8 @@ namespace Better.Tweens.Runtime
 
         public TweenCore AddTag(object value)
         {
-            if (value == null)
+            if (!ValidationUtility.ValidateNullReference(value))
             {
-                var message = $"{nameof(value)} cannot be null";
-                LogUtility.LogException(message);
                 return this;
             }
 
@@ -356,10 +341,8 @@ namespace Better.Tweens.Runtime
 
         public TweenCore AddTags(IEnumerable<object> values)
         {
-            if (values == null)
+            if (!ValidationUtility.ValidateNullReference(values))
             {
-                var message = $"{nameof(values)} cannot be null";
-                LogUtility.LogException(message);
                 return this;
             }
 
@@ -379,10 +362,8 @@ namespace Better.Tweens.Runtime
 
         public TweenCore RemoveTags(IEnumerable<object> values)
         {
-            if (values == null)
+            if (!ValidationUtility.ValidateNullReference(values))
             {
-                var message = $"{nameof(values)} cannot be null";
-                LogUtility.LogException(message);
                 return this;
             }
 

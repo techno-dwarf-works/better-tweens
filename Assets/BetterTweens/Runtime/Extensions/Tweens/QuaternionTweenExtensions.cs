@@ -7,10 +7,8 @@ namespace Better.Tweens.Runtime
     {
         public static IEnumerable<QuaternionTween> SetSpherical(this IEnumerable<QuaternionTween> self, bool spherical = true)
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 
@@ -25,10 +23,8 @@ namespace Better.Tweens.Runtime
         public static IEnumerable<QuaternionTween<TTarget>> SetSpherical<TTarget>(this IEnumerable<QuaternionTween<TTarget>> self, bool spherical = true)
             where TTarget : class
         {
-            if (self == null)
+            if (!ValidationUtility.ValidateNullReference(self))
             {
-                var message = $"{nameof(self)} cannot be null";
-                LogUtility.LogException(message);
                 return self;
             }
 

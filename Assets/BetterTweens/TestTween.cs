@@ -19,7 +19,7 @@
 //                 OptionsMode.To => options,
 //                 OptionsMode.Relative => from + options,
 //                 OptionsMode.SpeedBased => from + options * Properties.Duration,
-//                 _ => throw new ArgumentOutOfRangeException(nameof(optionsMode), optionsMode, null) // return default?
+//                 _ => throw xxxx new ArgumentOutOfRangeException(nameof(optionsMode), optionsMode, null) // return default?
 //             };
 //         }
 //
