@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DelayAudioChorusFilterTween> TweensDelay(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DelayAudioChorusFilterTween>();
+            }
 
             var tweens = new List<DelayAudioChorusFilterTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DepthAudioChorusFilterTween> TweensDepth(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DepthAudioChorusFilterTween>();
+            }
 
             var tweens = new List<DepthAudioChorusFilterTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DryMixAudioChorusFilterTween> TweensDryMix(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DryMixAudioChorusFilterTween>();
+            }
 
             var tweens = new List<DryMixAudioChorusFilterTween>();
             foreach (var target in self)
@@ -69,7 +80,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RateAudioChorusFilterTween> TweensRate(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<RateAudioChorusFilterTween>();
+            }
 
             var tweens = new List<RateAudioChorusFilterTween>();
             foreach (var target in self)
@@ -88,7 +102,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMix1AudioChorusFilterTween> TweensWetMix1(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<WetMix1AudioChorusFilterTween>();
+            }
 
             var tweens = new List<WetMix1AudioChorusFilterTween>();
             foreach (var target in self)
@@ -107,7 +124,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMix2AudioChorusFilterTween> TweensWetMix2(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<WetMix2AudioChorusFilterTween>();
+            }
 
             var tweens = new List<WetMix2AudioChorusFilterTween>();
             foreach (var target in self)
@@ -126,7 +146,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WetMix3AudioChorusFilterTween> TweensWetMix3(this IEnumerable<AudioChorusFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<WetMix3AudioChorusFilterTween>();
+            }
 
             var tweens = new List<WetMix3AudioChorusFilterTween>();
             foreach (var target in self)

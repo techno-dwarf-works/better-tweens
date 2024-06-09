@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine.Rendering;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OrderSortingGroupTween> TweensOrderSorting(this IEnumerable<SortingGroup> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<OrderSortingGroupTween>();
+            }
 
             var tweens = new List<OrderSortingGroupTween>();
             foreach (var target in self)

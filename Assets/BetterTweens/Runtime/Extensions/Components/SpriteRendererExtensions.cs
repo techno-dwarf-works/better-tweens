@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Better.Commons.Runtime.Enums;
 using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -14,7 +16,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteRendererTween> TweensColor(this IEnumerable<SpriteRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ColorSpriteRendererTween>();
+            }
 
             var tweens = new List<ColorSpriteRendererTween>();
             foreach (var target in self)
@@ -33,7 +38,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteRendererTween> TweensColor(this IEnumerable<SpriteRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ColorSpriteRendererTween>();
+            }
 
             var tweens = new List<ColorSpriteRendererTween>();
             foreach (var target in self)
@@ -52,7 +60,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HorizontalFlipSpriteRendererTween> TweensHorizontalFlip(this IEnumerable<SpriteRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<HorizontalFlipSpriteRendererTween>();
+            }
 
             var tweens = new List<HorizontalFlipSpriteRendererTween>();
             foreach (var target in self)
@@ -71,7 +82,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VerticalFlipSpriteRendererTween> TweensVerticalFlip(this IEnumerable<SpriteRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<VerticalFlipSpriteRendererTween>();
+            }
 
             var tweens = new List<VerticalFlipSpriteRendererTween>();
             foreach (var target in self)
@@ -90,7 +104,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSize(this IEnumerable<SpriteRenderer> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeSpriteRendererTween>();
+            }
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
@@ -109,7 +126,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSize(this IEnumerable<SpriteRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeSpriteRendererTween>();
+            }
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
@@ -131,7 +151,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSizeX(this IEnumerable<SpriteRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeSpriteRendererTween>();
+            }
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)
@@ -153,7 +176,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeSpriteRendererTween> TweensSizeY(this IEnumerable<SpriteRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeSpriteRendererTween>();
+            }
 
             var tweens = new List<SizeSpriteRendererTween>();
             foreach (var target in self)

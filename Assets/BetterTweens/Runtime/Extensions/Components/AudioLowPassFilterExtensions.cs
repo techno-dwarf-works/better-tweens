@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ResonanceAudioLowPassFilterTween> TweensResonance(this IEnumerable<AudioLowPassFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ResonanceAudioLowPassFilterTween>();
+            }
 
             var tweens = new List<ResonanceAudioLowPassFilterTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FrequencyAudioLowPassFilterTween> TweensFrequency(this IEnumerable<AudioLowPassFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FrequencyAudioLowPassFilterTween>();
+            }
 
             var tweens = new List<FrequencyAudioLowPassFilterTween>();
             foreach (var target in self)

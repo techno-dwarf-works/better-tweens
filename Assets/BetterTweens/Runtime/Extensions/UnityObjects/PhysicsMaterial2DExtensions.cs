@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BouncinessPhysicsMaterial2DTween> TweensTweenBounciness(this IEnumerable<PhysicsMaterial2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BouncinessPhysicsMaterial2DTween>();
+            }
 
             var tweens = new List<BouncinessPhysicsMaterial2DTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FrictionPhysicsMaterial2DTween> TweensTweenFriction(this IEnumerable<PhysicsMaterial2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FrictionPhysicsMaterial2DTween>();
+            }
 
             var tweens = new List<FrictionPhysicsMaterial2DTween>();
             foreach (var target in self)

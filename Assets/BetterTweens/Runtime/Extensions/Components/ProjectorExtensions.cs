@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AspectRatioProjectorTween> TweensAspectRatio(this IEnumerable<Projector> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AspectRatioProjectorTween>();
+            }
 
             var tweens = new List<AspectRatioProjectorTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FarClipPlaneProjectorTween> TweensFarClipPlane(this IEnumerable<Projector> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FarClipPlaneProjectorTween>();
+            }
 
             var tweens = new List<FarClipPlaneProjectorTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FOVProjectorTween> TweensFOV(this IEnumerable<Projector> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FOVProjectorTween>();
+            }
 
             var tweens = new List<FOVProjectorTween>();
             foreach (var target in self)
@@ -69,7 +80,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NearClipPlaneProjectorTween> TweensNearClipPlane(this IEnumerable<Projector> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<NearClipPlaneProjectorTween>();
+            }
 
             var tweens = new List<NearClipPlaneProjectorTween>();
             foreach (var target in self)
@@ -88,7 +102,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OrthographicProjectorTween> TweensOrthographic(this IEnumerable<Projector> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<OrthographicProjectorTween>();
+            }
 
             var tweens = new List<OrthographicProjectorTween>();
             foreach (var target in self)
@@ -107,7 +124,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OrthographicSizeProjectorTween> TweensOrthographicSize(this IEnumerable<Projector> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<OrthographicSizeProjectorTween>();
+            }
 
             var tweens = new List<OrthographicSizeProjectorTween>();
             foreach (var target in self)

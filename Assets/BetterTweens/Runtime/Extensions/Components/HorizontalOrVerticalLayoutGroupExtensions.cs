@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LineSpacingLayoutGroupTween> TweensLineSpacing(this IEnumerable<HorizontalOrVerticalLayoutGroup> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<LineSpacingLayoutGroupTween>();
+            }
 
             var tweens = new List<LineSpacingLayoutGroupTween>();
             foreach (var target in self)

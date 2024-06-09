@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FlexibleSizeLayoutElementTween> TweensFlexibleSize(this IEnumerable<LayoutElement> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FlexibleSizeLayoutElementTween>();
+            }
 
             var tweens = new List<FlexibleSizeLayoutElementTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IgnoreLayoutElementTween> TweensIgnore(this IEnumerable<LayoutElement> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<IgnoreLayoutElementTween>();
+            }
 
             var tweens = new List<IgnoreLayoutElementTween>();
             foreach (var target in self)
@@ -51,7 +59,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MinSizeLayoutElementTween> TweensMinSize(this IEnumerable<LayoutElement> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<MinSizeLayoutElementTween>();
+            }
 
             var tweens = new List<MinSizeLayoutElementTween>();
             foreach (var target in self)
@@ -70,7 +81,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PreferredSizeLayoutElementTween> TweensPreferredSize(this IEnumerable<LayoutElement> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PreferredSizeLayoutElementTween>();
+            }
 
             var tweens = new List<PreferredSizeLayoutElementTween>();
             foreach (var target in self)
@@ -89,7 +103,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PriorityLayoutElementTween> TweensPriority(this IEnumerable<LayoutElement> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PriorityLayoutElementTween>();
+            }
 
             var tweens = new List<PriorityLayoutElementTween>();
             foreach (var target in self)

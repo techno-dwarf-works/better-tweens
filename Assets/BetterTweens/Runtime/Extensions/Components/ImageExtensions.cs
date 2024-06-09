@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine.UI;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FillAmountImageTween> TweensFillAmount(this IEnumerable<Image> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FillAmountImageTween>();
+            }
 
             var tweens = new List<FillAmountImageTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FillCenterImageTween> TweensFillCenter(this IEnumerable<Image> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FillCenterImageTween>();
+            }
 
             var tweens = new List<FillCenterImageTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FillClockwiseImageTween> TweensFillClockwise(this IEnumerable<Image> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FillClockwiseImageTween>();
+            }
 
             var tweens = new List<FillClockwiseImageTween>();
             foreach (var target in self)
@@ -69,7 +80,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PreserveAspectImageTween> TweensPreserveAspect(this IEnumerable<Image> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PreserveAspectImageTween>();
+            }
 
             var tweens = new List<PreserveAspectImageTween>();
             foreach (var target in self)

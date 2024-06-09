@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayHFRatioAudioReverbFilterTween> TweensDecayHFRatio(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DecayHFRatioAudioReverbFilterTween>();
+            }
 
             var tweens = new List<DecayHFRatioAudioReverbFilterTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DecayTimeAudioReverbFilterTween> TweensDecayTime(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DecayTimeAudioReverbFilterTween>();
+            }
 
             var tweens = new List<DecayTimeAudioReverbFilterTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DensityAudioReverbFilterTween> TweensDensity(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DensityAudioReverbFilterTween>();
+            }
 
             var tweens = new List<DensityAudioReverbFilterTween>();
             foreach (var target in self)
@@ -69,7 +80,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DiffusionAudioReverbFilterTween> TweensDiffusion(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DiffusionAudioReverbFilterTween>();
+            }
 
             var tweens = new List<DiffusionAudioReverbFilterTween>();
             foreach (var target in self)
@@ -88,7 +102,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DryLevelAudioReverbFilterTween> TweensDryLevel(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DryLevelAudioReverbFilterTween>();
+            }
 
             var tweens = new List<DryLevelAudioReverbFilterTween>();
             foreach (var target in self)
@@ -107,7 +124,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HfReferenceAudioReverbFilterTween> TweensHfReference(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<HfReferenceAudioReverbFilterTween>();
+            }
 
             var tweens = new List<HfReferenceAudioReverbFilterTween>();
             foreach (var target in self)
@@ -126,7 +146,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LfReferenceAudioReverbFilterTween> TweensLFReference(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<LfReferenceAudioReverbFilterTween>();
+            }
 
             var tweens = new List<LfReferenceAudioReverbFilterTween>();
             foreach (var target in self)
@@ -145,7 +168,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReflectionsLevelAudioReverbFilterTween> TweensReflectionsLevel(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ReflectionsLevelAudioReverbFilterTween>();
+            }
 
             var tweens = new List<ReflectionsLevelAudioReverbFilterTween>();
             foreach (var target in self)
@@ -164,7 +190,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReflectionsDelayAudioReverbFilterTween> TweensReflectionsDelay(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ReflectionsDelayAudioReverbFilterTween>();
+            }
 
             var tweens = new List<ReflectionsDelayAudioReverbFilterTween>();
             foreach (var target in self)
@@ -183,7 +212,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbLevelAudioReverbFilterTween> TweensReverbLevel(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ReverbLevelAudioReverbFilterTween>();
+            }
 
             var tweens = new List<ReverbLevelAudioReverbFilterTween>();
             foreach (var target in self)
@@ -202,7 +234,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbDelayAudioReverbFilterTween> TweensReverbDelay(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ReverbDelayAudioReverbFilterTween>();
+            }
 
             var tweens = new List<ReverbDelayAudioReverbFilterTween>();
             foreach (var target in self)
@@ -221,7 +256,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomAudioReverbFilterTween> TweensRoom(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<RoomAudioReverbFilterTween>();
+            }
 
             var tweens = new List<RoomAudioReverbFilterTween>();
             foreach (var target in self)
@@ -240,7 +278,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomHFAudioReverbFilterTween> TweensRoomHF(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<RoomHFAudioReverbFilterTween>();
+            }
 
             var tweens = new List<RoomHFAudioReverbFilterTween>();
             foreach (var target in self)
@@ -259,7 +300,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RoomLFAudioReverbFilterTween> TweensRoomLF(this IEnumerable<AudioReverbFilter> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<RoomLFAudioReverbFilterTween>();
+            }
 
             var tweens = new List<RoomLFAudioReverbFilterTween>();
             foreach (var target in self)

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Better.Commons.Runtime.Enums;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AngularDragRigidbody2DTween> TweensAngularDrag(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AngularDragRigidbody2DTween>();
+            }
 
             var tweens = new List<AngularDragRigidbody2DTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AngularVelocityRigidbody2DTween> TweensAngularVelocity(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AngularVelocityRigidbody2DTween>();
+            }
 
             var tweens = new List<AngularVelocityRigidbody2DTween>();
             foreach (var target in self)
@@ -51,7 +59,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<CenterOfMassRigidbody2DTween> TweensCenterOfMass(this IEnumerable<Rigidbody2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<CenterOfMassRigidbody2DTween>();
+            }
 
             var tweens = new List<CenterOfMassRigidbody2DTween>();
             foreach (var target in self)
@@ -70,7 +81,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DragRigidbody2DTween> TweensDrag(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DragRigidbody2DTween>();
+            }
 
             var tweens = new List<DragRigidbody2DTween>();
             foreach (var target in self)
@@ -89,7 +103,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InertiaRigidbody2DTween> TweensInertia(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<InertiaRigidbody2DTween>();
+            }
 
             var tweens = new List<InertiaRigidbody2DTween>();
             foreach (var target in self)
@@ -108,7 +125,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<KinematicRigidbody2DTween> TweensKinematic(this IEnumerable<Rigidbody2D> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<KinematicRigidbody2DTween>();
+            }
 
             var tweens = new List<KinematicRigidbody2DTween>();
             foreach (var target in self)
@@ -127,7 +147,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MassRigidbody2DTween> TweensMass(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<MassRigidbody2DTween>();
+            }
 
             var tweens = new List<MassRigidbody2DTween>();
             foreach (var target in self)
@@ -146,7 +169,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PositionRigidbody2DTween> TweensPosition(this IEnumerable<Rigidbody2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PositionRigidbody2DTween>();
+            }
 
             var tweens = new List<PositionRigidbody2DTween>();
             foreach (var target in self)
@@ -168,7 +194,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PositionRigidbody2DTween> TweensPositionX(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PositionRigidbody2DTween>();
+            }
 
             var tweens = new List<PositionRigidbody2DTween>();
             foreach (var target in self)
@@ -190,7 +219,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PositionRigidbody2DTween> TweensPositionY(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PositionRigidbody2DTween>();
+            }
 
             var tweens = new List<PositionRigidbody2DTween>();
             foreach (var target in self)
@@ -209,7 +241,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<RotationRigidbody2DTween> TweensRotation(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<RotationRigidbody2DTween>();
+            }
 
             var tweens = new List<RotationRigidbody2DTween>();
             foreach (var target in self)
@@ -228,7 +263,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<GravityScaleRigidbody2DTween> TweensGravityScale(this IEnumerable<Rigidbody2D> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<GravityScaleRigidbody2DTween>();
+            }
 
             var tweens = new List<GravityScaleRigidbody2DTween>();
             foreach (var target in self)
@@ -247,7 +285,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VelocityRigidbody2DTween> TweensVelocity(this IEnumerable<Rigidbody2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<VelocityRigidbody2DTween>();
+            }
 
             var tweens = new List<VelocityRigidbody2DTween>();
             foreach (var target in self)

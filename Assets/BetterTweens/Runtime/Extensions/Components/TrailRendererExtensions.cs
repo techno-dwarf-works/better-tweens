@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AutodestructTrailRendererTween> TweensAutodestruct(this IEnumerable<TrailRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AutodestructTrailRendererTween>();
+            }
 
             var tweens = new List<AutodestructTrailRendererTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EmittingTrailRendererTween> TweensEmitting(this IEnumerable<TrailRenderer> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<EmittingTrailRendererTween>();
+            }
 
             var tweens = new List<EmittingTrailRendererTween>();
             foreach (var target in self)
@@ -51,7 +59,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EndColorTrailRendererTween> TweensEndColor(this IEnumerable<TrailRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<EndColorTrailRendererTween>();
+            }
 
             var tweens = new List<EndColorTrailRendererTween>();
             foreach (var target in self)
@@ -70,7 +81,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EndColorTrailRendererTween> TweensEndColor(this IEnumerable<TrailRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<EndColorTrailRendererTween>();
+            }
 
             var tweens = new List<EndColorTrailRendererTween>();
             foreach (var target in self)
@@ -89,7 +103,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<EndWidthTrailRendererTween> TweensEndWidth(this IEnumerable<TrailRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<EndWidthTrailRendererTween>();
+            }
 
             var tweens = new List<EndWidthTrailRendererTween>();
             foreach (var target in self)
@@ -108,7 +125,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MinVertexDistanceTrailRendererTween> TweensMinVertexDistance(this IEnumerable<TrailRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<MinVertexDistanceTrailRendererTween>();
+            }
 
             var tweens = new List<MinVertexDistanceTrailRendererTween>();
             foreach (var target in self)
@@ -127,7 +147,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NumCapVerticesTrailRendererTween> TweensNumCapVertices(this IEnumerable<TrailRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<NumCapVerticesTrailRendererTween>();
+            }
 
             var tweens = new List<NumCapVerticesTrailRendererTween>();
             foreach (var target in self)
@@ -146,7 +169,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NumCornerVerticesTrailRendererTween> TweensNumCornerVertices(this IEnumerable<TrailRenderer> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<NumCornerVerticesTrailRendererTween>();
+            }
 
             var tweens = new List<NumCornerVerticesTrailRendererTween>();
             foreach (var target in self)
@@ -165,7 +191,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ShadowBiasTrailRendererTween> TweensShadowBias(this IEnumerable<TrailRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ShadowBiasTrailRendererTween>();
+            }
 
             var tweens = new List<ShadowBiasTrailRendererTween>();
             foreach (var target in self)
@@ -184,7 +213,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StartColorTrailRendererTween> TweensStartColor(this IEnumerable<TrailRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<StartColorTrailRendererTween>();
+            }
 
             var tweens = new List<StartColorTrailRendererTween>();
             foreach (var target in self)
@@ -203,7 +235,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StartColorTrailRendererTween> TweensStartColor(this IEnumerable<TrailRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<StartColorTrailRendererTween>();
+            }
 
             var tweens = new List<StartColorTrailRendererTween>();
             foreach (var target in self)
@@ -222,7 +257,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StartWidthTrailRendererTween> TweensStartWidth(this IEnumerable<TrailRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<StartWidthTrailRendererTween>();
+            }
 
             var tweens = new List<StartWidthTrailRendererTween>();
             foreach (var target in self)
@@ -241,7 +279,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TimeTrailRendererTween> TweensTime(this IEnumerable<TrailRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<TimeTrailRendererTween>();
+            }
 
             var tweens = new List<TimeTrailRendererTween>();
             foreach (var target in self)
@@ -260,7 +301,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<WidthMultiplierTrailRendererTween> TweensWidthMultiplier(this IEnumerable<TrailRenderer> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<WidthMultiplierTrailRendererTween>();
+            }
 
             var tweens = new List<WidthMultiplierTrailRendererTween>();
             foreach (var target in self)

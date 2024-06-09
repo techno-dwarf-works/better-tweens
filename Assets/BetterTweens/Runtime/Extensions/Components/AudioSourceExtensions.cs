@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BypassEffectsAudioSourceTween> TweensBypassEffects(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BypassEffectsAudioSourceTween>();
+            }
 
             var tweens = new List<BypassEffectsAudioSourceTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BypassListenerAudioSourceTween> TweensBypassListener(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BypassListenerAudioSourceTween>();
+            }
 
             var tweens = new List<BypassListenerAudioSourceTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BypassReverbZonesAudioSourceTween> TweensBypassReverbZones(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BypassReverbZonesAudioSourceTween>();
+            }
 
             var tweens = new List<BypassReverbZonesAudioSourceTween>();
             foreach (var target in self)
@@ -69,7 +80,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DopplerLevelAudioSourceTween> TweensDopplerLevel(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DopplerLevelAudioSourceTween>();
+            }
 
             var tweens = new List<DopplerLevelAudioSourceTween>();
             foreach (var target in self)
@@ -88,7 +102,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IgnoreListenerPauseAudioSourceTween> TweensIgnoreListenerPause(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<IgnoreListenerPauseAudioSourceTween>();
+            }
 
             var tweens = new List<IgnoreListenerPauseAudioSourceTween>();
             foreach (var target in self)
@@ -107,7 +124,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IgnoreListenerVolumeAudioSourceTween> TweensIgnoreListenerVolume(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<IgnoreListenerVolumeAudioSourceTween>();
+            }
 
             var tweens = new List<IgnoreListenerVolumeAudioSourceTween>();
             foreach (var target in self)
@@ -126,7 +146,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<LoopAudioSourceTween> TweensLoop(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<LoopAudioSourceTween>();
+            }
 
             var tweens = new List<LoopAudioSourceTween>();
             foreach (var target in self)
@@ -145,7 +168,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MaxDistanceAudioSourceTween> TweensMaxDistance(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<MaxDistanceAudioSourceTween>();
+            }
 
             var tweens = new List<MaxDistanceAudioSourceTween>();
             foreach (var target in self)
@@ -164,7 +190,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MinDistanceAudioSourceTween> TweensMinDistance(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<MinDistanceAudioSourceTween>();
+            }
 
             var tweens = new List<MinDistanceAudioSourceTween>();
             foreach (var target in self)
@@ -183,7 +212,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<MuteAudioSourceTween> TweensMute(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<MuteAudioSourceTween>();
+            }
 
             var tweens = new List<MuteAudioSourceTween>();
             foreach (var target in self)
@@ -202,7 +234,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PanStereoAudioSourceTween> TweensPanStereo(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PanStereoAudioSourceTween>();
+            }
 
             var tweens = new List<PanStereoAudioSourceTween>();
             foreach (var target in self)
@@ -221,7 +256,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PitchAudioSourceTween> TweensPitch(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PitchAudioSourceTween>();
+            }
 
             var tweens = new List<PitchAudioSourceTween>();
             foreach (var target in self)
@@ -240,7 +278,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PlayAudioSourceTween> TweensPlay(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PlayAudioSourceTween>();
+            }
 
             var tweens = new List<PlayAudioSourceTween>();
             foreach (var target in self)
@@ -259,7 +300,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PriorityAudioSourceTween> TweensPriority(this IEnumerable<AudioSource> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PriorityAudioSourceTween>();
+            }
 
             var tweens = new List<PriorityAudioSourceTween>();
             foreach (var target in self)
@@ -278,7 +322,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ReverbZoneMixAudioSourceTween> TweensReverbZoneMix(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ReverbZoneMixAudioSourceTween>();
+            }
 
             var tweens = new List<ReverbZoneMixAudioSourceTween>();
             foreach (var target in self)
@@ -297,7 +344,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SpatialBlendAudioSourceTween> TweensSpatialBlend(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SpatialBlendAudioSourceTween>();
+            }
 
             var tweens = new List<SpatialBlendAudioSourceTween>();
             foreach (var target in self)
@@ -316,7 +366,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SpatializeAudioSourceTween> TweensSpatialize(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SpatializeAudioSourceTween>();
+            }
 
             var tweens = new List<SpatializeAudioSourceTween>();
             foreach (var target in self)
@@ -335,7 +388,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SpatializePostEffectsAudioSourceTween> TweensSpatializePostEffects(this IEnumerable<AudioSource> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SpatializePostEffectsAudioSourceTween>();
+            }
 
             var tweens = new List<SpatializePostEffectsAudioSourceTween>();
             foreach (var target in self)
@@ -354,7 +410,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SpreadAudioSourceTween> TweensSpread(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SpreadAudioSourceTween>();
+            }
 
             var tweens = new List<SpreadAudioSourceTween>();
             foreach (var target in self)
@@ -373,7 +432,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TimeAudioSourceTween> TweensTime(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<TimeAudioSourceTween>();
+            }
 
             var tweens = new List<TimeAudioSourceTween>();
             foreach (var target in self)
@@ -392,7 +454,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<TimeSamplesAudioSourceTween> TweensTimeSamples(this IEnumerable<AudioSource> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<TimeSamplesAudioSourceTween>();
+            }
 
             var tweens = new List<TimeSamplesAudioSourceTween>();
             foreach (var target in self)
@@ -411,7 +476,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VolumeAudioSourceTween> TweensVolume(this IEnumerable<AudioSource> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<VolumeAudioSourceTween>();
+            }
 
             var tweens = new List<VolumeAudioSourceTween>();
             foreach (var target in self)

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BlocksRaycastsCanvasGroupTween> TweensBlocksRaycasts(this IEnumerable<CanvasGroup> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BlocksRaycastsCanvasGroupTween>();
+            }
 
             var tweens = new List<BlocksRaycastsCanvasGroupTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<InteractableCanvasGroupTween> TweensInteractable(this IEnumerable<CanvasGroup> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<InteractableCanvasGroupTween>();
+            }
 
             var tweens = new List<InteractableCanvasGroupTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FadeCanvasGroupTween> TweensFade(this IEnumerable<CanvasGroup> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FadeCanvasGroupTween>();
+            }
 
             var tweens = new List<FadeCanvasGroupTween>();
             foreach (var target in self)
@@ -69,7 +80,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<IgnoreParentCanvasGroupTween> TweensIgnoreParent(this IEnumerable<CanvasGroup> self, float duration, bool options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<IgnoreParentCanvasGroupTween>();
+            }
 
             var tweens = new List<IgnoreParentCanvasGroupTween>();
             foreach (var target in self)

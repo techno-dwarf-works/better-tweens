@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Better.Commons.Runtime.Enums;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchoredPosition3DRectTransformTween> TweensAnchoredPosition3D(this IEnumerable<RectTransform> self, float duration, Vector3 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AnchoredPosition3DRectTransformTween>();
+            }
 
             var tweens = new List<AnchoredPosition3DRectTransformTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchoredPositionRectTransformTween> TweensAnchoredPosition(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AnchoredPositionRectTransformTween>();
+            }
 
             var tweens = new List<AnchoredPositionRectTransformTween>();
             foreach (var target in self)
@@ -54,7 +62,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchoredPositionRectTransformTween> TweensAnchoredPositionX(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AnchoredPositionRectTransformTween>();
+            }
 
             var tweens = new List<AnchoredPositionRectTransformTween>();
             foreach (var target in self)
@@ -76,7 +87,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchoredPositionRectTransformTween> TweensAnchoredPositionY(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AnchoredPositionRectTransformTween>();
+            }
 
             var tweens = new List<AnchoredPositionRectTransformTween>();
             foreach (var target in self)
@@ -95,7 +109,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchorMaxRectTransformTween> TweensAnchorMax(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AnchorMaxRectTransformTween>();
+            }
 
             var tweens = new List<AnchorMaxRectTransformTween>();
             foreach (var target in self)
@@ -114,7 +131,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<AnchorMinRectTransformTween> TweensAnchorMin(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<AnchorMinRectTransformTween>();
+            }
 
             var tweens = new List<AnchorMinRectTransformTween>();
             foreach (var target in self)
@@ -133,7 +153,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OffsetMaxRectTransformTween> TweensOffsetMax(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<OffsetMaxRectTransformTween>();
+            }
 
             var tweens = new List<OffsetMaxRectTransformTween>();
             foreach (var target in self)
@@ -152,7 +175,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<OffsetMinRectTransformTween> TweensOffsetMin(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<OffsetMinRectTransformTween>();
+            }
 
             var tweens = new List<OffsetMinRectTransformTween>();
             foreach (var target in self)
@@ -171,7 +197,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PivotRectTransformTween> TweensPivot(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PivotRectTransformTween>();
+            }
 
             var tweens = new List<PivotRectTransformTween>();
             foreach (var target in self)
@@ -193,7 +222,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PivotRectTransformTween> TweensPivotX(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PivotRectTransformTween>();
+            }
 
             var tweens = new List<PivotRectTransformTween>();
             foreach (var target in self)
@@ -215,7 +247,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PivotRectTransformTween> TweensPivotY(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PivotRectTransformTween>();
+            }
 
             var tweens = new List<PivotRectTransformTween>();
             foreach (var target in self)
@@ -234,7 +269,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeDeltaRectTransformTween> TweensSizeDelta(this IEnumerable<RectTransform> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeDeltaRectTransformTween>();
+            }
 
             var tweens = new List<SizeDeltaRectTransformTween>();
             foreach (var target in self)
@@ -256,7 +294,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeDeltaRectTransformTween> TweensSizeDeltaX(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeDeltaRectTransformTween>();
+            }
 
             var tweens = new List<SizeDeltaRectTransformTween>();
             foreach (var target in self)
@@ -278,7 +319,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SizeDeltaRectTransformTween> TweensSizeDeltaY(this IEnumerable<RectTransform> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SizeDeltaRectTransformTween>();
+            }
 
             var tweens = new List<SizeDeltaRectTransformTween>();
             foreach (var target in self)

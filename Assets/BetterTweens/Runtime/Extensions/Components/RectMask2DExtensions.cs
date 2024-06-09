@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<PaddingRectMaskTween> TweensPadding(this IEnumerable<RectMask2D> self, float duration, Vector4 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<PaddingRectMaskTween>();
+            }
 
             var tweens = new List<PaddingRectMaskTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<SoftnessRectMaskTween> TweensSoftness(this IEnumerable<RectMask2D> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<SoftnessRectMaskTween>();
+            }
 
             var tweens = new List<SoftnessRectMaskTween>();
             foreach (var target in self)

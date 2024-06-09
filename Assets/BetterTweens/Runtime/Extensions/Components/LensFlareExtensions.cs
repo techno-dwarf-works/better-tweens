@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BrightnessLensFlareTween> TweensBrightness(this IEnumerable<LensFlare> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BrightnessLensFlareTween>();
+            }
 
             var tweens = new List<BrightnessLensFlareTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorLensFlareTween> TweensColor(this IEnumerable<LensFlare> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ColorLensFlareTween>();
+            }
 
             var tweens = new List<ColorLensFlareTween>();
             foreach (var target in self)
@@ -51,7 +59,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorLensFlareTween> TweensColor(this IEnumerable<LensFlare> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ColorLensFlareTween>();
+            }
 
             var tweens = new List<ColorLensFlareTween>();
             foreach (var target in self)
@@ -70,7 +81,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<FadeSpeedLensFlareTween> TweensFadeSpeed(this IEnumerable<LensFlare> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<FadeSpeedLensFlareTween>();
+            }
 
             var tweens = new List<FadeSpeedLensFlareTween>();
             foreach (var target in self)

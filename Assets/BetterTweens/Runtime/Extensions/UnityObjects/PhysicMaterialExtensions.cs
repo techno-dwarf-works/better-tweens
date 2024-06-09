@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime
@@ -12,7 +14,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<BouncinessPhysicMaterialTween> TweensTweenBounciness(this IEnumerable<PhysicMaterial> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<BouncinessPhysicMaterialTween>();
+            }
 
             var tweens = new List<BouncinessPhysicMaterialTween>();
             foreach (var target in self)
@@ -31,7 +36,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<DynamicFrictionPhysicMaterialTween> TweensTweenDynamicFriction(this IEnumerable<PhysicMaterial> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<DynamicFrictionPhysicMaterialTween>();
+            }
 
             var tweens = new List<DynamicFrictionPhysicMaterialTween>();
             foreach (var target in self)
@@ -50,7 +58,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<StaticFrictionPhysicMaterialTween> TweensTweenStaticFriction(this IEnumerable<PhysicMaterial> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<StaticFrictionPhysicMaterialTween>();
+            }
 
             var tweens = new List<StaticFrictionPhysicMaterialTween>();
             foreach (var target in self)

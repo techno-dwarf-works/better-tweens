@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<CellSizeLayoutGroupTween> TweensCellSize(this IEnumerable<GridLayoutGroup> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<CellSizeLayoutGroupTween>();
+            }
 
             var tweens = new List<CellSizeLayoutGroupTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ConstraintCountLayoutGroupTween> TweensConstraintCount(this IEnumerable<GridLayoutGroup> self, float duration, int options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ConstraintCountLayoutGroupTween>();
+            }
 
             var tweens = new List<ConstraintCountLayoutGroupTween>();
             foreach (var target in self)
@@ -51,7 +59,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<GridSpacingLayoutGroupTween> TweensGridSpacing(this IEnumerable<GridLayoutGroup> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<GridSpacingLayoutGroupTween>();
+            }
 
             var tweens = new List<GridSpacingLayoutGroupTween>();
             foreach (var target in self)
@@ -70,7 +81,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<GridSpacingLayoutGroupTween> TweensGridSpacing(this IEnumerable<GridLayoutGroup> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<GridSpacingLayoutGroupTween>();
+            }
 
             var tweens = new List<GridSpacingLayoutGroupTween>();
             foreach (var target in self)

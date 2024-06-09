@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Better.Tweens.Runtime.Data;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -14,7 +16,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, float duration, ColorOptions options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ColorSpriteShapeRendererTween>();
+            }
 
             var tweens = new List<ColorSpriteShapeRendererTween>();
             foreach (var target in self)
@@ -33,7 +38,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<ColorSpriteShapeRendererTween> TweensColor(this IEnumerable<SpriteShapeRenderer> self, float duration, Color options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<ColorSpriteShapeRendererTween>();
+            }
 
             var tweens = new List<ColorSpriteShapeRendererTween>();
             foreach (var target in self)

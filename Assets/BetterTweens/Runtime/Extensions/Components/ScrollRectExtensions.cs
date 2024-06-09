@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +15,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<HorizontalNormalizedPositionScrollRectTween> TweensHorizontalNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<HorizontalNormalizedPositionScrollRectTween>();
+            }
 
             var tweens = new List<HorizontalNormalizedPositionScrollRectTween>();
             foreach (var target in self)
@@ -32,7 +37,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<NormalizedPositionScrollRectTween> TweensNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, Vector2 options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<NormalizedPositionScrollRectTween>();
+            }
 
             var tweens = new List<NormalizedPositionScrollRectTween>();
             foreach (var target in self)
@@ -51,7 +59,10 @@ namespace Better.Tweens.Runtime
 
         public static IEnumerable<VerticalNormalizedPositionScrollRectTween> TweensVerticalNormalizedPosition(this IEnumerable<ScrollRect> self, float duration, float options, OptionsMode optionsMode = default)
         {
-            // TODO: Add self validation
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Array.Empty<VerticalNormalizedPositionScrollRectTween>();
+            }
 
             var tweens = new List<VerticalNormalizedPositionScrollRectTween>();
             foreach (var target in self)
