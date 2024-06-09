@@ -6,6 +6,8 @@ namespace Better.Tweens.Runtime
 {
     public static class TargetTweenExtensions
     {
+        #region Internal Setup
+
         internal static TTween Tween<TTween, TTarget, TValue, TValueOptions>(this TTarget self, float duration, TValueOptions options, OptionsMode optionsMode)
             where TTween : TargetTween<TTarget, TValue, TValueOptions>, new()
             where TTarget : class
@@ -87,5 +89,7 @@ namespace Better.Tweens.Runtime
             var vectorOptions = Vector4.one * options;
             return self.Tween<TTween, TTarget, Vector4>(duration, vectorOptions, optionsMode);
         }
+
+        #endregion
     }
 }

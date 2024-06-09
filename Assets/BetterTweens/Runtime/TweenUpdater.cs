@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Better.Commons.Runtime.Utility;
+using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -11,12 +12,12 @@ namespace Better.Tweens.Runtime
 {
     internal static class TweenUpdater
     {
-        private static List<TweenCore> _cachedReferences;
+        private static ICollection<TweenCore> _cachedReferences;
 
         [RuntimeInitializeOnLoadMethod]
         private static void Initialize()
         {
-            _cachedReferences = new();
+            _cachedReferences = new List<TweenCore>();
 
             PlayerLoopUtility.SubscribeToLoop(typeof(Update), OnUpdate);
             PlayerLoopUtility.SubscribeToLoop(typeof(PreLateUpdate), OnLateUpdate);
@@ -44,14 +45,32 @@ namespace Better.Tweens.Runtime
 
         private static void Update(UpdateMode updateMode, float scaledDeltaTime, float unscaledDeltaTime)
         {
-            TweenRegistry.CollectElementsBy(updateMode, ref _cachedReferences);
+            _cachedReferences.Clear();
+            CollectElementsBy(updateMode, ref _cachedReferences);
+
             foreach (var tweenCore in _cachedReferences)
             {
                 var progress = tweenCore.DependUnityTimeScale ? scaledDeltaTime : unscaledDeltaTime;
                 tweenCore.OnUpdate(progress);
             }
+        }
 
-            _cachedReferences.Clear();
+        private static void CollectElementsBy(UpdateMode updateMode, ref ICollection<TweenCore> references)
+        {
+            if (references == null)
+            {
+                var message = $"{nameof(references)} cannot be null";
+                LogUtility.LogException(message);
+                return;
+            }
+
+            foreach (var element in TweenRegistry.Elements)
+            {
+                if (element.UpdateMode == updateMode)
+                {
+                    references.Add(element);
+                }
+            }
         }
 
 #if UNITY_EDITOR
@@ -62,6 +81,11 @@ namespace Better.Tweens.Runtime
             {
                 OnExitingPlayMode();
             }
+
+            MonoBehaviour someMonoBeh = new();
+
+
+            someMonoBeh.TweensTagged().Stop();
         }
 
         private static void OnExitingPlayMode()
