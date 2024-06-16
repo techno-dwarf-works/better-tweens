@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.States;
 using Better.Tweens.Runtime.Utility;
@@ -15,9 +14,9 @@ namespace Better.Tweens.Runtime
         {
 #if UNITY_EDITOR
             return Application.isPlaying;
-#endif
-
+#else
             return true;
+#endif
         }
 
         protected bool ValidateInitialized(bool targetState, bool logError = true)
@@ -58,7 +57,7 @@ namespace Better.Tweens.Runtime
 
         public virtual bool IsRunnable()
         {
-            return true;
+            return Initialized && !IsBroken();
         }
 
         public virtual bool IsRunning()
@@ -118,7 +117,7 @@ namespace Better.Tweens.Runtime
 
         public virtual bool IsCompletable()
         {
-            return Initialized && !IsStopped() && !IsCompleted();
+            return IsRunnable() && !IsStopped() && !IsCompleted() && !IsBroken();
         }
 
         public virtual bool IsCompleted()
@@ -138,42 +137,6 @@ namespace Better.Tweens.Runtime
         public bool ContainsTag(object value)
         {
             return _tags != null && _tags.Contains(value);
-        }
-
-        public bool ContainsAllTags(IEnumerable<object> values)
-        {
-            if (!ValidationUtility.ValidateNullReference(values))
-            {
-                return false;
-            }
-
-            foreach (var value in values)
-            {
-                if (!ContainsTag(value))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public bool ContainsAnyTags(IEnumerable<object> values)
-        {
-            if (!ValidationUtility.ValidateNullReference(values))
-            {
-                return false;
-            }
-
-            foreach (var value in values)
-            {
-                if (ContainsTag(value))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         #endregion
@@ -213,6 +176,29 @@ namespace Better.Tweens.Runtime
             where TAction : TweenCoreAction
         {
             return _rewoundAction.Value is TAction;
+        }
+
+        #endregion
+
+        #region Broken
+
+        public virtual bool IsBroken()
+        {
+            return false;
+        }
+
+        protected bool ValidateBroken(bool targetState, bool logError = true)
+        {
+            var isBroken = IsBroken();
+            var isValid = isBroken == targetState;
+            if (!isValid && logError)
+            {
+                var reason = targetState ? "must be broken" : "must not be broken";
+                var message = "Not valid, " + reason;
+                LogUtility.LogError(message, this);
+            }
+
+            return isValid;
         }
 
         #endregion

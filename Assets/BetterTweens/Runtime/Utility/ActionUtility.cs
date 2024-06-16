@@ -1,6 +1,5 @@
 ﻿using System;
 using Better.Commons.Runtime.Extensions;
-using Better.Tweens.Runtime.Logs;
 
 namespace Better.Tweens.Runtime.Utility
 {

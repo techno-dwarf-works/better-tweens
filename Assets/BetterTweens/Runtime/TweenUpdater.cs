@@ -82,7 +82,6 @@ namespace Better.Tweens.Runtime
 
             MonoBehaviour someMonoBeh = new();
 
-
             someMonoBeh.TweensTagged().Stop();
         }
 

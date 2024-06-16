@@ -4,7 +4,7 @@ namespace Better.Tweens.Runtime
 {
     public static class Physics2DTweening
     {
-        public static GravityPhysics2DTween TweenAutoSimulation(float duration, Vector2 options, OptionsMode optionsMode = default)
+        public static GravityPhysics2DTween TweenGravity(float duration, Vector2 options, OptionsMode optionsMode = default)
         {
             var tween = new GravityPhysics2DTween();
             tween.SetOptions(options)

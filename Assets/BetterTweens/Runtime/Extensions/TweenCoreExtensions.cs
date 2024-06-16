@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
+
+#if BETTER_CONDITIONS
+using Better.Conditions.Runtime;
+#endif
 
 namespace Better.Tweens.Runtime
 {
@@ -246,6 +249,435 @@ namespace Better.Tweens.Runtime
 
         #endregion
 
+        #region Events
+
+        public static TweenCore OnStateChanged(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.StateChanged += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnStateChanged(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnStateChanged(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnActivityChanged(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.ActivityChanged += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnActivityChanged(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnActivityChanged(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnEnabled(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Enabled += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnEnabled(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnEnabled();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnAsleep(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Asleep += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnAsleep(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnAsleep();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnDisabled(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Disabled += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnDisabled(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnDisabled();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnStarted(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Started += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnStarted(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnStarted();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnRunned(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Runned += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnRunned(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnRunned();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnPlaying(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Playing += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnPlaying(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnPlaying(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnRewinding(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Rewinding += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnRewinding(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnRewinding(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnUpdated(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Updated += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnUpdated(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnUpdated(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnPaused(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Paused += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnPaused(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnPaused();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnStopped(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Stopped += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnStopped(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnStopped();
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnCompleted(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Completed += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnCompleted(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnCompleted(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnRewound(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Rewound += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnRewound(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnRewound(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnLoopCompleted(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.LoopCompleted += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnLoopCompleted(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnLoopCompleted(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnLoopRewound(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.LoopRewound += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnLoopRewound(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnLoopRewound(callback);
+            }
+
+            return self;
+        }
+
+        public static TweenCore OnBroken(this TweenCore self, Action callback)
+        {
+            if (ValidationUtility.Validate(callback))
+            {
+                self.Broken += callback;
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> OnBroken(this IEnumerable<TweenCore> self, Action callback)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.OnBroken(callback);
+            }
+
+            return self;
+        }
+
+        #endregion
+
         #region Building
 
         public static IEnumerable<TweenCore> SetLoopCount(this IEnumerable<TweenCore> self, int value)
@@ -353,6 +785,19 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
+        public static TweenCore SetCompletionAction(this TweenCore self, ActionType actionType)
+        {
+            var action = TweenCoreActionUtility.GetActionByType(actionType);
+            return self.SetCompletionAction(action);
+        }
+
+        public static TweenCore SetCompletionAction<TAction>(this TweenCore self)
+            where TAction : TweenCoreAction, new()
+        {
+            var action = new TAction();
+            return self.SetCompletionAction(action);
+        }
+
         public static IEnumerable<TweenCore> SetCompletionAction<TAction>(this IEnumerable<TweenCore> self)
             where TAction : TweenCoreAction, new()
         {
@@ -397,6 +842,19 @@ namespace Better.Tweens.Runtime
             }
 
             return self;
+        }
+
+        public static TweenCore SetRewoundAction<TAction>(this TweenCore self)
+            where TAction : TweenCoreAction, new()
+        {
+            var action = new TAction();
+            return self.SetRewoundAction(action);
+        }
+
+        public static TweenCore SetRewoundAction(this TweenCore self, ActionType actionType)
+        {
+            var action = TweenCoreActionUtility.GetActionByType(actionType);
+            return self.SetRewoundAction(action);
         }
 
         public static IEnumerable<TweenCore> SetRewoundAction<TAction>(this IEnumerable<TweenCore> self)
@@ -445,244 +903,9 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
-        public static IEnumerable<TweenCore> OnStateChanged(this IEnumerable<TweenCore> self, Action callback)
+        public static TweenCore RemoveTriggers(this TweenCore self, string id)
         {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnStateChanged(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnActivityChanged(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnActivityChanged(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnEnabled(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnEnabled();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnAsleep(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnAsleep();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnDisabled(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnDisabled();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnStarted(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnStarted();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnRunned(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnRunned();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnPlaying(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnPlaying(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnRewinding(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnRewinding(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnUpdated(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnUpdated(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnPaused(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnPaused();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnStopped(this IEnumerable<TweenCore> self)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnStopped();
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnCompleted(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnCompleted(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnRewound(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnRewound(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnLoopCompleted(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnLoopCompleted(callback);
-            }
-
-            return self;
-        }
-
-        public static IEnumerable<TweenCore> OnLoopRewound(this IEnumerable<TweenCore> self, Action callback)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return self;
-            }
-
-            foreach (var tweenCore in self)
-            {
-                tweenCore.OnLoopRewound(callback);
-            }
-
-            return self;
+            return self.RemoveTriggers(trigger => trigger.CompareId(id));
         }
 
         public static TweenCore AddTriggers(this TweenCore self, IEnumerable<Trigger> triggers)
@@ -745,6 +968,8 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
+#if BETTER_CONDITIONS
+
         public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
         {
             if (!ValidationUtility.ValidateNullReference(self))
@@ -788,6 +1013,8 @@ namespace Better.Tweens.Runtime
             return self.AddTrigger<TAction>(condition, id);
         }
 
+#endif
+
         public static IEnumerable<TweenCore> RemoveTriggers(this IEnumerable<TweenCore> self, Predicate<Trigger> predicate)
         {
             if (!ValidationUtility.ValidateNullReference(self))
@@ -813,6 +1040,72 @@ namespace Better.Tweens.Runtime
             foreach (var tweenCore in self)
             {
                 tweenCore.RemoveTriggers(id);
+            }
+
+            return self;
+        }
+
+        public static TweenCore AddTags(this TweenCore self, IEnumerable<object> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return self;
+            }
+
+            foreach (var value in values)
+            {
+                self.AddTag(value);
+            }
+
+            return self;
+        }
+
+        public static bool ContainsAllTags(this TweenCore self, IEnumerable<object> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return false;
+            }
+
+            foreach (var value in values)
+            {
+                if (!self.ContainsTag(value))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ContainsAnyTags(this TweenCore self, IEnumerable<object> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return false;
+            }
+
+            foreach (var value in values)
+            {
+                if (self.ContainsTag(value))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static TweenCore RemoveTags(this TweenCore self, IEnumerable<object> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return self;
+            }
+
+            foreach (var value in values)
+            {
+                self.RemoveTag(value);
             }
 
             return self;
@@ -1623,6 +1916,42 @@ namespace Better.Tweens.Runtime
             return false;
         }
 
+        public static bool AllBroken(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return false;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                if (!tweenCore.IsBroken())
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool AnyBroken(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return false;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                if (tweenCore.IsBroken())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Awaiters
@@ -1913,7 +2242,7 @@ namespace Better.Tweens.Runtime
 
         #endregion
 
-        #region Tweens
+        #region Tweening
 
         public static LocalTimeScaleCoreTween TweenLocalTimeScale(this TweenCore self, float duration, float options, OptionsMode optionsMode = default)
         {

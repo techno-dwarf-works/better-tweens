@@ -1,9 +1,6 @@
 ﻿using System;
-using Better.Conditions.Runtime;
-using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Better.Tweens.Runtime
 {
@@ -11,15 +8,13 @@ namespace Better.Tweens.Runtime
     public abstract class TargetTween<TTarget, TValue, TValueOptions> : Tween<TValue, TValueOptions>
         where TTarget : class
     {
-        private const string TargetTriggerId = nameof(TargetTriggerId);
-
         [SerializeField] private TTarget _target;
         protected TTarget Target => _target;
 
         protected override void OnInitialized()
         {
-            RemoveTargetDependency();
-            AddTargetDependency();
+            RemoveTagDependency();
+            AddTagDependency();
 
             base.OnInitialized();
         }
@@ -43,34 +38,27 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnTargetPreChanged()
         {
-            RemoveTargetDependency();
+            RemoveTagDependency();
         }
 
         protected virtual void OnTargetChanged()
         {
-            AddTargetDependency();
+            AddTagDependency();
         }
 
-        private void AddTargetDependency()
+        private void AddTagDependency()
         {
             AddTag(Target);
-
-            if (Target is Object unityTarget)
-            {
-                var destroyObjectCondition = new NullReferenceObjectCondition(unityTarget, true);
-                this.AddTrigger<StopAction>(destroyObjectCondition, TargetTriggerId);
-            }
         }
 
-        private void RemoveTargetDependency()
+        private void RemoveTagDependency()
         {
             RemoveTag(Target);
-            RemoveTriggers(TargetTriggerId);
         }
 
-        public override bool IsRunnable()
+        public override bool IsBroken()
         {
-            return base.IsRunnable() && Target != null;
+            return base.IsBroken() || Target == null;
         }
     }
 

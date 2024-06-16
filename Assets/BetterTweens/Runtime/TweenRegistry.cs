@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Better.Tweens.Runtime.Utility;
@@ -10,8 +11,11 @@ namespace Better.Tweens.Runtime
 {
     public static class TweenRegistry
     {
+        public static event Action<TweenCore> Registered;
+        public static event Action<TweenCore> Unregistered;
+        
         private static readonly List<TweenCore> _elements;
-
+        
         public static ReadOnlyCollection<TweenCore> Elements { get; }
 
         static TweenRegistry()
@@ -35,6 +39,7 @@ namespace Better.Tweens.Runtime
             }
 
             _elements.Add(element);
+            Registered?.Invoke(element);
         }
 
         internal static bool IsRegistered(TweenCore element)
@@ -44,13 +49,14 @@ namespace Better.Tweens.Runtime
 
         internal static void Unregister(TweenCore element)
         {
-            if (_elements.Remove(element))
+            if (!_elements.Remove(element))
             {
+                var message = $"Element({element}) not registered";
+                LogUtility.LogException(message);
                 return;
             }
 
-            var message = $"Element({element}) not registered";
-            LogUtility.LogException(message);
+            Unregistered?.Invoke(element);
         }
 
 #if UNITY_EDITOR
@@ -65,6 +71,8 @@ namespace Better.Tweens.Runtime
 
         private static void OnExitingPlayMode()
         {
+            Registered = null;
+            Unregistered = null;
             _elements.Clear();
 
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;

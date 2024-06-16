@@ -17,6 +17,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.tdw.better.conditions",
+            "expression": "0.0.2",
+            "define": "BETTER_CONDITIONS"
+        }
+    ],
     "noEngineReferences": false
 }

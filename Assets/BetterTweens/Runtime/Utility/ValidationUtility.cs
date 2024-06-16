@@ -21,6 +21,18 @@ namespace Better.Tweens.Runtime.Utility
             return ValidateNullReference(func, logException);
         }
 
+        public static bool Validate<TValue, TResult>(Func<TValue, TResult> func, bool logException = true)
+        {
+            var isValid = func != null;
+            if (!isValid && logException)
+            {
+                var message = $"{nameof(func)} cannot be null";
+                LogUtility.LogException(message);
+            }
+
+            return isValid;
+        }
+
         public static bool Validate(Action action, bool logException = true)
         {
             return ValidateNullReference(action, logException);

@@ -2,7 +2,7 @@
 {
     public enum EaseType
     {
-        Linear,
+        Linear = 0,
         Power,
         Sine,
         Quad,

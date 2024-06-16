@@ -9,7 +9,7 @@ namespace Better.Tweens.Runtime
 
         public FuncEase(Func<float, float> func)
         {
-            if (!FuncUtility.Validate(func))
+            if (!ValidationUtility.Validate(func))
             {
                 return;
             }

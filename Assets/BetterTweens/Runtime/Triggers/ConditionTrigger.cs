@@ -1,4 +1,5 @@
-﻿using Better.Conditions.Runtime;
+﻿#if BETTER_CONDITIONS
+using Better.Conditions.Runtime;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Utility;
 
@@ -29,3 +30,4 @@ namespace Better.Tweens.Runtime.Triggers
         }
     }
 }
+#endif

@@ -9,7 +9,7 @@ namespace Better.Tweens.EditorAddons
     {
         public TweensSettingsProvider() : base(TweensSettings.Path)
         {
-            keywords = new[] { "tweens", "sequence", "animation" };
+            keywords = new[] { "tween", "sequence", "animation" };
         }
 
         [MenuItem(TweensSettings.Path + "/" + PrefixConstants.HighlightPrefix, false, 999)]

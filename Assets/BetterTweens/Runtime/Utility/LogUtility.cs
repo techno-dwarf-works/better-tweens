@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Better.Tweens.Runtime.Logs;
 using UnityEngine;
 
@@ -24,9 +25,25 @@ namespace Better.Tweens.Runtime.Utility
             Debug.unityLogger.Log(logType, message);
         }
 
+        public static void Log(string message, LogLevel logLevel, object context)
+        {
+            if (!AllowLogLevel(logLevel))
+            {
+                return;
+            }
+
+            message += $";\n{context}";
+            Log(message, logLevel);
+        }
+
         public static void LogDebug(string message)
         {
             Log(message, LogLevel.Debug);
+        }
+
+        public static void LogDebug(string message, object context)
+        {
+            Log(message, LogLevel.Debug, context);
         }
 
         public static void LogInfo(string message)
@@ -34,9 +51,19 @@ namespace Better.Tweens.Runtime.Utility
             Log(message, LogLevel.Info);
         }
 
+        public static void LogInfo(string message, object context)
+        {
+            Log(message, LogLevel.Info, context);
+        }
+
         public static void LogWarning(string message)
         {
             Log(message, LogLevel.Warning);
+        }
+
+        public static void LogWarning(string message, object context)
+        {
+            Log(message, LogLevel.Warning, context);
         }
 
         public static void LogError(string message)
@@ -44,14 +71,29 @@ namespace Better.Tweens.Runtime.Utility
             Log(message, LogLevel.Error);
         }
 
+        public static void LogError(string message, object context)
+        {
+            Log(message, LogLevel.Error, context);
+        }
+
         public static void LogException(string message)
         {
             Log(message, LogLevel.Exception);
         }
 
+        public static void LogException(string message, object context)
+        {
+            Log(message, LogLevel.Exception, context);
+        }
+
         public static void LogException(Exception exception)
         {
             LogException(exception.Message);
+        }
+
+        public static void LogException(Exception exception, object context)
+        {
+            LogException(exception.Message, context);
         }
 
         public static bool AllowLogLevel(LogLevel logLevel)

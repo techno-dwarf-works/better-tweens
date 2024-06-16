@@ -3,7 +3,7 @@ using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime.Triggers
 {
-    public abstract class ActionTrigger : Trigger
+    public class ActionTrigger : Trigger
     {
         private readonly TweenCoreAction _action;
 

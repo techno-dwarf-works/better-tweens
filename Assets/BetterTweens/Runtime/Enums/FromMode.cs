@@ -2,7 +2,7 @@
 {
     public enum FromMode
     {
-        Auto,
+        Auto = 0,
         Properties,
     }
 }

@@ -33,7 +33,7 @@ namespace Better.Tweens.Runtime
             if (!InDelay)
             {
                 var message = "Unexpected operation, not delayed";
-                LogUtility.LogException(message);
+                LogUtility.LogException(message, this);
                 return;
             }
 

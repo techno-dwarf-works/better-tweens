@@ -100,7 +100,7 @@ namespace Better.Tweens.Runtime
             }
 
             var message = $"{nameof(CompletedLoops)}({CompletedLoops}) is overlooped: handling, try will restart with infinity loops...";
-            LogUtility.LogWarning(message);
+            LogUtility.LogWarning(message, this);
 
             Stop();
             if (!IsStopped())

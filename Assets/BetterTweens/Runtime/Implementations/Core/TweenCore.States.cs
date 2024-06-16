@@ -19,6 +19,11 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (IsEnabled())
             {
                 return this;
@@ -42,6 +47,11 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (IsSleeping())
             {
                 return this;
@@ -61,6 +71,11 @@ namespace Better.Tweens.Runtime
         {
             TryInitialize();
             if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
+            if (TryHandleBroken() && !ValidateBroken(false))
             {
                 return this;
             }
@@ -97,7 +112,7 @@ namespace Better.Tweens.Runtime
             var module = _activityMachine.GetModule<ActivityState, CacheModule<ActivityState>>();
             return module.GetOrAddState<TState>();
         }
-        
+
         protected CancellationToken GetActivityStateToken()
         {
             TryInitialize();
@@ -117,6 +132,11 @@ namespace Better.Tweens.Runtime
         {
             TryInitialize();
             if (!ValidateInitialized(true))
+            {
+                return this;
+            }
+
+            if (TryHandleBroken() && !ValidateBroken(false))
             {
                 return this;
             }
@@ -160,6 +180,11 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (IsRewinding() || !IsRewindable())
             {
                 return this;
@@ -184,6 +209,11 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (IsPaused() || !IsPausable())
             {
                 return this;
@@ -197,6 +227,11 @@ namespace Better.Tweens.Runtime
 
         public TweenCore TogglePause()
         {
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (IsPaused())
             {
                 Play();
@@ -222,6 +257,11 @@ namespace Better.Tweens.Runtime
                 return this;
             }
 
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (IsStopped() || !IsStoppable())
             {
                 return this;
@@ -240,6 +280,11 @@ namespace Better.Tweens.Runtime
 
         public TweenCore InstantComplete()
         {
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (!IsCompletable())
             {
                 return this;
@@ -273,12 +318,17 @@ namespace Better.Tweens.Runtime
             }
 
             var message = $"{nameof(CompletionAction)}({CompletionAction}) did not change state, will used {nameof(Stop)}";
-            LogUtility.LogWarning(message);
+            LogUtility.LogWarning(message, this);
             Stop();
         }
 
         public virtual TweenCore InstantRewound()
         {
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             if (!IsRewindable())
             {
                 return this;
@@ -304,12 +354,17 @@ namespace Better.Tweens.Runtime
             }
 
             var message = $"{nameof(RewoundAction)}({RewoundAction}) did not change state, will used {nameof(Pause)}";
-            LogUtility.LogWarning(message);
+            LogUtility.LogWarning(message, this);
             Pause();
         }
 
         public TweenCore Restart()
         {
+            if (TryHandleBroken() && !ValidateBroken(false))
+            {
+                return this;
+            }
+
             Stop();
             Play();
 
@@ -353,8 +408,6 @@ namespace Better.Tweens.Runtime
 
         private async void OnMachineOverflowed()
         {
-            Disable();
-
             await _activityMachine.TransitionTask;
             await _handlingMachine.TransitionTask;
             await Task.Yield();
@@ -365,14 +418,34 @@ namespace Better.Tweens.Runtime
             var handlingOverflowModule = _handlingMachine.GetModule<HandlingState, StackOverflowModule<HandlingState>>();
             handlingOverflowModule.Unlock();
 
-            if (IsStopped())
+            var message = $"States was stack overflowed, will be {nameof(Disable)}";
+            LogUtility.LogWarning(message, this);
+            Disable();
+        }
+
+        private void HandleBroken()
+        {
+            var warningMessage = $"State is broken, will be {nameof(Disable)}";
+            LogUtility.LogWarning(warningMessage, this);
+
+            Disable();
+            OnBrokenHandled();
+        }
+
+        private bool TryHandleBroken()
+        {
+            if (IsBroken())
             {
-                return;
+                HandleBroken();
+                return true;
             }
 
-            var message = $"States was stack overflowed, will be {nameof(Stop)}";
-            LogUtility.LogWarning(message);
-            Stop();
+            return false;
+        }
+
+        protected virtual void OnBrokenHandled()
+        {
+            ActionUtility.TryInvokeBySafe(Broken);
         }
     }
 }

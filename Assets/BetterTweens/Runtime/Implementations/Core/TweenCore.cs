@@ -32,6 +32,7 @@ namespace Better.Tweens.Runtime
         public event Action Rewound;
         public event Action LoopCompleted;
         public event Action LoopRewound;
+        public event Action Broken;
 
         [SerializeField] private LoopCount _loopCount;
         [SerializeField] private float _localTimeScale;

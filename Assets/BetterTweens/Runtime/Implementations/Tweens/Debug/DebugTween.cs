@@ -10,8 +10,6 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public class DebugTween : Tween<int>
     {
-        // TODO: Add different parent-versions
-
         private const LogLevel LogLevel = Logs.LogLevel.Debug;
         private const string DefaultId = "DebugTween";
 
@@ -257,11 +255,8 @@ namespace Better.Tweens.Runtime
 
         private void Log(StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine();
-            CollectInfo(ref stringBuilder);
-
             var message = stringBuilder.ToString();
-            LogUtility.Log(message, LogLevel);
+            LogUtility.Log(message, LogLevel, this);
         }
 
         private void Log(string operationName)

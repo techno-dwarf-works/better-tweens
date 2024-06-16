@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Better.Attributes.Runtime.Select;
 using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
@@ -162,11 +161,28 @@ namespace Better.Tweens.Runtime
             }
         }
 
+        public override bool IsBroken()
+        {
+            if (FromMode == FromMode.Properties
+                && _fromValue == null)
+            {
+                return true;
+            }
+
+            if (_options == null)
+            {
+                return true;
+            }
+
+            return base.IsBroken();
+        }
+
         public override void CollectInfo(ref StringBuilder stringBuilder)
         {
             base.CollectInfo(ref stringBuilder);
 
-            stringBuilder.AppendFieldLine(nameof(OptionsMode), OptionsMode)
+            stringBuilder.AppendFieldLine(nameof(_options), _options)
+                .AppendFieldLine(nameof(OptionsMode), OptionsMode)
                 .AppendFieldLine(nameof(FromMode), FromMode)
                 .AppendFieldLine(nameof(FromValue), FromValue)
                 .AppendFieldLine(nameof(ToValue), ToValue);

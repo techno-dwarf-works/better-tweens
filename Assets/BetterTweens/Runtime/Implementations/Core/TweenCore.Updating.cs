@@ -11,6 +11,11 @@ namespace Better.Tweens.Runtime
                 return;
             }
 
+            if (TryHandleBroken() && IsBroken())
+            {
+                return;
+            }
+
             ApplyTimeScale(ref deltaTime);
             OnPreUpdated(deltaTime);
             OnPostUpdated(deltaTime);

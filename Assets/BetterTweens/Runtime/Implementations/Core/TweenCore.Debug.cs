@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Better.Commons.Runtime.Extensions;
+using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime
 {
@@ -11,6 +12,7 @@ namespace Better.Tweens.Runtime
                 .AppendFieldLine(nameof(Initialized), Initialized)
                 .AppendFieldLine("Activity State", _activityMachine?.CurrentState)
                 .AppendFieldLine("Handling State", _handlingMachine?.CurrentState)
+                .AppendFieldLine(nameof(IsBroken), IsBroken())
                 .AppendLine()
                 .AppendFieldLine(nameof(LoopCount), LoopCount)
                 .AppendFieldLine(nameof(InfinityLoops), InfinityLoops)

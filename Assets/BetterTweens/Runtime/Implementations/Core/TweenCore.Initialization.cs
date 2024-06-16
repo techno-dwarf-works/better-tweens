@@ -17,7 +17,7 @@ namespace Better.Tweens.Runtime
             if (!IsInitializable())
             {
                 var message = "Must be initializable";
-                LogUtility.LogException(message);
+                LogUtility.LogException(message, this);
 
                 return;
             }
