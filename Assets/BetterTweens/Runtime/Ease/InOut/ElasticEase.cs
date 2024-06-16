@@ -6,28 +6,33 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public class ElasticEase : InOutEase
     {
-        private const float DefaultAmplitude = 1f;
-        private const float DefaultFrequency = 0.3f;
+        public const float MinAmplitude = 1f;
+        public const float DefaultAmplitude = 2f;
+        public const float MinFrequency = 1f;
+        public const float DefaultFrequency = 10f;
 
+        [Min(MinAmplitude)]
         [SerializeField] private float _amplitude;
+
+        [Min(MinFrequency)]
         [SerializeField] private float _frequency;
 
         public float Frequency
         {
             get => _frequency;
-            set => _frequency = value;
+            set => _frequency = Mathf.Max(MinFrequency, value);
         }
 
         public float Amplitude
         {
             get => _amplitude;
-            set => _amplitude = value;
+            set => _amplitude = Mathf.Max(MinAmplitude, value);
         }
 
         public ElasticEase(float amplitude, float frequency, EaseMode mode = EaseMode.InOut) : base(mode)
         {
-            _amplitude = amplitude;
-            _frequency = frequency;
+            Amplitude = amplitude;
+            Frequency = frequency;
         }
 
         public ElasticEase(EaseMode mode) : this(DefaultAmplitude, DefaultFrequency, mode)
@@ -40,7 +45,19 @@ namespace Better.Tweens.Runtime
 
         protected override float EvaluateIn(float time)
         {
-            return -Amplitude * Mathf.Pow(2f, 10f * (time - 1)) * Mathf.Sin((time - 1f - Frequency / (2f * Mathf.PI)) * (2f * Mathf.PI) / Frequency);
+            const float exp = 2f * Mathf.PI / 3f;
+
+            if (time <= 0f)
+            {
+                return 0f;
+            }
+
+            if (time >= 1f)
+            {
+                return 1f;
+            }
+
+            return -Mathf.Pow(_amplitude, _frequency * time - _frequency) * Mathf.Sin((time * _frequency - 10.75f) * exp);
         }
 
         public override Ease Clone()

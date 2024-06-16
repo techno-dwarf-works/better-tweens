@@ -16,7 +16,7 @@ namespace Better.Tweens.Runtime
 
         protected override float EvaluateIn(float time)
         {
-            return -Mathf.Cos(time * Mathf.PI / 2f);
+            return 1f - Mathf.Cos(time * Mathf.PI / 2f);
         }
 
         public override Ease Clone()

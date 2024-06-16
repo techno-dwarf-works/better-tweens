@@ -45,10 +45,12 @@ namespace Better.Tweens.Runtime
         {
             if (time < 0.5f)
             {
-                return EvaluateIn(time * 2f) / 2f;
+                var inTime = time * 2f;
+                return EvaluateIn(inTime) / 2f;
             }
 
-            return 1f - EvaluateOut((1 - time) * 2) * 0.5f;
+            var outTime = Mathf.InverseLerp(0.5f, 1f, time);
+            return 0.5f + EvaluateOut(outTime) / 2f;
         }
     }
 }

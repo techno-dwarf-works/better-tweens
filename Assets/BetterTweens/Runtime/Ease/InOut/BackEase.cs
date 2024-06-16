@@ -6,7 +6,7 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public class BackEase : InOutEase
     {
-        private const float DefaultOvershoot = 1.70158f;
+        public const float DefaultOvershoot = 1.70158f;
 
         [SerializeField] private float _overshoot;
 

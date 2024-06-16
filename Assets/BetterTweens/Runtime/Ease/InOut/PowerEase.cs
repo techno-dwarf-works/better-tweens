@@ -6,14 +6,16 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public class PowerEase : InOutEase
     {
-        private const float DefaultPower = 2f;
+        public  const float MinPower = 0f;
+        public  const float DefaultPower = 2f;
 
+        [Min(MinPower)]
         [SerializeField] private float _power;
 
         public float Power
         {
             get => _power;
-            set => _power = value;
+            set => _power = Mathf.Max(MinPower, value);
         }
 
         public PowerEase(float power, EaseMode mode) : base(mode)
