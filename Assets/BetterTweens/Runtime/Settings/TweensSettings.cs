@@ -9,6 +9,9 @@ namespace Better.Tweens.Runtime
     [ScriptableCreate(Path)]
     public class TweensSettings : ScriptableSettings<TweensSettings>
     {
+        // TODO: Update ScriptableSettings dependency
+        
+        
         public const string Path = PrefixConstants.BetterPrefix + "/" + nameof(Tweens);
 
         [SerializeField] private SettingsData _persistent = new();
