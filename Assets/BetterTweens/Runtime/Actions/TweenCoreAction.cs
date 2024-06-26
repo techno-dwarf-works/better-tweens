@@ -1,6 +1,6 @@
 ﻿using System;
 using Better.Commons.Runtime.Interfaces;
-using Better.Tweens.Runtime.Settings;
+using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime.Actions

@@ -1,7 +1,7 @@
 ﻿using Better.Internal.Core.Runtime;
 using Better.ProjectSettings.Runtime;
 using Better.Singletons.Runtime.Attributes;
-using Better.Tweens.Runtime.Settings;
+using Better.Tweens.Runtime.Data;
 
 namespace Better.Tweens.Runtime
 {

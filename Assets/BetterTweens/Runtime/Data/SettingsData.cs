@@ -7,7 +7,7 @@ using Better.Tweens.Runtime.Logs;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
-namespace Better.Tweens.Runtime.Settings
+namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
     public class SettingsData : ICopyable<SettingsData>

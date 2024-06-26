@@ -1,4 +1,4 @@
-﻿using Better.Tweens.Runtime.Settings;
+﻿using Better.Tweens.Runtime.Data;
 
 namespace Better.Tweens.Runtime
 {
