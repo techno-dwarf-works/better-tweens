@@ -1,11 +1,12 @@
 ﻿using System;
+using Better.Commons.Runtime.Interfaces;
 using Better.Tweens.Runtime.Utility;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public class LoopCount : InfinitableData<int>
+    public class LoopCount : InfinitableData<int>, ICloneable<LoopCount>
     {
         public const int MinValue = 1;
         public const int MaxValue = 1000000000;

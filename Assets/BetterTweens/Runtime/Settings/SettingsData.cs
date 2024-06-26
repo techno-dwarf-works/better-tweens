@@ -1,5 +1,6 @@
 ﻿using System;
 using Better.Attributes.Runtime.Select;
+using Better.Commons.Runtime.Interfaces;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Data;
 using Better.Tweens.Runtime.Logs;
@@ -9,7 +10,7 @@ using UnityEngine;
 namespace Better.Tweens.Runtime.Settings
 {
     [Serializable]
-    public class SettingsData
+    public class SettingsData : ICopyable<SettingsData>
     {
         [SerializeField] private float _globalTimeScale;
         [SerializeField] private bool _dependUnityTimeScale;

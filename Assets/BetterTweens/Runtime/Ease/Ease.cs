@@ -1,13 +1,13 @@
 ﻿using System;
+using Better.Commons.Runtime.Interfaces;
 
 namespace Better.Tweens.Runtime
 {
     [Serializable]
-    public abstract class Ease
+    public abstract class Ease : ICloneable<Ease>
     {
-        // TODO: Test and update formuls
-        
         public abstract float Evaluate(float time);
+
         public abstract Ease Clone();
 
         public override string ToString()

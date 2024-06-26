@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "com.tdw.better.commons": {
-      "version": "0.0.11",
-      "depth": 0,
+      "version": "0.0.12",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.internal.core": "0.0.2"
@@ -38,13 +38,13 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.projectsettings": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.singletons": "0.1.0",
         "com.tdw.better.internal.core": "0.0.2",
-        "com.tdw.better.commons": "0.0.2"
+        "com.tdw.better.commons": "0.0.12"
       },
       "url": "https://package.openupm.com"
     },

@@ -1,10 +1,11 @@
 ﻿using System;
+using Better.Commons.Runtime.Interfaces;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public class SleepingDuration : InfinitableData<float>
+    public class SleepingDuration : InfinitableData<float>, ICloneable<SleepingDuration>
     {
         public const float MinValue = 0f;
         public const float DefaultValue = 15f;

@@ -1,11 +1,12 @@
 ﻿using System;
+using Better.Commons.Runtime.Interfaces;
 using Better.Tweens.Runtime.Settings;
 using Better.Tweens.Runtime.Utility;
 
 namespace Better.Tweens.Runtime.Actions
 {
     [Serializable]
-    public abstract class TweenCoreAction
+    public abstract class TweenCoreAction : ICloneable<TweenCoreAction>
     {
         private SettingsData Settings => TweensSettings.Instance.Current;
 
