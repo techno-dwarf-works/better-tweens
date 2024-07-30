@@ -172,18 +172,18 @@ namespace Better.Tweens.Runtime
             base.OnRewound();
         }
 
-        public override void InstantCompleteLoop()
+        public override bool InstantCompleteLoop()
         {
             Log("Instant Complete Loop");
 
-            base.InstantCompleteLoop();
+            return base.InstantCompleteLoop();
         }
 
-        public override void InstantRewoundLoop()
+        public override bool InstantRewoundLoop()
         {
             Log("Instant Rewound Loop");
 
-            base.InstantRewoundLoop();
+            return base.InstantRewoundLoop();
         }
 
         protected internal override void OnRunned()

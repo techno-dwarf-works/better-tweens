@@ -18,7 +18,7 @@ namespace Better.Tweens.Runtime.States
             _tokenSource.Cancel();
         }
 
-        public override void Enter()
+        protected override void Enter()
         {
         }
 
@@ -27,7 +27,7 @@ namespace Better.Tweens.Runtime.States
             _tokenSource = new();
         }
 
-        public override void Exit()
+        protected override void Exit()
         {
         }
 

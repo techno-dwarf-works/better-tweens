@@ -2,11 +2,11 @@
 {
     public abstract partial class ProgressableCore
     {
-        public override void InstantCompleteLoop()
+        public override bool InstantCompleteLoop()
         {
             LoopProgress = 0f;
 
-            base.InstantCompleteLoop();
+            return base.InstantCompleteLoop();
         }
 
         protected override void OnLoopCompleted()
@@ -17,11 +17,11 @@
             base.OnLoopCompleted();
         }
 
-        public override void InstantRewoundLoop()
+        public override bool InstantRewoundLoop()
         {
             LoopProgress = CompletedLoops > 0 ? 1f : 0f;
 
-            base.InstantRewoundLoop();
+            return base.InstantRewoundLoop();
         }
 
         protected override void OnLoopRewound()

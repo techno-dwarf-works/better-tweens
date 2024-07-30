@@ -4,29 +4,36 @@ namespace Better.Tweens.Runtime
 {
     public abstract partial class TweenCore
     {
-        public virtual void InstantCompleteLoop()
+        public virtual bool InstantCompleteLoop()
         {
             if (!IsCompletable())
             {
-                return;
+                return false;
             }
 
             CompletedLoops++;
             OnLoopCompleted();
+
+            return true;
         }
 
-        public void InstantCompleteLoops(int loopCount)
+        public bool InstantCompleteLoops(int loopCount)
         {
             var rootStateToken = GetHandlingStateToken();
             for (int i = 0; i < loopCount; i++)
             {
-                InstantCompleteLoop();
+                if (!InstantCompleteLoop())
+                {
+                    return false;
+                }
 
                 if (rootStateToken.IsCancellationRequested)
                 {
-                    return;
+                    return false;
                 }
             }
+
+            return true;
         }
 
         protected virtual void OnLoopCompleted()
@@ -46,28 +53,34 @@ namespace Better.Tweens.Runtime
             }
         }
 
-        public virtual void InstantRewoundLoop()
+        public virtual bool InstantRewoundLoop()
         {
-            if (CompletedLoops > 0)
+            if (CompletedLoops <= 0)
             {
                 CompletedLoops--;
             }
 
             OnLoopRewound();
+            return true;
         }
 
-        public void InstantRewoundLoops(int loopCount)
+        public bool InstantRewoundLoops(int loopCount)
         {
             var rootStateToken = GetHandlingStateToken();
             for (int i = 0; i < loopCount; i++)
             {
-                InstantRewoundLoop();
+                if (!InstantRewoundLoop())
+                {
+                    return false;
+                }
 
                 if (rootStateToken.IsCancellationRequested)
                 {
-                    return;
+                    return false;
                 }
             }
+
+            return true;
         }
 
         protected virtual void OnLoopRewound()
