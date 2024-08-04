@@ -4,6 +4,8 @@ namespace Better.Tweens.Runtime
 {
     public class AngularDragRigidbody2DTween : FloatTween<Rigidbody2D>
     {
+        public override UpdateMode UpdateMode => UpdateMode.FixedUpdate;
+
         protected override float GetCurrentValue()
         {
             return Target.angularDrag;

@@ -4,6 +4,8 @@ namespace Better.Tweens.Runtime
 {
     public class AngularVelocityRigidbodyTween : Vector3Tween<Rigidbody>
     {
+        public override UpdateMode UpdateMode => UpdateMode.FixedUpdate;
+
         protected override Vector3 GetCurrentValue()
         {
             return Target.angularVelocity;

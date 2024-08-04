@@ -4,6 +4,8 @@ namespace Better.Tweens.Runtime
 {
     public class DragRigidbodyTween : FloatTween<Rigidbody>
     {
+        public override UpdateMode UpdateMode => UpdateMode.FixedUpdate;
+
         protected override float GetCurrentValue()
         {
             return Target.drag;
