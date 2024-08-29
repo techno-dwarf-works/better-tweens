@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class UseGravityRigidbodyTween : BoolTween<Rigidbody>
     {
         protected override bool GetCurrentValue()

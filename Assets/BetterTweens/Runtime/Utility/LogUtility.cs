@@ -32,7 +32,7 @@ namespace Better.Tweens.Runtime.Utility
                 return;
             }
 
-            message += $";\n{context}";
+            message += $"\n{context}";
             Log(message, logLevel);
         }
 

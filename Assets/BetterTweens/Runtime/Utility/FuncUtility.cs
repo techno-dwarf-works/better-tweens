@@ -14,7 +14,7 @@ namespace Better.Tweens.Runtime.Utility
             Settings = TweensSettings.Instance;
         }
 
-        public static bool TryInvokeBySafe<TResult>(Func<TResult> func, out TResult result, bool logException = true)
+        public static bool TryInvokeBySafeMode<TResult>(Func<TResult> func, out TResult result, bool logException = true)
         {
             if (func == null)
             {
@@ -31,7 +31,7 @@ namespace Better.Tweens.Runtime.Utility
             return true;
         }
 
-        public static bool TryInvokeBySafe<TValue, TResult>(Func<TValue, TResult> func, TValue value, out TResult result, bool logException = true)
+        public static bool TryInvokeBySafeMode<TValue, TResult>(Func<TValue, TResult> func, TValue value, out TResult result, bool logException = true)
         {
             if (func == null)
             {

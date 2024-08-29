@@ -32,9 +32,10 @@ namespace Better.Tweens.Runtime
         public event Action LoopCompleted;
         public event Action LoopRewound;
         public event Action Broken;
-
-        [SerializeField] private LoopCount _loopCount;
+        
+        [Min(MinTime)]
         [SerializeField] private float _localTimeScale;
+        [SerializeField] private LoopCount _loopCount;
         [SerializeField] private SimpleOverridable<bool> _dependUnityTimeScale;
         [SerializeField] private SimpleOverridable<bool> _dependGlobalTimeScale;
         [SerializeField] private SleepingDurationOverridable _sleepingDuration;

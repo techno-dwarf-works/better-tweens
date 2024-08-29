@@ -11,7 +11,7 @@ namespace Better.Tweens.Runtime
     public class DebugTween : Tween<int>
     {
         private const LogLevel LogLevel = Logs.LogLevel.Debug;
-        private const string DefaultId = "DebugTween";
+        private const string DefaultId = nameof(DebugTween);
 
         public int CurrentValue;
 
@@ -205,13 +205,6 @@ namespace Better.Tweens.Runtime
             Log("Stopped");
 
             base.OnStopped();
-        }
-
-        public override TweenCore InstantRewound()
-        {
-            Log("Instant Rewound");
-
-            return base.InstantRewound();
         }
 
         protected override void OnStateChanged()

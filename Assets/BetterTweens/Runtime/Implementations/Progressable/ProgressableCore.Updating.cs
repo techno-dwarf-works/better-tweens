@@ -18,7 +18,7 @@ namespace Better.Tweens.Runtime
             if (InDelay)
             {
                 DecreaseDelay(ref deltaTime);
-                if (InDelay)
+                if (InDelay || deltaTime <= 0f)
                 {
                     return;
                 }
@@ -89,20 +89,25 @@ namespace Better.Tweens.Runtime
 
         protected void EvaluateStateByLoop(float time, LoopMode loopMode, int loop)
         {
-            time = Ease.Evaluate(time);
             time = loopMode switch
             {
                 LoopMode.Restart or LoopMode.Incremental => time,
-                LoopMode.PingPong => loop % 2 == 0 ? 1f - time : time,
+                LoopMode.PingPong => loop % 2 == 0 ? time : 1f - time,
                 _ => throw new ArgumentOutOfRangeException(nameof(loopMode))
             };
 
+            time = Ease.Evaluate(time);
             EvaluateState(time);
+        }
+
+        protected void EvaluateStateByLoop(float time, int loop)
+        {
+            EvaluateStateByLoop(time, LoopMode, loop);
         }
 
         protected void EvaluateStateByLoop(float time)
         {
-            EvaluateStateByLoop(time, LoopMode, CompletedLoops);
+            EvaluateStateByLoop(time, CompletedLoops);
         }
     }
 }

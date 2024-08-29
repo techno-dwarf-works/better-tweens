@@ -572,7 +572,7 @@ namespace Better.Tweens.Runtime
 
         public static LocalScaleTransformTween TweenLocalScale(this Transform self, float duration, float options, OptionsMode optionsMode = default)
         {
-            return self.TweenLocalScale(duration, options, optionsMode);
+            return self.TweenVector3<LocalScaleTransformTween, Transform>(duration, options, optionsMode);
         }
 
         public static IEnumerable<LocalScaleTransformTween> TweensLocalScale(this IEnumerable<Transform> self, float duration, float options, OptionsMode optionsMode = default)

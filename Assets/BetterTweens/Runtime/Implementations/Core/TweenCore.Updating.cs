@@ -28,7 +28,7 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnPostUpdated(float deltaTime)
         {
-            ActionUtility.TryInvokeBySafe(Updated);
+            ActionUtility.TryInvokeBySafeMode(Updated);
         }
 
         protected bool InvokeTriggers()

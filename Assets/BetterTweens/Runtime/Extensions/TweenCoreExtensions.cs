@@ -2183,65 +2183,6 @@ namespace Better.Tweens.Runtime
 
         #endregion
 
-        #region Waiters
-
-        public static IEnumerator WaitForActivityChange(this TweenCore self) => new WaitForTweenActivityChange(self);
-        public static IEnumerator[] WaitForActivityChange(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForActivityChange);
-
-        public static IEnumerator WaitForAsleep(this TweenCore self) => new WaitForTweenAsleep(self);
-        public static IEnumerator[] WaitForAsleep(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForAsleep);
-
-        public static IEnumerator WaitForCompletion(this TweenCore self) => new WaitForTweenCompletion(self);
-        public static IEnumerator[] WaitForCompletion(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForCompletion);
-
-        public static IEnumerator WaitForDisabled(this TweenCore self) => new WaitForTweenDisabled(self);
-        public static IEnumerator[] WaitForDisabled(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForDisabled);
-
-        public static IEnumerator WaitForEnabled(this TweenCore self) => new WaitForTweenEnabled(self);
-        public static IEnumerator[] WaitForEnabled(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForEnabled);
-
-        public static IEnumerator WaitForPaused(this TweenCore self) => new WaitForTweenPaused(self);
-        public static IEnumerator[] WaitForPaused(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForPaused);
-
-        public static IEnumerator WaitForPlaying(this TweenCore self) => new WaitForTweenPlaying(self);
-        public static IEnumerator[] WaitForPlaying(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForPlaying);
-
-        public static IEnumerator WaitForPlayStarted(this TweenCore self) => new WaitForTweenPlayStarted(self);
-        public static IEnumerator[] WaitForPlayStarted(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForPlayStarted);
-
-        public static IEnumerator WaitForRewinding(this TweenCore self) => new WaitForTweenRewinding(self);
-        public static IEnumerator[] WaitForRewinding(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForRewinding);
-
-        public static IEnumerator WaitForRewindStarted(this TweenCore self) => new WaitForTweenRewindStarted(self);
-        public static IEnumerator[] WaitForRewindStarted(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForRewindStarted);
-
-        public static IEnumerator WaitForRewound(this TweenCore self) => new WaitForTweenRewound(self);
-        public static IEnumerator[] WaitForRewound(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForRewound);
-
-        public static IEnumerator WaitForRunned(this TweenCore self) => new WaitForTweenRunned(self);
-        public static IEnumerator[] WaitForRunned(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForRunned);
-
-        public static IEnumerator WaitForStateChange(this TweenCore self) => new WaitForTweenStateChange(self);
-        public static IEnumerator[] WaitForStateChange(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForStateChange);
-
-        public static IEnumerator WaitForStopped(this TweenCore self) => new WaitForTweenStopped(self);
-        public static IEnumerator[] WaitForStopped(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForStopped);
-
-        public static IEnumerator WaitForUpdated(this TweenCore self) => new WaitForTweenUpdated(self);
-        public static IEnumerator[] WaitForUpdated(this IEnumerable<TweenCore> self) => SelectEnumerators(self, WaitForUpdated);
-
-        private static IEnumerator[] SelectEnumerators(IEnumerable<TweenCore> source, Func<TweenCore, IEnumerator> selector)
-        {
-            if (!ValidationUtility.ValidateNullReference(source))
-            {
-                return Array.Empty<IEnumerator>();
-            }
-
-            return source.Select(selector).ToArray();
-        }
-
-        #endregion
-
         #region Tweening
 
         public static LocalTimeScaleCoreTween TweenLocalTimeScale(this TweenCore self, float duration, float options, OptionsMode optionsMode = default)

@@ -14,7 +14,7 @@ namespace Better.Tweens.Runtime
 
         protected override void EvaluateState(float time)
         {
-            ActionUtility.TryInvokeBySafe(_evaluateAction, time);
+            ActionUtility.TryInvokeBySafeMode(_evaluateAction, time);
         }
     }
 }

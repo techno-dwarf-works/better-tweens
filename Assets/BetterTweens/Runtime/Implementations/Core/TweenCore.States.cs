@@ -36,7 +36,7 @@ namespace Better.Tweens.Runtime
 
         protected internal void OnEnabled()
         {
-            ActionUtility.TryInvokeBySafe(Enabled);
+            ActionUtility.TryInvokeBySafeMode(Enabled);
         }
 
         public TweenCore Sleep()
@@ -64,7 +64,7 @@ namespace Better.Tweens.Runtime
 
         protected internal void OnAsleep()
         {
-            ActionUtility.TryInvokeBySafe(Asleep);
+            ActionUtility.TryInvokeBySafeMode(Asleep);
         }
 
         public TweenCore Disable()
@@ -92,12 +92,12 @@ namespace Better.Tweens.Runtime
 
         protected internal void OnDisabled()
         {
-            ActionUtility.TryInvokeBySafe(Disabled);
+            ActionUtility.TryInvokeBySafeMode(Disabled);
         }
 
         private void OnActivityStateChanged(ActivityState state)
         {
-            ActionUtility.TryInvokeBySafe(ActivityChanged);
+            ActionUtility.TryInvokeBySafeMode(ActivityChanged);
             OnStateChanged();
         }
 
@@ -159,17 +159,17 @@ namespace Better.Tweens.Runtime
         protected internal virtual void OnStarted()
         {
             CompletedLoops = 0;
-            ActionUtility.TryInvokeBySafe(Started);
+            ActionUtility.TryInvokeBySafeMode(Started);
         }
 
         protected internal virtual void OnRunned()
         {
-            ActionUtility.TryInvokeBySafe(Runned);
+            ActionUtility.TryInvokeBySafeMode(Runned);
         }
 
         protected internal virtual void OnPlay()
         {
-            ActionUtility.TryInvokeBySafe(Playing);
+            ActionUtility.TryInvokeBySafeMode(Playing);
         }
 
         public TweenCore Rewind()
@@ -198,7 +198,7 @@ namespace Better.Tweens.Runtime
 
         protected internal virtual void OnRewind()
         {
-            ActionUtility.TryInvokeBySafe(Rewinding);
+            ActionUtility.TryInvokeBySafeMode(Rewinding);
         }
 
         public TweenCore Pause()
@@ -246,7 +246,7 @@ namespace Better.Tweens.Runtime
 
         protected internal virtual void OnPaused()
         {
-            ActionUtility.TryInvokeBySafe(Paused);
+            ActionUtility.TryInvokeBySafeMode(Paused);
         }
 
         public TweenCore Stop()
@@ -275,7 +275,7 @@ namespace Better.Tweens.Runtime
 
         protected internal virtual void OnStopped()
         {
-            ActionUtility.TryInvokeBySafe(Stopped);
+            ActionUtility.TryInvokeBySafeMode(Stopped);
         }
 
         public TweenCore InstantComplete()
@@ -306,7 +306,7 @@ namespace Better.Tweens.Runtime
         {
             var rootStateToken = GetHandlingStateToken();
 
-            ActionUtility.TryInvokeBySafe(Completed);
+            ActionUtility.TryInvokeBySafeMode(Completed);
             if (rootStateToken.IsCancellationRequested)
             {
                 return;
@@ -322,7 +322,7 @@ namespace Better.Tweens.Runtime
             Stop();
         }
 
-        public virtual TweenCore InstantRewound()
+        public TweenCore InstantRewound()
         {
             if (TryHandleBroken() && !ValidateBroken(false))
             {
@@ -342,7 +342,7 @@ namespace Better.Tweens.Runtime
         {
             var rootStateToken = GetHandlingStateToken();
 
-            ActionUtility.TryInvokeBySafe(Rewound);
+            ActionUtility.TryInvokeBySafeMode(Rewound);
             if (rootStateToken.IsCancellationRequested)
             {
                 return;
@@ -403,7 +403,7 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnStateChanged()
         {
-            ActionUtility.TryInvokeBySafe(StateChanged);
+            ActionUtility.TryInvokeBySafeMode(StateChanged);
         }
 
         private async void OnMachineOverflowed()
@@ -445,7 +445,7 @@ namespace Better.Tweens.Runtime
 
         protected virtual void OnBrokenHandled()
         {
-            ActionUtility.TryInvokeBySafe(Broken);
+            ActionUtility.TryInvokeBySafeMode(Broken);
         }
     }
 }

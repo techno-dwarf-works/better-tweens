@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class ClothGravityPhysicsTween : Vector3Tween
     {
         protected override Vector3 GetCurrentValue()

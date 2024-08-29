@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class PositionRigidbody2DTween : Vector2Tween<Rigidbody2D>
     {
         public override UpdateMode UpdateMode => UpdateMode.FixedUpdate;

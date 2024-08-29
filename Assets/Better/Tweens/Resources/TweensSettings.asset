@@ -18,34 +18,38 @@ MonoBehaviour:
     _dependGlobalTimeScale: 1
     _sleepingDuration:
       _infinity: 0
-      _value: 0
-    _logLevel: 1
+      _value: 15
+    _logLevel: 0
     _safeMode: 1
     _ease:
-      rid: 1006005900960858132
-    _completionBehaviour:
-      rid: 1006005900960858133
+      rid: 3497204030891098148
+    _completionAction:
+      rid: 3497204030891098149
+    _rewoundAction:
+      rid: 3497204030891098150
   _runtime:
     _globalTimeScale: 1
     _dependUnityTimeScale: 1
     _dependGlobalTimeScale: 1
     _sleepingDuration:
       _infinity: 0
-      _value: 0
-    _logLevel: 1
+      _value: 15
+    _logLevel: 0
     _safeMode: 1
     _ease:
-      rid: 1006005900960858134
-    _completionBehaviour:
-      rid: 1006005900960858135
+      rid: 3497204030891098151
+    _completionAction:
+      rid: 3497204030891098149
+    _rewoundAction:
+      rid: 3497204030891098150
   references:
     version: 2
     RefIds:
-    - rid: 1006005900960858132
+    - rid: 3497204030891098148
       type: {class: LinearEase, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}
-    - rid: 1006005900960858133
-      type: {class: StopCompletionBehaviour, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}
-    - rid: 1006005900960858134
+    - rid: 3497204030891098149
+      type: {class: StopAction, ns: Better.Tweens.Runtime.Actions, asm: Better.Tweens.Runtime}
+    - rid: 3497204030891098150
+      type: {class: PauseAction, ns: Better.Tweens.Runtime.Actions, asm: Better.Tweens.Runtime}
+    - rid: 3497204030891098151
       type: {class: LinearEase, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}
-    - rid: 1006005900960858135
-      type: {class: StopCompletionBehaviour, ns: Better.Tweens.Runtime, asm: Better.Tweens.Runtime}

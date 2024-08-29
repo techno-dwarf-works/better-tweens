@@ -48,8 +48,7 @@ namespace Better.Tweens.Runtime
         protected override void OnCompleted()
         {
             RemainingDelay = 0f;
-            LoopProgress = 1f;
-            EvaluateStateByLoop(LoopProgress);
+            LoopProgress = 0f;
 
             base.OnCompleted();
         }
@@ -58,7 +57,6 @@ namespace Better.Tweens.Runtime
         {
             RemainingDelay = StartDelay;
             LoopProgress = 0f;
-            EvaluateStateByLoop(LoopProgress);
 
             base.OnRewound();
         }

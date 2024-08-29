@@ -1,5 +1,8 @@
-﻿namespace Better.Tweens.Runtime
+﻿using System;
+
+namespace Better.Tweens.Runtime
 {
+    [Serializable]
     public class LocalTimeScaleCoreTween : FloatTween<TweenCore>
     {
         protected override float GetCurrentValue()

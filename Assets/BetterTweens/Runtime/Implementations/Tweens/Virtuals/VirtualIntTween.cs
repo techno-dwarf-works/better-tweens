@@ -16,7 +16,7 @@ namespace Better.Tweens.Runtime
 
         protected override int GetCurrentValue()
         {
-            if (FuncUtility.TryInvokeBySafe(_getter, out var result))
+            if (FuncUtility.TryInvokeBySafeMode(_getter, out var result))
             {
                 return result;
             }
@@ -26,7 +26,7 @@ namespace Better.Tweens.Runtime
 
         protected override void SetCurrentValue(int value)
         {
-            ActionUtility.TryInvokeBySafe(_setter, value);
+            ActionUtility.TryInvokeBySafeMode(_setter, value);
         }
     }
 }
