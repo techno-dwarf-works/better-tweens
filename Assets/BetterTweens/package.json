@@ -1,7 +1,7 @@
 {
   "name": "com.tdw.better.tweens",
   "displayName": "Better Tweens",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "unity": "2021.3",
   "description": " ",
   "dependencies": {
@@ -9,7 +9,7 @@
     "com.tdw.better.projectsettings": "0.1.3",
     "com.tdw.better.commons": "0.0.44",
     "com.tdw.better.conditions": "0.0.4",
-    "com.tdw.better.statamachine": "0.1.17",
+    "com.tdw.better.statemachine": "0.1.17",
     "com.tdw.better.attributes": "0.0.1"
   },
   "author": {
