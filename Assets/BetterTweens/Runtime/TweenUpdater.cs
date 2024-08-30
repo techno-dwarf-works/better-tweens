@@ -79,10 +79,6 @@ namespace Better.Tweens.Runtime
             {
                 OnExitingPlayMode();
             }
-
-            MonoBehaviour someMonoBeh = new();
-
-            someMonoBeh.TweensTagged().Stop();
         }
 
         private static void OnExitingPlayMode()
