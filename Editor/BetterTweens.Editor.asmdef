@@ -1,0 +1,22 @@
+{
+    "name": "BetterTweens.Editor",
+    "rootNamespace": "Better.Tweens.EditorAddons",
+    "references": [
+        "GUID:01df13aca8d01e24a911bcc3e8277031",
+        "GUID:d93d03cfdadede7468b389b1aac7ee67",
+        "GUID:ecdd0819e3429eb44b13a432679a1135",
+        "GUID:1862b35041b066d42ab4d3caf773657b",
+        "GUID:af7fffdf1d83bc842b0f6e3a01efda16"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
