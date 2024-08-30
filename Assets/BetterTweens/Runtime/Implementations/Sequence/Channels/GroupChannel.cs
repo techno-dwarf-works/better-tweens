@@ -17,6 +17,7 @@ namespace Better.Tweens.Runtime.Sequences.Channels
         [SerializeField] private List<TChannel> _channels;
 
         public int Count => _channels.Count;
+        public bool IsEmpty => Count == 0;
 
         public GroupChannel()
         {

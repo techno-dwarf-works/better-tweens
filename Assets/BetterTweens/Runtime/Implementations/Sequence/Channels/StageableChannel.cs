@@ -19,12 +19,6 @@ namespace Better.Tweens.Runtime.Sequences.Channels
 
         public bool IsEmpty => _stages.Count == 0;
 
-        public int CurrentStageIndex
-        {
-            get => _currentStageIndex;
-            set => _currentStageIndex = Mathf.Clamp(value, 0, _stages.Count - 1);
-        }
-
         public StageableChannel()
         {
             _stages = new();
@@ -112,23 +106,31 @@ namespace Better.Tweens.Runtime.Sequences.Channels
 
         public override void Start()
         {
-            CurrentStageIndex = 0;
+            _currentStageIndex = 0;
 
-            for (var i = 0; i < _stages.Count; i++)
+            foreach (var stage in _stages)
             {
-                _stages[i].Start();
+                stage.Start();
             }
         }
 
         public override async Task PlayAsync(CancellationToken cancellationToken)
         {
-            for (; CurrentStageIndex < _stages.Count; CurrentStageIndex++)
+            if (IsEmpty)
             {
-                await _stages[CurrentStageIndex].PlayAsync(cancellationToken);
+                return;
+            }
+
+            var remainingCount = GetRemainingStageCount();
+            for (var i = 0; i <= remainingCount; i++)
+            {
+                await GetCurrentStage().PlayAsync(cancellationToken);
                 if (cancellationToken.IsCancellationRequested)
                 {
                     return;
                 }
+
+                MoveNextStage();
             }
         }
 
@@ -139,21 +141,31 @@ namespace Better.Tweens.Runtime.Sequences.Channels
                 return;
             }
 
-            for (; CurrentStageIndex >= 0; CurrentStageIndex--)
+            var passedStageCount = GetPassedStageCount();
+            for (var i = 0; i <= passedStageCount; i++)
             {
-                await _stages[CurrentStageIndex].RewindAsync(cancellationToken);
+                await GetCurrentStage().RewindAsync(cancellationToken);
                 if (cancellationToken.IsCancellationRequested)
                 {
                     return;
                 }
+
+                MovePreviousStage();
             }
         }
 
         public override void InstantComplete()
         {
-            for (; CurrentStageIndex < _stages.Count; CurrentStageIndex++)
+            if (IsEmpty)
             {
-                _stages[CurrentStageIndex].InstantComplete();
+                return;
+            }
+
+            var remainingCount = GetRemainingStageCount();
+            for (var i = 0; i <= remainingCount; i++)
+            {
+                GetCurrentStage().InstantComplete();
+                MoveNextStage();
             }
         }
 
@@ -164,9 +176,11 @@ namespace Better.Tweens.Runtime.Sequences.Channels
                 return;
             }
 
-            for (; CurrentStageIndex >= 0; CurrentStageIndex--)
+            var passedStageCount = GetPassedStageCount();
+            for (var i = 0; i <= passedStageCount; i++)
             {
-                _stages[CurrentStageIndex].InstantRewound();
+                GetCurrentStage().InstantRewound();
+                MovePreviousStage();
             }
         }
 
@@ -177,14 +191,14 @@ namespace Better.Tweens.Runtime.Sequences.Channels
                 return;
             }
 
-            _stages[CurrentStageIndex].Pause();
+            GetCurrentStage().Pause();
         }
 
         public override void Stop()
         {
-            for (var i = 0; i < _stages.Count; i++)
+            foreach (var stage in _stages)
             {
-                _stages[i].Stop();
+                stage.Stop();
             }
         }
 
@@ -195,7 +209,7 @@ namespace Better.Tweens.Runtime.Sequences.Channels
                 return true;
             }
 
-            return CurrentStageIndex == _stages.Count - 1 && _stages[CurrentStageIndex].IsCompleted();
+            return GetRemainingStageCount() == 0 && GetCurrentStage().IsCompleted();
         }
 
         public override bool IsRewound()
@@ -205,7 +219,39 @@ namespace Better.Tweens.Runtime.Sequences.Channels
                 return true;
             }
 
-            return CurrentStageIndex == 0 && _stages[CurrentStageIndex].IsRewound();
+            return GetPassedStageCount() == 0 && GetCurrentStage().IsRewound();
+        }
+
+        private int GetPassedStageCount()
+        {
+            return _currentStageIndex;
+        }
+
+        private int GetRemainingStageCount()
+        {
+            if (IsEmpty)
+            {
+                return 0;
+            }
+
+            return _stages.Count - _currentStageIndex - 1;
+        }
+
+        private Stage GetCurrentStage()
+        {
+            return _stages[_currentStageIndex];
+        }
+
+        private void MoveNextStage()
+        {
+            _currentStageIndex++;
+            _currentStageIndex = Mathf.Min(_currentStageIndex, _stages.Count - 1);
+        }
+
+        private void MovePreviousStage()
+        {
+            _currentStageIndex--;
+            _currentStageIndex = Mathf.Max(_currentStageIndex, 0);
         }
     }
 }

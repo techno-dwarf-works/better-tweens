@@ -1,7 +1,17 @@
 {
   "dependencies": {
+    "com.tdw.better.attributes": {
+      "version": "0.0.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.tdw.better.commons": "0.0.41",
+        "com.tdw.better.internal.core": "0.0.2"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.tdw.better.commons": {
-      "version": "0.0.28",
+      "version": "0.0.44",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -10,13 +20,13 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.conditions": {
-      "version": "0.0.3",
-      "depth": 0,
+      "version": "0.0.4",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.internal.core": "0.0.2",
-        "com.tdw.better.commons": "0.0.22",
-        "com.uurha.betterattributes": "3.1.5"
+        "com.tdw.better.commons": "0.0.44",
+        "com.tdw.better.attributes": "0.0.1"
       },
       "url": "https://package.openupm.com"
     },
@@ -59,14 +69,14 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.statemachine": {
-      "version": "0.1.16",
+      "version": "0.1.17",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.internal.core": "0.0.2",
-        "com.tdw.better.commons": "0.0.26",
+        "com.tdw.better.commons": "0.0.44",
         "com.tdw.better.locators": "0.1.12",
-        "com.tdw.better.conditions": "0.0.3"
+        "com.tdw.better.conditions": "0.0.4"
       },
       "url": "https://package.openupm.com"
     },
@@ -204,16 +214,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.uurha.betterattributes": {
-      "version": "3.1.7",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.tdw.better.commons": "0.0.26",
-        "com.tdw.better.internal.core": "0.0.2"
-      },
-      "url": "https://package.openupm.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
