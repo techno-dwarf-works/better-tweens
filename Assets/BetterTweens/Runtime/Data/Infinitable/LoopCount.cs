@@ -11,6 +11,7 @@ namespace Better.Tweens.Runtime.Data
         public const int MinValue = 1;
         public const int MaxValue = 1000000000;
 
+        [Min(MinValue)]
         [SerializeField] private int _value;
 
         public override int Value
