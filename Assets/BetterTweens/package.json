@@ -25,12 +25,5 @@
     "tweening",
     "motion",
     "sequencing"
-  ],
-  "samples": [
-    {
-      "displayName": "Default samples",
-      "description": "Contains test samples",
-      "path": "Samples~/TestSamples"
-    }
   ]
 }
