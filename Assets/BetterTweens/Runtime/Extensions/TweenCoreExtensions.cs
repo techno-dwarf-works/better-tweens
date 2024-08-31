@@ -967,7 +967,31 @@ namespace Better.Tweens.Runtime
 
             return self;
         }
+        
+        public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, CancellationToken cancellationToken, string id = Trigger.UndefinedId)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return null;
+            }
 
+            if (!ValidationUtility.ValidateNullReference(action))
+            {
+                return self;
+            }
+
+            var trigger = new CancellationTokenTrigger(id, action, cancellationToken);
+            return self.AddTrigger(trigger);
+        }
+
+
+        public static TweenCore AddTrigger<TAction>(this TweenCore self, CancellationToken cancellationToken, string id = Trigger.UndefinedId)
+            where TAction : TweenCoreAction, new()
+        {
+            var action = new TAction();
+            return self.AddTrigger(action, cancellationToken, id);
+        }
+        
 #if BETTER_CONDITIONS
 
         public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
