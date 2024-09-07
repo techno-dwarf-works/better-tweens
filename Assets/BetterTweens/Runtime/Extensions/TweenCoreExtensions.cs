@@ -967,7 +967,7 @@ namespace Better.Tweens.Runtime
 
             return self;
         }
-        
+
         public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, CancellationToken cancellationToken, string id = Trigger.UndefinedId)
         {
             if (!ValidationUtility.ValidateNullReference(self))
@@ -984,14 +984,13 @@ namespace Better.Tweens.Runtime
             return self.AddTrigger(trigger);
         }
 
-
         public static TweenCore AddTrigger<TAction>(this TweenCore self, CancellationToken cancellationToken, string id = Trigger.UndefinedId)
             where TAction : TweenCoreAction, new()
         {
             var action = new TAction();
             return self.AddTrigger(action, cancellationToken, id);
         }
-        
+
 #if BETTER_CONDITIONS
 
         public static TweenCore AddTrigger(this TweenCore self, TweenCoreAction action, Condition condition, string id = Trigger.UndefinedId)
@@ -1039,6 +1038,62 @@ namespace Better.Tweens.Runtime
 
 #endif
 
+        public static TweenCore SetTrigger(this TweenCore self, Trigger value)
+        {
+            return self.ClearTriggers().AddTrigger(value);
+        }
+
+        public static IEnumerable<TweenCore> SetTrigger(this IEnumerable<TweenCore> self, Trigger value)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.SetTrigger(value);
+            }
+
+            return self;
+        }
+
+        public static TweenCore SetTriggers(this TweenCore self, IEnumerable<Trigger> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return self;
+            }
+
+            self.ClearTriggers();
+            foreach (var value in values)
+            {
+                self.AddTrigger(value);
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> SetTriggers(this IEnumerable<TweenCore> self, IEnumerable<Trigger> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.SetTriggers(values);
+            }
+
+            return self;
+        }
+
         public static IEnumerable<TweenCore> RemoveTriggers(this IEnumerable<TweenCore> self, Predicate<Trigger> predicate)
         {
             if (!ValidationUtility.ValidateNullReference(self))
@@ -1064,6 +1119,21 @@ namespace Better.Tweens.Runtime
             foreach (var tweenCore in self)
             {
                 tweenCore.RemoveTriggers(id);
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> ClearTriggers(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.ClearTriggers();
             }
 
             return self;
@@ -1165,6 +1235,62 @@ namespace Better.Tweens.Runtime
             return self;
         }
 
+        public static TweenCore SetTag(this TweenCore self, object value)
+        {
+            return self.ClearTags().AddTag(value);
+        }
+
+        public static IEnumerable<TweenCore> SetTag(this IEnumerable<TweenCore> self, object value)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.SetTag(value);
+            }
+
+            return self;
+        }
+
+        public static TweenCore SetTags(this TweenCore self, IEnumerable<object> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return self;
+            }
+
+            self.ClearTags();
+            foreach (var value in values)
+            {
+                self.AddTag(value);
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> SetTags(this IEnumerable<TweenCore> self, IEnumerable<object> values)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            if (!ValidationUtility.ValidateNullReference(values))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.SetTags(values);
+            }
+
+            return self;
+        }
+
         public static IEnumerable<TweenCore> RemoveTag(this IEnumerable<TweenCore> self, object value)
         {
             if (!ValidationUtility.ValidateNullReference(self))
@@ -1177,6 +1303,36 @@ namespace Better.Tweens.Runtime
                 tweenCore.RemoveTag(value);
             }
 
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> ClearTags(this IEnumerable<TweenCore> self)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.ClearTags();
+            }
+
+            return self;
+        }
+
+        public static IEnumerable<TweenCore> As(this IEnumerable<TweenCore> self, TweenCore source)
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return self;
+            }
+
+            foreach (var tweenCore in self)
+            {
+                tweenCore.As(source);
+            }
+            
             return self;
         }
 

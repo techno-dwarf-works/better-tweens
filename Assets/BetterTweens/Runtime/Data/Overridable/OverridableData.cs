@@ -7,11 +7,10 @@ namespace Better.Tweens.Runtime.Data
     public abstract class OverridableData<TValue>
     {
         [SerializeField] private bool _overriden;
-
-        private TValue _sourceValue;
-
-        public TValue Value => Overriden ? OverridenValue : _sourceValue;
+        
+        public TValue Value => Overriden ? OverridenValue : SourceValue;
         protected abstract TValue OverridenValue { get; set; }
+        protected TValue SourceValue { get; private set; }
 
         public bool Overriden
         {
@@ -19,9 +18,19 @@ namespace Better.Tweens.Runtime.Data
             set => _overriden = value;
         }
 
+        protected OverridableData()
+        {
+        }
+
+        protected OverridableData(TValue sourceValue, bool overriden)
+        {
+            SourceValue = sourceValue;
+            _overriden = overriden;
+        }
+
         public void SetSource(TValue value)
         {
-            _sourceValue = value;
+            SourceValue = value;
         }
 
         public void Override(TValue value)
