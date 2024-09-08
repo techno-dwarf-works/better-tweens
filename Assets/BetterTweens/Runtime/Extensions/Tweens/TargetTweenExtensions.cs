@@ -14,7 +14,6 @@ namespace Better.Tweens.Runtime
         {
             if (!ValidationUtility.ValidateNullReference(self))
             {
-
                 return null;
             }
 

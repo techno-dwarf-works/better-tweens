@@ -164,7 +164,7 @@ namespace Better.Tweens.Runtime
 
         public virtual TweenCore As(TweenCore source)
         {
-            if (!ValidateMutable(true))
+            if (!ValidateMutable(true, false))
             {
                 return this;
             }

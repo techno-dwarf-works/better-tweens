@@ -110,6 +110,21 @@ namespace Better.Tweens.Runtime
             return this;
         }
 
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is ProgressableCore progressableSource)
+            {
+                _duration = progressableSource._duration;
+                _startDelay = progressableSource._startDelay;
+                _loopDelay = progressableSource._loopDelay;
+                _loopMode = progressableSource._loopMode;
+                _ease = progressableSource._ease.Clone();
+            }
+
+            return base.As(source);
+        }
+
         #endregion
     }
 }

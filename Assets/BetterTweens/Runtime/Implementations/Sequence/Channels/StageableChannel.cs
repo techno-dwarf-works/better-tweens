@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Attributes.Runtime.Select;
+using Better.Commons.Runtime.Interfaces;
 using Better.Tweens.Runtime.Sequences.Stages;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Sequences.Channels
 {
     [Serializable]
-    public class StageableChannel : Channel
+    public class StageableChannel : Channel, ICloneable<StageableChannel>
     {
         [Select]
         [SerializeReference] private List<Stage> _stages;
@@ -252,6 +253,18 @@ namespace Better.Tweens.Runtime.Sequences.Channels
         {
             _currentStageIndex--;
             _currentStageIndex = Mathf.Max(_currentStageIndex, 0);
+        }
+
+        public StageableChannel Clone()
+        {
+            var clone = new StageableChannel();
+            foreach (var stage in _stages)
+            {
+                var stageClone = stage.Clone();
+                clone._stages.Add(stageClone);
+            }
+
+            return clone;
         }
     }
 }

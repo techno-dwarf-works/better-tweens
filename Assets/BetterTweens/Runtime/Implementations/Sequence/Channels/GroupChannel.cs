@@ -5,13 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Attributes.Runtime.Misc;
 using Better.Commons.Runtime.Extensions;
+using Better.Commons.Runtime.Interfaces;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Sequences.Channels
 {
     [Serializable]
-    public class GroupChannel<TChannel> : Channel
-        where TChannel : Channel, new()
+    public class GroupChannel<TChannel> : Channel, ICloneable<GroupChannel<TChannel>>
+        where TChannel : Channel, ICloneable<TChannel>, new()
     {
         [HideLabel]
         [SerializeField] private List<TChannel> _channels;
@@ -180,6 +181,20 @@ namespace Better.Tweens.Runtime.Sequences.Channels
             }
 
             return _channels.Last();
+        }
+
+        public GroupChannel<TChannel> Clone()
+        {
+            var clone = new GroupChannel<TChannel>();
+            foreach (var channel in _channels)
+            {
+                var channelClone = channel.Clone();
+                clone._channels.Add(channelClone);
+            }
+
+            return clone;
+            
+            return clone;
         }
     }
 }

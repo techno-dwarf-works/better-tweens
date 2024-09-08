@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Better.Commons.Runtime.Extensions;
 using Better.Tweens.Runtime.Actions;
 using Better.Tweens.Runtime.Triggers;
 using Better.Tweens.Runtime.Utility;
@@ -2385,6 +2386,69 @@ namespace Better.Tweens.Runtime
             }
 
             return tweens;
+        }
+
+        #endregion
+
+        #region Clonning
+        
+        public static TCore Clone<TCore>(this TCore self)
+            where TCore : TweenCore, new()
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return null;
+            }
+            
+            var clone = new TCore();
+            clone.As(self);
+
+            return clone;
+        }
+
+        public static IEnumerable<TCore> Clone<TCore>(this IEnumerable<TCore> self)
+            where TCore : TweenCore, new()
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Enumerable.Empty<TCore>();
+            }
+
+            return self.Select(Clone);
+        }
+        
+        public static TCore CloneByActivator<TCore>(this TCore self)
+            where TCore : TweenCore
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return null;
+            }
+
+            var type = self.GetType();
+            if (!type.HasParameterlessConstructor())
+            {
+                var message = $"{nameof(self)}({type}) must have parameterless constructor, was returned null";
+                LogUtility.LogException(message);
+                
+                return null;
+            }
+            
+            var clone = (TCore)Activator.CreateInstance(type);
+            clone.As(self);
+
+            return clone;
+        }
+
+        public static IEnumerable<TCore> CloneByActivator<TCore>(this IEnumerable<TCore> self)
+            where TCore : TweenCore
+        {
+            if (!ValidationUtility.ValidateNullReference(self))
+            {
+                return Enumerable.Empty<TCore>();
+            }
+
+            return self.Select(CloneByActivator);
         }
 
         #endregion

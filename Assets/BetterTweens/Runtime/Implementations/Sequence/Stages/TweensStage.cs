@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Attributes.Runtime.Select;
@@ -90,6 +91,14 @@ namespace Better.Tweens.Runtime.Sequences.Stages
         public override bool IsRewound()
         {
             return _tweens.AllRewound();
+        }
+
+        public override Stage Clone()
+        {
+            var clone = new TweensStage();
+            clone._tweens = _tweens.CloneByActivator().ToList();
+            
+            return clone;
         }
     }
 }

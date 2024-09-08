@@ -35,5 +35,16 @@ namespace Better.Tweens.Runtime
             PropertyBlock.SetInteger(PropertyName, value);
             Target.SetPropertyBlock(PropertyBlock);
         }
+        
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is IntegerPropertyBlockRendererTween propertySource)
+            {
+                _propertyName = propertySource._propertyName;
+            }
+
+            return base.As(source);
+        }
     }
 }
