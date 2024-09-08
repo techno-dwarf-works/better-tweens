@@ -12,13 +12,13 @@ namespace Better.Tweens.Runtime
 
         [SerializeField] private ImplementationOverridable<Ease> _ease;
 
-        [Min(MinTime)]
+        [Min(TweensSettings.MinTime)]
         [SerializeField] private float _duration;
 
-        [Min(MinTime)]
+        [Min(TweensSettings.MinTime)]
         [SerializeField] private float _startDelay;
 
-        [Min(MinTime)]
+        [Min(TweensSettings.MinTime)]
         [SerializeField] private float _loopDelay;
 
         [SerializeField] private LoopMode _loopMode;

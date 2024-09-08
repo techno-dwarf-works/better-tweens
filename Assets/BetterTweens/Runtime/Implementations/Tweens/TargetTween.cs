@@ -60,6 +60,17 @@ namespace Better.Tweens.Runtime
         {
             return base.IsBroken() || Target == null;
         }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is TargetTween<TTarget> targetTween)
+            {
+                _target = targetTween._target;
+            }
+
+            return base.As(source);
+        }
     }
 
     [Serializable]

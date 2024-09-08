@@ -84,5 +84,13 @@ namespace Better.Tweens.Runtime.Sequences.Stages
         {
             return _leftDuration >= _duration;
         }
+
+        public override Stage Clone()
+        {
+            var clone = new IntervalStage();
+            clone._duration = _duration;
+            
+            return clone;
+        }
     }
 }

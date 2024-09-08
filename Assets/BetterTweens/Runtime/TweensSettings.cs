@@ -8,6 +8,7 @@ namespace Better.Tweens.Runtime
     [ScriptableCreate(Path)]
     public class TweensSettings : ScriptableSettings<TweensSettings, SettingsData>
     {
+        public const float MinTime = 0f;
         public const string Path = PrefixConstants.BetterPrefix + "/" + nameof(Tweens);
     }
 }

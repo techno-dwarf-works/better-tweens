@@ -12,9 +12,9 @@ namespace Better.Tweens.Runtime
             
             base.OnStarted();
 
-            if (IsRunning() && InfinityLoops && Duration <= MinTime)
+            if (IsRunning() && InfinityLoops && Duration <= TweensSettings.MinTime)
             {
-                var message = $"Cannot started with {nameof(InfinityLoops)} and {nameof(Duration)} less of {nameof(MinTime)}({MinTime}), will be {nameof(Stop)}";
+                var message = $"Cannot started with {nameof(InfinityLoops)} and {nameof(Duration)} less of {nameof(TweensSettings.MinTime)}({TweensSettings.MinTime}), will be {nameof(Stop)}";
                 LogUtility.LogWarning(message);
 
                 Stop();
@@ -27,7 +27,7 @@ namespace Better.Tweens.Runtime
 
             base.OnPlay();
 
-            if (IsPlaying() && Duration <= MinTime)
+            if (IsPlaying() && Duration <= TweensSettings.MinTime)
             {
                 InstantComplete();
             }
@@ -39,7 +39,7 @@ namespace Better.Tweens.Runtime
 
             base.OnRewind();
 
-            if (IsRewinding() && Duration <= MinTime)
+            if (IsRewinding() && Duration <= TweensSettings.MinTime)
             {
                 InstantRewound();
             }

@@ -14,7 +14,7 @@ namespace Better.Tweens.Runtime
         private const string DefaultId = nameof(DebugTween);
 
         public int CurrentValue;
-
+        
         [SerializeField] private string _id = DefaultId;
         [SerializeField] private bool _lowLevel;
 
@@ -236,6 +236,18 @@ namespace Better.Tweens.Runtime
 
             stringBuilder.AppendLine()
                 .AppendFieldLine(nameof(CurrentValue), CurrentValue);
+        }
+        
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is DebugTween debugSource)
+            {
+                _id = debugSource._id;
+                _lowLevel = debugSource._lowLevel;
+            }
+
+            return base.As(source);
         }
 
         private StringBuilder PrebuildLog(string operationName)

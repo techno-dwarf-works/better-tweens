@@ -62,6 +62,17 @@ namespace Better.Tweens.Runtime
             stringBuilder.AppendLine()
                 .AppendFieldLine(nameof(IgnoreAlpha), IgnoreAlpha);
         }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is ColorTween colorTween)
+            {
+                _ignoreAlpha = colorTween._ignoreAlpha;
+            }
+
+            return base.As(source);
+        }
     }
 
     [Serializable]
@@ -120,6 +131,17 @@ namespace Better.Tweens.Runtime
 
             stringBuilder.AppendLine()
                 .AppendFieldLine(nameof(IgnoreAlpha), IgnoreAlpha);
+        }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is ColorTween<TTarget> colorTween)
+            {
+                _ignoreAlpha = colorTween._ignoreAlpha;
+            }
+
+            return base.As(source);
         }
     }
 }

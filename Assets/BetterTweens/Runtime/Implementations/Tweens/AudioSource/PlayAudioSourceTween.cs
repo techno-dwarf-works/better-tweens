@@ -37,5 +37,16 @@ namespace Better.Tweens.Runtime
             if (value) Target.Play();
             else Target.Pause();
         }
+        
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is PlayAudioSourceTween audioSource)
+            {
+                _once = audioSource._once;
+            }
+
+            return base.As(source);
+        }
     }
 }

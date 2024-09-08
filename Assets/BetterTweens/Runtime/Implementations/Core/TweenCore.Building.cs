@@ -96,7 +96,7 @@ namespace Better.Tweens.Runtime
         }
 
         #endregion
-        
+
         #region Triggers
 
         public TweenCore AddTrigger(Trigger trigger)
@@ -117,6 +117,12 @@ namespace Better.Tweens.Runtime
                 _triggers?.RemoveWhere(predicate);
             }
 
+            return this;
+        }
+
+        public TweenCore ClearTriggers()
+        {
+            _triggers?.Clear();
             return this;
         }
 
@@ -143,6 +149,37 @@ namespace Better.Tweens.Runtime
         public TweenCore RemoveTag(object value)
         {
             _tags?.Remove(value);
+            return this;
+        }
+
+        public TweenCore ClearTags()
+        {
+            _tags?.Clear();
+            return this;
+        }
+
+        #endregion
+
+        #region Misc
+
+        public virtual TweenCore As(TweenCore source)
+        {
+            if (!ValidateMutable(true, false))
+            {
+                return this;
+            }
+
+            _localTimeScale = source._localTimeScale;
+            _loopCount = source._loopCount.Clone();
+            _dependUnityTimeScale = source._dependUnityTimeScale.Clone();
+            _dependGlobalTimeScale = source._dependGlobalTimeScale.Clone();
+            _sleepingDuration = source._sleepingDuration.Clone();
+            _completionAction = source._completionAction.Clone();
+            _rewoundAction = source._rewoundAction.Clone();
+            
+            this.SetTags(source._tags);
+            this.SetTriggers(source._triggers);
+
             return this;
         }
 

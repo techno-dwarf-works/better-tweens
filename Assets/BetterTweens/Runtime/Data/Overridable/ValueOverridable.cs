@@ -1,11 +1,12 @@
 ﻿using System;
-using Better.Attributes.Runtime.Select;
+using Better.Commons.Runtime.Interfaces;
 using UnityEngine;
 
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public class SimpleOverridable<TValue> : OverridableData<TValue>
+    public class ValueOverridable<TValue> : OverridableData<TValue>, ICloneable<ValueOverridable<TValue>>
+        where TValue : struct
     {
         [SerializeField] private TValue _overridenValue;
 
@@ -15,9 +16,14 @@ namespace Better.Tweens.Runtime.Data
             set => _overridenValue = value;
         }
 
-        public SimpleOverridable(TValue overridenValue)
+        public ValueOverridable(TValue overridenValue)
         {
             _overridenValue = overridenValue;
+        }
+
+        public ValueOverridable<TValue> Clone()
+        {
+            return new ValueOverridable<TValue>(OverridenValue);
         }
     }
 }

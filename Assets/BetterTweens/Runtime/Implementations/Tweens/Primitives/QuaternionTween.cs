@@ -56,6 +56,17 @@ namespace Better.Tweens.Runtime
             stringBuilder.AppendLine()
                 .AppendFieldLine(nameof(Spherical), Spherical);
         }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is QuaternionTween quaternionTween)
+            {
+                _spherical = quaternionTween._spherical;
+            }
+
+            return base.As(source);
+        }
     }
 
     [Serializable]
@@ -109,6 +120,17 @@ namespace Better.Tweens.Runtime
 
             stringBuilder.AppendLine()
                 .AppendFieldLine(nameof(Spherical), Spherical);
+        }
+        
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is QuaternionTween<TTarget> quaternionTween)
+            {
+                _spherical = quaternionTween._spherical;
+            }
+
+            return base.As(source);
         }
     }
 }

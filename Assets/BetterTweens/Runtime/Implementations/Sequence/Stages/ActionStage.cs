@@ -16,5 +16,13 @@ namespace Better.Tweens.Runtime.Sequences.Stages
         {
             ActionUtility.TryInvokeBySafeMode(_action);
         }
+
+        public override Stage Clone()
+        {
+            var clone = new ActionStage();
+            clone._action = _action;
+            
+            return clone;
+        }
     }
 }

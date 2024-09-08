@@ -24,5 +24,16 @@ namespace Better.Tweens.Runtime
         {
             Target.SetFloat(PropertyName, value);
         }
+        
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is PropertyFloatMaterialTween propertySource)
+            {
+                _propertyName = propertySource._propertyName;
+            }
+
+            return base.As(source);
+        }
     }
 }
