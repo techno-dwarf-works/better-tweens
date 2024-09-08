@@ -1,16 +1,19 @@
 ﻿using System;
-using Better.Attributes.Runtime.Select;
-using UnityEngine;
+using Better.Commons.Runtime.Interfaces;
 
 namespace Better.Tweens.Runtime.Data
 {
     [Serializable]
-    public class SleepingDurationOverridable : SimpleOverridable<SleepingDuration>
+    public class SleepingDurationOverridable : ImplementationOverridable<SleepingDuration>, ICloneable<SleepingDurationOverridable>
     {
         public float Duration => Value.Value;
         public bool Infinity => Value.Infinity;
 
         public SleepingDurationOverridable(SleepingDuration overridenValue) : base(overridenValue)
+        {
+        }
+
+        public SleepingDurationOverridable(SleepingDuration overridenValue, SleepingDuration sourceValue, bool overriden) : base(overridenValue)
         {
         }
 
@@ -24,6 +27,12 @@ namespace Better.Tweens.Runtime.Data
         {
             Overriden = true;
             OverridenValue.MakeInfinity();
+        }
+
+        public new SleepingDurationOverridable Clone()
+        {
+            var overridenClone = OverridenValue?.Clone();
+            return new SleepingDurationOverridable(overridenClone, SourceValue, Overriden);
         }
     }
 }

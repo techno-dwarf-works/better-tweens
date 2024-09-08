@@ -8,6 +8,8 @@ namespace Better.Tweens.Runtime
 {
     [Serializable]
     public abstract class VectorTween<TVector, TConstraint> : Tween<TVector>
+        where TVector : struct
+        where TConstraint : struct
     {
         [SerializeField] private List<TConstraint> _axisConstraints;
         [SerializeField] private bool _spherical;
@@ -66,6 +68,18 @@ namespace Better.Tweens.Runtime
                 string constrainsValue = string.Join(", ", Constraints);
                 stringBuilder.AppendFieldLine(nameof(Constraints), constrainsValue);
             }
+        }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is VectorTween<TVector, TConstraint> vectorTween)
+            {
+                _spherical = vectorTween._spherical;
+                _axisConstraints = vectorTween._axisConstraints;
+            }
+
+            return base.As(source);
         }
     }
 
@@ -130,6 +144,18 @@ namespace Better.Tweens.Runtime
                 string constrainsValue = string.Join(", ", Constraints);
                 stringBuilder.AppendFieldLine(nameof(Constraints), constrainsValue);
             }
+        }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is VectorTween<TTarget, TVector, TConstraint> vectorTween)
+            {
+                _spherical = vectorTween._spherical;
+                _axisConstraints = vectorTween._axisConstraints;
+            }
+
+            return base.As(source);
         }
     }
 }

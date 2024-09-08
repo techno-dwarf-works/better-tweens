@@ -22,5 +22,12 @@ namespace Better.Tweens.Runtime.Sequences.Stages
         {
             Debug.Log(_message);
         }
+
+        public override Stage Clone()
+        {
+            var clone = new DebugStage();
+
+            return clone;
+        }
     }
 }

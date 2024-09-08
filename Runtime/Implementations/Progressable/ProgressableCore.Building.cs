@@ -12,11 +12,11 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                if (value < MinTime)
+                if (value < TweensSettings.MinTime)
                 {
-                    var message = $"{nameof(LoopDelay)} cannot be less of {nameof(MinTime)}({MinTime}), was clamped";
+                    var message = $"{nameof(LoopDelay)} cannot be less of {nameof(TweensSettings.MinTime)}({TweensSettings.MinTime}), was clamped";
                     LogUtility.LogWarning(message);
-                    value = MinTime;
+                    value = TweensSettings.MinTime;
                 }
 
                 _loopDelay = value;
@@ -29,11 +29,11 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                if (value < MinTime)
+                if (value < TweensSettings.MinTime)
                 {
-                    var message = $"{nameof(StartDelay)} cannot be less of {nameof(MinTime)}({MinTime}), was clamped";
+                    var message = $"{nameof(StartDelay)} cannot be less of {nameof(TweensSettings.MinTime)}({TweensSettings.MinTime}), was clamped";
                     LogUtility.LogWarning(message);
-                    value = MinTime;
+                    value = TweensSettings.MinTime;
                 }
 
                 _startDelay = value;
@@ -87,11 +87,11 @@ namespace Better.Tweens.Runtime
         {
             if (ValidateMutable(true))
             {
-                if (value < MinTime)
+                if (value < TweensSettings.MinTime)
                 {
-                    var message = $"{nameof(Duration)} cannot be less of {nameof(MinTime)}({MinTime}), was clamped";
+                    var message = $"{nameof(Duration)} cannot be less of {nameof(TweensSettings.MinTime)}({TweensSettings.MinTime}), was clamped";
                     LogUtility.LogWarning(message);
-                    value = MinTime;
+                    value = TweensSettings.MinTime;
                 }
 
                 _duration = value;
@@ -108,6 +108,21 @@ namespace Better.Tweens.Runtime
             }
 
             return this;
+        }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is ProgressableCore progressableSource)
+            {
+                _duration = progressableSource._duration;
+                _startDelay = progressableSource._startDelay;
+                _loopDelay = progressableSource._loopDelay;
+                _loopMode = progressableSource._loopMode;
+                _ease = progressableSource._ease.Clone();
+            }
+
+            return base.As(source);
         }
 
         #endregion

@@ -187,6 +187,20 @@ namespace Better.Tweens.Runtime
                 .AppendFieldLine(nameof(FromValue), FromValue)
                 .AppendFieldLine(nameof(ToValue), ToValue);
         }
+
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is Tween<TValue, TValueOptions> tweenSource)
+            {
+                _fromMode = tweenSource._fromMode;
+                _fromValue = tweenSource._fromValue;
+                _optionsMode = tweenSource._optionsMode;
+                _options = tweenSource._options;
+            }
+
+            return base.As(source);
+        }
     }
 
     [Serializable]

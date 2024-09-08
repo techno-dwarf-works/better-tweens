@@ -4,6 +4,17 @@ namespace Better.Tweens.Runtime
 {
     public partial class Sequence
     {
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is Sequence sequenceSource)
+            {
+                _rootChannel = sequenceSource._rootChannel.Clone();
+            }
+
+            return base.As(source);
+        }
+
         public Sequence AddChannel()
         {
             if (ValidateMutable(true))

@@ -12,7 +12,6 @@ namespace Better.Tweens.Runtime
     [Serializable]
     public abstract partial class TweenCore
     {
-        protected const float MinTime = 0f;
         private const int OverLoopsThreshold = Data.LoopCount.MaxValue;
 
         public event Action StateChanged;
@@ -33,11 +32,11 @@ namespace Better.Tweens.Runtime
         public event Action LoopRewound;
         public event Action Broken;
         
-        [Min(MinTime)]
+        [Min(TweensSettings.MinTime)]
         [SerializeField] private float _localTimeScale;
         [SerializeField] private LoopCount _loopCount;
-        [SerializeField] private SimpleOverridable<bool> _dependUnityTimeScale;
-        [SerializeField] private SimpleOverridable<bool> _dependGlobalTimeScale;
+        [SerializeField] private ValueOverridable<bool> _dependUnityTimeScale;
+        [SerializeField] private ValueOverridable<bool> _dependGlobalTimeScale;
         [SerializeField] private SleepingDurationOverridable _sleepingDuration;
         [SerializeField] private ImplementationOverridable<TweenCoreAction> _completionAction;
         [SerializeField] private ImplementationOverridable<TweenCoreAction> _rewoundAction;

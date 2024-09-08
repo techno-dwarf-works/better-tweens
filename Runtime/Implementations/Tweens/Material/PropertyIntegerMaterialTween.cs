@@ -24,5 +24,16 @@ namespace Better.Tweens.Runtime
         {
             Target.SetInteger(PropertyName, value);
         }
+        
+        public override TweenCore As(TweenCore source)
+        {
+            if (ValidateMutable(true, false)
+                && source is PropertyIntegerMaterialTween propertySource)
+            {
+                _propertyName = propertySource._propertyName;
+            }
+
+            return base.As(source);
+        }
     }
 }

@@ -6,6 +6,8 @@ namespace Better.Tweens.Runtime
     public static class VectorTweenExtensions
     {
         public static IEnumerable<VectorTween<TVector, TConstraint>> SetSpherical<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, bool spherical = true)
+            where TVector : struct
+            where TConstraint : struct
         {
             if (!ValidationUtility.ValidateNullReference(self))
             {
@@ -37,6 +39,8 @@ namespace Better.Tweens.Runtime
         }
 
         public static IEnumerable<VectorTween<TVector, TConstraint>> AddConstraint<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, TConstraint constraint)
+            where TVector : struct
+            where TConstraint : struct
         {
             if (!ValidationUtility.ValidateNullReference(self))
             {
@@ -68,6 +72,8 @@ namespace Better.Tweens.Runtime
         }
 
         public static IEnumerable<VectorTween<TVector, TConstraint>> RemoveConstraint<TVector, TConstraint>(this IEnumerable<VectorTween<TVector, TConstraint>> self, TConstraint constraint)
+            where TVector : struct
+            where TConstraint : struct
         {
             if (!ValidationUtility.ValidateNullReference(self))
             {

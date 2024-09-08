@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Better.Commons.Runtime.Interfaces;
 
 namespace Better.Tweens.Runtime.Sequences.Stages
 {
     [Serializable]
-    public abstract class Stage
+    public abstract class Stage : ICloneable<Stage>
     {
         public virtual void Start()
         {
@@ -39,5 +40,6 @@ namespace Better.Tweens.Runtime.Sequences.Stages
 
         public abstract bool IsCompleted();
         public abstract bool IsRewound();
+        public abstract Stage Clone();
     }
 }
