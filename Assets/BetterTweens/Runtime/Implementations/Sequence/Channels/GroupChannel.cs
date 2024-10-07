@@ -193,8 +193,6 @@ namespace Better.Tweens.Runtime.Sequences.Channels
             }
 
             return clone;
-            
-            return clone;
         }
     }
 }
