@@ -206,28 +206,6 @@ namespace Better.Tweens.Runtime
             return tweens;
         }
 
-        public static ShadowAngleLightTween TweenShadowAngle(this Light self, float duration, float options, OptionsMode optionsMode = default)
-        {
-            return self.Tween<ShadowAngleLightTween, Light, float>(duration, options, optionsMode);
-        }
-
-        public static IEnumerable<ShadowAngleLightTween> TweensShadowAngle(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return Array.Empty<ShadowAngleLightTween>();
-            }
-
-            var tweens = new List<ShadowAngleLightTween>();
-            foreach (var target in self)
-            {
-                var tween = target.TweenShadowAngle(duration, options, optionsMode);
-                tweens.Add(tween);
-            }
-
-            return tweens;
-        }
-
         public static ShadowBiasLightTween TweenShadowBias(this Light self, float duration, float options, OptionsMode optionsMode = default)
         {
             return self.Tween<ShadowBiasLightTween, Light, float>(duration, options, optionsMode);
@@ -310,28 +288,6 @@ namespace Better.Tweens.Runtime
             foreach (var target in self)
             {
                 var tween = target.TweenShadowNormalBias(duration, options, optionsMode);
-                tweens.Add(tween);
-            }
-
-            return tweens;
-        }
-
-        public static ShadowRadiusLightTween TweenShadowRadius(this Light self, float duration, float options, OptionsMode optionsMode = default)
-        {
-            return self.Tween<ShadowRadiusLightTween, Light, float>(duration, options, optionsMode);
-        }
-
-        public static IEnumerable<ShadowRadiusLightTween> TweensShadowRadius(this IEnumerable<Light> self, float duration, float options, OptionsMode optionsMode = default)
-        {
-            if (!ValidationUtility.ValidateNullReference(self))
-            {
-                return Array.Empty<ShadowRadiusLightTween>();
-            }
-
-            var tweens = new List<ShadowRadiusLightTween>();
-            foreach (var target in self)
-            {
-                var tween = target.TweenShadowRadius(duration, options, optionsMode);
                 tweens.Add(tween);
             }
 
