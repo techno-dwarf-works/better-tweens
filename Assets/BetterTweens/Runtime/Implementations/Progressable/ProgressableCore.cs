@@ -36,8 +36,7 @@ namespace Better.Tweens.Runtime
 
         protected ProgressableCore()
         {
-            var defaultEase = SettingsData.Ease.Clone();
-            _ease = new(defaultEase);
+            _ease = new();
         }
     }
 }

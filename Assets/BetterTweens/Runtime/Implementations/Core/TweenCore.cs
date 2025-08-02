@@ -67,15 +67,11 @@ namespace Better.Tweens.Runtime
             _localTimeScale = 1f;
             _loopCount = new();
 
-            var defaultCompletionAction = SettingsData.CompletionAction.Clone();
-            var defaultRewoundAction = SettingsData.RewoundAction.Clone();
-            var defaultSleepingDuration = SettingsData.SleepingDuration.Clone();
-
-            _dependUnityTimeScale = new(SettingsData.DependUnityTimeScale);
-            _dependGlobalTimeScale = new(SettingsData.DependGlobalTimeScale);
-            _sleepingDuration = new(defaultSleepingDuration);
-            _completionAction = new(defaultCompletionAction);
-            _rewoundAction = new(defaultRewoundAction);
+            _dependUnityTimeScale = new();
+            _dependGlobalTimeScale = new();
+            _sleepingDuration = new();
+            _completionAction = new();
+            _rewoundAction = new();
         }
     }
 }
