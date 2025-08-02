@@ -15,7 +15,7 @@ namespace Better.Tweens.Runtime.Data
         public bool Overriden
         {
             get => _overriden;
-            set => _overriden = value;
+            private set => _overriden = value;
         }
 
         protected OverridableData()
@@ -35,8 +35,13 @@ namespace Better.Tweens.Runtime.Data
 
         public void Override(TValue value)
         {
-            Overriden = true;
             OverridenValue = value;
+            MarkOverriden();
+        }
+
+        public void MarkOverriden()
+        {
+            Overriden = true;
         }
     }
 }

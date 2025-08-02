@@ -23,7 +23,7 @@ namespace Better.Tweens.Runtime
             }
 
             Initialized = true;
-            InitializeOverridableData();
+            InitializeOverridableSources();
             InitializeMachines();
 
             _activityMachine.Run();
@@ -59,7 +59,7 @@ namespace Better.Tweens.Runtime
             handlingOverflowModule.Locked += OnMachineOverflowed;
         }
 
-        private void InitializeOverridableData()
+        protected virtual void InitializeOverridableSources()
         {
             _dependUnityTimeScale.SetSource(SettingsData.DependUnityTimeScale);
             _dependGlobalTimeScale.SetSource(SettingsData.DependGlobalTimeScale);
