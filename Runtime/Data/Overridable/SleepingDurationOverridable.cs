@@ -9,24 +9,24 @@ namespace Better.Tweens.Runtime.Data
         public float Duration => Value.Value;
         public bool Infinity => Value.Infinity;
 
-        public SleepingDurationOverridable(SleepingDuration overridenValue) : base(overridenValue)
+        public SleepingDurationOverridable()
         {
         }
 
-        public SleepingDurationOverridable(SleepingDuration overridenValue, SleepingDuration sourceValue, bool overriden) : base(overridenValue)
+        public SleepingDurationOverridable(SleepingDuration overridenValue, SleepingDuration sourceValue, bool overriden) : base(overridenValue, sourceValue, overriden)
         {
         }
 
         public void OverrideDuration(float value)
         {
-            Overriden = true;
             OverridenValue.SetValue(value);
+            MarkOverriden();
         }
 
         public void OverrideInfinity()
         {
-            Overriden = true;
             OverridenValue.MakeInfinity();
+            MarkOverriden();
         }
 
         public new SleepingDurationOverridable Clone()
